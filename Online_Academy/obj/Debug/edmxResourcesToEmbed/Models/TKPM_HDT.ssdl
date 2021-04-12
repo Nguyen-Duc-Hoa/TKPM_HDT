@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A72902_TKPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bookdetail">
+    <Key>
+      <PropertyRef Name="id_student" />
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id_student" Type="int" Nullable="false" />
+    <Property Name="id_course" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="50" />
+    <Property Name="description" Type="char" MaxLength="5000" />
+    <Property Name="short_description" Type="char" MaxLength="100" />
+    <Property Name="thumbnail" Type="char" MaxLength="50" />
+    <Property Name="preview" Type="char" MaxLength="50" />
+    <Property Name="id_teacher" Type="int" />
+    <Property Name="id_subcat" Type="int" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="Curriculum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="chap_name" Type="char" MaxLength="50" />
+    <Property Name="link" Type="char" MaxLength="100" />
+    <Property Name="id_course" Type="int" />
+  </EntityType>
+  <EntityType Name="Process">
+    <Key>
+      <PropertyRef Name="id_student" />
+      <PropertyRef Name="id_Course" />
+    </Key>
+    <Property Name="id_student" Type="int" Nullable="false" />
+    <Property Name="id_Course" Type="int" Nullable="false" />
+    <Property Name="process" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'DB_A72902_TKPM.dbo.Rate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Rate">
+          <Property Name="id_course" Type="int" />
+          <Property Name="id_student" Type="int" />
+          <Property Name="rate_value" Type="int" />
+          <Property Name="comment" Type="nchar" MaxLength="200" />
+        </EntityType>-->
+  <EntityType Name="Subcategories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subname" Type="char" MaxLength="10" />
+    <Property Name="id_cat" Type="int" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="char" MaxLength="50" />
+    <Property Name="password" Type="char" MaxLength="100" />
+    <Property Name="email" Type="char" MaxLength="50" />
+    <Property Name="avatar" Type="char" MaxLength="50" />
+    <Property Name="description" Type="char" MaxLength="5000" />
+    <Property Name="num_students" Type="int" />
+    <Property Name="num_cources" Type="int" />
+    <Property Name="date_join" Type="datetime" />
+    <Property Name="major" Type="char" MaxLength="50" />
+    <Property Name="state" Type="bit" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="char" MaxLength="50" />
+    <Property Name="password" Type="char" MaxLength="100" />
+    <Property Name="email" Type="char" MaxLength="50" />
+    <Property Name="avatar" Type="char" MaxLength="50" />
+    <Property Name="date_join" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Bookdetai__id_co__47DBAE45">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Bookdetail" Type="Self.Bookdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bookdetail">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bookdetai__id_st__46E78A0C">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Bookdetail" Type="Self.Bookdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bookdetail">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Course__id_subca__440B1D61">
+    <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subcategories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="id_subcat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Course__id_teach__4316F928">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="id_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Curriculu__id_co__5165187F">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Process__id_Cour__4BAC3F29">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Process" Type="Self.Process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Process">
+        <PropertyRef Name="id_Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Process__id_stud__4AB81AF0">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Process" Type="Self.Process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Process">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'DB_A72902_TKPM.dbo.Rate' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Rate__id_course__4D94879B" />-->
+  <!--Errors Found During Generation:
+error 6004: The table 'DB_A72902_TKPM.dbo.Rate' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__Rate__id_student__4E88ABD4" />-->
+  <Association Name="FK__Subcatego__id_ca__403A8C7D">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Subcategories">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_A72902_TKPMModelStoreContainer">
+    <EntitySet Name="Bookdetail" EntityType="Self.Bookdetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Curriculum" EntityType="Self.Curriculum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Process" EntityType="Self.Process" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subcategories" EntityType="Self.Subcategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Bookdetai__id_co__47DBAE45" Association="Self.FK__Bookdetai__id_co__47DBAE45">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Bookdetail" EntitySet="Bookdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bookdetai__id_st__46E78A0C" Association="Self.FK__Bookdetai__id_st__46E78A0C">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Bookdetail" EntitySet="Bookdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Course__id_subca__440B1D61" Association="Self.FK__Course__id_subca__440B1D61">
+      <End Role="Subcategories" EntitySet="Subcategories" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Course__id_teach__4316F928" Association="Self.FK__Course__id_teach__4316F928">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Curriculu__id_co__5165187F" Association="Self.FK__Curriculu__id_co__5165187F">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Curriculum" EntitySet="Curriculum" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Process__id_Cour__4BAC3F29" Association="Self.FK__Process__id_Cour__4BAC3F29">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Process" EntitySet="Process" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Process__id_stud__4AB81AF0" Association="Self.FK__Process__id_stud__4AB81AF0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Process" EntitySet="Process" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subcatego__id_ca__403A8C7D" Association="Self.FK__Subcatego__id_ca__403A8C7D">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Subcategories" EntitySet="Subcategories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

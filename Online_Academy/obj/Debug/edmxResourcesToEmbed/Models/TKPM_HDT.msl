@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DB_A72902_TKPMModelStoreContainer" CdmEntityContainer="DB_A72902_TKPMEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curricula">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Curriculum">
+        <MappingFragment StoreEntitySet="Curriculum">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="chap_name" ColumnName="chap_name" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Processes">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Process">
+        <MappingFragment StoreEntitySet="Process">
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="id_Course" ColumnName="id_Course" />
+          <ScalarProperty Name="process1" ColumnName="process" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subcategories">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Subcategory">
+        <MappingFragment StoreEntitySet="Subcategories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="subname" ColumnName="subname" />
+          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Teacher">
+        <MappingFragment StoreEntitySet="Teachers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="num_students" ColumnName="num_students" />
+          <ScalarProperty Name="num_cources" ColumnName="num_cources" />
+          <ScalarProperty Name="date_join" ColumnName="date_join" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="date_join" ColumnName="date_join" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Bookdetail" TypeName="DB_A72902_TKPMModel.Bookdetail" StoreEntitySet="Bookdetail">
+      <EndProperty Name="Course">
+        <ScalarProperty Name="id" ColumnName="id_course" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="id" ColumnName="id_student" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_A72902_TKPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Subcategories" Relationship="Self.FK__Subcatego__id_ca__403A8C7D" FromRole="Categories" ToRole="Subcategories" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
+    <Property Name="short_description" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="thumbnail" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="preview" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="id_teacher" Type="Int32" />
+    <Property Name="id_subcat" Type="Int32" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Subcategory" Relationship="Self.FK__Course__id_subca__440B1D61" FromRole="Course" ToRole="Subcategories" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK__Course__id_teach__4316F928" FromRole="Course" ToRole="Teachers" />
+    <NavigationProperty Name="Curricula" Relationship="Self.FK__Curriculu__id_co__5165187F" FromRole="Course" ToRole="Curriculum" />
+    <NavigationProperty Name="Processes" Relationship="Self.FK__Process__id_Cour__4BAC3F29" FromRole="Course" ToRole="Process" />
+    <NavigationProperty Name="Users" Relationship="Self.Bookdetail" FromRole="Course" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Curriculum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chap_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="id_course" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="Self.FK__Curriculu__id_co__5165187F" FromRole="Curriculum" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="Process">
+    <Key>
+      <PropertyRef Name="id_student" />
+      <PropertyRef Name="id_Course" />
+    </Key>
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="id_Course" Type="Int32" Nullable="false" />
+    <Property Name="process1" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="Self.FK__Process__id_Cour__4BAC3F29" FromRole="Process" ToRole="Course" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Process__id_stud__4AB81AF0" FromRole="Process" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Subcategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subname" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="id_cat" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Subcatego__id_ca__403A8C7D" FromRole="Subcategories" ToRole="Categories" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Course__id_subca__440B1D61" FromRole="Subcategories" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="avatar" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
+    <Property Name="num_students" Type="Int32" />
+    <Property Name="num_cources" Type="Int32" />
+    <Property Name="date_join" Type="DateTime" Precision="3" />
+    <Property Name="major" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="state" Type="Boolean" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Course__id_teach__4316F928" FromRole="Teachers" ToRole="Course" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="avatar" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="date_join" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Processes" Relationship="Self.FK__Process__id_stud__4AB81AF0" FromRole="Users" ToRole="Process" />
+    <NavigationProperty Name="Courses" Relationship="Self.Bookdetail" FromRole="Users" ToRole="Course" />
+  </EntityType>
+  <Association Name="FK__Subcatego__id_ca__403A8C7D">
+    <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Subcategories" Type="Self.Subcategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Subcategories">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Course__id_subca__440B1D61">
+    <End Role="Subcategories" Type="Self.Subcategory" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subcategories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="id_subcat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Course__id_teach__4316F928">
+    <End Role="Teachers" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="id_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Curriculu__id_co__5165187F">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Curriculum">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Process__id_Cour__4BAC3F29">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Process" Type="Self.Process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Process">
+        <PropertyRef Name="id_Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Process__id_stud__4AB81AF0">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Process" Type="Self.Process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Process">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Bookdetail">
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DB_A72902_TKPMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Curricula" EntityType="Self.Curriculum" />
+    <EntitySet Name="Processes" EntityType="Self.Process" />
+    <EntitySet Name="Subcategories" EntityType="Self.Subcategory" />
+    <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Subcatego__id_ca__403A8C7D" Association="Self.FK__Subcatego__id_ca__403A8C7D">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Subcategories" EntitySet="Subcategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Course__id_subca__440B1D61" Association="Self.FK__Course__id_subca__440B1D61">
+      <End Role="Subcategories" EntitySet="Subcategories" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Course__id_teach__4316F928" Association="Self.FK__Course__id_teach__4316F928">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Course" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Curriculu__id_co__5165187F" Association="Self.FK__Curriculu__id_co__5165187F">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Curriculum" EntitySet="Curricula" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Process__id_Cour__4BAC3F29" Association="Self.FK__Process__id_Cour__4BAC3F29">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Process" EntitySet="Processes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Process__id_stud__4AB81AF0" Association="Self.FK__Process__id_stud__4AB81AF0">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Process" EntitySet="Processes" />
+    </AssociationSet>
+    <AssociationSet Name="Bookdetail" Association="Self.Bookdetail">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
