@@ -448,7 +448,9 @@ Theme Version:	1.0.0
 						jQuery('#loading-icon-bx').remove();
 					}, 0);
 				}
-				
+
+
+			//not allow F12
 				var codeSecurity = function() {
 					document.onkeydown = function(e) {
                         if (e.keyCode === 123 || (e.ctrlKey && 
@@ -457,15 +459,16 @@ Theme Version:	1.0.0
                              e.keyCode === 99 ||
                              e.keyCode === 85 || 
                              e.keyCode === 117))) {
-                            return false;
+                            return true;
                         } else {
                             return true;
                         }
                     };
-                	
-                	document.addEventListener("contextmenu", function(e){
-                      e.preventDefault();
-                    }, false);
+
+					//not allow Click right
+                	//document.addEventListener("contextmenu", function(e){
+                 //     e.preventDefault();
+                 //   }, false);
                     
                     $(document).keypress("u",function(e) {
                       if(e.ctrlKey){return false;}

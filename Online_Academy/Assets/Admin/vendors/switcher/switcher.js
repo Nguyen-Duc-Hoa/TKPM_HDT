@@ -57,23 +57,23 @@ $(function(){
 	//=== Color css change function	=====================//
     // Color changer
     jQuery(".skin-1").on('click',function(){
-        jQuery(".skin").attr("href", "assets/css/color/color-1.css");
-		jQuery(".ttr-sidebar-logo img").attr("src", "assets/images/logo.png");
+        jQuery(".skin").attr("href", "Assets/Users/css/color/color-1.css");
+		jQuery(".ttr-sidebar-logo img").attr("src", "Assets/Users/images/logo.png");
         return false;
     });
     jQuery(".skin-2").on('click',function(){
-        jQuery(".skin").attr("href", "assets/css/color/color-2.css");
-		jQuery(".ttr-sidebar-logo img").attr("src", "assets/images/logo-2.png");
+        jQuery(".skin").attr("href", "Assets/Users/css/color/color-2.css");
+		jQuery(".ttr-sidebar-logo img").attr("src", "Assets/Users/images/logo-2.png");
         return false;
     });
     jQuery(".skin-3").on('click',function(){
-        jQuery(".skin").attr("href", "assets/css/color/color-3.css");
-		jQuery(".ttr-sidebar-logo img").attr("src", "assets/images/logo-3.png");
+        jQuery(".skin").attr("href", "Assets/Users/css/color/color-3.css");
+		jQuery(".ttr-sidebar-logo img").attr("src", "Assets/Users/images/logo-3.png");
         return false;
     });
 	jQuery(".skin-4").on('click',function(){
-        jQuery(".skin").attr("href", "assets/css/color/color-4.css");
-		jQuery(".ttr-sidebar-logo img").attr("src", "assets/images/logo-4.png");
+        jQuery(".skin").attr("href", "Assets/Users/css/color/color-4.css");
+		jQuery(".ttr-sidebar-logo img").attr("src", "Assets/Users/images/logo-4.png");
         return false;
     });
 	//=== Color css change function	=====================//	
