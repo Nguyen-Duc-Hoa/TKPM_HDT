@@ -21,18 +21,12 @@ namespace WebAPI.Models
         }
     
         public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
-        public string avatar { get; set; }
         public string description { get; set; }
         public Nullable<int> num_students { get; set; }
         public Nullable<int> num_cources { get; set; }
-        public Nullable<System.DateTime> date_join { get; set; }
-        public string major { get; set; }
-        public Nullable<bool> state { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }
+        public virtual User User { get; set; }
     }
 }

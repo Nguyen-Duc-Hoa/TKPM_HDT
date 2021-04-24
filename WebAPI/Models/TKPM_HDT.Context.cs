@@ -28,13 +28,25 @@ namespace WebAPI.Models
         }
     
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Curriculum> Curricula { get; set; }
+        public virtual DbSet<History> Histories { get; set; }
+        public virtual DbSet<Lecture> Lectures { get; set; }
         public virtual DbSet<Process> Processes { get; set; }
+        public virtual DbSet<Rate> Rates { get; set; }
+        public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<Subcategory> Subcategories { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<view_allCourses> view_allCourses { get; set; }
+        public virtual DbSet<view_allCurriculum> view_allCurriculum { get; set; }
+        public virtual DbSet<view_allLectures> view_allLectures { get; set; }
+        public virtual DbSet<view_allUsers> view_allUsers { get; set; }
+        public virtual DbSet<view_categories> view_categories { get; set; }
+        public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
+        public virtual DbSet<view_Teachers> view_Teachers { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -142,6 +154,24 @@ namespace WebAPI.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<getTeacherById_Result> getTeacherById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTeacherById_Result>("getTeacherById", idParameter);
+        }
+    
+        public virtual ObjectResult<getTeacherByName_Result> getTeacherByName(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTeacherByName_Result>("getTeacherByName", nameParameter);
         }
     }
 }
