@@ -19,8 +19,11 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult LoadCourse()
         {
+            CourseClient CC = new CourseClient();
 
-            ViewBag.Course = db.Courses;
+            //ViewBag.Course = db.Courses;
+            ViewBag.Course = CC.GetAllCourses();
+
             return PartialView();
         }
         public ActionResult Layout()
