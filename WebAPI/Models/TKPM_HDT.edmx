@@ -12,6 +12,7 @@
           </Key>
           <Property Name="id_student" Type="int" Nullable="false" />
           <Property Name="id_course" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -192,6 +193,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allUsers' does not have a 
           <Property Name="username" Type="char" MaxLength="50" />
           <Property Name="password" Type="char" MaxLength="100" />
           <Property Name="email" Type="char" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="avatar" Type="char" MaxLength="50" />
           <Property Name="date_join" Type="datetime" />
           <Property Name="major" Type="varchar" MaxLength="50" />
@@ -556,6 +558,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_allUsers].[username] AS [username], 
     [view_allUsers].[password] AS [password], 
     [view_allUsers].[email] AS [email], 
+    [view_allUsers].[name] AS [name], 
     [view_allUsers].[avatar] AS [avatar], 
     [view_allUsers].[date_join] AS [date_join], 
     [view_allUsers].[major] AS [major], 
@@ -724,7 +727,6 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <EntitySet Name="view_allCourses" EntityType="DB_A72902_TKPMModel.view_allCourses" />
           <EntitySet Name="view_allCurriculum" EntityType="DB_A72902_TKPMModel.view_allCurriculum" />
           <EntitySet Name="view_allLectures" EntityType="DB_A72902_TKPMModel.view_allLectures" />
-          <EntitySet Name="view_allUsers" EntityType="DB_A72902_TKPMModel.view_allUsers" />
           <EntitySet Name="view_categories" EntityType="DB_A72902_TKPMModel.view_categories" />
           <EntitySet Name="view_Subcategories" EntityType="DB_A72902_TKPMModel.view_Subcategories" />
           <EntitySet Name="view_Teachers" EntityType="DB_A72902_TKPMModel.view_Teachers" />
@@ -801,11 +803,12 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <FunctionImport Name="getTeacherById" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getTeacherByName" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherByName_Result)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="view_allUsers" EntityType="DB_A72902_TKPMModel.view_allUsers" />
         </EntityContainer>
         <ComplexType Name="sp_findAll_Cate_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1020,21 +1023,6 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="id_chapter" Type="Int32" />
-        </EntityType>
-        <EntityType Name="view_allUsers">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="date_join" Type="DateTime" Precision="3" />
-          <Property Name="major" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="state" Type="Boolean" />
-          <Property Name="birthday" Type="DateTime" Precision="3" />
-          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_categories">
           <Key>
@@ -1310,6 +1298,22 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Type="Int32" Name="num_students" Nullable="true" />
           <Property Type="Int32" Name="num_cources" Nullable="true" />
         </ComplexType>
+        <EntityType Name="view_allUsers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="date_join" Type="DateTime" Precision="3" />
+          <Property Name="major" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Boolean" />
+          <Property Name="birthday" Type="DateTime" Precision="3" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1524,22 +1528,6 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="view_allUsers">
-            <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allUsers">
-              <MappingFragment StoreEntitySet="view_allUsers">
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="birthday" ColumnName="birthday" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="major" ColumnName="major" />
-                <ScalarProperty Name="date_join" ColumnName="date_join" />
-                <ScalarProperty Name="avatar" ColumnName="avatar" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="view_categories">
             <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_categories">
               <MappingFragment StoreEntitySet="view_categories">
@@ -1625,6 +1613,23 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="view_allUsers">
+            <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allUsers">
+              <MappingFragment StoreEntitySet="view_allUsers">
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="major" ColumnName="major" />
+                <ScalarProperty Name="date_join" ColumnName="date_join" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

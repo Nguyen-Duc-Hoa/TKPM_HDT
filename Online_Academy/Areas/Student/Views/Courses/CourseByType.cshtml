@@ -1,0 +1,43 @@
+﻿@{ Layout = null; }
+
+
+    <div class="row">
+        @if (ViewBag.Course != null) { 
+
+        foreach (var course in ViewBag.Course)
+        {
+            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                <div class="cours-bx">
+                    <div class="action-box">
+                        <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt="imageCourse" style="width: 263px; height: 147px;">
+                        <a href="/Student/Courses/CourseDetail/@course.id" class="btn">Read More</a>
+                    </div>
+                    <div class="info-bx text-center">
+                        <h5><a href="#">@course.name</a></h5>
+                        <span>@course.short_description</span>
+                    </div>
+                    <div class="cours-more-info">
+                        <div class="review">
+                            <span>3 Review</span>
+                            <ul class="cours-star">
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                        </div>
+                        <div class="price">
+                            <del>$@course.price</del>
+                            <h5>$@course.discount</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    </div>
+
+
+
+

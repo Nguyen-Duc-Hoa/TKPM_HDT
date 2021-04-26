@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allCourses" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allCurriculum" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allLectures" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allUsers" Width="1.5" PointX="2.75" PointY="4.75" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_categories" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_Subcategories" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_Teachers" Width="1.5" PointX="6.75" PointY="3.75" />
@@ -43,6 +42,7 @@
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Reply__id_user__06CD04F7" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK_idTeacher" />
         <AssociationConnector Association="DB_A72902_TKPMModel.Bookdetail" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allUsers" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

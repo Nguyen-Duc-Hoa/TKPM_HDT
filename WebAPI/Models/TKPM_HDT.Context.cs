@@ -43,10 +43,10 @@ namespace WebAPI.Models
         public virtual DbSet<view_allCourses> view_allCourses { get; set; }
         public virtual DbSet<view_allCurriculum> view_allCurriculum { get; set; }
         public virtual DbSet<view_allLectures> view_allLectures { get; set; }
-        public virtual DbSet<view_allUsers> view_allUsers { get; set; }
         public virtual DbSet<view_categories> view_categories { get; set; }
         public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
+        public virtual DbSet<view_allUsers> view_allUsers { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
