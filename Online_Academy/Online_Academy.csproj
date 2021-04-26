@@ -242,6 +242,7 @@
   <ItemGroup>
     <Content Include="Assets\Admin\css\assets.css" />
     <Content Include="Assets\Admin\css\color\color-1.css" />
+    <Content Include="Assets\Admin\css\custom.css" />
     <Content Include="Assets\Admin\css\dashboard.css" />
     <Content Include="Assets\Admin\css\shortcodes\accordion.css" />
     <Content Include="Assets\Admin\css\shortcodes\alert.css" />
@@ -312,8 +313,11 @@
     <Content Include="Assets\Admin\vendors\switcher\switcher.js" />
     <Content Include="Assets\Admin\vendors\themify\fonts\themify9f24.svg" />
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
+    <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
+    <Content Include="Assets\Pictures\ImagesCourse\word.png" />
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
+    <Content Include="Assets\Users\css\custom.css" />
     <Content Include="Assets\Users\css\shortcodes\accordion.css" />
     <Content Include="Assets\Users\css\shortcodes\alert.css" />
     <Content Include="Assets\Users\css\shortcodes\breadcrumb.css" />
@@ -383,6 +387,7 @@
     <Content Include="Assets\Users\images\icon\icon3.png" />
     <Content Include="Assets\Users\images\icon\icon4.png" />
     <Content Include="Assets\Users\images\loading.gif" />
+    <Content Include="Assets\Users\images\logo-removebg-preview.png" />
     <Content Include="Assets\Users\images\logo-white-2.png" />
     <Content Include="Assets\Users\images\logo-white.png" />
     <Content Include="Assets\Users\images\logo.png" />
