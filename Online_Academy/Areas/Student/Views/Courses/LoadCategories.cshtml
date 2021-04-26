@@ -1,0 +1,20 @@
+﻿@{ Layout = null; }
+
+<ul>
+    <li ><a class="general" style="font-weight: bold;" data-list1="All Course">General</a></li>
+    @foreach (var cate in ViewBag.Cate)
+    {
+        <li><a class="b" style="font-weight: bold;">@cate.name</a></li>
+        foreach (var sub in ViewBag.Subcate)
+        {
+            if (sub.id_cat == cate.id)
+            {
+                <li><a class="btn-info-icon" data-id_cate="@sub.id" style="margin-left:25px;" data-list1="@cate.name" data-list2="@sub.subname">@sub.subname</a></li>
+            }
+
+        }
+    }
+
+</ul>
+<script src="~/assets/Users/js/loadCourseByType.js"></script>
+

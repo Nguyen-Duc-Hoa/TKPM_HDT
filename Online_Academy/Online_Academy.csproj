@@ -132,6 +132,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
@@ -140,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoriesClient.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -212,6 +215,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UsersClient.cs" />
     <Compile Include="Models\view_allCourses.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -238,6 +242,7 @@
   <ItemGroup>
     <Content Include="Assets\Admin\css\assets.css" />
     <Content Include="Assets\Admin\css\color\color-1.css" />
+    <Content Include="Assets\Admin\css\custom.css" />
     <Content Include="Assets\Admin\css\dashboard.css" />
     <Content Include="Assets\Admin\css\shortcodes\accordion.css" />
     <Content Include="Assets\Admin\css\shortcodes\alert.css" />
@@ -308,8 +313,11 @@
     <Content Include="Assets\Admin\vendors\switcher\switcher.js" />
     <Content Include="Assets\Admin\vendors\themify\fonts\themify9f24.svg" />
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
+    <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
+    <Content Include="Assets\Pictures\ImagesCourse\word.png" />
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
+    <Content Include="Assets\Users\css\custom.css" />
     <Content Include="Assets\Users\css\shortcodes\accordion.css" />
     <Content Include="Assets\Users\css\shortcodes\alert.css" />
     <Content Include="Assets\Users\css\shortcodes\breadcrumb.css" />
@@ -379,6 +387,7 @@
     <Content Include="Assets\Users\images\icon\icon3.png" />
     <Content Include="Assets\Users\images\icon\icon4.png" />
     <Content Include="Assets\Users\images\loading.gif" />
+    <Content Include="Assets\Users\images\logo-removebg-preview.png" />
     <Content Include="Assets\Users\images\logo-white-2.png" />
     <Content Include="Assets\Users\images\logo-white.png" />
     <Content Include="Assets\Users\images\logo.png" />
@@ -407,6 +416,7 @@
     <Content Include="Assets\Users\js\functions.js" />
     <Content Include="Assets\Users\js\jquery.min.js" />
     <Content Include="Assets\Users\js\jquery.scroller.js" />
+    <Content Include="Assets\Users\js\loadCourseByType.js" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Users\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -512,6 +522,18 @@
     <Content Include="Assets\Users\vendors\themify\fonts\themify9f24.woff" />
     <Content Include="Assets\Users\vendors\themify\fonts\themifyd41d.eot" />
     <Content Include="Areas\Student\Views\MainPage\Index.cshtml" />
+    <Content Include="Areas\Student\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Student\Views\Categories\LoadSubcate.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CourseByType.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CourseDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\Index.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadCategories.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadCourse.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\UpdateList_inline.cshtml" />
+    <Content Include="Areas\Student\Views\MainPage\Layout.cshtml" />
+    <Content Include="Areas\Student\Views\MainPage\LoadCourse.cshtml" />
+    <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
+    <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -546,7 +568,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
-    <Folder Include="Areas\Student\Views\Shared\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />

@@ -18,6 +18,7 @@ namespace WebAPI.Models
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
+        public string name { get; set; }
         public string avatar { get; set; }
         public Nullable<System.DateTime> date_join { get; set; }
         public string major { get; set; }

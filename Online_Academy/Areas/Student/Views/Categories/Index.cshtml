@@ -1,0 +1,23 @@
+﻿
+
+<ul class="sub-menu">
+    <li>
+        <a href="/Student/Courses">All Course</a>
+    </li>
+    @foreach (var cat in ViewBag.cate)
+    {
+    <li>
+    <a  href="#">@cat.name<i class="fa fa-angle-right"></i></a>
+        <ul class="sub-menu" id="@cat.id">
+        @foreach (var sub in ViewBag.Subcate)
+        {
+            if (sub.id_cat == cat.id)
+            {
+                <li><a class="card-courses-categories" data-idcat="@sub.id" >@sub.subname</a></li>
+            }
+        }
+        </ul>
+
+    </li>
+    }
+</ul>
