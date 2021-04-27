@@ -318,6 +318,7 @@
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
     <Content Include="Assets\Users\css\custom.css" />
+    <Content Include="Assets\Users\css\favorite.css" />
     <Content Include="Assets\Users\css\shortcodes\accordion.css" />
     <Content Include="Assets\Users\css\shortcodes\alert.css" />
     <Content Include="Assets\Users\css\shortcodes\breadcrumb.css" />

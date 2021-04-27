@@ -8,8 +8,8 @@ namespace Online_Academy.Areas.Student.Controllers
 {
     public class CoursesController : Controller
     {
-        // GET: Student/Courses
         DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
+        // GET: Student/Courses
         public ActionResult Index()
         {
             
@@ -18,7 +18,8 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult LoadCourse()
         {
-            ViewBag.Course = db.Courses;
+            CourseClient CC = new CourseClient();
+            ViewBag.Course = CC.GetAllCourses();
             return PartialView();
         }
 
@@ -29,6 +30,7 @@ namespace Online_Academy.Areas.Student.Controllers
 
             UpdateList_inline("All course", null);
 
+            
             ViewBag.SubCate = db.Subcategories;
 
             return PartialView();
@@ -65,6 +67,24 @@ namespace Online_Academy.Areas.Student.Controllers
 
             ViewBag.list = list;
             return PartialView();
+        }
+
+        public ActionResult Like(int idCourse)
+        {
+            DateTime date = DateTime.Now;
+            Session["UserId"] = 1;
+            if (Session["UserId"] != null)
+            {
+                int idStudent = Convert.ToInt32(Session["UserId"]);
+                try
+                {
+                    db.sp_add_favorite(idStudent, idCourse, date);
+                }
+                catch
+                {
+                }
+            }
+            return View();
         }
     }
 }

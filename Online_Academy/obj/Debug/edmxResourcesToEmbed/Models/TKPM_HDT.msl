@@ -252,6 +252,7 @@
     <EntitySetMapping Name="view_allUsers">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allUsers">
         <MappingFragment StoreEntitySet="view_allUsers">
+          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="birthday" ColumnName="birthday" />
           <ScalarProperty Name="state" ColumnName="state" />
@@ -310,5 +311,6 @@
         <ScalarProperty Name="id" ColumnName="id_course" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_add_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_add_favorite" />
   </EntityContainerMapping>
 </Mapping>

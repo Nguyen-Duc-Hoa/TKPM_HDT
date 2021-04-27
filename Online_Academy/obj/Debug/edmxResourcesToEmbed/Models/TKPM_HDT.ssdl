@@ -7,6 +7,7 @@
     </Key>
     <Property Name="id_student" Type="int" Nullable="false" />
     <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" />
   </EntityType>
   <EntityType Name="Categories">
     <Key>
@@ -83,7 +84,7 @@
     </Key>
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="id_student" Type="int" Nullable="false" />
-    <Property Name="rate_value" Type="int" />
+    <Property Name="rate_value" Type="float" />
     <Property Name="comment" Type="nchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Reply">
@@ -187,6 +188,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allUsers' does not have a 
     <Property Name="username" Type="char" MaxLength="50" />
     <Property Name="password" Type="char" MaxLength="100" />
     <Property Name="email" Type="char" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
     <Property Name="avatar" Type="char" MaxLength="50" />
     <Property Name="date_join" Type="datetime" />
     <Property Name="major" Type="varchar" MaxLength="50" />
@@ -469,6 +471,11 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
   <Function Name="getTeacherByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="name" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_add_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idStudent" Type="int" Mode="In" />
+    <Parameter Name="idCourse" Type="int" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -551,6 +558,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_allUsers].[username] AS [username], 
     [view_allUsers].[password] AS [password], 
     [view_allUsers].[email] AS [email], 
+    [view_allUsers].[name] AS [name], 
     [view_allUsers].[avatar] AS [avatar], 
     [view_allUsers].[date_join] AS [date_join], 
     [view_allUsers].[major] AS [major], 

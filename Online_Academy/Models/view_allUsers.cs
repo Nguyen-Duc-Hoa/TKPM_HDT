@@ -24,5 +24,6 @@ namespace Online_Academy.Models
         public Nullable<bool> state { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
         public string gender { get; set; }
+        public string name { get; set; }
     }
 }
