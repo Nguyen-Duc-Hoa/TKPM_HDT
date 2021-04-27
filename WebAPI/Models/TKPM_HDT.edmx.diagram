@@ -43,6 +43,7 @@
         <AssociationConnector Association="DB_A72902_TKPMModel.FK_idTeacher" />
         <AssociationConnector Association="DB_A72902_TKPMModel.Bookdetail" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allUsers" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_Course_rate" Width="1.5" PointX="9.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -311,5 +311,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="view_Course_rate">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Course_rate">
+        <MappingFragment StoreEntitySet="view_Course_rate">
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

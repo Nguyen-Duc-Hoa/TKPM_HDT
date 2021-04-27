@@ -206,6 +206,27 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_categories' does not have 
     <Property Name="name" Type="char" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Course_rate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Course_rate">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="50" />
+    <Property Name="description" Type="char" MaxLength="5000" />
+    <Property Name="short_description" Type="char" MaxLength="100" />
+    <Property Name="thumbnail" Type="char" MaxLength="50" />
+    <Property Name="preview" Type="char" MaxLength="50" />
+    <Property Name="id_teacher" Type="int" />
+    <Property Name="id_subcat" Type="int" />
+    <Property Name="state" Type="bit" />
+    <Property Name="price" Type="int" />
+    <Property Name="discount" Type="int" />
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="rate" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Subcategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="view_Subcategories">
     <Key>
@@ -567,6 +588,23 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_categories].[id] AS [id], 
     [view_categories].[name] AS [name]
     FROM [dbo].[view_categories] AS [view_categories]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Course_rate" EntityType="Self.view_Course_rate" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Course_rate].[id] AS [id], 
+    [view_Course_rate].[name] AS [name], 
+    [view_Course_rate].[description] AS [description], 
+    [view_Course_rate].[short_description] AS [short_description], 
+    [view_Course_rate].[thumbnail] AS [thumbnail], 
+    [view_Course_rate].[preview] AS [preview], 
+    [view_Course_rate].[id_teacher] AS [id_teacher], 
+    [view_Course_rate].[id_subcat] AS [id_subcat], 
+    [view_Course_rate].[state] AS [state], 
+    [view_Course_rate].[price] AS [price], 
+    [view_Course_rate].[discount] AS [discount], 
+    [view_Course_rate].[id_course] AS [id_course], 
+    [view_Course_rate].[rate] AS [rate]
+    FROM [dbo].[view_Course_rate] AS [view_Course_rate]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_Subcategories" EntityType="Self.view_Subcategories" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

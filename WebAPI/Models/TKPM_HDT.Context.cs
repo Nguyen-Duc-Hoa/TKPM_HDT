@@ -47,6 +47,7 @@ namespace WebAPI.Models
         public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
         public virtual DbSet<view_allUsers> view_allUsers { get; set; }
+        //public virtual DbSet<view_Course_rate> view_Course_rate { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
