@@ -164,6 +164,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\Couse_UserController.cs" />
     <Compile Include="Controllers\CurriculumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
@@ -171,6 +172,9 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Bookdetail.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
@@ -182,6 +186,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Curriculum.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\func_Course_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getTeacherById_Result.cs">
@@ -203,6 +210,12 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Reply.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Couse_User_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_findAll_Cate_Result.cs">
@@ -253,7 +266,13 @@
     <Compile Include="Models\view_allUsers.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\view_Bookdetail.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\view_categories.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_Course_rate.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_Subcategories.cs">

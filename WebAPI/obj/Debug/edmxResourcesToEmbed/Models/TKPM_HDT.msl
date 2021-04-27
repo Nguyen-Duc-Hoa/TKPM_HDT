@@ -156,23 +156,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.User">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="birthday" ColumnName="birthday" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="major" ColumnName="major" />
-          <ScalarProperty Name="date_join" ColumnName="date_join" />
-          <ScalarProperty Name="avatar" ColumnName="avatar" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="view_allCourses">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allCourses">
         <MappingFragment StoreEntitySet="view_allCourses">
@@ -246,14 +229,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Bookdetail" TypeName="DB_A72902_TKPMModel.Bookdetail" StoreEntitySet="Bookdetail">
-      <EndProperty Name="User">
-        <ScalarProperty Name="id" ColumnName="id_student" />
-      </EndProperty>
-      <EndProperty Name="Course">
-        <ScalarProperty Name="id" ColumnName="id_course" />
-      </EndProperty>
-    </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="getTeacherById" FunctionName="DB_A72902_TKPMModel.Store.getTeacherById">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getTeacherById_Result">
@@ -294,23 +269,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="view_allUsers">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allUsers">
-        <MappingFragment StoreEntitySet="view_allUsers">
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="birthday" ColumnName="birthday" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="major" ColumnName="major" />
-          <ScalarProperty Name="date_join" ColumnName="date_join" />
-          <ScalarProperty Name="avatar" ColumnName="avatar" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="view_Course_rate">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Course_rate">
         <MappingFragment StoreEntitySet="view_Course_rate">
@@ -330,5 +288,107 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Bookdetails">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Bookdetail">
+        <MappingFragment StoreEntitySet="Bookdetail">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="role1" ColumnName="role" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="date_join" ColumnName="date_join" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_allUsers">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allUsers">
+        <MappingFragment StoreEntitySet="view_allUsers">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="date_join" ColumnName="date_join" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Bookdetail">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Bookdetail">
+        <MappingFragment StoreEntitySet="view_Bookdetail">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="func_Course" FunctionName="DB_A72902_TKPMModel.Store.func_Course">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.func_Course_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_add_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_add_favorite" />
+    <FunctionImportMapping FunctionImportName="sp_remove_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_remove_favorite" />
+    <FunctionImportMapping FunctionImportName="sp_Couse_User" FunctionName="DB_A72902_TKPMModel.Store.sp_Couse_User">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Couse_User_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -39,15 +39,18 @@ namespace WebAPI.Models
         public virtual DbSet<Subcategory> Subcategories { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<view_allCourses> view_allCourses { get; set; }
         public virtual DbSet<view_allCurriculum> view_allCurriculum { get; set; }
         public virtual DbSet<view_allLectures> view_allLectures { get; set; }
         public virtual DbSet<view_categories> view_categories { get; set; }
         public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
+        public virtual DbSet<view_Course_rate> view_Course_rate { get; set; }
+        public virtual DbSet<Bookdetail> Bookdetails { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<view_allUsers> view_allUsers { get; set; }
-        //public virtual DbSet<view_Course_rate> view_Course_rate { get; set; }
+        public virtual DbSet<view_Bookdetail> view_Bookdetail { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -174,5 +177,60 @@ namespace WebAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTeacherByName_Result>("getTeacherByName", nameParameter);
         }
+    
+        [DbFunction("DB_A72902_TKPMEntities", "func_Course")]
+        public virtual IQueryable<func_Course_Result> func_Course(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_Course_Result>("[DB_A72902_TKPMEntities].[func_Course](@idStudent)", idStudentParameter);
+        }
+    
+        public virtual int sp_add_favorite(Nullable<int> idStudent, Nullable<int> idCourse, Nullable<System.DateTime> date)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            var dateParameter = date.HasValue ?
+                new ObjectParameter("date", date) :
+                new ObjectParameter("date", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add_favorite", idStudentParameter, idCourseParameter, dateParameter);
+        }
+    
+        public virtual int sp_remove_favorite(Nullable<int> idStudent, Nullable<int> idCourse)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_remove_favorite", idStudentParameter, idCourseParameter);
+        }
+    
+        public virtual ObjectResult<sp_Couse_User_Result> sp_Couse_User(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Couse_User_Result>("sp_Couse_User", idStudentParameter);
+        }
+
+        internal IQueryable<sp_Couse_User_Result> sp_Couse_User_Result(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
