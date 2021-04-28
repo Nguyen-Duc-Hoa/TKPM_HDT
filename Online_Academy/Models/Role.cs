@@ -12,19 +12,18 @@ namespace Online_Academy.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class view_allUsers
+    public partial class Role
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
+    
         public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
-        public string avatar { get; set; }
-        public Nullable<System.DateTime> date_join { get; set; }
-        public string major { get; set; }
-        public Nullable<bool> state { get; set; }
-        public Nullable<System.DateTime> birthday { get; set; }
-        public string gender { get; set; }
-        public string name { get; set; }
-        public Nullable<int> role { get; set; }
+        public string role1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -135,6 +135,23 @@
       <Parameter Name="idCourse" Mode="In" Type="Int32" />
       <Parameter Name="date" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <EntitySet Name="Roles" EntityType="DB_A72902_TKPMModel.Role" />
+    <EntitySet Name="view_Bookdetail" EntityType="DB_A72902_TKPMModel.view_Bookdetail" />
+    <EntitySet Name="view_Course_rate" EntityType="DB_A72902_TKPMModel.view_Course_rate" />
+    <AssociationSet Name="FK__Users__role__4C364F0E" Association="DB_A72902_TKPMModel.FK__Users__role__4C364F0E">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <FunctionImport Name="func_Course" IsComposable="true" ReturnType="Collection(DB_A72902_TKPMModel.func_Course_Result)">
+      <Parameter Name="idStudent" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Couse_User" ReturnType="Collection(DB_A72902_TKPMModel.sp_Couse_User_Result)">
+      <Parameter Name="idStudent" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_remove_favorite">
+      <Parameter Name="idStudent" Mode="In" Type="Int32" />
+      <Parameter Name="idCourse" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="getTeacherById_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -348,6 +365,8 @@
     <NavigationProperty Name="Replies" Relationship="DB_A72902_TKPMModel.FK__Reply__id_user__06CD04F7" FromRole="User" ToRole="Reply" />
     <NavigationProperty Name="Teacher" Relationship="DB_A72902_TKPMModel.FK_idTeacher" FromRole="User" ToRole="Teacher" />
     <NavigationProperty Name="Courses" Relationship="DB_A72902_TKPMModel.Bookdetail" FromRole="User" ToRole="Course" />
+    <Property Name="role" Type="Int32" />
+    <NavigationProperty Name="Role1" Relationship="DB_A72902_TKPMModel.FK__Users__role__4C364F0E" FromRole="User" ToRole="Role" />
   </EntityType>
   <EntityType Name="view_allCourses">
     <Key>
@@ -397,6 +416,7 @@
     <Property Name="birthday" Type="DateTime" Precision="3" />
     <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <EntityType Name="view_categories">
     <Key>
@@ -431,6 +451,7 @@
     <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
     <Property Name="num_students" Type="Int32" />
     <Property Name="num_cources" Type="Int32" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <Association Name="FK__Subcatego__id_ca__403A8C7D">
     <End Type="DB_A72902_TKPMModel.Category" Role="Category" Multiplicity="0..1" />
@@ -640,4 +661,82 @@
     <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="*" />
     <End Type="DB_A72902_TKPMModel.User" Role="User" Multiplicity="*" />
   </Association>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role1" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="DB_A72902_TKPMModel.FK__Users__role__4C364F0E" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="view_Bookdetail">
+    <Key>
+      <PropertyRef Name="id_student" />
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="view_Course_rate">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
+    <Property Name="short_description" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="thumbnail" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="preview" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="id_teacher" Type="Int32" />
+    <Property Name="id_subcat" Type="Int32" />
+    <Property Name="state" Type="Boolean" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="discount" Type="Int32" />
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="rate" Type="Double" />
+  </EntityType>
+  <Association Name="FK__Users__role__4C364F0E">
+    <End Type="DB_A72902_TKPMModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="DB_A72902_TKPMModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="func_Course_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Double" Name="rate" Nullable="true" />
+    <Property Type="Int32" Name="id_student" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Couse_User_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Double" Name="rate" Nullable="true" />
+    <Property Type="Int32" Name="id_student" Nullable="true" />
+  </ComplexType>
 </Schema>

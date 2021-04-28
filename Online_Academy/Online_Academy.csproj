@@ -132,6 +132,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
@@ -157,6 +158,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CurriculumClient.cs" />
+    <Compile Include="Models\func_Course_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getTeacherById_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -177,6 +181,12 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Reply.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Couse_User_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_findAll_Cate_Result.cs">
@@ -228,7 +238,13 @@
     <Compile Include="Models\view_allUsers.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\view_Bookdetail.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\view_categories.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_Course_rate.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_Subcategories.cs">
@@ -271,9 +287,11 @@
     <Content Include="Assets\Admin\images\courses\pic7.jpg" />
     <Content Include="Assets\Admin\images\courses\pic8.jpg" />
     <Content Include="Assets\Admin\images\courses\pic9.jpg" />
+    <Content Include="Assets\Admin\images\favicon.ico" />
     <Content Include="Assets\Admin\images\favicon.png" />
     <Content Include="Assets\Admin\images\loading.gif" />
     <Content Include="Assets\Admin\images\logo-mobile.png" />
+    <Content Include="Assets\Admin\images\logo-white-2.png" />
     <Content Include="Assets\Admin\images\logo-white.png" />
     <Content Include="Assets\Admin\images\logo.png" />
     <Content Include="Assets\Admin\images\testimonials\pic1.jpg" />
@@ -282,6 +300,7 @@
     <Content Include="Assets\Admin\js\admin.js" />
     <Content Include="Assets\Admin\js\functions.js" />
     <Content Include="Assets\Admin\js\jquery.min.js" />
+    <Content Include="Assets\Admin\js\login.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -535,6 +554,7 @@
     <Content Include="Areas\Student\Views\MainPage\LoadCourse.cshtml" />
     <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
     <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -565,7 +585,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />

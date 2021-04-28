@@ -47,6 +47,9 @@ namespace Online_Academy.Models
         public virtual DbSet<view_categories> view_categories { get; set; }
         public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<view_Bookdetail> view_Bookdetail { get; set; }
+        public virtual DbSet<view_Course_rate> view_Course_rate { get; set; }
     
         public virtual ObjectResult<getTeacherById_Result> getTeacherById(Nullable<int> id)
         {
@@ -189,6 +192,38 @@ namespace Online_Academy.Models
                 new ObjectParameter("date", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_add_favorite", idStudentParameter, idCourseParameter, dateParameter);
+        }
+    
+        [DbFunction("DB_A72902_TKPMEntities", "func_Course")]
+        public virtual IQueryable<func_Course_Result> func_Course(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_Course_Result>("[DB_A72902_TKPMEntities].[func_Course](@idStudent)", idStudentParameter);
+        }
+    
+        public virtual ObjectResult<sp_Couse_User_Result> sp_Couse_User(Nullable<int> idStudent)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Couse_User_Result>("sp_Couse_User", idStudentParameter);
+        }
+    
+        public virtual int sp_remove_favorite(Nullable<int> idStudent, Nullable<int> idCourse)
+        {
+            var idStudentParameter = idStudent.HasValue ?
+                new ObjectParameter("idStudent", idStudent) :
+                new ObjectParameter("idStudent", typeof(int));
+    
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_remove_favorite", idStudentParameter, idCourseParameter);
         }
     }
 }

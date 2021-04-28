@@ -43,6 +43,10 @@
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Reply__id_user__06CD04F7" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK_idTeacher" />
         <AssociationConnector Association="DB_A72902_TKPMModel.Bookdetail" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Role" Width="1.5" PointX="5.25" PointY="23.625" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_Bookdetail" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_Course_rate" Width="1.5" PointX="9.375" PointY="3.75" />
+        <AssociationConnector Association="DB_A72902_TKPMModel.FK__Users__role__4C364F0E" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
