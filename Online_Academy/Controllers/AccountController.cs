@@ -140,7 +140,34 @@ namespace Online_Academy.Controllers
                 name = name,
                 email = email,
                 username = username,
-                password = password
+                password = password,
+                role = 3
+            };
+
+            UsersClient usersClient = new UsersClient();
+            if (usersClient.Create(user))
+            {
+                return Content("Success");
+            }
+            else
+            {
+                return Content("Fail");
+            }
+        }
+        public ActionResult RegisterTeacher()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RegisterTeacher(string name, string email, string username, string password)
+        {
+            User user = new User()
+            {
+                name = name,
+                email = email,
+                username = username,
+                password = password,
+                role = 2
             };
 
             UsersClient usersClient = new UsersClient();
