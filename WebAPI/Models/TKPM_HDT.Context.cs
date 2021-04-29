@@ -226,11 +226,62 @@ namespace WebAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Couse_User_Result>("sp_Couse_User", idStudentParameter);
         }
-
-        internal IQueryable<sp_Couse_User_Result> sp_Couse_User_Result(int id)
+    
+        public virtual ObjectResult<getBookdetail_Result> getBookdetail(Nullable<int> id_student, Nullable<int> id_course)
         {
-            throw new NotImplementedException();
+            var id_studentParameter = id_student.HasValue ?
+                new ObjectParameter("id_student", id_student) :
+                new ObjectParameter("id_student", typeof(int));
+    
+            var id_courseParameter = id_course.HasValue ?
+                new ObjectParameter("id_course", id_course) :
+                new ObjectParameter("id_course", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBookdetail_Result>("getBookdetail", id_studentParameter, id_courseParameter);
         }
-
+    
+        public virtual ObjectResult<view_Bookdetail> getBookdetail1(Nullable<int> id_student, Nullable<int> id_course)
+        {
+            var id_studentParameter = id_student.HasValue ?
+                new ObjectParameter("id_student", id_student) :
+                new ObjectParameter("id_student", typeof(int));
+    
+            var id_courseParameter = id_course.HasValue ?
+                new ObjectParameter("id_course", id_course) :
+                new ObjectParameter("id_course", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<view_Bookdetail>("getBookdetail1", id_studentParameter, id_courseParameter);
+        }
+    
+        public virtual ObjectResult<view_Bookdetail> getBookdetail1(Nullable<int> id_student, Nullable<int> id_course, MergeOption mergeOption)
+        {
+            var id_studentParameter = id_student.HasValue ?
+                new ObjectParameter("id_student", id_student) :
+                new ObjectParameter("id_student", typeof(int));
+    
+            var id_courseParameter = id_course.HasValue ?
+                new ObjectParameter("id_course", id_course) :
+                new ObjectParameter("id_course", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<view_Bookdetail>("getBookdetail1", mergeOption, id_studentParameter, id_courseParameter);
+        }
+    
+        public virtual ObjectResult<view_Teachers> getTeacherByName1(string name)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<view_Teachers>("getTeacherByName1", nameParameter);
+        }
+    
+        public virtual ObjectResult<view_Teachers> getTeacherByName1(string name, MergeOption mergeOption)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<view_Teachers>("getTeacherByName1", mergeOption, nameParameter);
+        }
     }
 }

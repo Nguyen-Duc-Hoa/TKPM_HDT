@@ -28,5 +28,6 @@ namespace WebAPI.Models
         public string description { get; set; }
         public Nullable<int> num_students { get; set; }
         public Nullable<int> num_cources { get; set; }
+        public Nullable<int> role { get; set; }
     }
 }

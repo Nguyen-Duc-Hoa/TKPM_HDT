@@ -157,6 +157,17 @@
     <FunctionImport Name="sp_Couse_User" ReturnType="Collection(DB_A72902_TKPMModel.sp_Couse_User_Result)">
       <Parameter Name="idStudent" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="getBookdetail" ReturnType="Collection(DB_A72902_TKPMModel.getBookdetail_Result)">
+      <Parameter Name="id_student" Mode="In" Type="Int32" />
+      <Parameter Name="id_course" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getBookdetail1" EntitySet="view_Bookdetail" ReturnType="Collection(DB_A72902_TKPMModel.view_Bookdetail)">
+      <Parameter Name="id_student" Mode="In" Type="Int32" />
+      <Parameter Name="id_course" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getTeacherByName1" EntitySet="view_Teachers" ReturnType="Collection(DB_A72902_TKPMModel.view_Teachers)">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_findAll_Cate_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -382,6 +393,7 @@
     <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
     <Property Name="num_students" Type="Int32" />
     <Property Name="num_cources" Type="Int32" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <Association Name="FK__Subcatego__id_ca__403A8C7D">
     <End Type="DB_A72902_TKPMModel.Category" Role="Category" Multiplicity="0..1" />
@@ -773,5 +785,10 @@
     <Property Type="Int32" Name="discount" Nullable="true" />
     <Property Type="Double" Name="rate" Nullable="true" />
     <Property Type="Int32" Name="id_student" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getBookdetail_Result">
+    <Property Type="Int32" Name="id_student" Nullable="false" />
+    <Property Type="Int32" Name="id_course" Nullable="false" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
   </ComplexType>
 </Schema>

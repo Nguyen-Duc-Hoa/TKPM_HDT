@@ -212,6 +212,7 @@
     <EntitySetMapping Name="view_Teachers">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Teachers">
         <MappingFragment StoreEntitySet="view_Teachers">
+          <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="num_cources" ColumnName="num_cources" />
           <ScalarProperty Name="num_students" ColumnName="num_students" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -390,5 +391,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getBookdetail" FunctionName="DB_A72902_TKPMModel.Store.getBookdetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getBookdetail_Result">
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getBookdetail1" FunctionName="DB_A72902_TKPMModel.Store.getBookdetail" />
+    <FunctionImportMapping FunctionImportName="getTeacherByName1" FunctionName="DB_A72902_TKPMModel.Store.getTeacherByName" />
   </EntityContainerMapping>
 </Mapping>

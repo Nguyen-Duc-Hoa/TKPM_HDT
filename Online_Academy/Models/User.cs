@@ -17,12 +17,12 @@ namespace Online_Academy.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.Bookdetails = new HashSet<Bookdetail>();
             this.Comments = new HashSet<Comment>();
             this.Histories = new HashSet<History>();
             this.Processes = new HashSet<Process>();
             this.Rates = new HashSet<Rate>();
             this.Replies = new HashSet<Reply>();
-            this.Courses = new HashSet<Course>();
         }
     
         public int id { get; set; }
@@ -36,7 +36,10 @@ namespace Online_Academy.Models
         public Nullable<bool> state { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
         public string gender { get; set; }
+        public Nullable<int> role { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bookdetail> Bookdetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -47,8 +50,7 @@ namespace Online_Academy.Models
         public virtual ICollection<Rate> Rates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
+        public virtual Role Role1 { get; set; }
         public virtual Teacher Teacher { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
     }
 }

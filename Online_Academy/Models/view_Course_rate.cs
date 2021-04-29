@@ -12,22 +12,20 @@ namespace Online_Academy.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class view_Teachers
+    public partial class view_Course_rate
     {
         public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
         public string name { get; set; }
-        public string avatar { get; set; }
-        public Nullable<System.DateTime> date_join { get; set; }
-        public string major { get; set; }
-        public Nullable<bool> state { get; set; }
-        public Nullable<System.DateTime> birthday { get; set; }
-        public string gender { get; set; }
-        public Nullable<int> role { get; set; }
         public string description { get; set; }
-        public Nullable<int> num_students { get; set; }
-        public Nullable<int> num_cources { get; set; }
+        public string short_description { get; set; }
+        public string thumbnail { get; set; }
+        public string preview { get; set; }
+        public Nullable<int> id_teacher { get; set; }
+        public Nullable<int> id_subcat { get; set; }
+        public Nullable<bool> state { get; set; }
+        public Nullable<int> price { get; set; }
+        public Nullable<int> discount { get; set; }
+        public int id_course { get; set; }
+        public Nullable<double> rate { get; set; }
     }
 }

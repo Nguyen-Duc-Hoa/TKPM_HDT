@@ -273,6 +273,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Property Name="state" Type="bit" />
     <Property Name="birthday" Type="datetime" />
     <Property Name="gender" Type="varchar" MaxLength="10" />
+    <Property Name="role" Type="int" />
     <Property Name="description" Type="char" MaxLength="5000" />
     <Property Name="num_students" Type="int" />
     <Property Name="num_cources" Type="int" />
@@ -540,6 +541,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="getBookdetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_student" Type="int" Mode="In" />
+    <Parameter Name="id_course" Type="int" Mode="In" />
+  </Function>
   <Function Name="getTeacherById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -701,6 +706,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_Teachers].[state] AS [state], 
     [view_Teachers].[birthday] AS [birthday], 
     [view_Teachers].[gender] AS [gender], 
+    [view_Teachers].[role] AS [role], 
     [view_Teachers].[description] AS [description], 
     [view_Teachers].[num_students] AS [num_students], 
     [view_Teachers].[num_cources] AS [num_cources]

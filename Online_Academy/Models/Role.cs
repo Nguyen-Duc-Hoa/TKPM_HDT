@@ -12,14 +12,18 @@ namespace Online_Academy.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Rate
+    public partial class Role
     {
-        public int id_course { get; set; }
-        public int id_student { get; set; }
-        public Nullable<double> rate_value { get; set; }
-        public string comment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Role()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual Course Course { get; set; }
-        public virtual User User { get; set; }
+        public int id { get; set; }
+        public string role1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

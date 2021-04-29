@@ -278,6 +278,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Name="state" Type="bit" />
           <Property Name="birthday" Type="datetime" />
           <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="role" Type="int" />
           <Property Name="description" Type="char" MaxLength="5000" />
           <Property Name="num_students" Type="int" />
           <Property Name="num_cources" Type="int" />
@@ -545,6 +546,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="getBookdetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_student" Type="int" Mode="In" />
+          <Parameter Name="id_course" Type="int" Mode="In" />
+        </Function>
         <Function Name="getTeacherById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -706,6 +711,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_Teachers].[state] AS [state], 
     [view_Teachers].[birthday] AS [birthday], 
     [view_Teachers].[gender] AS [gender], 
+    [view_Teachers].[role] AS [role], 
     [view_Teachers].[description] AS [description], 
     [view_Teachers].[num_students] AS [num_students], 
     [view_Teachers].[num_cources] AS [num_cources]
@@ -951,7 +957,18 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <Parameter Name="idCourse" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Couse_User" ReturnType="Collection(DB_A72902_TKPMModel.sp_Couse_User_Result)">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getBookdetail" ReturnType="Collection(DB_A72902_TKPMModel.getBookdetail_Result)">
+            <Parameter Name="id_student" Mode="In" Type="Int32" />
+            <Parameter Name="id_course" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getBookdetail1" EntitySet="view_Bookdetail" ReturnType="Collection(DB_A72902_TKPMModel.view_Bookdetail)">
+            <Parameter Name="id_student" Mode="In" Type="Int32" />
+            <Parameter Name="id_course" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTeacherByName1" EntitySet="view_Teachers" ReturnType="Collection(DB_A72902_TKPMModel.view_Teachers)">
+            <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_findAll_Cate_Result">
@@ -1178,6 +1195,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
           <Property Name="num_students" Type="Int32" />
           <Property Name="num_cources" Type="Int32" />
+          <Property Name="role" Type="Int32" />
         </EntityType>
         <Association Name="FK__Subcatego__id_ca__403A8C7D">
           <End Type="DB_A72902_TKPMModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1570,6 +1588,11 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Type="Double" Name="rate" Nullable="true" />
           <Property Type="Int32" Name="id_student" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="getBookdetail_Result">
+          <Property Type="Int32" Name="id_student" Nullable="false" />
+          <Property Type="Int32" Name="id_course" Nullable="false" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1787,6 +1810,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <EntitySetMapping Name="view_Teachers">
             <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Teachers">
               <MappingFragment StoreEntitySet="view_Teachers">
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="num_cources" ColumnName="num_cources" />
                 <ScalarProperty Name="num_students" ColumnName="num_students" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -1965,6 +1989,17 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getBookdetail" FunctionName="DB_A72902_TKPMModel.Store.getBookdetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getBookdetail_Result">
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getBookdetail1" FunctionName="DB_A72902_TKPMModel.Store.getBookdetail" />
+          <FunctionImportMapping FunctionImportName="getTeacherByName1" FunctionName="DB_A72902_TKPMModel.Store.getTeacherByName" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
