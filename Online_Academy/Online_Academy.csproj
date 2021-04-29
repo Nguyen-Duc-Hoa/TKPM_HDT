@@ -142,6 +142,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bookdetail.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookdetailClient.cs" />
     <Compile Include="Models\CategoriesClient.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
@@ -157,6 +161,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CurriculumClient.cs" />
+    <Compile Include="Models\func_Course_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getTeacherById_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -179,6 +186,12 @@
     <Compile Include="Models\Reply.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Couse_User_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_findAll_Cate_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -188,6 +201,7 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SubcategoriesClient.cs" />
     <Compile Include="Models\Subcategory.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -197,6 +211,7 @@
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TeachersClient.cs" />
     <Compile Include="Models\TKPM_HDT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,7 +243,13 @@
     <Compile Include="Models\view_allUsers.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\view_Bookdetail.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\view_categories.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_Course_rate.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_Subcategories.cs">
@@ -477,8 +498,8 @@
     <Content Include="Images\logo.jpg" />
     <Content Include="Models\TKPM_HDT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\TKPM_HDT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -490,13 +511,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Student\Views\web.config" />
     <Content Include="Areas\Teacher\Views\web.config" />
-    <EntityDeploy Include="Models\TKPM_HDT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TKPM_HDT.edmx.diagram">
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-    </Content>
     <Content Include="Assets\Admin\vendors\fontawesome\fonts\fontawesome-webfont3e6e.eot" />
     <Content Include="Assets\Admin\vendors\fontawesome\fonts\fontawesome-webfont3e6e.ttf" />
     <Content Include="Assets\Admin\vendors\fontawesome\fonts\fontawesome-webfont3e6e.woff" />
@@ -534,6 +548,13 @@
     <Content Include="Areas\Student\Views\MainPage\LoadCourse.cshtml" />
     <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
     <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
+    <EntityDeploy Include="Models\TKPM_HDT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TKPM_HDT.edmx.diagram">
+      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

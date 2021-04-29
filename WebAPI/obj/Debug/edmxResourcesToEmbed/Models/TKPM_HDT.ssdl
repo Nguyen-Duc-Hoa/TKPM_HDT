@@ -84,7 +84,7 @@
     </Key>
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="id_student" Type="int" Nullable="false" />
-    <Property Name="rate_value" Type="int" />
+    <Property Name="rate_value" Type="float" />
     <Property Name="comment" Type="nchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Reply">
@@ -95,6 +95,13 @@
     <Property Name="id_user" Type="int" />
     <Property Name="id_course" Type="int" />
     <Property Name="id_comment" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role" Type="char" MaxLength="50" />
   </EntityType>
   <EntityType Name="Subcategories">
     <Key>
@@ -138,6 +145,7 @@
     <Property Name="state" Type="bit" />
     <Property Name="birthday" Type="datetime" />
     <Property Name="gender" Type="varchar" MaxLength="10" />
+    <Property Name="role" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allCourses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -195,6 +203,18 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allUsers' does not have a 
     <Property Name="state" Type="bit" />
     <Property Name="birthday" Type="datetime" />
     <Property Name="gender" Type="varchar" MaxLength="10" />
+    <Property Name="role" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Bookdetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Bookdetail">
+    <Key>
+      <PropertyRef Name="id_student" />
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id_student" Type="int" Nullable="false" />
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_categories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -204,6 +224,27 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_categories' does not have 
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="char" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Course_rate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Course_rate">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="id_course" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="50" />
+    <Property Name="description" Type="char" MaxLength="5000" />
+    <Property Name="short_description" Type="char" MaxLength="100" />
+    <Property Name="thumbnail" Type="char" MaxLength="50" />
+    <Property Name="preview" Type="char" MaxLength="50" />
+    <Property Name="id_teacher" Type="int" />
+    <Property Name="id_subcat" Type="int" />
+    <Property Name="state" Type="bit" />
+    <Property Name="price" Type="int" />
+    <Property Name="discount" Type="int" />
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="rate" Type="float" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Subcategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -232,6 +273,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Property Name="state" Type="bit" />
     <Property Name="birthday" Type="datetime" />
     <Property Name="gender" Type="varchar" MaxLength="10" />
+    <Property Name="role" Type="int" />
     <Property Name="description" Type="char" MaxLength="5000" />
     <Property Name="num_students" Type="int" />
     <Property Name="num_cources" Type="int" />
@@ -452,6 +494,18 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Users__role__4C364F0E">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_idTeacher">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Teachers" Type="Self.Teachers" Multiplicity="0..1" />
@@ -465,17 +519,51 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     </ReferentialConstraint>
   </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="func_Course" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idStudent" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="char" MaxLength="50" />
+          <Property Name="description" Type="char" MaxLength="5000" />
+          <Property Name="short_description" Type="char" MaxLength="100" />
+          <Property Name="thumbnail" Type="char" MaxLength="50" />
+          <Property Name="preview" Type="char" MaxLength="50" />
+          <Property Name="id_teacher" Type="int" />
+          <Property Name="id_subcat" Type="int" />
+          <Property Name="state" Type="bit" />
+          <Property Name="price" Type="int" />
+          <Property Name="discount" Type="int" />
+          <Property Name="rate" Type="float" />
+          <Property Name="id_student" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="getBookdetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_student" Type="int" Mode="In" />
+    <Parameter Name="id_course" Type="int" Mode="In" />
+  </Function>
   <Function Name="getTeacherById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="getTeacherByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="name" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_add_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idStudent" Type="int" Mode="In" />
+    <Parameter Name="idCourse" Type="int" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="version" Type="int" Mode="In" />
     <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_Couse_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idStudent" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -496,6 +584,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_remove_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idStudent" Type="int" Mode="In" />
+    <Parameter Name="idCourse" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -513,6 +605,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <EntitySet Name="Process" EntityType="Self.Process" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rate" EntityType="Self.Rate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subcategories" EntityType="Self.Subcategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
@@ -559,14 +652,39 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_allUsers].[major] AS [major], 
     [view_allUsers].[state] AS [state], 
     [view_allUsers].[birthday] AS [birthday], 
-    [view_allUsers].[gender] AS [gender]
+    [view_allUsers].[gender] AS [gender], 
+    [view_allUsers].[role] AS [role]
     FROM [dbo].[view_allUsers] AS [view_allUsers]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Bookdetail" EntityType="Self.view_Bookdetail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Bookdetail].[id_student] AS [id_student], 
+    [view_Bookdetail].[id_course] AS [id_course], 
+    [view_Bookdetail].[date] AS [date]
+    FROM [dbo].[view_Bookdetail] AS [view_Bookdetail]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_categories" EntityType="Self.view_categories" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [view_categories].[id] AS [id], 
     [view_categories].[name] AS [name]
     FROM [dbo].[view_categories] AS [view_categories]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Course_rate" EntityType="Self.view_Course_rate" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Course_rate].[id] AS [id], 
+    [view_Course_rate].[name] AS [name], 
+    [view_Course_rate].[description] AS [description], 
+    [view_Course_rate].[short_description] AS [short_description], 
+    [view_Course_rate].[thumbnail] AS [thumbnail], 
+    [view_Course_rate].[preview] AS [preview], 
+    [view_Course_rate].[id_teacher] AS [id_teacher], 
+    [view_Course_rate].[id_subcat] AS [id_subcat], 
+    [view_Course_rate].[state] AS [state], 
+    [view_Course_rate].[price] AS [price], 
+    [view_Course_rate].[discount] AS [discount], 
+    [view_Course_rate].[id_course] AS [id_course], 
+    [view_Course_rate].[rate] AS [rate]
+    FROM [dbo].[view_Course_rate] AS [view_Course_rate]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_Subcategories" EntityType="Self.view_Subcategories" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -588,6 +706,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_Teachers].[state] AS [state], 
     [view_Teachers].[birthday] AS [birthday], 
     [view_Teachers].[gender] AS [gender], 
+    [view_Teachers].[role] AS [role], 
     [view_Teachers].[description] AS [description], 
     [view_Teachers].[num_students] AS [num_students], 
     [view_Teachers].[num_cources] AS [num_cources]
@@ -664,6 +783,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <AssociationSet Name="FK__Subcatego__id_ca__403A8C7D" Association="Self.FK__Subcatego__id_ca__403A8C7D">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Subcategories" EntitySet="Subcategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__role__4C364F0E" Association="Self.FK__Users__role__4C364F0E">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_idTeacher" Association="Self.FK_idTeacher">
       <End Role="Users" EntitySet="Users" />

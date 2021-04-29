@@ -25,5 +25,6 @@ namespace WebAPI.Models
         public Nullable<bool> state { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
         public string gender { get; set; }
+        public Nullable<int> role { get; set; }
     }
 }

@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAPI.Models
+namespace Online_Academy.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Rate
+    public partial class view_Bookdetail
     {
-        public int id_course { get; set; }
         public int id_student { get; set; }
-        public Nullable<double> rate_value { get; set; }
-        public string comment { get; set; }
-    
-        public virtual Course Course { get; set; }
-        public virtual User User { get; set; }
+        public int id_course { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     }
 }
