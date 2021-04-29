@@ -303,6 +303,7 @@
     <Content Include="Assets\Admin\js\functions.js" />
     <Content Include="Assets\Admin\js\jquery.min.js" />
     <Content Include="Assets\Admin\js\login.js" />
+    <Content Include="Assets\Admin\js\registerStudent.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -586,6 +587,7 @@
     <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\Account\VerificationCode.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\RegisterStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

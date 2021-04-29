@@ -382,6 +382,7 @@
     <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
     <Property Name="num_students" Type="Int32" />
     <Property Name="num_cources" Type="Int32" />
+    <Property Name="role" Type="Int32" />
   </EntityType>
   <Association Name="FK__Subcatego__id_ca__403A8C7D">
     <End Type="DB_A72902_TKPMModel.Category" Role="Category" Multiplicity="0..1" />

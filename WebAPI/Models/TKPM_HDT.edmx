@@ -278,6 +278,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Name="state" Type="bit" />
           <Property Name="birthday" Type="datetime" />
           <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="role" Type="int" />
           <Property Name="description" Type="char" MaxLength="5000" />
           <Property Name="num_students" Type="int" />
           <Property Name="num_cources" Type="int" />
@@ -706,6 +707,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_Teachers].[state] AS [state], 
     [view_Teachers].[birthday] AS [birthday], 
     [view_Teachers].[gender] AS [gender], 
+    [view_Teachers].[role] AS [role], 
     [view_Teachers].[description] AS [description], 
     [view_Teachers].[num_students] AS [num_students], 
     [view_Teachers].[num_cources] AS [num_cources]
@@ -951,7 +953,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <Parameter Name="idCourse" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Couse_User" ReturnType="Collection(DB_A72902_TKPMModel.sp_Couse_User_Result)">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_findAll_Cate_Result">
@@ -1178,6 +1180,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Name="description" Type="String" MaxLength="5000" FixedLength="true" Unicode="false" />
           <Property Name="num_students" Type="Int32" />
           <Property Name="num_cources" Type="Int32" />
+          <Property Name="role" Type="Int32" />
         </EntityType>
         <Association Name="FK__Subcatego__id_ca__403A8C7D">
           <End Type="DB_A72902_TKPMModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1787,6 +1790,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <EntitySetMapping Name="view_Teachers">
             <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Teachers">
               <MappingFragment StoreEntitySet="view_Teachers">
+                <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="num_cources" ColumnName="num_cources" />
                 <ScalarProperty Name="num_students" ColumnName="num_students" />
                 <ScalarProperty Name="description" ColumnName="description" />

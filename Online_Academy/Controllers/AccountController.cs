@@ -128,5 +128,30 @@ namespace Online_Academy.Controllers
             Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
             return View("ChangePassword");
         }
+        public ActionResult RegisterStudent()
+        {
+            return View();            
+        }
+        [HttpPost]
+        public ActionResult RegisterStudent(string name, string email, string username, string password)
+        {
+            User user = new User()
+            {
+                name = name,
+                email = email,
+                username = username,
+                password = password
+            };
+
+            UsersClient usersClient = new UsersClient();
+            if (usersClient.Create(user))
+            {
+                return Content("Success");
+            }
+            else
+            {
+                return Content("Fail");
+            }
+        }
     }
 }

@@ -226,11 +226,5 @@ namespace WebAPI.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Couse_User_Result>("sp_Couse_User", idStudentParameter);
         }
-
-        internal IQueryable<sp_Couse_User_Result> sp_Couse_User_Result(int id)
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
