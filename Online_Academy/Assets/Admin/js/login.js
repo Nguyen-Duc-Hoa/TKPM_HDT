@@ -8,6 +8,14 @@ $('document').ready(function () {
         }
     }
 
+    $("#username").change(function () {
+        $('.validation-message').text("")
+    })
+
+    $("#password").change(function () {
+        $('.validation-message').text("")
+    })
+
     $('#SubmitLogin').click(function () {
         // get data
         var username = $('#username').val();

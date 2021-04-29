@@ -132,7 +132,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ForgetPasswordController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Service\SendMail.cs" />
     <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
@@ -298,6 +300,8 @@
     <Content Include="Assets\Admin\images\testimonials\pic2.jpg" />
     <Content Include="Assets\Admin\images\testimonials\pic3.jpg" />
     <Content Include="Assets\Admin\js\admin.js" />
+    <Content Include="Assets\Admin\js\changePassword.js" />
+    <Content Include="Assets\Admin\js\forgetPassword.js" />
     <Content Include="Assets\Admin\js\functions.js" />
     <Content Include="Assets\Admin\js\jquery.min.js" />
     <Content Include="Assets\Admin\js\login.js" />
@@ -555,6 +559,10 @@
     <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
     <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ForgetPassword\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_loginLayoutPage.cshtml" />
+    <Content Include="Areas\Admin\Views\ForgetPassword\VerificationCode.cshtml" />
+    <Content Include="Areas\Admin\Views\ForgetPassword\ChangePassword.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -586,7 +594,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />
