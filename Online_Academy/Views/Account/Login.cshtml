@@ -1,107 +1,57 @@
-﻿
-@{ 
-    Layout = null; 
-    
+﻿@{ Layout = "~/Areas/Admin/Views/Shared/_loginLayoutPage.cshtml"; }
+
+<div class="account-container">
+    <div class="heading-bx left">
+        <h2 class="title-head">Login to your <span>Account</span></h2>
+        <p>Don't have an account? <a href="register.html">Create one here</a></p>
+    </div>
+    <form class="contact-bx" id="form-login">
+        <div class="row placeani">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Your Name</label>
+                        <input name="username" id="username" type="text" required="" class="form-control" value="@ViewBag.username">
+                        <span class="form-message"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Your Password</label>
+                        <input name="password" id="password" type="password" class="form-control" required="" value="@ViewBag.username">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <span class="validation-message" style="color: red"></span>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group form-forget">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customControlAutosizing" name="rememberCheck" value="true">
+                        <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
+                    </div>
+                    <a href="forget-password.html" class="ml-auto">Forgot Password?</a>
+                </div>
+            </div>
+            <div class="col-lg-12 m-b30">
+                <button type="button" id="SubmitLogin" class="btn button-md">Login</button>
+            </div>
+            <div class="col-lg-12">
+                <h6>Login with Social media</h6>
+                <div class="d-flex">
+                    <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
+                    <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section script {
+    <script src="~/Assets/Admin/js/login.js"></script>"
 }
-@Html.AntiForgeryToken()
-<input name="__RequestVerificationToken" type="hidden" value="PjJQHJQtSMkPIXuLbBFT9HDEwoItTSupmeF6vZRIHf05qPpEaEvjfPIEOQW4W24cgBAJPE_9ghVRAyTMknVp0AIQcjLB9eZS32j8aTqIkjs1" />
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="~/Content/login_css/bootstrap-social.css" rel="stylesheet" />
-    <link href="~/Content/login_css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-
-</head>
-<body>
-    <!-- title -->
-    <div class="Auth_header">
-        <img src="~/Images/logo.jpg" style="width: 250px; margin-left: auto; margin-right: auto;" />
-    </div>
-    <!-- //title -->
-    <!-- content -->
-    <div class="sub-main-w3" style="margin: auto;">
-        <form action="/Account/VerifyLogin" method="post">
-            <div class="form-style-agile">
-                <label>
-                    Email
-                    <i class="fas fa-user"></i>
-                </label>
-
-                <span class="field-validation-valid text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
-                <input placeholder="Email" name="Email" type="text" required="" value="">
-
-            </div>
-            <div class="form-style-agile">
-                <label>
-                    Password
-                    <i class="fas fa-unlock-alt"></i>
-                </label>
-
-                <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
-                <input placeholder="Password" name="Password" type="password" required="" value="">
-            </div>
-            <!-- checkbox -->
-            <div class="wthree-text">
-                <ul>
-                    <li>
-                        <label class="anim">
-                            <input type="checkbox" class="checkbox" id="checkMe" name="checkMe" value="1">
-                            <span>Remember me</span>
-
-
-                        </label>
-                    </li>
-                    <li>
-                        <a href="/Account/ForgotPassword">Forgot Password?</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- //checkbox -->
-            <input type="submit" value="Log In">
-            <!-- social icons -->
-            <div class="footer-social">
-                <h2>Or</h2>
-                <ul>
-                    <li>
-                        <a href="/Account/LoginFacebook">
-                            <i class="fab fa-facebook-f icon_facebook"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fab fa-twitter icon_twitter"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fab fa-dribbble icon_dribbble"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fab fa-google-plus-g icon_g_plus"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- //social icons -->
-            <div class="wthree-text">
-                <ul>
-                    <li>
-
-                    </li>
-                    <li>
-                        <a href="/Account/Register"> register now </a>
-                    </li>
-                </ul>
-            </div>
-
-        </form>
-    </div>
-</body>
-</html>

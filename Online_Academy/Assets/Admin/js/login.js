@@ -28,7 +28,7 @@ $('document').ready(function () {
         }
 
         $.ajax({
-            url: '/Admin/Login/SubmitLogin',
+            url: '/Account/SubmitLogin',
             data: { username: username, password: password, rememberCheck: rememberCheck },
             type: 'POST',
             success: function (response) {

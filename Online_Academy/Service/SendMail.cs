@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Web;
 
-namespace Online_Academy.Areas.Admin.Service
+namespace Online_Academy.Service
 {
     public class SendMail
     {
