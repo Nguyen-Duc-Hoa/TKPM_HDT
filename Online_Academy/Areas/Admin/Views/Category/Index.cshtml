@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLayoutPage.cshtml";
+}
+
+<div class="row">
+    <!-- Your Profile Views Chart -->
+    <div class="col-lg-6 mx-auto">
+        <div class="widget-box">
+            <div class="wc-title">
+                <h4>Categories</h4>
+            </div>
+            <div class="widget-inner">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Manage categories
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Categories</th>
+                                    <th><button class="btn btn-secondary" type="button">Add category</button></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in ViewBag.lstCategories)
+                            {
+                                <tbody>
+                                    <tr data-toggle="collapse" data-target="#demo_@item.id" class="accordion-toggle">
+                                        <td>@item.name</td>
+                                        <th>
+                                            <a href="#"><i class="fas fa-edit" style="color:black"></i></a>
+                                        </th>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="12" class="hiddenRow">
+                                            <div class="accordian-body collapse" id="demo_@item.id">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr class="info">
+                                                            <th>Subcategories</th>
+                                                            <th><button class="btn btn-default" type="button">Add subcategory</button></th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        @foreach (var i in item.Subcategories)
+                                                        {
+                                                            <tr>
+                                                                <td>@i.subname</td>
+                                                                <td>
+                                                                    <a href="#"><i class="fas fa-edit" style="color:black"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+
+
+                                </tbody>
+                            }
+
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- Your Profile Views Chart END-->
+</div>
+
