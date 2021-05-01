@@ -144,12 +144,24 @@ namespace Online_Academy.Controllers
                 role = 3
             };
 
-            UsersClient usersClient = new UsersClient();
-            if (usersClient.Create(user))
+            //Use API
+            //UsersClient usersClient = new UsersClient();
+            //if (usersClient.Create(user))
+            //{
+            //    return Content("Success");
+            //}
+            //else
+            //{
+            //    return Content("Fail");
+            //}
+
+            try
             {
+                db.Users.Add(user);
+                db.SaveChanges();
                 return Content("Success");
             }
-            else
+            catch
             {
                 return Content("Fail");
             }
@@ -167,15 +179,28 @@ namespace Online_Academy.Controllers
                 email = email,
                 username = username,
                 password = password,
-                role = 2
+                role = 2,
+                state = false
             };
 
-            UsersClient usersClient = new UsersClient();
-            if (usersClient.Create(user))
+            // Use API
+            //UsersClient usersClient = new UsersClient();
+            //if (usersClient.Create(user))
+            //{
+            //    return Content("Success");
+            //}
+            //else
+            //{
+            //    return Content("Fail");
+            //}
+
+            try
             {
+                db.Users.Add(user);
+                db.SaveChanges();
                 return Content("Success");
             }
-            else
+            catch
             {
                 return Content("Fail");
             }
