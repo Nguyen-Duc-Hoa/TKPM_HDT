@@ -34,7 +34,7 @@ namespace Online_Academy.Controllers
         [HttpPost]
         public ActionResult SubmitLogin(string username, string password, string rememberCheck)
         {
-            User dbUser = db.Users.Where(u => u.username == username && u.password == password).FirstOrDefault();
+            User dbUser = db.Users.Where(u => u.username == username && u.password == password && u.state == true).FirstOrDefault();
             if (dbUser != null)
             {
                 if (rememberCheck == "true")
@@ -171,7 +171,7 @@ namespace Online_Academy.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult RegisterTeacher(string name, string email, string username, string password)
+        public ActionResult RegisterTeacher(string name, string email, string username, string password, string major)
         {
             User user = new User()
             {
@@ -180,7 +180,8 @@ namespace Online_Academy.Controllers
                 username = username,
                 password = password,
                 role = 2,
-                state = false
+                state = false,
+                major = major
             };
 
             // Use API

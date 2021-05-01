@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLayoutPage.cshtml";
+}
+
+<div class="row">
+    <!-- Your Profile Views Chart -->
+    <div class="col-lg-12 m-b30">
+        <div class="widget-box">
+            <div class="wc-title">
+                <h4>Teacher</h4>
+            </div>
+            <div class="widget-inner">
+                @foreach (var item in ViewBag.lstTeacher)
+                {
+                    <div class="card-courses-list admin-courses">
+                        <div class="card-courses-media">
+                            <img src="~/Assets/Admin/images/courses/pic1.jpg" alt="" />
+                        </div>
+                        <div class="card-courses-full-dec">
+                            <div class="card-courses-title">
+                                <h4>@item.name</h4>
+                            </div>
+                            <div class="row card-courses-dec">
+                                <div class="col-md-12">
+                                    <h6 class="m-b10">@item.major</h6>
+                                    <p>Contact: @item.email</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn green radius-xl outline approveBtn" data-id="@item.id">Approve</button>
+                                    <button class="btn red outline radius-xl cancelBtn" data-id="@item.id">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+        </div>
+    </div>
+    <!-- Your Profile Views Chart END-->
+</div>
+
+@section script {
+    <script src="~/Assets/Admin/js/manageTeacher.js"></script>
+    }
+

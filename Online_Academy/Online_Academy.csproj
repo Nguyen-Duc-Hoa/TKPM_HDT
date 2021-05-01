@@ -132,6 +132,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
@@ -303,6 +305,7 @@
     <Content Include="Assets\Admin\js\functions.js" />
     <Content Include="Assets\Admin\js\jquery.min.js" />
     <Content Include="Assets\Admin\js\login.js" />
+    <Content Include="Assets\Admin\js\manageTeacher.js" />
     <Content Include="Assets\Admin\js\registerStudent.js" />
     <Content Include="Assets\Admin\js\registerTeacher.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.css" />
@@ -558,6 +561,9 @@
     <Content Include="Areas\Student\Views\MainPage\LoadCourse.cshtml" />
     <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
     <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_adminLayoutPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -593,9 +599,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />

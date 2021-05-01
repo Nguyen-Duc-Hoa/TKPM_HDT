@@ -4,7 +4,7 @@
             $(".validation-message").text("Vui lòng nhập email hợp lệ")
             return false
         }
-        else if (name == undefined || username == undefined || password == undefined) {
+        else if (name == undefined || username == undefined || password == undefined || major == undefined) {
             $(".validation-message").text("Vui lòng nhập đầy đủ thông tin")
             return false
         }
@@ -29,15 +29,16 @@
         let email = $("#email").val();
         let username = $("#username").val();
         let password = $("#password").val();
+        let major = $("#major").val();
 
-        if (validator(name, email, username, password) == false) {
+        if (validator(name, email, username, password, major) == false) {
             return
         }
 
         $.ajax({
             url: "/Account/RegisterTeacher",
             type: "POST",
-            data: { name: name, email: email, username: username, password: password },
+            data: { name: name, email: email, username: username, password: password, major: major },
             success: function (response) {
                 if (response == "Fail") {
                     // Move to student main page
