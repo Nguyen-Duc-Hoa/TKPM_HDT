@@ -206,5 +206,11 @@ namespace Online_Academy.Controllers
                 return Content("Fail");
             }
         }
+        public ActionResult LogOut()
+        {
+            //string role = Session["role"].ToString();
+            Session.Clear();
+            return Content("Main page");
+        }
     }
 }
