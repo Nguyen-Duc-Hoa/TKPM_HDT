@@ -307,6 +307,7 @@
     <Content Include="Assets\Admin\js\functions.js" />
     <Content Include="Assets\Admin\js\jquery.min.js" />
     <Content Include="Assets\Admin\js\login.js" />
+    <Content Include="Assets\Admin\js\manageCourse.js" />
     <Content Include="Assets\Admin\js\manageTeacher.js" />
     <Content Include="Assets\Admin\js\registerStudent.js" />
     <Content Include="Assets\Admin\js\registerTeacher.js" />

@@ -1,143 +1,126 @@
-﻿
+﻿@model Online_Academy.Models.Course 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_adminLayoutPage.cshtml";
 }
 
-<!-- Page Content Box ==== -->
-<div class="content-block">
-    <!-- Blog Grid ==== -->
-    <div class="section-area section-sp1">
-        <div class="container">
-            <div class="ttr-blog-grid-3 row" id="masonry">
-                <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                    <div class="recent-news">
-                        <div class="action-box">
-                            <img src="~/Assets/Admin/images/blog/latest-blog/pic1.jpg" alt="">
-                        </div>
-                        <div class="info-bx">
-                            <ul class="media-post">
-                                <li><a href="#"><i class="fa fa-calendar"></i>Jan 02 2019</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i>By William</a></li>
-                            </ul>
-                            <h5 class="post-title"><a href="blog-details.html">This Story Behind Education Will Haunt You Forever.</a></h5>
-                            <p>Knowing that, you’ve optimised your pages countless amount of times, written tons.</p>
-                            <div class="post-extra">
-                                <a href="#" class="btn-link">READ MORE</a>
-                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>20 Comment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                    <div class="recent-news">
-                        <div class="action-box">
-                            <img src="~/Assets/Admin/images/blog/latest-blog/pic2.jpg" alt="">
-                        </div>
-                        <div class="info-bx">
-                            <ul class="media-post">
-                                <li><a href="#"><i class="fa fa-calendar"></i>Feb 05 2019</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i>By John</a></li>
-                            </ul>
-                            <h5 class="post-title"><a href="blog-details.html">What Will Education Be Like In The Next 50 Years?</a></h5>
-                            <p>As desperate as you are right now, you have done everything you can on your.</p>
-                            <div class="post-extra">
-                                <a href="#" class="btn-link">READ MORE</a>
-                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>14 Comment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                    <div class="recent-news">
-                        <div class="action-box">
-                            <img src="~/Assets/Admin/images/blog/latest-blog/pic3.jpg" alt="">
-                        </div>
-                        <div class="info-bx">
-                            <ul class="media-post">
-                                <li><a href="#"><i class="fa fa-calendar"></i>April 14 2019</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i>By George</a></li>
-                            </ul>
-                            <h5 class="post-title"><a href="blog-details.html">Master The Skills Of Education And Be.</a></h5>
-                            <p>You will see in the guide all my years of valuable experience together with.</p>
-                            <div class="post-extra">
-                                <a href="#" class="btn-link">READ MORE</a>
-                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>23 Comment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                    <div class="recent-news">
-                        <div class="action-box">
-                            <img src="~/Assets/Admin/images/blog/latest-blog/pic3.jpg" alt="">
-                        </div>
-                        <div class="info-bx">
-                            <ul class="media-post">
-                                <li><a href="#"><i class="fa fa-calendar"></i>March 21 2019</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i>By Thomas</a></li>
-                            </ul>
-                            <h5 class="post-title"><a href="blog-details.html">Eliminate Your Fears And Doubts About Education.</a></h5>
-                            <p>When I needed to start from scratch and figure out how things work. Getting people.</p>
-                            <div class="post-extra">
-                                <a href="#" class="btn-link">READ MORE</a>
-                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>28 Comment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                    <div class="recent-news">
-                        <div class="action-box">
-                            <img src="~/Assets/Admin/images/blog/latest-blog/pic1.jpg" alt="">
-                        </div>
-                        <div class="info-bx">
-                            <ul class="media-post">
-                                <li><a href="#"><i class="fa fa-calendar"></i>May 08 2019</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i>By James</a></li>
-                            </ul>
-                            <h5 class="post-title"><a href="blog-details.html">Seven Reasons You Should Fall In Love With Education.</a></h5>
-                            <p>Honestly, I made ZERO money in the first year and I definitely do not want you to go.</p>
-                            <div class="post-extra">
-                                <a href="#" class="btn-link">READ MORE</a>
-                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>26 Comment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                    <div class="recent-news">
-                        <div class="action-box">
-                            <img src="~/Assets/Admin/images/blog/latest-blog/pic2.jpg" alt="">
-                        </div>
-                        <div class="info-bx">
-                            <ul class="media-post">
-                                <li><a href="#"><i class="fa fa-calendar"></i>June 19 2019</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i>By Arthur</a></li>
-                            </ul>
-                            <h5 class="post-title"><a href="blog-details.html">The Biggest Contribution Of Education To Humanity.</a></h5>
-                            <p>You may have seen our tool that's been featured by many world-class SEO marketers.</p>
-                            <div class="post-extra">
-                                <a href="#" class="btn-link">READ MORE</a>
-                                <a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>15 Comment</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Pagination ==== -->
-            <div class="pagination-bx rounded-sm gray clearfix">
-                <ul class="pagination">
-                    <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
-                </ul>
-            </div>
-            <!-- Pagination END ==== -->
-        </div>
-    </div>
-    <!-- Blog Grid END ==== -->
+<div class="card-header">
+    Search
+    @using (Html.BeginForm("Index", "Course", FormMethod.Get))
+    {
+        <input type="text" name="txtSearch" placeholder="Search!" />
+        <button type="submit" class="btn btn-warning">Search</button>
+    }
 </div>
-<!-- Page Content Box END ==== -->
+
+    <!-- Page Content Box ==== -->
+    <div class="content-block">
+        <!-- Blog Grid ==== -->
+        <div class="section-area section-sp1">
+            <div class="container">
+                <div class="ttr-blog-grid-3 row" id="masonry">
+                    @foreach (var course in ViewBag.courses)
+                    {
+                        <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
+                            <div class="recent-news">
+                                <div class="action-box">
+                                    @if (course.thumbnail == null)
+                                    {
+                                        <img src="https://www.wellandgood.com/wp-content/uploads/2020/02/GettyImages-1073797276.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@course.thumbnail" alt="">
+                                    }
+
+                                </div>
+                                <div class="info-bx">
+                                    <ul class="media-post">
+                                        <li>Id: @course.id</li>
+                                        <li><i class="fa fa-user"></i>@course.Teacher.User.name</li>
+                                    </ul>
+                                    @if (course.state == true)
+                                    {
+                                        <h5 class="post-title">@course.name</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="post-title" style="color:red">@course.name</h5>
+                                    }
+
+                                    <p>@course.short_description</p>
+                                    <div class="post-extra">
+                                        <button type="button" class="btn btn-adn approveBtn" data-id="@course.id">Approve</button>
+                                        <button type="button" class="btn outline radius-md cancelBtn" data-id="@course.id">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <!-- Pagination ==== -->
+                @*<div class="pagination-bx rounded-sm gray clearfix">
+                    <ul class="pagination">
+                        <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                    </ul>
+                </div>*@
+
+                <div class="card-footer">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+
+                            @{
+                                int position;
+                                int pageCurrent = ViewBag.pageCurrent;
+                                string txtSearch = ViewBag.txtSearch;
+                                float numSize = ViewBag.numSize;
+                                if (pageCurrent > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
+                                    </li>
+                                }
+
+                                for (position = 1; position <= numSize; position++)
+                                {
+
+                                    if (position == pageCurrent)
+                                    {
+                                        <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
+                                    }
+
+                                    else
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
+                                    }
+
+                                }
+                                if (pageCurrent > 0 && pageCurrent < numSize)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Pagination END ==== -->
+            </div>
+        </div>
+        <!-- Blog Grid END ==== -->
+    </div>
+    <!-- Page Content Box END ==== -->
+
+@section script {
+    <script src="~/Assets/Admin/js/manageCourse.js"></script>
+    }
