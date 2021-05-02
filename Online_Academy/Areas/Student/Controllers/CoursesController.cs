@@ -18,8 +18,14 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult LoadCourse()
         {
+
             CourseClient CC = new CourseClient();
             ViewBag.Course = CC.GetAllCourses();
+            if (Session["UserId"] != null)
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                ViewBag.Course = CC.GetCourseByUser(idUser);
+            }
             return PartialView();
         }
 
@@ -44,13 +50,29 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult CourseByType(int id)
         {
+            CourseClient CC = new CourseClient();
             ViewBag.Course = db.Courses.Where(x => x.id_subcat == id);
+
+            if (Session["UserId"] != null)
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                var AllCourse = CC.GetCourseByUser(idUser);
+                ViewBag.Course = AllCourse.Where(x => x.id_subcat == id);
+
+            }
             return PartialView();
         }
 
         public ActionResult General()
         {
+            CourseClient CC = new CourseClient();
             ViewBag.Course = db.Courses;
+            if (Session["UserId"] != null)
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                ViewBag.Course = CC.GetCourseByUser(idUser);
+            }
+            
             return PartialView("CourseByType");
         }
 
