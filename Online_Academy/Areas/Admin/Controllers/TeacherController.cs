@@ -43,7 +43,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbTeacher = db.Users.Where(t => t.id == idTeacher).FirstOrDefault();
-                db.Users.Remove(dbTeacher);
+                dbTeacher.state = false;
                 db.SaveChanges();
                 return Content("Success");
             }

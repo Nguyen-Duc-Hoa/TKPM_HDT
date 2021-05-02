@@ -19,9 +19,18 @@
                             <img src="~/Assets/Admin/images/courses/pic1.jpg" alt="" />
                         </div>
                         <div class="card-courses-full-dec">
-                            <div class="card-courses-title">
-                                <h4>@item.name</h4>
-                            </div>
+                            @if (item.state == true)
+                            {
+                                <div class="card-courses-title">
+                                    <h4>@item.name</h4>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="card-courses-title" style="color:red">
+                                    <h4>@item.name</h4>
+                                </div>
+                            }
                             <div class="row card-courses-dec">
                                 <div class="col-md-12">
                                     <h6 class="m-b10">@item.major</h6>

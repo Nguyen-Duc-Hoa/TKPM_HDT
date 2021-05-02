@@ -51,7 +51,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbCourse = db.Courses.Where(c => c.id == idCourse).FirstOrDefault();
-                dbCourse.state = true;
+                
                 db.SaveChanges();
                 return Content("Success");
             }
@@ -67,7 +67,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbCourse = db.Courses.Where(c => c.id == idCourse).FirstOrDefault();
-                db.Courses.Remove(dbCourse);
+                dbCourse.state = false;
                 db.SaveChanges();
                 return Content("Success");
             }
