@@ -11,11 +11,6 @@ namespace Online_Academy.Controllers
     public class AccountController : Controller
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
-        // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
         // Login view
         public ActionResult Login()
         {
@@ -206,11 +201,11 @@ namespace Online_Academy.Controllers
                 return Content("Fail");
             }
         }
-        public ActionResult LogOut()
+        public ActionResult Logout()
         {
             //string role = Session["role"].ToString();
             Session.Clear();
-            return Content("Main page");
+            return RedirectToAction("Login");
         }
     }
 }

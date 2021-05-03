@@ -258,6 +258,7 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Encrypt.cs" />
     <Compile Include="Service\SendMail.cs" />
   </ItemGroup>
   <ItemGroup>

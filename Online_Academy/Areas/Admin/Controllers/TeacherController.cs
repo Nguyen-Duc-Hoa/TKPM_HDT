@@ -14,7 +14,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         public ActionResult Index()
         {
             // get teachers, whose state is false (NOT USE API)
-            List<User> listTeacher = db.Users.Where(t => t.Role1.role1 == "Teacher" && t.state == false).ToList();
+            List<User> listTeacher = db.Users.Where(t => t.Role1.role1 == "Teacher").ToList();
 
             ViewBag.lstTeacher = listTeacher;
 
