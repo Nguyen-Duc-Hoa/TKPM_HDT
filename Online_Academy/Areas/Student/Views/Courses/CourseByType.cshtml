@@ -29,7 +29,7 @@
                                 <li><i class="fa fa-star"></i></li>
                             </ul>
                         </div>
-                        @if (Convert.ToInt32(Session["UserId"]) != 0)
+                        @if (Convert.ToInt32(Session["UserId"]) == 0)
                         {
                             <div class="favorite">
                                 <label for="checkbox">
@@ -42,7 +42,7 @@
                                 </label>
                             </div>
                         }
-                        else
+                        else if (Convert.ToInt32(Session["UserId"]) != 0)
                         {
                             <div class="favorite">
                                 <label for="checkbox">

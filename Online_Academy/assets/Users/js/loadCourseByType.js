@@ -62,7 +62,7 @@ $(document).ready(function () {
         // click like the course
         if (currentColor == "#AAB8C2") {
 
-            document.getElementsByTagName("path")[stt].setAttribute("fill", "#F00000");
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
             $.ajax({
                 url: "/Student/Courses/Like",
                 data: { idCourse: id },
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
         }
         // remove like the course
-        else if (currentColor == "#F00000") {
+        else if (currentColor == "#FF0000") {
             document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
         }
         alert('You clicked me');

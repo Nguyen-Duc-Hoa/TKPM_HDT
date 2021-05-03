@@ -58,7 +58,6 @@ namespace Online_Academy.Areas.Student.Controllers
                 int idUser = Convert.ToInt32(Session["UserId"]);
                 var AllCourse = CC.GetCourseByUser(idUser);
                 ViewBag.Course = AllCourse.Where(x => x.id_subcat == id);
-
             }
             return PartialView();
         }
