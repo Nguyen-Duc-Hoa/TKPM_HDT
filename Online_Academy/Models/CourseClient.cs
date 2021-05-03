@@ -108,5 +108,21 @@ namespace Online_Academy.Models
                 return false;
             }
         }
+
+        public bool RemoveLike(int idStudent, int idCourse)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = client.DeleteAsync("Courses/RemoveLike/" + idStudent + "/" + idCourse).Result;
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
