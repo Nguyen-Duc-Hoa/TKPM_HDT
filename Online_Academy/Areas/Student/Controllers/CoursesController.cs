@@ -90,6 +90,7 @@ namespace Online_Academy.Areas.Student.Controllers
             return PartialView();
         }
 
+        
         public bool Like(int idCourse)
         {
             DateTime date = DateTime.Now;
@@ -108,22 +109,24 @@ namespace Online_Academy.Areas.Student.Controllers
             return true;
         }
 
-        public ActionResult RemoveLike (int idCourse)
+        public bool RemoveLike (int idCourse)
         {
             try
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
                 if(idUser != 0)
                 {
-                    CourseClient CC = new CourseClient();
-                    CC.RemoveLike(idUser, idCourse);
+                    //CourseClient CC = new CourseClient();
+                    //CC.RemoveLike(idUser, idCourse);
+
+                    db.sp_remove_favorite(idUser, idCourse);
                 }
             }
             catch
             {
-
+                return false;   
             }
-            return View();
+            return true;
         }
     }
 }

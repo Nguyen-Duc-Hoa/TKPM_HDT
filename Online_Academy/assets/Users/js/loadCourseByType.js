@@ -58,7 +58,7 @@ $(document).ready(function () {
         var stt = parseInt($(this).data("stt"));
         var id = $(this).data("id");
         var currentColor = document.getElementsByTagName("path")[stt].getAttribute("fill");
-        
+
         // click like the course
         if (currentColor == "#AAB8C2") {
             debugger;

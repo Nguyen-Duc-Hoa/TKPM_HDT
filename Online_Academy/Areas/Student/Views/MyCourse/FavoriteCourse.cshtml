@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Course/Index";
+    ViewBag.Title = "MyCourse";
     Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,7 +10,7 @@
     <div class="page-banner ovbl-dark" style="background-image:url(../../../Assets/Users/images/banner/banner3.jpg);">
         <div class="container">
             <div class="page-banner-entry">
-                <h1 class="text-white">Our Courses</h1>
+                <h1 class="text-white">Favorite Courses</h1>
             </div>
         </div>
     </div>
@@ -116,12 +116,19 @@
 
     <!-- contact area END -->
 </div>
-<script src="~/assets/Users/js/loadCourseByType.js"></script>
-@section load{
+
+<script>
+    $(document).ready(function () {
+        //add favorite course
+    })
+</script>
+
+@section loadFavorite{
     <script>
+        debugger;
         $.ajax({
-            //Load cac source
-            url: "/Student/Courses/LoadCourse",
+        //Load cac source
+            url: "/Student/MyCourse/loadFCourse",
             success: function (result) {
                 $(".loadCourse").html(result);
             }
@@ -133,7 +140,6 @@
                 $(".loadCate").html(result);
             }
         });
-
     </script>
 }
 

@@ -1,6 +1,5 @@
 ﻿
 <div class="upCourse">
-
     <div class="row">
         @{ int stt = 0;}
         @foreach (var course in ViewBag.Course)
@@ -89,3 +88,40 @@
     </div>
 
 </div>
+
+<script>
+    $(".heart").click(function () {
+        debugger;
+
+        var stt = parseInt($(this).data("stt"));
+        var id = $(this).data("id");
+        var currentColor = document.getElementsByTagName("path")[stt].getAttribute("fill");
+
+
+        var r = confirm("you want to quit liking this course");
+        if (r == true) {
+            if (currentColor == "#FF0000") {
+                console.log('click here');
+                $.ajax({
+                    url: "/Student/Courses/RemoveLike",
+                    data: { idCourse: id },
+                    success: function (result) {
+                        alert('RemoveLike');
+                        $.ajax({
+                            url: "/Student/MyCourse/loadFCourse",
+                            success: function (result) {
+                                $(".loadCourse").html(result);
+                            }
+                        })
+                    }
+                });
+            }
+        }
+        // remove like the course
+        
+    });
+
+    $(document).on('click', 'path', function () {
+
+    });
+</script>
