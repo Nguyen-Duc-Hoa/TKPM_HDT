@@ -128,5 +128,28 @@ namespace Online_Academy.Areas.Student.Controllers
             }
             return true;
         }
+
+        //click stype of course in nabar
+        [HttpGet]
+        public ActionResult CoursesByType(int id)
+        {
+            try
+            {
+                int iduser = Convert.ToInt32(Session["UserId"]);
+                if (iduser != 0)
+                {
+                    CourseClient CC = new CourseClient();
+                    var allCourse = CC.GetCourseByUser(iduser);
+                    ViewBag.Course = allCourse.Where(x => x.id_subcat == id);
+                    return View();
+                }
+            }
+            catch {
+                return View();
+            }
+
+            return View();
+
+        }
     }
 }

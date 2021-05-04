@@ -562,6 +562,7 @@
     </Content>
     <Content Include="Areas\Student\Views\MyCourse\FavoriteCourse.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\loadFCourse.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CoursesByType.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

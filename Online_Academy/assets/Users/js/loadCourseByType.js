@@ -19,6 +19,7 @@ $(document).ready(function () {
             data: { id: idcate },
             success: function (result) {
                 $(".upCourse").html(result);
+                document.getElementById("title").innerHTML = var2;
             }
         });
 
@@ -37,7 +38,9 @@ $(document).ready(function () {
         $.ajax({
             url: "/Student/Courses/General",
             success: function (result) {
+                debugger;
                 $(".upCourse").html(result);
+                document.getElementById("title").innerHTML = "Our Courses";
             }
         });
 
@@ -85,11 +88,10 @@ $(document).ready(function () {
                 }
             });
         }
-        alert('You clicked me');
     });
 
     $(document).on('click', 'path', function () {
-
+        console.log("click tim");
     });
 
 });
