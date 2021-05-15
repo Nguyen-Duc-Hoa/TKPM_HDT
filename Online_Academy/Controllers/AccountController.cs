@@ -40,7 +40,8 @@ namespace Online_Academy.Controllers
 
                 Session["userID"] = dbUser.id.ToString();
                 Session["userName"] = dbUser.username.ToString();
-                Session["role"] = dbUser.role.ToString();
+                Session["role"] = dbUser.Role1.role1.ToString();
+                Session["avatar"] = dbUser.avatar.ToString();
 
                 if (dbUser.avatar != null)
                 {
@@ -136,6 +137,7 @@ namespace Online_Academy.Controllers
                 email = email,
                 username = username,
                 password = password,
+                avatar = "/UploadFiles/avatar-default.jpg",
                 role = 3
             };
 
@@ -176,6 +178,7 @@ namespace Online_Academy.Controllers
                 password = password,
                 role = 2,
                 state = false,
+                avatar = "/UploadFiles/avatar-default.jpg",
                 major = major
             };
 
@@ -206,6 +209,27 @@ namespace Online_Academy.Controllers
             //string role = Session["role"].ToString();
             Session.Clear();
             return RedirectToAction("Login");
+        }
+        [HttpGet]
+        public ActionResult ChangeProfile()
+        {
+            // Use API instead
+            int id = 3;
+            //int id = Convert.ToInt32(Session["userID"].ToString());
+            var dbuser = db.Users.Where(u => u.id == id).FirstOrDefault();
+            dbuser.avatar = null;
+            return View("ChangeProfileStudent", dbuser);
+        }
+        [HttpPost]
+        public ActionResult ChangeProfile(FormCollection frm)
+        {
+            return Content("test");
+        }
+        public string Upload(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/UploadFiles/" + file.FileName));
+            Session["avatar"] = file.FileName;
+            return "/UploadFiles/" + file.FileName;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Online_Academy
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "MainPage", action = "Index", id = UrlParameter.Optional, },
                 namespaces: new[] { "Online_Academy.Controllers" }
-            ).DataTokens.Add("area", "Student"); ;
+            ) ;
         }
     }
 }

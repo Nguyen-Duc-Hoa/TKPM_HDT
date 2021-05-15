@@ -588,6 +588,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="UploadFiles\avatar-default.jpg" />
+    <Content Include="UploadFiles\avatar-la-gi-01.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -609,6 +611,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\RegisterStudent.cshtml" />
     <Content Include="Views\Account\RegisterTeacher.cshtml" />
+    <Content Include="Views\Account\ChangeProfileStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
