@@ -1,7 +1,6 @@
 ﻿@model Online_Academy.Models.User
-
 @{
-    ViewBag.Title = "ChangeProfileStudent";
+    ViewBag.Title = "ChangeProfileTeacher";
     Layout = "~/Areas/Admin/Views/Shared/_adminLayoutPage.cshtml";
 }
 
@@ -11,7 +10,7 @@
     <div class="col-lg-12 m-b30">
         <div class="widget-box">
             <div class="wc-title">
-                <h4>Student Profile</h4>
+                <h4>Teacher Profile</h4>
             </div>
             <div class="widget-inner">
 
@@ -60,11 +59,11 @@
                                     });
                                 }
                             });
-
-                        });</script>
+                        });
+                    </script>
                 }
 
-                @using (Html.BeginForm("ChangeProfileStudent", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("ChangeProfileTeacher", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -88,7 +87,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            @Html.Label("Major ", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-sm-7">
+                                @Html.EditorFor(model => model.major, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.major, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
+                        <div class="form-group row">
+                            @Html.Label("Description ", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                            <div class="col-md-7">
+                                @Html.TextAreaFor(model => model.Teacher.description, 4, 45, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Teacher.description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             @Html.Label("Birthday ", htmlAttributes: new { @class = "col-sm-2 col-form-label" })

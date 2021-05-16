@@ -612,6 +612,7 @@
     <Content Include="Views\Account\RegisterStudent.cshtml" />
     <Content Include="Views\Account\RegisterTeacher.cshtml" />
     <Content Include="Views\Account\ChangeProfileStudent.cshtml" />
+    <Content Include="Views\Account\ChangeProfileTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

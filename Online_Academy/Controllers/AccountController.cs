@@ -214,21 +214,101 @@ namespace Online_Academy.Controllers
         public ActionResult ChangeProfile()
         {
             // Use API instead
-            int id = 3;
+
+            //Test without login
+            int id = 2;
+
+            //if(Session["userID"] == null)
+            //{
+            //    return RedirectToAction("Login");
+            //}
             //int id = Convert.ToInt32(Session["userID"].ToString());
             var dbuser = db.Users.Where(u => u.id == id).FirstOrDefault();
-            dbuser.avatar = null;
-            return View("ChangeProfileStudent", dbuser);
+
+            switch (dbuser.Role1.role1.Trim())
+            {
+                case "Student":
+                    return View("ChangeProfileStudent", dbuser);
+                    break;
+                case "Teacher":
+                    return View("ChangeProfileTeacher", dbuser);
+                    break;
+                default:
+                    return RedirectToAction("Login");
+                    break;
+            }
+
+
+            
         }
         [HttpPost]
-        public ActionResult ChangeProfile(FormCollection frm)
+        public ActionResult ChangeProfileStudent(User user)
         {
-            return Content("test");
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    var dbuser = db.Users.Where(u => u.id == user.id).FirstOrDefault();
+                    dbuser.name = user.name;
+                    dbuser.email = user.email;
+                    dbuser.gender = user.gender;
+                    dbuser.birthday = user.birthday;
+                    if(TempData["avatar"] != null)
+                    {
+                        dbuser.avatar = TempData["avatar"].ToString();
+                    }
+                    
+                    Session["avatar"] = dbuser.avatar;
+                    db.SaveChanges();
+
+                    return RedirectToAction("ChangeProfile");
+                }
+                else
+                {
+                    return RedirectToAction("ChangeProfile");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("ChangeProfile");
+            }
+        }
+        [HttpPost]
+        public ActionResult ChangeProfileTeacher(User user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var dbuser = db.Users.Where(u => u.id == user.id).FirstOrDefault();
+                    dbuser.name = user.name;
+                    dbuser.email = user.email;
+                    dbuser.gender = user.gender;
+                    dbuser.birthday = user.birthday;
+                    if(TempData["avatar"] != null)
+                    {
+                        dbuser.avatar = TempData["avatar"].ToString();
+                    }
+                    dbuser.Teacher.description = user.Teacher.description.Trim();
+                    dbuser.major = user.major;
+                    Session["avatar"] = dbuser.avatar;
+                    db.SaveChanges();
+                    return RedirectToAction("ChangeProfile");
+                }
+                else
+                {
+                    return RedirectToAction("ChangeProfile");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("ChangeProfile");
+            }
         }
         public string Upload(HttpPostedFileBase file)
         {
             file.SaveAs(Server.MapPath("~/UploadFiles/" + file.FileName));
-            Session["avatar"] = file.FileName;
+            TempData["avatar"] = "/UploadFiles/" + file.FileName;
             return "/UploadFiles/" + file.FileName;
         }
     }
