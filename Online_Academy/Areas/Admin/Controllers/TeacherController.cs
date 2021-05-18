@@ -10,9 +10,21 @@ namespace Online_Academy.Areas.Admin.Controllers
     public class TeacherController : Controller
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
+        public bool AuthorizeAdmin()
+        {
+            if (Session["role"].ToString() == "Admin")
+            {
+                return true;
+            }
+            return false;
+        }
         // GET: Admin/Teacher
         public ActionResult Index()
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             // get teachers, whose state is false (NOT USE API)
             List<User> listTeacher = db.Users.Where(t => t.Role1.role1 == "Teacher").ToList();
 
@@ -24,6 +36,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         // accept account of teacher => teacher can upload course
         public ActionResult Approve(int idTeacher)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbTeacher = db.Users.Where(t => t.id == idTeacher).FirstOrDefault();
@@ -40,6 +56,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         // reject account of teacher => remove account from database
         public ActionResult Cancel(int idTeacher)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbTeacher = db.Users.Where(t => t.id == idTeacher).FirstOrDefault();

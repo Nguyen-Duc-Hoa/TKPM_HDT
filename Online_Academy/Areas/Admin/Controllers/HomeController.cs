@@ -8,9 +8,21 @@ namespace Online_Academy.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        public bool AuthorizeAdmin()
+        {
+            if (Session["role"].ToString() == "Admin")
+            {
+                return true;
+            }
+            return false;
+        }
         // GET: Admin/Home
         public ActionResult Index()
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
     }

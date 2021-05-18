@@ -11,8 +11,20 @@ namespace Online_Academy.Areas.Admin.Controllers
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         // GET: Admin/Category
+        public bool AuthorizeAdmin()
+        {
+            if (Session["role"].ToString() == "Admin")
+            {
+                return true;
+            }
+            return false;
+        }
         public ActionResult Index()
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             // API chưa lấy subcategory khi lấy category
             List<Category> lstCategories = db.Categories.ToList();
             ViewBag.lstCategories = lstCategories;
@@ -21,6 +33,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult EditSubcategory(int idSubcate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbSubcate = db.Subcategories.Where(s => s.id == idSubcate).FirstOrDefault();
@@ -34,6 +50,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditSubcategory(Subcategory sub)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbSub = db.Subcategories.Where(s => s.id == sub.id).FirstOrDefault();
@@ -49,12 +69,20 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult AddSubcategory(int idCate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             Subcategory sub = new Subcategory() { id_cat = idCate };
             return View(sub);
         }
         [HttpPost]
         public ActionResult AddSubcategory(Subcategory sub)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 db.Subcategories.Add(sub);
@@ -69,6 +97,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult DeleteSubcategory(int idSubcate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbSub = db.Subcategories.Where(s => s.id == idSubcate).FirstOrDefault();
@@ -84,11 +116,19 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult AddCategory()
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             return View();
         }
         [HttpPost]
         public ActionResult AddCategory(Category cate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 db.Categories.Add(cate);
@@ -103,6 +143,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult DeleteCategory(int idCate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbCate = db.Categories.Where(c => c.id == idCate).FirstOrDefault();
@@ -118,6 +162,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult EditCategory(int idCate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbCate = db.Categories.Where(c => c.id == idCate).FirstOrDefault();
@@ -132,6 +180,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditCategory(Category cate)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbCate = db.Categories.Where(c => c.id == cate.id).FirstOrDefault();

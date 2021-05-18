@@ -11,9 +11,21 @@ namespace Online_Academy.Areas.Admin.Controllers
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         public int pageSize = 3;
+        public bool AuthorizeAdmin()
+        {
+            if (Session["role"].ToString() == "Admin")
+            {
+                return true;
+            }
+            return false;
+        }
         // GET: Admin/Student
         public ActionResult Index(string txtSearch, int? page)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             UsersClient client = new UsersClient();
             var data = client.findAll();
 
@@ -45,6 +57,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Approve(int idStudent)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbStudent = db.Users.Where(c => c.id == idStudent).FirstOrDefault();
@@ -60,6 +76,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Cancel(int idStudent)
         {
+            if (!AuthorizeAdmin())
+            {
+                return RedirectToAction("Login");
+            }
             try
             {
                 var dbStudent = db.Users.Where(c => c.id == idStudent).FirstOrDefault();
