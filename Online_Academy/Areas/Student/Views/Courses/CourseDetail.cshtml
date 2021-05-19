@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "CourseDetail";
     Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    var course = ViewBag.Course;
+    var teacher = ViewBag.Teacher;
+
 }
 
 <!-- Content -->
@@ -34,8 +37,8 @@
                         <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                             <div class="course-detail-bx">
                                 <div class="course-price">
-                                    <del>$190</del>
-                                    <h4 class="price">$120</h4>
+                                    <del>@course.price</del>
+                                    <h4 class="price">@course.discount</h4>
                                 </div>
                                 <div class="course-buy-now text-center">
                                     <a href="#" class="btn radius-xl text-uppercase">Buy Now This Courses</a>
@@ -46,8 +49,8 @@
                                             <img src="assets/images/testimonials/pic1.jpg" alt="" />
                                         </div>
                                         <div class="teacher-name">
-                                            <h5>Hinata Hyuga</h5>
-                                            <span>Science Teacher</span>
+                                            <h5>@teacher.name</h5>
+                                            <span>@teacher.major</span>
                                         </div>
                                     </div>
                                 </div>
@@ -63,8 +66,42 @@
                                         </ul>
                                     </div>
                                     <div class="price categories">
-                                        <span>Categories</span>
-                                        <h5 class="text-primary">Frontend</h5>
+                                        @*@if (Convert.ToInt32(Session["UserId"]) == 0)
+                                        {
+                                            <div class="favorite">
+                                                <label for="checkbox">
+                                                    <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                        <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                            <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                                  class="heart" fill="#AAB8C2" data-id="@course.id" />
+                                                        </g>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                        }
+                                        else if (Convert.ToInt32(Session["UserId"]) != 0)
+                                        {
+                                            <div class="favorite">
+                                                <label for="checkbox">
+                                                    <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                        <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                            @if (course.id_student == Convert.ToInt32(Session["UserId"]))
+                                                            {
+                                                                //Student like Course ==> color ==
+                                                                <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                                      class="heart" fill="#FF0000" data-id="@course.id" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                                      class="heart" fill="#AAB8C2" data-id="@course.id" />
+                                                            }
+
+                                                        </g>
+                                                    </svg>
+                                                </label>
+                                            </div>
+                                        }*@
                                     </div>
                                 </div>
                                 <div class="course-info-list scroll-page">
@@ -81,14 +118,16 @@
                         <div class="col-lg-9 col-md-8 col-sm-12">
                             <div class="courses-post">
                                 <div class="ttr-post-media media-effect">
-                                    <a href="#"><img src="assets/images/blog/default/thum1.jpg" alt=""></a>
+                                    <a href="#">
+                                        <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt=".avatar"/>
+                                    </a>
                                 </div>
                                 <div class="ttr-post-info">
                                     <div class="ttr-post-title ">
-                                        <h2 class="post-title">Nvidia and UE4 Technologies Practice</h2>
+                                        <h2 class="post-title">@course.name</h2>
                                     </div>
                                     <div class="ttr-post-text">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        <p>@course.description</p>
                                     </div>
                                 </div>
                             </div>
@@ -97,20 +136,18 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-4">
                                         <ul class="course-features">
-                                            <li><i class="ti-book"></i> <span class="label">Lectures</span> <span class="value">8</span></li>
-                                            <li><i class="ti-help-alt"></i> <span class="label">Quizzes</span> <span class="value">1</span></li>
+                                            <li><i class="ti-book"></i> <span class="label">Chapter</span> <span class="value">8</span></li>
+                                            @*<li><i class="ti-help-alt"></i> <span class="label">Quizzes</span> <span class="value">1</span></li>*@
                                             <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value">60 hours</span></li>
                                             <li><i class="ti-stats-up"></i> <span class="label">Skill level</span> <span class="value">Beginner</span></li>
                                             <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value">English</span></li>
                                             <li><i class="ti-user"></i> <span class="label">Students</span> <span class="value">32</span></li>
-                                            <li><i class="ti-check-box"></i> <span class="label">Assessments</span> <span class="value">Yes</span></li>
+                                            @*<li><i class="ti-check-box"></i> <span class="label">Assessments</span> <span class="value">Yes</span></li>*@
                                         </ul>
                                     </div>
                                     <div class="col-md-12 col-lg-8">
                                         <h5 class="m-b5">Course Description</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                        <h5 class="m-b5">Certification</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                        <p>@course.description</p>
                                         <h5 class="m-b5">Learning Outcomes</h5>
                                         <ul class="list-checked primary">
                                             <li>Over 37 lectures and 55.5 hours of content!</li>
@@ -197,34 +234,18 @@
                                 <h4>Instructor</h4>
                                 <div class="instructor-bx">
                                     <div class="instructor-author">
-                                        <img src="assets/images/testimonials/pic1.jpg" alt="">
+                                        <img src="~/assets/Pictures/ImagesTeachers/@teacher.avatar" alt="avatar.jpg" />
                                     </div>
                                     <div class="instructor-info">
-                                        <h6>Keny White </h6>
-                                        <span>Professor</span>
+                                        <h6>@teacher.name </h6>
+                                        <span>@teacher.major</span>
                                         <ul class="list-inline m-tb10">
                                             <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
                                             <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
                                             <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
                                             <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
                                         </ul>
-                                        <p class="m-b0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                                    </div>
-                                </div>
-                                <div class="instructor-bx">
-                                    <div class="instructor-author">
-                                        <img src="assets/images/testimonials/pic2.jpg" alt="">
-                                    </div>
-                                    <div class="instructor-info">
-                                        <h6>Keny White </h6>
-                                        <span>Professor</span>
-                                        <ul class="list-inline m-tb10">
-                                            <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                            <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                        <p class="m-b0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                                        <p class="m-b0">@teacher.description</p>
                                     </div>
                                 </div>
                             </div>
@@ -323,4 +344,5 @@
 
     </div>
     <!-- Content END-->
+
 

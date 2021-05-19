@@ -40,5 +40,45 @@ namespace Online_Academy.Areas.Student.Controllers
             }
             return View();
         }
+
+        public ActionResult LeftList()
+        {
+            return PartialView();
+        }
+
+        //complete course
+        public ActionResult CompletedCourse()
+        {
+            try
+            {
+                int iduser = Convert.ToInt32(Session["UserId"]);
+                if(iduser != 0)
+                {
+
+                }
+            }
+            catch
+            {
+
+            }
+            return View();
+        }
+
+        public ActionResult Instructors()
+        {
+            TeachersClient TC = new TeachersClient();
+            ViewBag.Teachers = TC.findAll();
+            return View();
+        }
+
+        public ActionResult InstructorDetail(int id)
+        {
+            TeachersClient TC = new TeachersClient();
+            ViewBag.Teachers = TC.find(id);
+            DateTime datejoin = TC.find(id).date_join.Value;
+
+            ViewBag.joinDate = datejoin.ToString("dd/MM/yyyy");
+            return View();
+        }
     }
 }

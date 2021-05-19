@@ -26,7 +26,7 @@
                 </div>
                 @if (Convert.ToInt32(Session["UserId"]) == 0)
                 {
-                    <div class="favorite">
+                    @*<div class="favorite">
                         <label for="checkbox">
                             <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
                                 <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
@@ -35,11 +35,11 @@
                                 </g>
                             </svg>
                         </label>
-                    </div>
+                    </div>*@
                 }
                 else if (Convert.ToInt32(Session["UserId"]) != 0)
                 {
-                    <div class="favorite">
+                    @*<div class="favorite">
                         <label for="checkbox">
                             <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
                                 <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
@@ -58,7 +58,7 @@
                                 </g>
                             </svg>
                         </label>
-                    </div>
+                    </div>*@
                 }
                 <div class="price">
                     <del>$@course.price</del>

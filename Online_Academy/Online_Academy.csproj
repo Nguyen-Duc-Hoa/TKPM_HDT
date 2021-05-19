@@ -340,6 +340,8 @@
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
     <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
     <Content Include="Assets\Pictures\ImagesCourse\word.png" />
+    <Content Include="Assets\Pictures\ImagesTeachers\gv1.jpg" />
+    <Content Include="Assets\Pictures\ImagesTeachers\gv2.jpg" />
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
     <Content Include="Assets\Users\css\custom.css" />
@@ -361,6 +363,7 @@
     <Content Include="Assets\Users\css\shortcodes\shortcodes.css" />
     <Content Include="Assets\Users\css\shortcodes\widget.css" />
     <Content Include="Assets\Users\css\style.css" />
+    <Content Include="Assets\Users\css\style_Profile.css" />
     <Content Include="Assets\Users\css\typography.css" />
     <Content Include="Assets\Users\images\about\pic1.jpg" />
     <Content Include="Assets\Users\images\adv\adv.jpg" />
@@ -443,6 +446,7 @@
     <Content Include="Assets\Users\js\jquery.min.js" />
     <Content Include="Assets\Users\js\jquery.scroller.js" />
     <Content Include="Assets\Users\js\loadCourseByType.js" />
+    <Content Include="Assets\Users\js\Teachers.js" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Users\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -563,6 +567,9 @@
     <Content Include="Areas\Student\Views\MyCourse\FavoriteCourse.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\loadFCourse.cshtml" />
     <Content Include="Areas\Student\Views\Courses\CoursesByType.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\LeftList.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\Instructors.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\InstructorDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

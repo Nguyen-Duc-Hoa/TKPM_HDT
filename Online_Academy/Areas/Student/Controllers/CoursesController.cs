@@ -44,8 +44,17 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult CourseDetail(int id)
         {
-
+            CourseClient CC = new CourseClient();
+            ViewBag.Course = CC.GetCourse(id);
+            int idTecher = Convert.ToInt32(CC.GetCourse(id).id_teacher);
+            GetTeacher(idTecher);
             return View();
+        }   
+
+        public void GetTeacher(int id)
+        {
+            TeachersClient TC = new TeachersClient();
+            ViewBag.Teacher = TC.find(id);
         }
 
         public ActionResult CourseByType(int id)
@@ -141,6 +150,7 @@ namespace Online_Academy.Areas.Student.Controllers
                     CourseClient CC = new CourseClient();
                     var allCourse = CC.GetCourseByUser(iduser);
                     ViewBag.Course = allCourse.Where(x => x.id_subcat == id);
+                    ViewBag.name = db.Subcategories.Where(x => x.id == id).Select(x=> x.subname).FirstOrDefault();
                     return View();
                 }
             }
