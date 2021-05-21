@@ -21,7 +21,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             return View();
         }

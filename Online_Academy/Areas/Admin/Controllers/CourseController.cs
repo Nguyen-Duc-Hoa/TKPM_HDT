@@ -25,7 +25,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if(!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login"); 
             }
             CourseClient client = new CourseClient();
             // Modify API to get course available
@@ -63,7 +63,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -82,7 +82,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {

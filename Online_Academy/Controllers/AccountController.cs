@@ -34,8 +34,13 @@ namespace Online_Academy.Controllers
             {
                 if (rememberCheck == "true")
                 {
-                    Request.Cookies["userName"].Value = dbUser.username.Trim();
-                    Request.Cookies["pass"].Value = dbUser.password.Trim();
+                    Response.Cookies["userName"].Value = dbUser.username.Trim();
+                    Response.Cookies["pass"].Value = dbUser.password.Trim();
+                }
+                else
+                {
+                    Response.Cookies["userName"].Value = "";
+                    Response.Cookies["pass"].Value = "";
                 }
 
                 Session["userID"] = dbUser.id.ToString().Trim();
@@ -210,7 +215,7 @@ namespace Online_Academy.Controllers
         {
             //string role = Session["role"].ToString();
             Session.Clear();
-            return RedirectToAction("Login");
+            return Redirect("/Account/Login");
         }
         [HttpGet]
         public ActionResult ChangeProfile()

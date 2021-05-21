@@ -33,8 +33,17 @@ namespace Online_Academy.Areas.Student.Controllers
                 history.id_user = Convert.ToInt32(Session["UserId"].ToString());
                 history.price = Convert.ToDouble(Session["price"].ToString());
                 history.date = DateTime.Now;
-                db.Histories.Add(history);
-                db.SaveChanges();
+
+                if(history.id_course != 0)
+                {
+                    db.Histories.Add(history);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return Content("Account/Login");
+                }
+                
                 
             }
             catch

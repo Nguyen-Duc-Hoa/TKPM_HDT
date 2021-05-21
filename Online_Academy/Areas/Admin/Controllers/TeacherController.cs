@@ -23,7 +23,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             // get teachers, whose state is false (NOT USE API)
             List<User> listTeacher = db.Users.Where(t => t.Role1.role1 == "Teacher").ToList();
@@ -38,7 +38,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -58,7 +58,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
