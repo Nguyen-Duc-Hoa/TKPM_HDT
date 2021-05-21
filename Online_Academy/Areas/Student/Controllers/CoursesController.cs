@@ -76,7 +76,7 @@ namespace Online_Academy.Areas.Student.Controllers
                         var process = db.Processes.Where(x => x.id_student == idUser && x.id_Course == id).FirstOrDefault();
                         int total = Convert.ToInt32(db.sp_SumLesson(id).Select(x => x.Value).FirstOrDefault());
                         //ViewBag.percent = 1 / total;
-                        int percent = 1 / 2 * 100;
+                        int percent = (1 / 2 * 100);
                         ViewBag.percent = percent;
                         ViewBag.process = process;
                         return View("CourseDetail1");

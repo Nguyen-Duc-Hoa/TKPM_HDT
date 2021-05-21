@@ -500,6 +500,12 @@
     <Content Include="Assets\Users\vendors\switcher\switcher.js" />
     <Content Include="Assets\Users\vendors\themify\fonts\themify9f24.svg" />
     <Content Include="Assets\Users\vendors\themify\themify-icons.css" />
+    <Content Include="Assets\Videos\1.mp4" />
+    <Content Include="Assets\Videos\2.mp4" />
+    <Content Include="Assets\Videos\3.mp4" />
+    <Content Include="Assets\Videos\4.mp4" />
+    <Content Include="Assets\Videos\5.mp4" />
+    <Content Include="Assets\Videos\6.mp4" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
