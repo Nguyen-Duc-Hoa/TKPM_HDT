@@ -249,3 +249,4 @@ C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.pdb
+C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache
