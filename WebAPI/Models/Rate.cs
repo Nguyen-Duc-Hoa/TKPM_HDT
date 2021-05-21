@@ -16,7 +16,7 @@ namespace WebAPI.Models
     {
         public int id_course { get; set; }
         public int id_student { get; set; }
-        public Nullable<int> rate_value { get; set; }
+        public Nullable<double> rate_value { get; set; }
         public string comment { get; set; }
     
         public virtual Course Course { get; set; }

@@ -75,10 +75,11 @@ namespace Online_Academy.Areas.Student.Controllers
                         //load process
                         var process = db.Processes.Where(x => x.id_student == idUser && x.id_Course == id).FirstOrDefault();
                         int total = Convert.ToInt32(db.sp_SumLesson(id).Select(x => x.Value).FirstOrDefault());
-                        //ViewBag.percent = 1 / total;
-                        int percent = (1 / 2 * 100);
-                        ViewBag.percent = percent;
+                        ViewBag.total = total;
+
+                        ViewBag.percent = Convert.ToDouble(process.process1)/total * 100;
                         ViewBag.process = process;
+                        
                         return View("CourseDetail1");
                     }
                 }
@@ -134,6 +135,16 @@ namespace Online_Academy.Areas.Student.Controllers
                 ViewBag.Course = AllCourse.Where(x => x.id_subcat == id);
             }
             return PartialView();
+        }
+
+        public ActionResult CourseByTeacher(int idTeacher)
+        {
+            ViewBag.TCourse = db.sp_teacherCourses(idTeacher);
+            if(ViewBag.TCourse != null)
+            {
+                return PartialView();
+            }
+            return Content("");
         }
 
         public ActionResult General()

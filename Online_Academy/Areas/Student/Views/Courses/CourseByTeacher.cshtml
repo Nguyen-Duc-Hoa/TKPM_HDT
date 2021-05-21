@@ -1,0 +1,57 @@
+﻿@{ var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+<div class="upCourse">
+
+    <div class="row">
+
+        @{ int stt = 0;}
+        @foreach (var course in ViewBag.TCourse)
+        {
+            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                <div class="cours-bx">
+                    <div class="action-box">
+                        <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt="imageCourse" style="width: 263px; height: 147px;">
+                        <a href="/Student/Courses/CourseDetail/@course.id" class="btn">Read More</a>
+                    </div>
+                    <div class="info-bx text-center">
+                        <h5><a href="#">@course.name</a></h5>
+                        <span>@course.short_description</span>
+                    </div>
+                    <div class="cours-more-info">
+                        <div class="review" style="padding-left: 10px; width: 160px;">
+                            <span>3 Review</span>
+                            <ul class="cours-star">
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="price">
+                            <del>@String.Format(info, "{0:C0}", course.price)</del>
+                            <h5>@String.Format(info, "{0:C0}", course.discount)</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            stt = stt + 1;
+        }
+
+        <!--==========Phan trang===============-->
+        @*<div class="col-lg-12 m-b20">
+            <div class="pagination-bx rounded-sm gray clearfix">
+                <ul class="pagination">
+                    <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                </ul>
+            </div>
+        </div>*@
+    </div>
+
+</div>

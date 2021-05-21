@@ -198,6 +198,15 @@
     <Compile Include="Models\getBookdetail_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getCourseByState_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCurriculumByCourse_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getLectureByCurriculum_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getTeacherById_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -235,6 +244,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_teacherCourses_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subcategory.cs">
@@ -307,8 +319,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\TKPM_HDT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\TKPM_HDT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

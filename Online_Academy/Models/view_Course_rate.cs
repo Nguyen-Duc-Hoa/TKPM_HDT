@@ -25,7 +25,7 @@ namespace Online_Academy.Models
         public Nullable<bool> state { get; set; }
         public Nullable<int> price { get; set; }
         public Nullable<int> discount { get; set; }
-        public int id_course { get; set; }
+        public Nullable<int> id_course { get; set; }
         public Nullable<double> rate { get; set; }
     }
 }

@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                                 <div class="side right">
-                                    <div>@process.process1 / @process.total</div>
+                                    <div>@process.process1 / @ViewBag.total</div>
                                 </div>
                             </div>
 
@@ -244,7 +244,9 @@
                             <h4>Instructor</h4>
                             <div class="instructor-bx">
                                 <div class="instructor-author">
-                                    <img src="~/assets/Pictures/ImagesTeachers/@teacher.avatar" alt="avatar.jpg" />
+                                    <a href="/Student/MyCourse/InstructorDetail/@teacher.id">
+                                        <img src="~/assets/Pictures/ImagesTeachers/@teacher.avatar" alt="avatar.jpg" />
+                                    </a>
                                 </div>
                                 <div class="instructor-info">
                                     <h6>@teacher.name </h6>

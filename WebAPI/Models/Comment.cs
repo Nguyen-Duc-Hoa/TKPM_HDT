@@ -26,8 +26,8 @@ namespace WebAPI.Models
         public Nullable<int> id_course { get; set; }
     
         public virtual Course Course { get; set; }
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
-        public virtual User User { get; set; }
     }
 }
