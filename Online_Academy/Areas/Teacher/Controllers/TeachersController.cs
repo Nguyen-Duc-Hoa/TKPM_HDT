@@ -35,7 +35,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
            
             TeachersClient tc = new TeachersClient();
             //viewteacher = tc.findview_teacher(2);
-            tv.teacher = tc.find(2);
+          //  tv.teacher = tc.find(2);
             UsersClient uc = new UsersClient();
 
          

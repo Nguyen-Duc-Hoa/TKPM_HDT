@@ -231,7 +231,6 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Course_rate' does not have
   <EntityType Name="view_Course_rate">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="id_course" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="name" Type="char" MaxLength="50" />
@@ -244,7 +243,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Course_rate' does not have
     <Property Name="state" Type="bit" />
     <Property Name="price" Type="int" />
     <Property Name="discount" Type="int" />
-    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="id_course" Type="int" />
     <Property Name="rate" Type="float" />
   </EntityType>
   <!--Errors Found During Generation:

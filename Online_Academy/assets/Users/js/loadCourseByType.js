@@ -19,6 +19,7 @@ $(document).ready(function () {
             data: { id: idcate },
             success: function (result) {
                 $(".upCourse").html(result);
+                document.getElementById("title").innerHTML = var2;
             }
         });
 
@@ -37,7 +38,9 @@ $(document).ready(function () {
         $.ajax({
             url: "/Student/Courses/General",
             success: function (result) {
+                debugger;
                 $(".upCourse").html(result);
+                document.getElementById("title").innerHTML = "Our Courses";
             }
         });
 
@@ -58,16 +61,16 @@ $(document).ready(function () {
         var stt = parseInt($(this).data("stt"));
         var id = $(this).data("id");
         var currentColor = document.getElementsByTagName("path")[stt].getAttribute("fill");
-        
+
         // click like the course
         if (currentColor == "#AAB8C2") {
-
-            document.getElementsByTagName("path")[stt].setAttribute("fill", "#F00000");
+            debugger;
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
             $.ajax({
                 url: "/Student/Courses/Like",
                 data: { idCourse: id },
                 success: function (result) {
-                    
+                    debugger;
                     alert('Like');
                 }
             });
@@ -75,14 +78,20 @@ $(document).ready(function () {
 
         }
         // remove like the course
-        else if (currentColor == "#F00000") {
+        else if (currentColor == "#FF0000") {
             document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+            $.ajax({
+                url: "/Student/Courses/RemoveLike",
+                data: { idCourse: id },
+                success: function (result) {
+                    alert('RemoveLike');
+                }
+            });
         }
-        alert('You clicked me');
     });
 
     $(document).on('click', 'path', function () {
-
+        console.log("click tim");
     });
 
 });

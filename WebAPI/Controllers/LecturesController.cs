@@ -22,6 +22,13 @@ namespace WebAPI.Controllers
             return db.view_allLectures;
         }
 
+        [HttpGet]
+        [Route("api/LecturesByChap/{idChapter}")]
+        public IQueryable<view_allLectures> LecturesByChap(int idChapter)
+        {
+            return db.view_allLectures.Where(x => x.id_chapter == idChapter);
+        }
+
         // GET: api/Lectures/5
         [ResponseType(typeof(view_allLectures))]
         public IHttpActionResult Getview_allLectures(int id)

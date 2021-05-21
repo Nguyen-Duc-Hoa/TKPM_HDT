@@ -62,6 +62,24 @@ namespace Online_Academy.Models
                 return null;
             }
         }
+
+        public List<sp_Couse_User_Result> GetCourseByUser(int idUser)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("Course_User/"+ idUser).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<List<sp_Couse_User_Result>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public Course GetCourse(int id)
         {
             try
@@ -117,6 +135,22 @@ namespace Online_Academy.Models
                 client.BaseAddress = new Uri(Base_URL);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage response = client.DeleteAsync("Courses/" + id).Result;
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveLike(int idStudent, int idCourse)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = client.DeleteAsync("Courses/RemoveLike/" + idStudent + "/" + idCourse).Result;
                 return response.IsSuccessStatusCode;
             }
             catch

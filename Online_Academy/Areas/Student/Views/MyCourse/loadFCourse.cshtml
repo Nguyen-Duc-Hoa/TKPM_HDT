@@ -1,0 +1,127 @@
+﻿@{ var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN"); }
+<div class="upCourse">
+    <div class="row">
+        @{ int stt = 0;}
+        @foreach (var course in ViewBag.Course)
+        {
+            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                <div class="cours-bx">
+                    <div class="action-box">
+                        <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt="imageCourse" style="width: 263px; height: 147px;">
+                        <a href="/Student/Courses/CourseDetail/@course.id" class="btn">Read More</a>
+                    </div>
+                    <div class="info-bx text-center">
+                        <h5><a href="#">@course.name</a></h5>
+                        <span>@course.short_description</span>
+                    </div>
+                    <div class="cours-more-info">
+                        <div class="review" style="padding-left: 10px; width: 160px;">
+                            <span>3 Review</span>
+                            <ul class="cours-star">
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li class="active"><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                        </div>
+                        @if (Convert.ToInt32(Session["UserId"]) == 0)
+                        {
+                            <div class="favorite">
+                                <label for="checkbox">
+                                    <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                        <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                            <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                  class="heart" fill="#AAB8C2" data-id="@course.id" data-stt="@stt" />
+                                        </g>
+                                    </svg>
+                                </label>
+                            </div>
+                        }
+                        else if (Convert.ToInt32(Session["UserId"]) != 0)
+                        {
+                            <div class="favorite">
+                                <label for="checkbox">
+                                    <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                        <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                            @if (course.id_student == Convert.ToInt32(Session["UserId"]))
+                                            {
+                                                //Student like Course ==> color ==
+                                                <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                      class="heart" fill="#FF0000" data-id="@course.id" data-stt="@stt" />
+                                            }
+                                            else
+                                            {
+                                                <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
+                                                      class="heart" fill="#AAB8C2" data-id="@course.id" data-stt="@stt" />
+                                            }
+
+                                        </g>
+                                    </svg>
+                                </label>
+                            </div>
+                        }
+
+                        <div class="price">
+                            <del>@String.Format(info, "{0:C0}", course.price)</del>
+                            <h5>@String.Format(info, "{0:C0}", course.discount)</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            stt = stt + 1;
+        }
+
+
+        <div class="col-lg-12 m-b20">
+            <div class="pagination-bx rounded-sm gray clearfix">
+                <ul class="pagination">
+                    <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(".heart").click(function () {
+        debugger;
+
+        var stt = parseInt($(this).data("stt"));
+        var id = $(this).data("id");
+        var currentColor = document.getElementsByTagName("path")[stt].getAttribute("fill");
+
+
+        var r = confirm("you want to quit liking this course");
+        if (r == true) {
+            if (currentColor == "#FF0000") {
+                console.log('click here');
+                $.ajax({
+                    url: "/Student/Courses/RemoveLike",
+                    data: { idCourse: id },
+                    success: function (result) {
+                        alert('RemoveLike');
+                        $.ajax({
+                            url: "/Student/MyCourse/loadFCourse",
+                            success: function (result) {
+                                $(".loadCourse").html(result);
+                            }
+                        })
+                    }
+                });
+            }
+        }
+        // remove like the course
+        
+    });
+
+    $(document).on('click', 'path', function () {
+
+    });
+</script>

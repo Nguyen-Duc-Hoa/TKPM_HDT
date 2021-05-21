@@ -1,0 +1,126 @@
+﻿@model Online_Academy.Models.Course 
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLayoutPage.cshtml";
+}
+
+<div class="card-header">
+    Search
+    @using (Html.BeginForm("Index", "Course", FormMethod.Get))
+    {
+        <input type="text" name="txtSearch" placeholder="Search!" />
+        <button type="submit" class="btn btn-warning">Search</button>
+    }
+</div>
+
+    <!-- Page Content Box ==== -->
+    <div class="content-block">
+        <!-- Blog Grid ==== -->
+        <div class="section-area section-sp1">
+            <div class="container">
+                <div class="ttr-blog-grid-3 row" id="masonry">
+                    @foreach (var course in ViewBag.courses)
+                    {
+                        <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
+                            <div class="recent-news">
+                                <div class="action-box">
+                                    @if (course.thumbnail == null)
+                                    {
+                                        <img src="https://www.wellandgood.com/wp-content/uploads/2020/02/GettyImages-1073797276.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="@course.thumbnail" alt="">
+                                    }
+
+                                </div>
+                                <div class="info-bx">
+                                    <ul class="media-post">
+                                        <li>Id: @course.id</li>
+                                        <li><i class="fa fa-user"></i>@course.Teacher.User.name</li>
+                                    </ul>
+                                    @if (course.state == true)
+                                    {
+                                        <h5 class="post-title">@course.name</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="post-title" style="color:red">@course.name</h5>
+                                    }
+
+                                    <p>@course.short_description</p>
+                                    <div class="post-extra">
+                                        <button type="button" class="btn btn-adn approveBtn" data-id="@course.id">Approve</button>
+                                        <button type="button" class="btn outline radius-md cancelBtn" data-id="@course.id">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <!-- Pagination ==== -->
+                @*<div class="pagination-bx rounded-sm gray clearfix">
+                    <ul class="pagination">
+                        <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                    </ul>
+                </div>*@
+
+                <div class="card-footer">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+
+                            @{
+                                int position;
+                                int pageCurrent = ViewBag.pageCurrent;
+                                string txtSearch = ViewBag.txtSearch;
+                                float numSize = ViewBag.numSize;
+                                if (pageCurrent > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
+                                    </li>
+                                }
+
+                                for (position = 1; position <= numSize; position++)
+                                {
+
+                                    if (position == pageCurrent)
+                                    {
+                                        <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
+                                    }
+
+                                    else
+                                    {
+                                        <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
+                                    }
+
+                                }
+                                if (pageCurrent > 0 && pageCurrent < numSize)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
+                                    </li>
+                                }
+
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Pagination END ==== -->
+            </div>
+        </div>
+        <!-- Blog Grid END ==== -->
+    </div>
+    <!-- Page Content Box END ==== -->
+
+@section script {
+    <script src="~/Assets/Admin/js/manageCourse.js"></script>
+    }

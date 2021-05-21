@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "VerificationCode";
+    Layout = "~/Views/Shared/_loginLayoutPage.cshtml";
+}
+
+<div class="account-container">
+    <div class="heading-bx left">
+        <h2 class="title-head">Verification <span>Code</span></h2>
+        <p>Login Your Account <a href="/Account/Login">Click here</a></p>
+    </div>
+    <form class="contact-bx" action="/Account/ChangePassword" method="post">
+        <div class="row placeani">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>Your Code</label>
+                        <input id="code" name="code" type="text" required="" class="form-control">
+                        <span class="validation-message" style="color: red"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 m-b30">
+                <button name="submit" type="submit" id="submitBtn" value="Submit" class="btn button-md">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+

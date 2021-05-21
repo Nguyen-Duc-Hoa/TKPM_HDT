@@ -120,5 +120,13 @@ namespace WebAPI.Controllers
         {
             return db.Curricula.Count(e => e.id == id) > 0;
         }
+
+
+        [Route("api/CurriculumByCourse/{idCourse}")]
+        public IQueryable<view_allCurriculum> Getview_allCurriculumbyCourse(int idCourse)
+        {
+            return db.view_allCurriculum.Where(x => x.id_course == idCourse).AsQueryable();
+        }
+
     }
 }

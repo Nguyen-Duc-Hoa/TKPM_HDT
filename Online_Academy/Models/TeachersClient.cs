@@ -44,7 +44,7 @@ namespace Online_Academy.Models
                 return null;
             }
         }
-        public Teacher find(int? id)
+        public view_Teachers find(int? id)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace Online_Academy.Models
                 HttpResponseMessage response = client.GetAsync("Teachers/" + id).Result;
 
                 if (response.IsSuccessStatusCode)
-                    return response.Content.ReadAsAsync<Teacher>().Result;
+                    return response.Content.ReadAsAsync<view_Teachers>().Result;
                 return null;
             }
             catch

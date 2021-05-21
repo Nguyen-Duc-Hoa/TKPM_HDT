@@ -77,10 +77,10 @@
     <EntitySetMapping Name="Processes">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Process">
         <MappingFragment StoreEntitySet="Process">
-          <ScalarProperty Name="total" ColumnName="total" />
           <ScalarProperty Name="id_student" ColumnName="id_student" />
           <ScalarProperty Name="id_Course" ColumnName="id_Course" />
           <ScalarProperty Name="process1" ColumnName="process" />
+          <ScalarProperty Name="total" ColumnName="total" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -250,6 +250,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="view_History">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_History">
+        <MappingFragment StoreEntitySet="view_History">
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="view_Subcategories">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_Subcategories">
         <MappingFragment StoreEntitySet="view_Subcategories">
@@ -308,6 +318,45 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getCourseByState" FunctionName="DB_A72902_TKPMModel.Store.getCourseByState">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCourseByState_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getCurriculumByCourse" FunctionName="DB_A72902_TKPMModel.Store.getCurriculumByCourse">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCurriculumByCourse_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="chap_name" ColumnName="chap_name" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getLectureByCurriculum" FunctionName="DB_A72902_TKPMModel.Store.getLectureByCurriculum">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getLectureByCurriculum_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="id_chapter" ColumnName="id_chapter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getNumberofLectures" FunctionName="DB_A72902_TKPMModel.Store.getNumberofLectures" />
+    <FunctionImportMapping FunctionImportName="getNumberofStudents" FunctionName="DB_A72902_TKPMModel.Store.getNumberofStudents" />
+    <FunctionImportMapping FunctionImportName="getStudentByCourse" FunctionName="DB_A72902_TKPMModel.Store.getStudentByCourse" />
     <FunctionImportMapping FunctionImportName="getTeacherById" FunctionName="DB_A72902_TKPMModel.Store.getTeacherById">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getTeacherById_Result">
@@ -351,6 +400,25 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_add_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_add_favorite" />
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_A72902_TKPMModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_Course_bought" FunctionName="DB_A72902_TKPMModel.Store.sp_Course_bought">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Course_bought_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_Couse_User" FunctionName="DB_A72902_TKPMModel.Store.sp_Couse_User">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Couse_User_Result">
@@ -401,73 +469,7 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_remove_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_remove_favorite" />
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_A72902_TKPMModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
-    <EntitySetMapping Name="view_History">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_History">
-        <MappingFragment StoreEntitySet="view_History">
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="id_course" ColumnName="id_course" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="getCourseByState" FunctionName="DB_A72902_TKPMModel.Store.getCourseByState">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCourseByState_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="short_description" ColumnName="short_description" />
-          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
-          <ScalarProperty Name="preview" ColumnName="preview" />
-          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
-          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="discount" ColumnName="discount" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="getCurriculumByCourse" FunctionName="DB_A72902_TKPMModel.Store.getCurriculumByCourse">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCurriculumByCourse_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="chap_name" ColumnName="chap_name" />
-          <ScalarProperty Name="id_course" ColumnName="id_course" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="getLectureByCurriculum" FunctionName="DB_A72902_TKPMModel.Store.getLectureByCurriculum">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getLectureByCurriculum_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="link" ColumnName="link" />
-          <ScalarProperty Name="id_chapter" ColumnName="id_chapter" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="getNumberofLectures" FunctionName="DB_A72902_TKPMModel.Store.getNumberofLectures" />
-    <FunctionImportMapping FunctionImportName="sp_Course_bought" FunctionName="DB_A72902_TKPMModel.Store.sp_Course_bought">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Course_bought_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="short_description" ColumnName="short_description" />
-          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
-          <ScalarProperty Name="preview" ColumnName="preview" />
-          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
-          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="discount" ColumnName="discount" />
-          <ScalarProperty Name="rate" ColumnName="rate" />
-          <ScalarProperty Name="id_student" ColumnName="id_student" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_SumLesson" FunctionName="DB_A72902_TKPMModel.Store.sp_SumLesson" />
     <FunctionImportMapping FunctionImportName="sp_teacherCourses" FunctionName="DB_A72902_TKPMModel.Store.sp_teacherCourses">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_teacherCourses_Result">
@@ -485,9 +487,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="getNumberofStudents" FunctionName="DB_A72902_TKPMModel.Store.getNumberofStudents" />
-    <FunctionImportMapping FunctionImportName="getStudentByCourse" FunctionName="DB_A72902_TKPMModel.Store.getStudentByCourse" />
-    <FunctionImportMapping FunctionImportName="sp_SumLesson" FunctionName="DB_A72902_TKPMModel.Store.sp_SumLesson" />
     <FunctionImportMapping FunctionImportName="sp_testBought" FunctionName="DB_A72902_TKPMModel.Store.sp_testBought" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>
