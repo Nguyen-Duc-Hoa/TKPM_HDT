@@ -114,5 +114,23 @@ namespace WebAPI.Controllers
         {
             return db.view_allCourses.Count(e => e.id == id) > 0;
         }
+
+
+        [Route("api/Courses/RemoveLike/{idStudent}/{idCourse}")]
+        [ResponseType(typeof(Bookdetail))]
+        public IHttpActionResult RemoveLike (int idStudent, int idCourse)
+        {
+            Bookdetail bookdetail = db.Bookdetails.Find(idStudent, idCourse);
+            if (bookdetail == null)
+            {
+                return NotFound();
+            }
+
+            db.Bookdetails.Remove(bookdetail);
+            db.SaveChanges();
+
+            return Ok(bookdetail);
+
+        }
     }
 }

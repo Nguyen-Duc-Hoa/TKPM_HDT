@@ -54,16 +54,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Histories">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.History">
-        <MappingFragment StoreEntitySet="History">
-          <ScalarProperty Name="id_course" ColumnName="id_course" />
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="price" ColumnName="price" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Lectures">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Lecture">
         <MappingFragment StoreEntitySet="Lecture">
@@ -71,15 +61,6 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="link" ColumnName="link" />
           <ScalarProperty Name="id_chapter" ColumnName="id_chapter" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Processes">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Process">
-        <MappingFragment StoreEntitySet="Process">
-          <ScalarProperty Name="id_student" ColumnName="id_student" />
-          <ScalarProperty Name="id_Course" ColumnName="id_Course" />
-          <ScalarProperty Name="process1" ColumnName="process" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -401,5 +382,27 @@
     <FunctionImportMapping FunctionImportName="sp_remove_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_remove_favorite" />
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DB_A72902_TKPMModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Processes">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Process">
+        <MappingFragment StoreEntitySet="Process">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="process1" ColumnName="process" />
+          <ScalarProperty Name="id_Course" ColumnName="id_Course" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Histories">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_testBought" FunctionName="DB_A72902_TKPMModel.Store.sp_testBought" />
+    <FunctionImportMapping FunctionImportName="sp_SumLesson" FunctionName="DB_A72902_TKPMModel.Store.sp_SumLesson" />
   </EntityContainerMapping>
 </Mapping>

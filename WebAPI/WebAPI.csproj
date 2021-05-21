@@ -167,6 +167,7 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\Couse_UserController.cs" />
     <Compile Include="Controllers\CurriculumController.cs" />
+    <Compile Include="Controllers\HistoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LecturesController.cs" />
     <Compile Include="Controllers\SubcategoriesController.cs" />
@@ -219,6 +220,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Role.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Course_bought_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_Couse_User_Result.cs">
@@ -279,6 +283,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_Course_rate.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_History.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_Subcategories.cs">

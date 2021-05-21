@@ -57,7 +57,7 @@
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="id_user" Type="int" Nullable="false" />
     <Property Name="date" Type="datetime" />
-    <Property Name="price" Type="int" />
+    <Property Name="price" Type="float" />
   </EntityType>
   <EntityType Name="Lecture">
     <Key>
@@ -76,6 +76,7 @@
     <Property Name="id_student" Type="int" Nullable="false" />
     <Property Name="id_Course" Type="int" Nullable="false" />
     <Property Name="process" Type="int" />
+    <Property Name="total" Type="int" />
   </EntityType>
   <EntityType Name="Rate">
     <Key>
@@ -245,6 +246,18 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Course_rate' does not have
     <Property Name="discount" Type="int" />
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="rate" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_History' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_History">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="price" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Subcategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -562,6 +575,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="version" Type="int" Mode="In" />
     <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
   </Function>
+  <Function Name="sp_Course_bought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Couse_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idStudent" Type="int" Mode="In" />
   </Function>
@@ -685,6 +701,14 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_Course_rate].[id_course] AS [id_course], 
     [view_Course_rate].[rate] AS [rate]
     FROM [dbo].[view_Course_rate] AS [view_Course_rate]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_History" EntityType="Self.view_History" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_History].[id_course] AS [id_course], 
+    [view_History].[id_user] AS [id_user], 
+    [view_History].[date] AS [date], 
+    [view_History].[price] AS [price]
+    FROM [dbo].[view_History] AS [view_History]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_Subcategories" EntityType="Self.view_Subcategories" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

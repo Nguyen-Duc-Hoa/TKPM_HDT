@@ -10,9 +10,7 @@
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Comment" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Course" Width="1.5" PointX="7.5" PointY="23.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Curriculum" Width="1.5" PointX="9.75" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.History" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Lecture" Width="1.5" PointX="12" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Process" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Rate" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Reply" Width="1.5" PointX="9.75" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Role" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
@@ -38,17 +36,19 @@
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Course__id_subca__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Course__id_teach__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Curriculu__id_co__5165187F" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Rate__id_course__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Reply__id_course__07C12930" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Lecture__id_chap__0B91BA14" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8" ManuallyRouted="false" />
-        <AssociationConnector Association="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Rate__id_student__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Reply__id_user__06CD04F7" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Users__role__4C364F0E" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK_idTeacher" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Process" Width="1.5" PointX="9.75" PointY="20.5" />
+        <AssociationConnector Association="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29" />
+        <AssociationConnector Association="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.History" Width="1.5" PointX="12.75" PointY="17.5" />
+        <AssociationConnector Association="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF" />
+        <AssociationConnector Association="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

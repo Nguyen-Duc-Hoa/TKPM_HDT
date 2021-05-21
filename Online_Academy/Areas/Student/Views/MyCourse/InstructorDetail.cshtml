@@ -1,0 +1,444 @@
+﻿
+@{
+    ViewBag.Title = "InstructorDetail";
+    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    //var teacher = ViewBag.Teachers[0];
+}
+<link href="~/assets/Users/css/style_Profile.css" rel="stylesheet" />
+<div class="page-banner ovbl-dark" style="background-image:url(../../../Assets/Users/images/banner/banner3.jpg);">
+    <div class="container">
+        <div class="page-banner-entry">
+            <h1 class="text-white">Intructor Detail</h1>
+        </div>
+    </div>
+</div>
+<section class="teachers_profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 teacher-detail-left">
+                <div class="teacher_info_wrapper">
+                    <div class="teacger-image" style="align-items:center">
+                        <img src="~/assets/Pictures/ImagesTeachers/@ViewBag.Teachers.avatar"  alt="avatar.jpg" class="img-fluid" style="width:360px; height:360px">
+                    </div>
+                    <div class="social_wraper">
+                        <ul class="list-inline m-tb10" style="margin-left:100px">
+                            <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="teacher-skills">
+                        <div class="skill-single">
+                            <span>Number of students - <span class="skills_lavel">80 students</span></span>
+                            <span><span style="width:80%;"></span></span>
+                        </div>
+
+                        <div class="skill-single">
+                            <span>Number of courses - <span class="skills_lavel">10 courses</span></span>
+                            <span><span style="width:90%;"></span></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- Ends: .teacher-detail-left -->
+            <div class="col-sm-8 teacher-detail-right">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="teacher-info">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <h3>Name :</h3>
+                                    <span>@ViewBag.Teachers.name</span>
+                                </li>
+                                <li>
+                                    <h3>Gender :</h3>
+                                    <span>@ViewBag.Teachers.gender</span>
+                                </li>
+                                <li>
+                                    <h3>Department :</h3>
+                                    <span>@ViewBag.Teachers.major</span>
+                                </li>
+                                <li>
+                                    <h3>Join date :</h3>
+                                    <span>@ViewBag.joinDate</span>
+                                </li>
+                                <li>
+                                    <h3>Email :</h3>
+                                    <span>@ViewBag.Teachers.email</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="teacher-contact">
+                            <h2>Contact Us</h2>
+                            <form action="#">
+                                <input type="text" placeholder="Your Name*" required="">
+                                <input type="email" placeholder="Email*" required="">
+                                <textarea>Your Message</textarea>
+                                <button type="submit">Submit Your Request</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="courses_tab_wrapper">
+                            <div class="courses_details_nav_tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active show" href="#information" role="tab" data-toggle="tab" aria-selected="true"><i class="flaticon-info-sign"></i>About Insructor</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#curricularm" role="tab" data-toggle="tab" aria-selected="false"><i class="flaticon-portfolio"></i>Qualification</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#courses" role="tab" data-toggle="tab" aria-selected="false"><i class="flaticon-portfolio"></i>Courses</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Tab panes -->
+                            <div class="tab_contents tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active show" id="information">
+                                    <p>iscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="curricularm">
+                                    <p>"Lorem ipsum idunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="courses">
+                                    <!--Start Courses Area Section-->
+                                    <div class="popular_courses">
+                                        <div class="row">
+
+
+                                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                                <div class="cours-bx">
+                                                    <div class="action-box">
+                                                        <img src="/assets/Pictures/ImagesCourse/pptx.jpg                                          " alt="imageCourse" style="width: 263px; height: 147px;">
+                                                        <a href="/Student/Courses/CourseDetail/2" class="btn">Read More</a>
+                                                    </div>
+                                                    <div class="info-bx text-center">
+                                                        <h5><a href="#">powerpoint                                        </a></h5>
+                                                        <span>Thiet ke Powerpoint                                                                                 </span>
+                                                    </div>
+                                                    <div class="cours-more-info">
+                                                        <div class="review" style="padding-left: 10px; width: 160px;">
+                                                            <span>3 Review</span>
+                                                            <ul class="cours-star">
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="favorite">
+                                                            <label for="checkbox">
+                                                                <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" class="heart" fill="#FF0000" data-id="2" data-stt="0"></path>
+
+                                                                    </g>
+                                                                </svg>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="price">
+                                                            <del>$100</del>
+                                                            <h5>$50</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                                <div class="cours-bx">
+                                                    <div class="action-box">
+                                                        <img src="/assets/Pictures/ImagesCourse/pptx.jpg                                          " alt="imageCourse" style="width: 263px; height: 147px;">
+                                                        <a href="/Student/Courses/CourseDetail/2" class="btn">Read More</a>
+                                                    </div>
+                                                    <div class="info-bx text-center">
+                                                        <h5><a href="#">powerpoint                                        </a></h5>
+                                                        <span>Thiet ke Powerpoint                                                                                 </span>
+                                                    </div>
+                                                    <div class="cours-more-info">
+                                                        <div class="review" style="padding-left: 10px; width: 160px;">
+                                                            <span>3 Review</span>
+                                                            <ul class="cours-star">
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="favorite">
+                                                            <label for="checkbox">
+                                                                <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" class="heart" fill="#FF0000" data-id="2" data-stt="0"></path>
+
+                                                                    </g>
+                                                                </svg>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="price">
+                                                            <del>$100</del>
+                                                            <h5>$50</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- Ends: . -->
+
+
+
+
+                                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                                <div class="cours-bx">
+                                                    <div class="action-box">
+                                                        <img src="/assets/Pictures/ImagesCourse/pptx.jpg                                          " alt="imageCourse" style="width: 263px; height: 147px;">
+                                                        <a href="/Student/Courses/CourseDetail/2" class="btn">Read More</a>
+                                                    </div>
+                                                    <div class="info-bx text-center">
+                                                        <h5><a href="#">powerpoint                                        </a></h5>
+                                                        <span>Thiet ke Powerpoint                                                                                 </span>
+                                                    </div>
+                                                    <div class="cours-more-info">
+                                                        <div class="review" style="padding-left: 10px; width: 160px;">
+                                                            <span>3 Review</span>
+                                                            <ul class="cours-star">
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="favorite">
+                                                            <label for="checkbox">
+                                                                <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" class="heart" fill="#FF0000" data-id="2" data-stt="0"></path>
+
+                                                                    </g>
+                                                                </svg>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="price">
+                                                            <del>$100</del>
+                                                            <h5>$50</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- Ends: . -->
+
+
+                                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                                <div class="cours-bx">
+                                                    <div class="action-box">
+                                                        <img src="/assets/Pictures/ImagesCourse/pptx.jpg                                          " alt="imageCourse" style="width: 263px; height: 147px;">
+                                                        <a href="/Student/Courses/CourseDetail/2" class="btn">Read More</a>
+                                                    </div>
+                                                    <div class="info-bx text-center">
+                                                        <h5><a href="#">powerpoint                                        </a></h5>
+                                                        <span>Thiet ke Powerpoint                                                                                 </span>
+                                                    </div>
+                                                    <div class="cours-more-info">
+                                                        <div class="review" style="padding-left: 10px; width: 160px;">
+                                                            <span>3 Review</span>
+                                                            <ul class="cours-star">
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                                <li><i class="fa fa-star"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="favorite">
+                                                            <label for="checkbox">
+                                                                <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                                    <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" class="heart" fill="#FF0000" data-id="2" data-stt="0"></path>
+
+                                                                    </g>
+                                                                </svg>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="price">
+                                                            <del>$100</del>
+                                                            <h5>$50</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- Ends: . -->
+
+                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="single-courses">
+                                                    <div class="courses_banner_wrapper">
+                                                        <div class="courses_banner"><a href="#"><img src="images/courses/courses_4.jpg" alt="" class="img-fluid"></a></div>
+                                                        <div class="purchase_price">
+                                                            <a href="#" class="read_more-btn">250$</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="courses_info_wrapper">
+                                                        <div class="courses_title">
+                                                            <h3><a href="#">Brand Management</a></h3>
+                                                            <div class="teachers_name">Teacher - <a href="#" title="">John Porter</a></div>
+                                                        </div>
+                                                        <div class="courses_info">
+                                                            <ul class="list-unstyled">
+                                                                <li><i class="fa fa-user"></i> 130 Days</li>
+                                                                <li><i class="fa fa-comment"></i>45 Students</li>
+                                                            </ul>
+                                                            <a href="#" class="cart_btn">Add to Cart</a>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- Ends: .single courses -->
+                                            </div><!-- Ends: . -->
+                                        </div>
+
+                                    </div><!-- Ends: . -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Ends: .teacher-detail-right -->
+        </div>
+    </div>
+</section>
+<!--Relative Course-->
+<div class="section-area section-sp2 popular-courses-bx">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 heading-bx left">
+                <h2 class="title-head">Relative <span>Courses</span></h2>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+            </div>
+        </div>
+        <div class="row">
+
+                <!-- Load Course -->
+                <!--=======================-->
+                <!--=======================-->
+                <!-- END load Course-->
+
+
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <!--=======Load course ========-->
+                <div class="loadCourse">
+                    <div class="upCourse">
+
+                        <div class="row">
+
+
+                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                <div class="cours-bx">
+                                    <div class="action-box">
+                                        <img src="/assets/Pictures/ImagesCourse/pptx.jpg                                          " alt="imageCourse" style="width: 263px; height: 147px;">
+                                        <a href="/Student/Courses/CourseDetail/2" class="btn">Read More</a>
+                                    </div>
+                                    <div class="info-bx text-center">
+                                        <h5><a href="#">powerpoint                                        </a></h5>
+                                        <span>Thiet ke Powerpoint                                                                                 </span>
+                                    </div>
+                                    <div class="cours-more-info">
+                                        <div class="review" style="padding-left: 10px; width: 160px;">
+                                            <span>3 Review</span>
+                                            <ul class="cours-star">
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="favorite">
+                                            <label for="checkbox">
+                                                <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                    <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" class="heart" fill="#FF0000" data-id="2" data-stt="0"></path>
+
+                                                    </g>
+                                                </svg>
+                                            </label>
+                                        </div>
+
+                                        <div class="price">
+                                            <del>$100</del>
+                                            <h5>$50</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                <div class="cours-bx">
+                                    <div class="action-box">
+                                        <img src="/assets/Pictures/ImagesCourse/word.png                                          " alt="imageCourse" style="width: 263px; height: 147px;">
+                                        <a href="/Student/Courses/CourseDetail/3" class="btn">Read More</a>
+                                    </div>
+                                    <div class="info-bx text-center">
+                                        <h5><a href="#">word 2016                                         </a></h5>
+                                        <span>feature of word 2010                                                                                </span>
+                                    </div>
+                                    <div class="cours-more-info">
+                                        <div class="review" style="padding-left: 10px; width: 160px;">
+                                            <span>3 Review</span>
+                                            <ul class="cours-star">
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="favorite">
+                                            <label for="checkbox">
+                                                <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                                    <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                                        <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" class="heart" fill="#AAB8C2" data-id="3" data-stt="1"></path>
+
+                                                    </g>
+                                                </svg>
+                                            </label>
+                                        </div>
+
+                                        <div class="price">
+                                            <del>$120</del>
+                                            <h5>$100</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--phan trang-->
+                            <!--<div class="col-lg-12 m-b20">
+                                <div class="pagination-bx rounded-sm gray clearfix">
+                                    <ul class="pagination">
+                                        <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>-->
+                        </div>
+
+                    </div>
+                </div>
+                <!--====== End load Couse========-->
+            </div>
+            <div class="owl-nav disabled">
+                <div class="owl-prev">
+                    <i class="fa fa-angle-left"></i>
+                </div><div class="owl-next">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+            <div class="owl-dots disabled"></div>
+
+            <div class="load">
+
+            </div>
+        </div>
+    </div>
+</div>

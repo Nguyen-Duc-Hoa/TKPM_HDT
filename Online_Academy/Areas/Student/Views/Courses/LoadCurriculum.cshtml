@@ -1,0 +1,48 @@
+﻿@{ var count = ViewBag.Curriculum.Count;
+   int stt = 1;}
+
+
+<ul class="curriculum-list">
+    @foreach (var item in ViewBag.Curriculum)
+    {
+    <li>
+        <h5 class="chapter" data-idcurri="@item.id">Chapter @stt: @item.chap_name</h5>
+        
+        <div class="@item.id" style="display:block">
+            <!--Load Lecture-->
+        </div>
+        <div class="abc">
+            <script>
+                    // do something with javascript
+                        $.ajax({
+                            url: "/Student/Courses/LoadLecture",
+                            data: { idChapter: @item.id },
+                            success: function (result) {
+                                $(".@item.id").html(result);
+                            }
+                        });
+            </script>
+        </div>
+    </li> 
+    {stt = stt + 1;}
+    }
+</ul>
+
+<script>
+    $(".chapter").click(function () {
+
+
+        var a = $(this).data("idcurri");
+        console.log(a);
+
+        if ($(a).css('display') == 'none' ) {
+            debugger;
+            document.getElementById(a).style.display = "block";
+        }
+        else if ($(a).css('display') == 'none' ) {
+            debugger;
+            document.getElementById(a).style.display = "none";
+        }
+    });
+</script>
+

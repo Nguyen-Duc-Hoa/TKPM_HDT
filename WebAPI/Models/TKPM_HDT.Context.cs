@@ -31,9 +31,7 @@ namespace WebAPI.Models
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Curriculum> Curricula { get; set; }
-        public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<Lecture> Lectures { get; set; }
-        public virtual DbSet<Process> Processes { get; set; }
         public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<Subcategory> Subcategories { get; set; }
@@ -51,6 +49,9 @@ namespace WebAPI.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<view_allUsers> view_allUsers { get; set; }
         public virtual DbSet<view_Bookdetail> view_Bookdetail { get; set; }
+        public virtual DbSet<view_History> view_History { get; set; }
+        public virtual DbSet<Process> Processes { get; set; }
+        public virtual DbSet<History> Histories { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -282,6 +283,15 @@ namespace WebAPI.Models
                 new ObjectParameter("name", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<view_Teachers>("getTeacherByName1", mergeOption, nameParameter);
+        }
+    
+        public virtual ObjectResult<sp_Course_bought_Result> sp_Course_bought(Nullable<int> idUser)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Course_bought_Result>("sp_Course_bought", idUserParameter);
         }
     }
 }

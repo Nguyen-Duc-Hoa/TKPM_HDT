@@ -10,10 +10,14 @@ namespace Online_Academy.Areas.Student.Controllers
 {
     public class MainPageController : Controller
     {
+        
         DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         // GET: Student/MainPage
+
+        
         public ActionResult Index()
         {
+            Session["UserId"] = 1;
             return View();
         }
 
@@ -23,11 +27,17 @@ namespace Online_Academy.Areas.Student.Controllers
 
             //ViewBag.Course = db.Courses;
             ViewBag.Course = CC.GetAllCourses();
+            if (Session["UserId"] != null)
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                ViewBag.Course = CC.GetCourseByUser(idUser);
+            }
 
             return PartialView();
         }
         public ActionResult Layout()
         {
+            
             return View();
         }
 

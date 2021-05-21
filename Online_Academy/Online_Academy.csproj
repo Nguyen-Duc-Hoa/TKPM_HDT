@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -134,7 +137,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Student\Controllers\LectureController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
+    <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
+    <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -142,6 +148,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Configuration.cs" />
+    <Compile Include="Helper\Logger.cs" />
     <Compile Include="Models\Bookdetail.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -173,6 +181,7 @@
     <Compile Include="Models\getTeacherByName_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoriesClient.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -339,6 +348,8 @@
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
     <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
     <Content Include="Assets\Pictures\ImagesCourse\word.png" />
+    <Content Include="Assets\Pictures\ImagesTeachers\gv1.jpg" />
+    <Content Include="Assets\Pictures\ImagesTeachers\gv2.jpg" />
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
     <Content Include="Assets\Users\css\custom.css" />
@@ -360,6 +371,7 @@
     <Content Include="Assets\Users\css\shortcodes\shortcodes.css" />
     <Content Include="Assets\Users\css\shortcodes\widget.css" />
     <Content Include="Assets\Users\css\style.css" />
+    <Content Include="Assets\Users\css\style_Profile.css" />
     <Content Include="Assets\Users\css\typography.css" />
     <Content Include="Assets\Users\images\about\pic1.jpg" />
     <Content Include="Assets\Users\images\adv\adv.jpg" />
@@ -442,6 +454,7 @@
     <Content Include="Assets\Users\js\jquery.min.js" />
     <Content Include="Assets\Users\js\jquery.scroller.js" />
     <Content Include="Assets\Users\js\loadCourseByType.js" />
+    <Content Include="Assets\Users\js\Teachers.js" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Users\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -487,6 +500,12 @@
     <Content Include="Assets\Users\vendors\switcher\switcher.js" />
     <Content Include="Assets\Users\vendors\themify\fonts\themify9f24.svg" />
     <Content Include="Assets\Users\vendors\themify\themify-icons.css" />
+    <Content Include="Assets\Videos\1.mp4" />
+    <Content Include="Assets\Videos\2.mp4" />
+    <Content Include="Assets\Videos\3.mp4" />
+    <Content Include="Assets\Videos\4.mp4" />
+    <Content Include="Assets\Videos\5.mp4" />
+    <Content Include="Assets\Videos\6.mp4" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -559,6 +578,17 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Student\Views\MyCourse\FavoriteCourse.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\loadFCourse.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CoursesByType.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\LeftList.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\Instructors.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\InstructorDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadCurriculum.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadLecture.cshtml" />
+    <Content Include="Areas\Student\Views\Payment\FailureView.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\Course.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CourseDetail1.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -593,6 +623,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Student\Views\Lecture\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
