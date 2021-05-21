@@ -38,14 +38,15 @@ namespace Online_Academy.Controllers
                     Request.Cookies["pass"].Value = dbUser.password;
                 }
 
-                Session["userID"] = dbUser.id.ToString();
-                Session["userName"] = dbUser.username.ToString();
-                Session["role"] = dbUser.Role1.role1.ToString();
-                Session["avatar"] = dbUser.avatar.ToString();
+                Session["userID"] = dbUser.id.ToString().Trim();
+                Session["UserId"] = dbUser.id.ToString().Trim();
+                Session["userName"] = dbUser.username.ToString().Trim();
+                Session["role"] = dbUser.Role1.role1.ToString().Trim();
+                Session["avatar"] = dbUser.avatar.ToString().Trim();
 
                 if (dbUser.avatar != null)
                 {
-                    Session["avatar"] = dbUser.avatar.ToString();
+                    Session["avatar"] = dbUser.avatar.ToString().Trim();
                 }
                 else
                 {
@@ -59,11 +60,11 @@ namespace Online_Academy.Controllers
                 }
                 else if (dbUser.Role1.role1.Trim() == "Student")
                 {
-                    return Content("StudentURL");
+                    return Content("/Student/MainPage");
                 }
                 else
                 {
-                    return Content("TeacherURL");
+                    return Content("/");
                 }
             }
             return Content("Fail");
@@ -156,7 +157,7 @@ namespace Online_Academy.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return Content("Success");
+                return RedirectToAction("Login");
             }
             catch
             {
@@ -197,7 +198,7 @@ namespace Online_Academy.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return Content("Success");
+                return RedirectToAction("Login");
             }
             catch
             {

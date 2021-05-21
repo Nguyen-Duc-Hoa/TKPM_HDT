@@ -617,13 +617,6 @@
     <Content Include="Areas\Student\Views\Payment\FailureView.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\Course.cshtml" />
     <Content Include="Areas\Student\Views\Courses\CourseDetail1.cshtml" />
-    <EntityDeploy Include="Models\TKPM_HDT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TKPM_HDT.edmx.diagram">
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Category\AddCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Category\AddSubcategory.cshtml" />
     <Content Include="Areas\Admin\Views\Category\EditCategory.cshtml" />
@@ -634,6 +627,13 @@
     <Content Include="Areas\Admin\Views\Shared\_adminLayoutPage.cshtml" />
     <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
+    <EntityDeploy Include="Models\TKPM_HDT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TKPM_HDT.edmx.diagram">
+      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
