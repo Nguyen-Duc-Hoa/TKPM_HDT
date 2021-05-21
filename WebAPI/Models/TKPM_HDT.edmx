@@ -584,6 +584,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
         <Function Name="getNumberofStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="getStudentByCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="getTeacherById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -1551,6 +1554,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <FunctionImport Name="getNumberofStudents" ReturnType="Collection(Int32)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="getStudentByCourse" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="getTeacherById" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherById_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2095,6 +2101,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getNumberofLectures" FunctionName="DB_A72902_TKPMModel.Store.getNumberofLectures" />
           <FunctionImportMapping FunctionImportName="getNumberofStudents" FunctionName="DB_A72902_TKPMModel.Store.getNumberofStudents" />
+          <FunctionImportMapping FunctionImportName="getStudentByCourse" FunctionName="DB_A72902_TKPMModel.Store.getStudentByCourse" />
           <FunctionImportMapping FunctionImportName="getTeacherById" FunctionName="DB_A72902_TKPMModel.Store.getTeacherById">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getTeacherById_Result">

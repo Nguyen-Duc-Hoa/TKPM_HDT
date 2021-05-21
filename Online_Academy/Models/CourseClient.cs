@@ -11,7 +11,7 @@ namespace Online_Academy.Models
     {
         private string Base_URL = "https://localhost:44329/api/";
 
-        public List<Course> GetAllCourses()
+        public IEnumerable<Course> GetAllCourses()
         {
             try
             {
@@ -20,7 +20,41 @@ namespace Online_Academy.Models
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 HttpResponseMessage respone = client.GetAsync("Courses").Result;
                 if (respone.IsSuccessStatusCode)
-                    return respone.Content.ReadAsAsync<List<Course>>().Result;
+                    return respone.Content.ReadAsAsync<IEnumerable<Course>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public IEnumerable<Course> GetTeacherCourses(int id)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("TeacherCourses/"+id).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<IEnumerable<Course>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public IEnumerable<Course> GetCoursesByState(bool state)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("CoursesByState/" + state).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<IEnumerable<Course>>().Result;
                 return null;
             }
             catch

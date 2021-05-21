@@ -179,19 +179,29 @@ namespace Online_Academy.Areas.Student.Controllers
         public bool Like(int idCourse)
         {
             DateTime date = DateTime.Now;
-            if (Session["UserId"] != null)
+            try
             {
-                int idStudent = Convert.ToInt32(Session["UserId"]);
-                try
+                if (Convert.ToInt32(Session["UserId"]) != 0)
                 {
-                    db.sp_add_favorite(idStudent, idCourse, date);
-                }
-                catch
-                {
-                    return false;
+                    int idStudent = Convert.ToInt32(Session["UserId"]);
+                    try
+                    {
+                        db.sp_add_favorite(idStudent, idCourse, date);
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
-            return true;
+            catch
+            {
+                
+            }
+            return false;
+
+
         }
 
         public bool RemoveLike (int idCourse)
@@ -205,13 +215,14 @@ namespace Online_Academy.Areas.Student.Controllers
                     //CC.RemoveLike(idUser, idCourse);
 
                     db.sp_remove_favorite(idUser, idCourse);
+                    return true;
                 }
             }
             catch
             {
                 return false;   
             }
-            return true;
+            return false;
         }
 
         //click stype of course in nabar

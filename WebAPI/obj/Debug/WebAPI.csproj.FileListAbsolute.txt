@@ -1,6 +1,3 @@
-D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
-D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.dll
-D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.pdb
 D:\laptrinhweb\TKPM_HDT\WebAPI\bin\WebAPI.dll.config
 D:\laptrinhweb\TKPM_HDT\WebAPI\bin\WebAPI.dll
 D:\laptrinhweb\TKPM_HDT\WebAPI\bin\WebAPI.pdb
@@ -85,7 +82,10 @@ D:\laptrinhweb\TKPM_HDT\WebAPI\bin\System.Web.WebPages.Deployment.xml
 D:\laptrinhweb\TKPM_HDT\WebAPI\bin\System.Web.WebPages.Razor.xml
 D:\laptrinhweb\TKPM_HDT\WebAPI\bin\Antlr3.Runtime.pdb
 D:\laptrinhweb\TKPM_HDT\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
 D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
+D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.dll
+D:\laptrinhweb\TKPM_HDT\WebAPI\obj\Debug\WebAPI.pdb
 C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\WebAPI.dll.config
 C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\WebAPI.dll
 C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\WebAPI.pdb
@@ -174,3 +174,4 @@ C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csproj.CoreCompi
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.pdb
+C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csprojAssemblyReference.cache

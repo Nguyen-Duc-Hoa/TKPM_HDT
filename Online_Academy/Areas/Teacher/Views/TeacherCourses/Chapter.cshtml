@@ -1,0 +1,236 @@
+﻿<div class="col-12 " id="curriculum">
+
+
+    @if (ViewBag.curricula.Count > 0)
+    {
+        <table id="item-add" style="width:100%;">
+            @for (int i = 0; i < (ViewBag.curricula).Count; i++)
+            {
+                var a = "item," + i + "1";
+
+                <tr class="list-item">
+                    <td>
+
+                        <div class="row">
+                            <div class="idcurri" style="display:none">@ViewBag.curricula[i].id</div>
+                            <div class="col-md-12">
+                                <label class="col-form-label">Chapter Name</label>
+                                <div>
+                                    <input class="form-control chapter" type="text" value="@ViewBag.curricula[i].chap_name">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="col-form-label">Add Video</label>
+                                <div class="form-group">
+                                    <a class="btn-secondry addvideo" id="@a" href="#"><i class="fa fa-plus-circle"></i></a>
+                                </div>
+                            </div>
+
+
+
+                            @if (ViewBag.lectures[i].Count > 0)
+                            {
+                                var c = "list" + i + "1";
+                                <div class="row listvideo" id="@c">
+                                    @for (int k = 0; k < ViewBag.lectures[i].Count; k++)
+                                    {
+                                        var x = k + 1;
+                                        var d = "video" +i+x;
+
+                                    <div class="row col-12 videoitem">
+                                        <div class="idlec" style="display:none">@ViewBag.lectures[i][k].id</div>
+                                        <div class="col-md-1">
+                                        </div>
+                                        <div class="col-md-1 dellec">
+                                            <label class="col-form-label">Delete</label>
+                                            <div class="form-group">
+                                                <a class="delete btn-dellec" data-idlec="@ViewBag.lectures[i][k].id" data-idcourse="@ViewBag.curricula[i].id_course"><i class="fa fa-close"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 closelec" style="display:none">
+                                            <label class="col-form-label"></label>
+                                            <div class="form-group">
+                                                <a class="delete delvideo" href="#"><i class="fa fa-close"></i></a>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4">
+                                            <label class="col-form-label">Name Video</label>
+                                            <div>
+                                                <input class="form-control name" type="text" name="name" value="@ViewBag.lectures[i][k].name">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="col-form-label">Video</label>
+                                            <div>
+                                                <input type="file" name="filevideo" class="filevideo" id="@d" accept="video/*" />
+                                            </div>
+
+                                        </div>
+                                        @if (@ViewBag.lectures[i][k].link != null)
+                                        {
+                                            <div class="col-md-4" id="contain">
+
+                                                <video width="300" height="300" controls class="video" id="@d">
+                                                    <source src="~/Assets/VideosLecture/@ViewBag.lectures[i][k].link" />
+                                                </video>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-4" id="contain">
+
+                                                <video width="300" height="300" controls class="video" id="@d" style="display:none">
+                                                </video>
+
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row listvideo" id="list01">
+                                    <div class="row col-12 videoitem">
+                                        <div class="col-md-1">
+
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label class="col-form-label"></label>
+                                            <div class="form-group">
+                                                <a class="delete delvideo" href="#"><i class="fa fa-close"></i></a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="col-form-label">Name Video</label>
+                                            <div>
+                                                <input class="form-control name" type="text" name="name">
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="col-form-label">Video</label>
+                                            <div>
+                                                <input type="file" name="filevideo" class="filevideo" id="video1" accept="video/*" />
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4" id="contain">
+
+                                            <video width="300" height="300" controls class="video" id="video1" style="display:none">
+                                            </video>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+
+
+
+                            <div class="col-md-4 closechap" style="display:none">
+                                <label class="col-form-label">CLose Chapter</label>
+                                <div class="form-group">
+                                    <a class="delete delchapter" href="#"><i class="fa fa-close"></i></a>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-4 delchap">
+                                <label class="col-form-label">Delete Chapter</label>
+                                <div class="form-group">
+                                    <button type="button" class="btn red outline radius-xl btn-delchap" data-idchap="@ViewBag.curricula[i].id" data-idcourse="@ViewBag.curricula[i].id_course">Delete</button>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </table>
+    }
+    else
+    {
+        <table id="item-add" style="width:100%;">
+            <tr class="list-item">
+                <td>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="col-form-label">Chapter Name</label>
+                            <div>
+                                <input class="form-control chapter" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-form-label">Add Video</label>
+                            <div class="form-group">
+                                <a class="btn-secondry addvideo" id="item,01" href="#"><i class="fa fa-plus-circle"></i></a>
+                            </div>
+                        </div>
+                        <div class="row listvideo" id="list01">
+                            <div class="row col-12 videoitem">
+                                <div class="col-md-1">
+
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="col-form-label"></label>
+                                    <div class="form-group">
+                                        <a class="delete delvideo" href="#"><i class="fa fa-close"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="col-form-label">Name Video</label>
+                                    <div>
+                                        <input class="form-control name" type="text" name="name">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Video</label>
+                                    <div>
+                                        <input type="file" name="filevideo" class="filevideo" id="video11" accept="video/*" />
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4" id="contain">
+
+                                    <video width="300" height="300" controls class="video" id="video11" style="display:none">
+                                    </video>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="col-form-label">Close Chapter</label>
+                            <div class="form-group">
+                                <a class="delete delchapter" href="#"><i class="fa fa-close"></i></a>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+
+</div>

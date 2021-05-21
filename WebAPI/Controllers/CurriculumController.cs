@@ -35,9 +35,15 @@ namespace WebAPI.Controllers
             return Ok(view_allCurriculum);
         }
 
+        [Route("api/GetCurriculumCourse/{id}")]
+        public IQueryable<getCurriculumByCourse_Result> GetCurriculumCourse(int id)
+        {
+            List<getCurriculumByCourse_Result> curri = db.getCurriculumByCourse(id).ToList();
+            return curri.AsQueryable();
+        }
         // PUT: api/Curriculum/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putview_allCurriculum(int id, view_allCurriculum view_allCurriculum)
+        public IHttpActionResult Putview_allCurriculum(int id, Curriculum view_allCurriculum)
         {
             if (!ModelState.IsValid)
             {
@@ -86,16 +92,16 @@ namespace WebAPI.Controllers
         }
 
         // DELETE: api/Curriculum/5
-        [ResponseType(typeof(view_allCurriculum))]
+        [ResponseType(typeof(Curriculum))]
         public IHttpActionResult Deleteview_allCurriculum(int id)
         {
-            view_allCurriculum view_allCurriculum = db.view_allCurriculum.Find(id);
+            Curriculum view_allCurriculum = db.Curricula.Find(id);
             if (view_allCurriculum == null)
             {
                 return NotFound();
             }
 
-            db.view_allCurriculum.Remove(view_allCurriculum);
+            db.Curricula.Remove(view_allCurriculum);
             db.SaveChanges();
 
             return Ok(view_allCurriculum);
@@ -112,7 +118,7 @@ namespace WebAPI.Controllers
 
         private bool view_allCurriculumExists(int id)
         {
-            return db.view_allCurriculum.Count(e => e.id == id) > 0;
+            return db.Curricula.Count(e => e.id == id) > 0;
         }
 
 

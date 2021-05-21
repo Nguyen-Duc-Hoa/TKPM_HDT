@@ -356,6 +356,7 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="getNumberofLectures" FunctionName="DB_A72902_TKPMModel.Store.getNumberofLectures" />
     <FunctionImportMapping FunctionImportName="getNumberofStudents" FunctionName="DB_A72902_TKPMModel.Store.getNumberofStudents" />
+    <FunctionImportMapping FunctionImportName="getStudentByCourse" FunctionName="DB_A72902_TKPMModel.Store.getStudentByCourse" />
     <FunctionImportMapping FunctionImportName="getTeacherById" FunctionName="DB_A72902_TKPMModel.Store.getTeacherById">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getTeacherById_Result">

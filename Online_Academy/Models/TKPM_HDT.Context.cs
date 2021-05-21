@@ -121,6 +121,15 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getNumberofStudents", idParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> getStudentByCourse(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getStudentByCourse", idParameter);
+        }
+    
         public virtual ObjectResult<getTeacherById_Result> getTeacherById(Nullable<int> id)
         {
             var idParameter = id.HasValue ?

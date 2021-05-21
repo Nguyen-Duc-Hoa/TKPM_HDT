@@ -693,6 +693,9 @@
     <FunctionImport Name="getNumberofStudents" ReturnType="Collection(Int32)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="getStudentByCourse" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="getTeacherById" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherById_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>

@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putview_allUsers(int id, view_allUsers view_allUsers)
+        public IHttpActionResult Putview_allUsers(int id, User view_allUsers)
         {
             if (!ModelState.IsValid)
             {

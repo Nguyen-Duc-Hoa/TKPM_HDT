@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
@@ -146,7 +146,10 @@
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
     <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Student\Controllers\YourCousrseController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Areas\Teacher\Controllers\TeacherCoursesController.cs" />
+    <Compile Include="Areas\Teacher\Controllers\TeachersController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -296,6 +299,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Encrypt.cs" />
     <Compile Include="Service\SendMail.cs" />
+    <Compile Include="ViewModel\CourseViewModel.cs" />
+    <Compile Include="ViewModel\TeacherViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Admin\css\assets.css" />
@@ -383,6 +389,18 @@
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
     <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
     <Content Include="Assets\Pictures\ImagesCourse\word.png" />
+    <Content Include="Assets\Teacher\css\discountLabel.css" />
+    <Content Include="Assets\Teacher\css\magnific-popup.css" />
+    <Content Include="Assets\Teacher\css\main.css" />
+    <Content Include="Assets\Teacher\css\PopupVideo.css" />
+    <Content Include="Assets\Teacher\js\Additem.js" />
+    <Content Include="Assets\Teacher\js\AdditemEdit.js" />
+    <Content Include="Assets\Teacher\js\DeleteItem.js" />
+    <Content Include="Assets\Teacher\js\DisplayImg.js" />
+    <Content Include="Assets\Teacher\js\DisplayVideo.js" />
+    <Content Include="Assets\Teacher\js\EditCourse.js" />
+    <Content Include="Assets\Teacher\js\GetCurriculumData.js" />
+    <Content Include="Assets\Teacher\js\jquery.magnific-popup.min.js" />
     <Content Include="Assets\Pictures\ImagesTeachers\gv1.jpg" />
     <Content Include="Assets\Pictures\ImagesTeachers\gv2.jpg" />
     <Content Include="Assets\Users\css\assets.css" />
@@ -627,6 +645,21 @@
     <Content Include="Areas\Admin\Views\Shared\_adminLayoutPage.cshtml" />
     <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CourseByTeacher.cshtml" />
+    <Content Include="Areas\Teacher\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Create.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Delete.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Details.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Edit.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Index.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\TeacherCourses.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Draft.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Chapter.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\TeacherCoursesDraft.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teachers\Details.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teachers\Index.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Students.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Profile.cshtml" />
     <EntityDeploy Include="Models\TKPM_HDT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
@@ -634,7 +667,6 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Student\Views\Courses\CourseByTeacher.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -680,12 +712,15 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Lecture\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
+    <Folder Include="Areas\Student\Views\YourCousrse\" />
     <Folder Include="Areas\Teacher\Data\" />
-    <Folder Include="Areas\Teacher\Views\Shared\" />
     <Folder Include="Assets\Admin\assets\images\" />
     <Folder Include="Assets\Admin\images\flag\" />
+    <Folder Include="Assets\Pictures\ImagesUser\" />
     <Folder Include="Assets\Users\images\main-slider\" />
+    <Folder Include="Assets\VideosLecture\" />
+    <Folder Include="Courses_Image\" />
+    <Folder Include="Users_Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

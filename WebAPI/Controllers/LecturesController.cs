@@ -41,10 +41,15 @@ namespace WebAPI.Controllers
 
             return Ok(view_allLectures);
         }
-
+        [Route("api/GetLectureCurriculum/{id}")]
+        public IQueryable<getLectureByCurriculum_Result> GetLectureCurriculum(int id)
+        {
+            List<getLectureByCurriculum_Result> curri = db.getLectureByCurriculum(id).ToList();
+            return curri.AsQueryable();
+        }
         // PUT: api/Lectures/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putview_allLectures(int id, view_allLectures view_allLectures)
+        public IHttpActionResult Putview_allLectures(int id, Lecture view_allLectures)
         {
             if (!ModelState.IsValid)
             {
@@ -93,16 +98,16 @@ namespace WebAPI.Controllers
         }
 
         // DELETE: api/Lectures/5
-        [ResponseType(typeof(view_allLectures))]
+        [ResponseType(typeof(Lecture))]
         public IHttpActionResult Deleteview_allLectures(int id)
         {
-            view_allLectures view_allLectures = db.view_allLectures.Find(id);
+            Lecture view_allLectures = db.Lectures.Find(id);
             if (view_allLectures == null)
             {
                 return NotFound();
             }
 
-            db.view_allLectures.Remove(view_allLectures);
+            db.Lectures.Remove(view_allLectures);
             db.SaveChanges();
 
             return Ok(view_allLectures);
@@ -119,7 +124,7 @@ namespace WebAPI.Controllers
 
         private bool view_allLecturesExists(int id)
         {
-            return db.view_allLectures.Count(e => e.id == id) > 0;
+            return db.Lectures.Count(e => e.id == id) > 0;
         }
     }
 }
