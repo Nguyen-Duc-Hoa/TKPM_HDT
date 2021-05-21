@@ -74,16 +74,14 @@
                             <ul>
 
 
-                                @{ Session["userID"] = 1;
-                                    Session["username"] = "Nguyễn Hòa";
-                                }
-                                @if (Session["userID"] == null)
+
+                                @if (Convert.ToInt32(Session["UserId"]) == 0)
                                 {
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    <li><a href="/Account/Login">Login</a></li>
+                                    <li><a href="/Account/Register">Register</a></li>
 
                                 }
-                                else if (Session["userID"] != null)
+                                else if (Convert.ToInt32(Session["UserId"]) != 0)
                                 {
 
                                     <div class="dropdown">

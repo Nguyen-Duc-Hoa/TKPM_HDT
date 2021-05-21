@@ -17,7 +17,10 @@ namespace Online_Academy.Areas.Student.Controllers
         
         public ActionResult Index()
         {
-            Session["UserId"] = 1;
+            if (Session["UserId"] == null)
+            {
+                Session["UserId"] = "0";
+            }
             return View();
         }
 

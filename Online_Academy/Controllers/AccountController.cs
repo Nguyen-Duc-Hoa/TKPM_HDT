@@ -34,13 +34,14 @@ namespace Online_Academy.Controllers
             {
                 if (rememberCheck == "true")
                 {
-                    Request.Cookies["userName"].Value = dbUser.username;
-                    Request.Cookies["pass"].Value = dbUser.password;
+                    Request.Cookies["userName"].Value = dbUser.username.Trim();
+                    Request.Cookies["pass"].Value = dbUser.password.Trim();
                 }
 
                 Session["userID"] = dbUser.id.ToString().Trim();
                 Session["UserId"] = dbUser.id.ToString().Trim();
                 Session["userName"] = dbUser.username.ToString().Trim();
+                Session["username"] = dbUser.username.ToString().Trim();
                 Session["role"] = dbUser.Role1.role1.ToString().Trim();
                 Session["avatar"] = dbUser.avatar.ToString().Trim();
 

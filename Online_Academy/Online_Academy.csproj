@@ -634,6 +634,7 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Student\Views\Courses\CourseByTeacher.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
