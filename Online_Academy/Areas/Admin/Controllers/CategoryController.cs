@@ -23,7 +23,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             // API chưa lấy subcategory khi lấy category
             List<Category> lstCategories = db.Categories.ToList();
@@ -35,7 +35,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -52,7 +52,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -71,7 +71,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             Subcategory sub = new Subcategory() { id_cat = idCate };
             return View(sub);
@@ -81,7 +81,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -99,7 +99,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -118,7 +118,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             return View();
         }
@@ -127,7 +127,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -145,7 +145,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -164,7 +164,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -182,7 +182,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {

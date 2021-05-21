@@ -24,7 +24,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             UsersClient client = new UsersClient();
             var data = client.findAll();
@@ -59,7 +59,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
@@ -78,7 +78,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return RedirectToAction("Login");
+                return Redirect("Account/Login");
             }
             try
             {
