@@ -57,7 +57,7 @@
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="id_user" Type="int" Nullable="false" />
     <Property Name="date" Type="datetime" />
-    <Property Name="price" Type="int" />
+    <Property Name="price" Type="float" />
   </EntityType>
   <EntityType Name="Lecture">
     <Key>
@@ -76,6 +76,7 @@
     <Property Name="id_student" Type="int" Nullable="false" />
     <Property Name="id_Course" Type="int" Nullable="false" />
     <Property Name="process" Type="int" />
+    <Property Name="total" Type="int" />
   </EntityType>
   <EntityType Name="Rate">
     <Key>
@@ -541,6 +542,14 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="func_testBought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+    <Parameter Name="idCourse" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getBookdetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_student" Type="int" Mode="In" />
+    <Parameter Name="id_course" Type="int" Mode="In" />
+  </Function>
   <Function Name="getTeacherById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -588,6 +597,13 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_SumLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idCourse" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_testBought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+    <Parameter Name="idCourse" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DB_A72902_TKPMModelStoreContainer">

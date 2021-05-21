@@ -1,0 +1,27 @@
+﻿@{ var stt = 1;}
+
+<ul>
+    @foreach (var item in ViewBag.Lecture)
+    {
+    <li>
+        <div class="curriculum-list-box">
+            <div class="buycourse">
+                <div class="lesson" id="@item.id" data-id="@stt">
+                    <span>Lesson @stt.</span> @item.name
+                </div>
+            </div>
+
+        </div>
+        <div id ="@item.id">
+            <video width="400" controls>
+
+                <source src="~/assets/Videos/@item.link" type="video/mp4" />
+
+                Your browser does not support HTML video.
+            </video>
+        </div>        
+
+    </li>
+    }
+    @{ stt = stt + 1;}
+</ul>

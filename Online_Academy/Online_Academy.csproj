@@ -46,12 +46,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -132,14 +135,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\StudentController.cs" />
-    <Compile Include="Areas\Admin\Controllers\TeacherController.cs" />
     <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Student\Controllers\LectureController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
+    <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
+    <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -147,6 +148,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Configuration.cs" />
+    <Compile Include="Helper\Logger.cs" />
+    <Compile Include="Models\Bookdetail.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookdetailClient.cs" />
     <Compile Include="Models\CategoriesClient.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
@@ -165,12 +172,16 @@
     <Compile Include="Models\func_Course_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getBookdetail_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getTeacherById_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getTeacherByName_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoriesClient.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -202,6 +213,7 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SubcategoriesClient.cs" />
     <Compile Include="Models\Subcategory.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -211,6 +223,7 @@
     <Compile Include="Models\Teacher.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TeachersClient.cs" />
     <Compile Include="Models\TKPM_HDT.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -258,8 +271,6 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\Encrypt.cs" />
-    <Compile Include="Service\SendMail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Admin\css\assets.css" />
@@ -293,27 +304,17 @@
     <Content Include="Assets\Admin\images\courses\pic7.jpg" />
     <Content Include="Assets\Admin\images\courses\pic8.jpg" />
     <Content Include="Assets\Admin\images\courses\pic9.jpg" />
-    <Content Include="Assets\Admin\images\favicon.ico" />
     <Content Include="Assets\Admin\images\favicon.png" />
     <Content Include="Assets\Admin\images\loading.gif" />
     <Content Include="Assets\Admin\images\logo-mobile.png" />
-    <Content Include="Assets\Admin\images\logo-white-2.png" />
     <Content Include="Assets\Admin\images\logo-white.png" />
     <Content Include="Assets\Admin\images\logo.png" />
     <Content Include="Assets\Admin\images\testimonials\pic1.jpg" />
     <Content Include="Assets\Admin\images\testimonials\pic2.jpg" />
     <Content Include="Assets\Admin\images\testimonials\pic3.jpg" />
     <Content Include="Assets\Admin\js\admin.js" />
-    <Content Include="Assets\Admin\js\changePassword.js" />
-    <Content Include="Assets\Admin\js\forgetPassword.js" />
     <Content Include="Assets\Admin\js\functions.js" />
     <Content Include="Assets\Admin\js\jquery.min.js" />
-    <Content Include="Assets\Admin\js\login.js" />
-    <Content Include="Assets\Admin\js\manageCourse.js" />
-    <Content Include="Assets\Admin\js\manageTeacher.js" />
-    <Content Include="Assets\Admin\js\manageStudent.js" />
-    <Content Include="Assets\Admin\js\registerStudent.js" />
-    <Content Include="Assets\Admin\js\registerTeacher.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Admin\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Admin\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -347,6 +348,8 @@
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
     <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
     <Content Include="Assets\Pictures\ImagesCourse\word.png" />
+    <Content Include="Assets\Pictures\ImagesTeachers\gv1.jpg" />
+    <Content Include="Assets\Pictures\ImagesTeachers\gv2.jpg" />
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
     <Content Include="Assets\Users\css\custom.css" />
@@ -368,6 +371,7 @@
     <Content Include="Assets\Users\css\shortcodes\shortcodes.css" />
     <Content Include="Assets\Users\css\shortcodes\widget.css" />
     <Content Include="Assets\Users\css\style.css" />
+    <Content Include="Assets\Users\css\style_Profile.css" />
     <Content Include="Assets\Users\css\typography.css" />
     <Content Include="Assets\Users\images\about\pic1.jpg" />
     <Content Include="Assets\Users\images\adv\adv.jpg" />
@@ -450,6 +454,7 @@
     <Content Include="Assets\Users\js\jquery.min.js" />
     <Content Include="Assets\Users\js\jquery.scroller.js" />
     <Content Include="Assets\Users\js\loadCourseByType.js" />
+    <Content Include="Assets\Users\js\Teachers.js" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Assets\Users\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js" />
@@ -495,6 +500,12 @@
     <Content Include="Assets\Users\vendors\switcher\switcher.js" />
     <Content Include="Assets\Users\vendors\themify\fonts\themify9f24.svg" />
     <Content Include="Assets\Users\vendors\themify\themify-icons.css" />
+    <Content Include="Assets\Videos\1.mp4" />
+    <Content Include="Assets\Videos\2.mp4" />
+    <Content Include="Assets\Videos\3.mp4" />
+    <Content Include="Assets\Videos\4.mp4" />
+    <Content Include="Assets\Videos\5.mp4" />
+    <Content Include="Assets\Videos\6.mp4" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -510,8 +521,8 @@
     <Content Include="Images\logo.jpg" />
     <Content Include="Models\TKPM_HDT.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\TKPM_HDT.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -523,13 +534,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Student\Views\web.config" />
     <Content Include="Areas\Teacher\Views\web.config" />
-    <EntityDeploy Include="Models\TKPM_HDT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TKPM_HDT.edmx.diagram">
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-    </Content>
     <Content Include="Assets\Admin\vendors\fontawesome\fonts\fontawesome-webfont3e6e.eot" />
     <Content Include="Assets\Admin\vendors\fontawesome\fonts\fontawesome-webfont3e6e.ttf" />
     <Content Include="Assets\Admin\vendors\fontawesome\fonts\fontawesome-webfont3e6e.woff" />
@@ -567,16 +571,24 @@
     <Content Include="Areas\Student\Views\MainPage\LoadCourse.cshtml" />
     <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
     <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_adminLayoutPage.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Teacher\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\EditSubcategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\AddSubcategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\AddCategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Category\EditCategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Course\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Student\Index.cshtml" />
+    <EntityDeploy Include="Models\TKPM_HDT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TKPM_HDT.edmx.diagram">
+      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Student\Views\MyCourse\FavoriteCourse.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\loadFCourse.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CoursesByType.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\LeftList.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\Instructors.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\InstructorDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadCurriculum.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadLecture.cshtml" />
+    <Content Include="Areas\Student\Views\Payment\FailureView.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\Course.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CourseDetail1.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -588,8 +600,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="UploadFiles\avatar-default.jpg" />
-    <Content Include="UploadFiles\avatar-la-gi-01.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -605,19 +615,15 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shared\_loginLayoutPage.cshtml" />
-    <Content Include="Views\Account\ForgetPassword.cshtml" />
-    <Content Include="Views\Account\VerificationCode.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\RegisterStudent.cshtml" />
-    <Content Include="Views\Account\RegisterTeacher.cshtml" />
-    <Content Include="Views\Account\ChangeProfileStudent.cshtml" />
-    <Content Include="Views\Account\ChangeProfileTeacher.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Student\Views\Lecture\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />

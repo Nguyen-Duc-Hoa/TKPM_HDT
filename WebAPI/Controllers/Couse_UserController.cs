@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
         [Route("api/Course_User/{id}")]
         public IQueryable<sp_Couse_User_Result> getCourse_User(int id)
         {
-            return db.sp_Couse_User_Result(id);
+            return db.sp_Couse_User(id).AsQueryable();
         }
       
     }

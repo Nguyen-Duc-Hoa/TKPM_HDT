@@ -36,9 +36,7 @@
     <EntitySet Name="Comments" EntityType="DB_A72902_TKPMModel.Comment" />
     <EntitySet Name="Courses" EntityType="DB_A72902_TKPMModel.Course" />
     <EntitySet Name="Curricula" EntityType="DB_A72902_TKPMModel.Curriculum" />
-    <EntitySet Name="Histories" EntityType="DB_A72902_TKPMModel.History" />
     <EntitySet Name="Lectures" EntityType="DB_A72902_TKPMModel.Lecture" />
-    <EntitySet Name="Processes" EntityType="DB_A72902_TKPMModel.Process" />
     <EntitySet Name="Rates" EntityType="DB_A72902_TKPMModel.Rate" />
     <EntitySet Name="Replies" EntityType="DB_A72902_TKPMModel.Reply" />
     <EntitySet Name="Subcategories" EntityType="DB_A72902_TKPMModel.Subcategory" />
@@ -74,14 +72,6 @@
       <End Role="Course" EntitySet="Courses" />
       <End Role="Curriculum" EntitySet="Curricula" />
     </AssociationSet>
-    <AssociationSet Name="FK__History__id_cour__0E6E26BF" Association="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF">
-      <End Role="Course" EntitySet="Courses" />
-      <End Role="History" EntitySet="Histories" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Process__id_Cour__4BAC3F29" Association="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29">
-      <End Role="Course" EntitySet="Courses" />
-      <End Role="Process" EntitySet="Processes" />
-    </AssociationSet>
     <AssociationSet Name="FK__Rate__id_course__4D94879B" Association="DB_A72902_TKPMModel.FK__Rate__id_course__4D94879B">
       <End Role="Course" EntitySet="Courses" />
       <End Role="Rate" EntitySet="Rates" />
@@ -116,14 +106,6 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
-    <AssociationSet Name="FK__History__id_user__0F624AF8" Association="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8">
-      <End Role="User" EntitySet="Users" />
-      <End Role="History" EntitySet="Histories" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Process__id_stud__4AB81AF0" Association="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0">
-      <End Role="User" EntitySet="Users" />
-      <End Role="Process" EntitySet="Processes" />
-    </AssociationSet>
     <AssociationSet Name="FK__Rate__id_student__4E88ABD4" Association="DB_A72902_TKPMModel.FK__Rate__id_student__4E88ABD4">
       <End Role="User" EntitySet="Users" />
       <End Role="Rate" EntitySet="Rates" />
@@ -157,6 +139,39 @@
     <FunctionImport Name="sp_Couse_User" ReturnType="Collection(DB_A72902_TKPMModel.sp_Couse_User_Result)">
       <Parameter Name="idStudent" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="getBookdetail" ReturnType="Collection(DB_A72902_TKPMModel.getBookdetail_Result)">
+      <Parameter Name="id_student" Mode="In" Type="Int32" />
+      <Parameter Name="id_course" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getBookdetail1" EntitySet="view_Bookdetail" ReturnType="Collection(DB_A72902_TKPMModel.view_Bookdetail)">
+      <Parameter Name="id_student" Mode="In" Type="Int32" />
+      <Parameter Name="id_course" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getTeacherByName1" EntitySet="view_Teachers" ReturnType="Collection(DB_A72902_TKPMModel.view_Teachers)">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="view_History" EntityType="DB_A72902_TKPMModel.view_History" />
+    <FunctionImport Name="sp_Course_bought" ReturnType="Collection(DB_A72902_TKPMModel.sp_Course_bought_Result)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Processes" EntityType="DB_A72902_TKPMModel.Process" />
+    <AssociationSet Name="FK__Process__id_Cour__4BAC3F29" Association="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Process" EntitySet="Processes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Process__id_stud__4AB81AF0" Association="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Process" EntitySet="Processes" />
+    </AssociationSet>
+    <EntitySet Name="Histories" EntityType="DB_A72902_TKPMModel.History" />
+    <AssociationSet Name="FK__History__id_cour__0E6E26BF" Association="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__History__id_user__0F624AF8" Association="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8">
+      <End Role="User" EntitySet="Users" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_findAll_Cate_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -212,11 +227,11 @@
     <NavigationProperty Name="Subcategory" Relationship="DB_A72902_TKPMModel.FK__Course__id_subca__440B1D61" FromRole="Course" ToRole="Subcategory" />
     <NavigationProperty Name="Teacher" Relationship="DB_A72902_TKPMModel.FK__Course__id_teach__4316F928" FromRole="Course" ToRole="Teacher" />
     <NavigationProperty Name="Curricula" Relationship="DB_A72902_TKPMModel.FK__Curriculu__id_co__5165187F" FromRole="Course" ToRole="Curriculum" />
-    <NavigationProperty Name="Histories" Relationship="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF" FromRole="Course" ToRole="History" />
-    <NavigationProperty Name="Processes" Relationship="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29" FromRole="Course" ToRole="Process" />
     <NavigationProperty Name="Rates" Relationship="DB_A72902_TKPMModel.FK__Rate__id_course__4D94879B" FromRole="Course" ToRole="Rate" />
     <NavigationProperty Name="Replies" Relationship="DB_A72902_TKPMModel.FK__Reply__id_course__07C12930" FromRole="Course" ToRole="Reply" />
     <NavigationProperty Name="Bookdetails" Relationship="DB_A72902_TKPMModel.FK__Bookdetai__id_co__47DBAE45" FromRole="Course" ToRole="Bookdetail" />
+    <NavigationProperty Name="Processes" Relationship="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29" FromRole="Course" ToRole="Process" />
+    <NavigationProperty Name="Histories" Relationship="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF" FromRole="Course" ToRole="History" />
   </EntityType>
   <EntityType Name="Curriculum">
     <Key>
@@ -228,18 +243,6 @@
     <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__Curriculu__id_co__5165187F" FromRole="Curriculum" ToRole="Course" />
     <NavigationProperty Name="Lectures" Relationship="DB_A72902_TKPMModel.FK__Lecture__id_chap__0B91BA14" FromRole="Curriculum" ToRole="Lecture" />
   </EntityType>
-  <EntityType Name="History">
-    <Key>
-      <PropertyRef Name="id_course" />
-      <PropertyRef Name="id_user" />
-    </Key>
-    <Property Name="id_course" Type="Int32" Nullable="false" />
-    <Property Name="id_user" Type="Int32" Nullable="false" />
-    <Property Name="date" Type="DateTime" Precision="3" />
-    <Property Name="price" Type="Int32" />
-    <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF" FromRole="History" ToRole="Course" />
-    <NavigationProperty Name="User" Relationship="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8" FromRole="History" ToRole="User" />
-  </EntityType>
   <EntityType Name="Lecture">
     <Key>
       <PropertyRef Name="id" />
@@ -249,17 +252,6 @@
     <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="id_chapter" Type="Int32" />
     <NavigationProperty Name="Curriculum" Relationship="DB_A72902_TKPMModel.FK__Lecture__id_chap__0B91BA14" FromRole="Lecture" ToRole="Curriculum" />
-  </EntityType>
-  <EntityType Name="Process">
-    <Key>
-      <PropertyRef Name="id_student" />
-      <PropertyRef Name="id_Course" />
-    </Key>
-    <Property Name="id_student" Type="Int32" Nullable="false" />
-    <Property Name="id_Course" Type="Int32" Nullable="false" />
-    <Property Name="process1" Type="Int32" />
-    <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29" FromRole="Process" ToRole="Course" />
-    <NavigationProperty Name="User" Relationship="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0" FromRole="Process" ToRole="User" />
   </EntityType>
   <EntityType Name="Rate">
     <Key>
@@ -456,30 +448,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__History__id_cour__0E6E26BF">
-    <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
-    <End Type="DB_A72902_TKPMModel.History" Role="History" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="History">
-        <PropertyRef Name="id_course" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Process__id_Cour__4BAC3F29">
-    <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
-    <End Type="DB_A72902_TKPMModel.Process" Role="Process" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Course">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Process">
-        <PropertyRef Name="id_Course" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Rate__id_course__4D94879B">
     <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
     <End Type="DB_A72902_TKPMModel.Rate" Role="Rate" Multiplicity="*" />
@@ -604,12 +572,12 @@
     <Property Name="role" Type="Int32" />
     <NavigationProperty Name="Bookdetails" Relationship="DB_A72902_TKPMModel.FK__Bookdetai__id_st__46E78A0C" FromRole="User" ToRole="Bookdetail" />
     <NavigationProperty Name="Comments" Relationship="DB_A72902_TKPMModel.FK__Comment__id_user__02FC7413" FromRole="User" ToRole="Comment" />
-    <NavigationProperty Name="Histories" Relationship="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8" FromRole="User" ToRole="History" />
-    <NavigationProperty Name="Processes" Relationship="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0" FromRole="User" ToRole="Process" />
     <NavigationProperty Name="Rates" Relationship="DB_A72902_TKPMModel.FK__Rate__id_student__4E88ABD4" FromRole="User" ToRole="Rate" />
     <NavigationProperty Name="Replies" Relationship="DB_A72902_TKPMModel.FK__Reply__id_user__06CD04F7" FromRole="User" ToRole="Reply" />
     <NavigationProperty Name="Role1" Relationship="DB_A72902_TKPMModel.FK__Users__role__4C364F0E" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Teacher" Relationship="DB_A72902_TKPMModel.FK_idTeacher" FromRole="User" ToRole="Teacher" />
+    <NavigationProperty Name="Processes" Relationship="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0" FromRole="User" ToRole="Process" />
+    <NavigationProperty Name="Histories" Relationship="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8" FromRole="User" ToRole="History" />
   </EntityType>
   <Association Name="FK__Bookdetai__id_co__47DBAE45">
     <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
@@ -644,30 +612,6 @@
       </Principal>
       <Dependent Role="Comment">
         <PropertyRef Name="id_user" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__History__id_user__0F624AF8">
-    <End Type="DB_A72902_TKPMModel.User" Role="User" Multiplicity="1" />
-    <End Type="DB_A72902_TKPMModel.History" Role="History" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="History">
-        <PropertyRef Name="id_user" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Process__id_stud__4AB81AF0">
-    <End Type="DB_A72902_TKPMModel.User" Role="User" Multiplicity="1" />
-    <End Type="DB_A72902_TKPMModel.Process" Role="Process" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Process">
-        <PropertyRef Name="id_student" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -775,4 +719,106 @@
     <Property Type="Double" Name="rate" Nullable="true" />
     <Property Type="Int32" Name="id_student" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="getBookdetail_Result">
+    <Property Type="Int32" Name="id_student" Nullable="false" />
+    <Property Type="Int32" Name="id_course" Nullable="false" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="view_History">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="price" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="sp_Course_bought_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Double" Name="rate" Nullable="true" />
+    <Property Type="Int32" Name="id_student" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="Process">
+    <Key>
+      <PropertyRef Name="id_student" />
+      <PropertyRef Name="id_Course" />
+    </Key>
+    <Property Name="id_student" Type="Int32" Nullable="false" />
+    <Property Name="id_Course" Type="Int32" Nullable="false" />
+    <Property Name="process1" Type="Int32" />
+    <Property Name="total" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__Process__id_Cour__4BAC3F29" FromRole="Process" ToRole="Course" />
+    <NavigationProperty Name="User" Relationship="DB_A72902_TKPMModel.FK__Process__id_stud__4AB81AF0" FromRole="Process" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Process__id_Cour__4BAC3F29">
+    <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
+    <End Type="DB_A72902_TKPMModel.Process" Role="Process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Process">
+        <PropertyRef Name="id_Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Process__id_stud__4AB81AF0">
+    <End Type="DB_A72902_TKPMModel.User" Role="User" Multiplicity="1" />
+    <End Type="DB_A72902_TKPMModel.Process" Role="Process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Process">
+        <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="price" Type="Double" />
+    <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__History__id_cour__0E6E26BF" FromRole="History" ToRole="Course" />
+    <NavigationProperty Name="User" Relationship="DB_A72902_TKPMModel.FK__History__id_user__0F624AF8" FromRole="History" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__History__id_cour__0E6E26BF">
+    <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
+    <End Type="DB_A72902_TKPMModel.History" Role="History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__History__id_user__0F624AF8">
+    <End Type="DB_A72902_TKPMModel.User" Role="User" Multiplicity="1" />
+    <End Type="DB_A72902_TKPMModel.History" Role="History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
