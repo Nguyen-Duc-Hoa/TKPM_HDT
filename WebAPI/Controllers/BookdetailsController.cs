@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
         [ResponseType(typeof(view_Bookdetail))]
         public IHttpActionResult GetBookdetail(int id_student, int id_course)
         {
-            view_Bookdetail bookdetail = db.getBookdetail1(id_student, id_course).FirstOrDefault();
+            getBookdetail_Result bookdetail = db.getBookdetail(id_student, id_course).FirstOrDefault();
             if (bookdetail == null)
             {
                 return NotFound();
@@ -77,21 +77,21 @@ namespace WebAPI.Controllers
         }
 
         // DELETE: api/Bookdetails/5
-        [ResponseType(typeof(view_Bookdetail))]
-        public IHttpActionResult DeleteBookdetail(int id_student, int id_course)
-        {
-            view_Bookdetail bookdetail = db.getBookdetail1(id_student, id_course).FirstOrDefault();
+        //[ResponseType(typeof(view_Bookdetail))]
+        //public IHttpActionResult DeleteBookdetail(int id_student, int id_course)
+        //{
+        //    getBookdetail_Result bookdetail = db.getBookdetail(id_student, id_course).FirstOrDefault();
 
-            if (bookdetail == null)
-            {
-                return NotFound();
-            }
+        //    if (bookdetail == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.view_Bookdetail.Remove(bookdetail);
-            db.SaveChanges();
+        //    db.Bo.Remove(bookdetail);
+        //    db.SaveChanges();
 
-            return Ok(bookdetail);
-        }
+        //    return Ok(bookdetail);
+        //}
 
         protected override void Dispose(bool disposing)
         {

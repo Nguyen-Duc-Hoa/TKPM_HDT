@@ -32,7 +32,9 @@ namespace Online_Academy.Models
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Curriculum> Curricula { get; set; }
+        public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<Lecture> Lectures { get; set; }
+        public virtual DbSet<Process> Processes { get; set; }
         public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -47,10 +49,9 @@ namespace Online_Academy.Models
         public virtual DbSet<view_Bookdetail> view_Bookdetail { get; set; }
         public virtual DbSet<view_categories> view_categories { get; set; }
         public virtual DbSet<view_Course_rate> view_Course_rate { get; set; }
+        public virtual DbSet<view_History> view_History { get; set; }
         public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
-        public virtual DbSet<Process> Processes { get; set; }
-        public virtual DbSet<History> Histories { get; set; }
     
         [DbFunction("DB_A72902_TKPMEntities", "func_Course")]
         public virtual IQueryable<func_Course_Result> func_Course(Nullable<int> idStudent)
@@ -73,6 +74,51 @@ namespace Online_Academy.Models
                 new ObjectParameter("id_course", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBookdetail_Result>("getBookdetail", id_studentParameter, id_courseParameter);
+        }
+    
+        public virtual ObjectResult<getCourseByState_Result> getCourseByState(Nullable<bool> state)
+        {
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByState_Result>("getCourseByState", stateParameter);
+        }
+    
+        public virtual ObjectResult<getCurriculumByCourse_Result> getCurriculumByCourse(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCurriculumByCourse_Result>("getCurriculumByCourse", idParameter);
+        }
+    
+        public virtual ObjectResult<getLectureByCurriculum_Result> getLectureByCurriculum(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getLectureByCurriculum_Result>("getLectureByCurriculum", idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> getNumberofLectures(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getNumberofLectures", idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> getNumberofStudents(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getNumberofStudents", idParameter);
         }
     
         public virtual ObjectResult<getTeacherById_Result> getTeacherById(Nullable<int> id)
@@ -129,6 +175,15 @@ namespace Online_Academy.Models
                 new ObjectParameter("definition", typeof(byte[]));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual ObjectResult<sp_Course_bought_Result> sp_Course_bought(Nullable<int> idUser)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Course_bought_Result>("sp_Course_bought", idUserParameter);
         }
     
         public virtual ObjectResult<sp_Couse_User_Result> sp_Couse_User(Nullable<int> idStudent)
@@ -235,9 +290,22 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
-        public virtual int sp_upgraddiagrams()
+        public virtual ObjectResult<Nullable<int>> sp_SumLesson(Nullable<int> idCourse)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_SumLesson", idCourseParameter);
+        }
+    
+        public virtual ObjectResult<sp_teacherCourses_Result> sp_teacherCourses(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_teacherCourses_Result>("sp_teacherCourses", idParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_testBought(Nullable<int> idUser, Nullable<int> idCourse)
@@ -253,13 +321,9 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_testBought", idUserParameter, idCourseParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> sp_SumLesson(Nullable<int> idCourse)
+        public virtual int sp_upgraddiagrams()
         {
-            var idCourseParameter = idCourse.HasValue ?
-                new ObjectParameter("idCourse", idCourse) :
-                new ObjectParameter("idCourse", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_SumLesson", idCourseParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

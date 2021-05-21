@@ -22,9 +22,9 @@ namespace WebAPI.Controllers
             return db.view_Teachers;
         }
         [Route("api/TeachersName/{name}")]
-        public IQueryable<view_Teachers> GetTeachersName(string name)
+        public IQueryable<getTeacherByName_Result> GetTeachersName(string name)
         {
-            List<view_Teachers> teacher = db.getTeacherByName1(name).ToList();
+            List<getTeacherByName_Result> teacher = db.getTeacherByName(name).ToList();
             return teacher.AsQueryable();
         }
         // GET: api/Teachers/5
