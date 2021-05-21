@@ -38,6 +38,7 @@ $('document').ready(function () {
                 }
                 else {
                     // Move to main page
+                    window.location.replace(response);
                 }
             }
         })

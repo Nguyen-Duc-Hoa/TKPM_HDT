@@ -53,17 +53,17 @@ namespace Online_Academy.Controllers
                 }
 
                 // Move to main page base on Role
-                if (dbUser.Role1.role1 == "Admin")
+                if (dbUser.Role1.role1.Trim() == "Admin")
                 {
-                    return Content("Admin");
+                    return Content("/Admin/Home");
                 }
-                else if (dbUser.Role1.role1 == "Student")
+                else if (dbUser.Role1.role1.Trim() == "Student")
                 {
-                    return Content("Student");
+                    return Content("StudentURL");
                 }
                 else
                 {
-                    return Content("Teacher");
+                    return Content("TeacherURL");
                 }
             }
             return Content("Fail");
@@ -119,7 +119,7 @@ namespace Online_Academy.Controllers
                 }
 
                 // Move to mainpage base on role
-                return Content("main page");
+                return Content("mainpage");
             }
             Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
             return View("ChangePassword");
@@ -225,21 +225,16 @@ namespace Online_Academy.Controllers
             //int id = Convert.ToInt32(Session["userID"].ToString());
             var dbuser = db.Users.Where(u => u.id == id).FirstOrDefault();
 
+            // Show view base on role
             switch (dbuser.Role1.role1.Trim())
             {
                 case "Student":
                     return View("ChangeProfileStudent", dbuser);
-                    break;
                 case "Teacher":
                     return View("ChangeProfileTeacher", dbuser);
-                    break;
                 default:
                     return RedirectToAction("Login");
-                    break;
             }
-
-
-            
         }
         [HttpPost]
         public ActionResult ChangeProfileStudent(User user)

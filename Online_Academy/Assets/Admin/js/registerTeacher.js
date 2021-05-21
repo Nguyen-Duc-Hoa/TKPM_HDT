@@ -41,9 +41,11 @@
             data: { name: name, email: email, username: username, password: password, major: major },
             success: function (response) {
                 if (response == "Fail") {
-                    // Move to student main page
+                    $(".modal-body").html('<p>Đăng ký thành công</p>')
+                    $("#exampleModal").modal('show')
                 }
                 else {
+                    $(".modal-body").html('<p>Đăng ký không thành công</p>' + '<p>Tài khoản hoặc email đã tồn tại</p>')
                     $("#exampleModal").modal('show')
                 }
             }
