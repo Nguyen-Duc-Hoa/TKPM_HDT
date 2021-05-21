@@ -113,6 +113,7 @@
     <Property Name="process1" Type="Int32" />
     <NavigationProperty Name="Course" Relationship="Self.FK__Process__id_Cour__4BAC3F29" FromRole="Process" ToRole="Course" />
     <NavigationProperty Name="User" Relationship="Self.FK__Process__id_stud__4AB81AF0" FromRole="Process" ToRole="Users" />
+    <Property Name="total" Type="Int32" />
   </EntityType>
   <EntityType Name="Rate">
     <Key>
@@ -716,6 +717,38 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="view_History" EntityType="DB_A72902_TKPMModel.view_History" />
+    <FunctionImport Name="getCourseByState" ReturnType="Collection(DB_A72902_TKPMModel.getCourseByState_Result)">
+      <Parameter Name="state" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="getCurriculumByCourse" ReturnType="Collection(DB_A72902_TKPMModel.getCurriculumByCourse_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getLectureByCurriculum" ReturnType="Collection(DB_A72902_TKPMModel.getLectureByCurriculum_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getNumberofLectures" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_Course_bought" ReturnType="Collection(DB_A72902_TKPMModel.sp_Course_bought_Result)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_teacherCourses" ReturnType="Collection(DB_A72902_TKPMModel.sp_teacherCourses_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getNumberofStudents" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getStudentByCourse" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_SumLesson" ReturnType="Collection(Int32)">
+      <Parameter Name="idCourse" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_testBought" ReturnType="Collection(Int32)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+      <Parameter Name="idCourse" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="getBookdetail_Result">
     <Property Type="Int32" Name="id_student" Nullable="false" />
@@ -784,5 +817,67 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="view_History">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="price" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="getCourseByState_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getCurriculumByCourse_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="chap_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_course" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getLectureByCurriculum_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="link" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="id_chapter" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Course_bought_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Double" Name="rate" Nullable="true" />
+    <Property Type="Int32" Name="id_student" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_teacherCourses_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
   </ComplexType>
 </Schema>

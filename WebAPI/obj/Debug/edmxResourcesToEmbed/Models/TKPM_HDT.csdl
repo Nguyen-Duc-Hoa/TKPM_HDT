@@ -168,6 +168,18 @@
     <FunctionImport Name="getTeacherByName1" EntitySet="view_Teachers" ReturnType="Collection(DB_A72902_TKPMModel.view_Teachers)">
       <Parameter Name="name" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_teacherCourses" ReturnType="Collection(DB_A72902_TKPMModel.sp_teacherCourses_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getCurriculumByCourse" ReturnType="Collection(DB_A72902_TKPMModel.getCurriculumByCourse_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getLectureByCurriculum" ReturnType="Collection(DB_A72902_TKPMModel.getLectureByCurriculum_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getCourseByState" ReturnType="Collection(DB_A72902_TKPMModel.getCourseByState_Result)">
+      <Parameter Name="state" Mode="In" Type="Boolean" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_findAll_Cate_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -790,5 +802,42 @@
     <Property Type="Int32" Name="id_student" Nullable="false" />
     <Property Type="Int32" Name="id_course" Nullable="false" />
     <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_teacherCourses_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getCurriculumByCourse_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="chap_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_course" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getLectureByCurriculum_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="link" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="id_chapter" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getCourseByState_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
   </ComplexType>
 </Schema>

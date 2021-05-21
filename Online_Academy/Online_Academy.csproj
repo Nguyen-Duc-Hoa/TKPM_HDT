@@ -136,132 +136,26 @@
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Areas\Teacher\Controllers\TeacherCoursesController.cs" />
+    <Compile Include="Areas\Teacher\Controllers\TeachersController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Bookdetail.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\BookdetailClient.cs" />
     <Compile Include="Models\CategoriesClient.cs" />
-    <Compile Include="Models\Category.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Comment.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Course.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CourseClient.cs" />
-    <Compile Include="Models\Curriculum.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CurriculumClient.cs" />
-    <Compile Include="Models\func_Course_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\getBookdetail_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\getTeacherById_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\getTeacherByName_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\History.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Lecture.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LectureClient.cs" />
-    <Compile Include="Models\Process.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Rate.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Reply.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_Couse_User_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_findAll_Cate_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SubcategoriesClient.cs" />
-    <Compile Include="Models\Subcategory.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Teacher.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TeachersClient.cs" />
-    <Compile Include="Models\TKPM_HDT.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TKPM_HDT.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TKPM_HDT.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TKPM_HDT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\UsersClient.cs" />
-    <Compile Include="Models\view_allCourses.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_allCurriculum.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_allLectures.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_allUsers.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_Bookdetail.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_categories.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_Course_rate.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_Subcategories.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\view_Teachers.cs">
-      <DependentUpon>TKPM_HDT.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CourseViewModel.cs" />
+    <Compile Include="ViewModel\TeacherViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Admin\css\assets.css" />
@@ -339,6 +233,18 @@
     <Content Include="Assets\Admin\vendors\themify\themify-icons.css" />
     <Content Include="Assets\Pictures\ImagesCourse\pptx.jpg" />
     <Content Include="Assets\Pictures\ImagesCourse\word.png" />
+    <Content Include="Assets\Teacher\css\discountLabel.css" />
+    <Content Include="Assets\Teacher\css\magnific-popup.css" />
+    <Content Include="Assets\Teacher\css\main.css" />
+    <Content Include="Assets\Teacher\css\PopupVideo.css" />
+    <Content Include="Assets\Teacher\js\Additem.js" />
+    <Content Include="Assets\Teacher\js\AdditemEdit.js" />
+    <Content Include="Assets\Teacher\js\DeleteItem.js" />
+    <Content Include="Assets\Teacher\js\DisplayImg.js" />
+    <Content Include="Assets\Teacher\js\DisplayVideo.js" />
+    <Content Include="Assets\Teacher\js\EditCourse.js" />
+    <Content Include="Assets\Teacher\js\GetCurriculumData.js" />
+    <Content Include="Assets\Teacher\js\jquery.magnific-popup.min.js" />
     <Content Include="Assets\Users\css\assets.css" />
     <Content Include="Assets\Users\css\color\color-1.css" />
     <Content Include="Assets\Users\css\custom.css" />
@@ -500,16 +406,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\background.jpg" />
     <Content Include="Images\logo.jpg" />
-    <Content Include="Models\TKPM_HDT.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-      <LastGenOutput>TKPM_HDT.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\TKPM_HDT.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-      <LastGenOutput>TKPM_HDT.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -552,13 +448,20 @@
     <Content Include="Areas\Student\Views\MainPage\LoadCourse.cshtml" />
     <Content Include="Areas\Student\Views\MainPage\SubLayout.cshtml" />
     <Content Include="Areas\Student\Views\Shared\_Layout.cshtml" />
-    <EntityDeploy Include="Models\TKPM_HDT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TKPM_HDT.edmx.diagram">
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-    </Content>
+    <Content Include="Areas\Teacher\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Create.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Delete.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Details.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Edit.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Index.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\TeacherCourses.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Draft.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Chapter.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\TeacherCoursesDraft.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teachers\Details.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teachers\Index.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Students.cshtml" />
+    <Content Include="Areas\Teacher\Views\TeacherCourses\Profile.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -593,12 +496,15 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />
-    <Folder Include="Areas\Teacher\Views\Shared\" />
     <Folder Include="Assets\Admin\assets\images\" />
     <Folder Include="Assets\Admin\images\flag\" />
+    <Folder Include="Assets\Pictures\ImagesUser\" />
     <Folder Include="Assets\Users\images\main-slider\" />
+    <Folder Include="Assets\VideosLecture\" />
+    <Folder Include="Assets\Videos\" />
+    <Folder Include="Courses_Image\" />
+    <Folder Include="Users_Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

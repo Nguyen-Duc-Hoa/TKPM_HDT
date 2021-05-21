@@ -28,7 +28,7 @@ namespace Online_Academy.Models
             }
         }
 
-        public Subcategory find(int id)
+        public Subcategory find(int? id)
         {
             try
             {

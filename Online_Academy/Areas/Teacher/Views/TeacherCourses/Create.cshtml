@@ -1,0 +1,195 @@
+﻿@model Online_Academy.Models.Course
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Teacher/Views/Shared/_Layout.cshtml";
+}
+
+<main class="ttr-wrapper">
+    <div class="container-fluid">
+        <div class="db-breadcrumb">
+            <h4 class="breadcrumb-title">Add listing</h4>
+            <ul class="db-breadcrumb-list">
+                <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                <li>Add listing</li>
+            </ul>
+        </div>
+        
+            <div class="row">
+                <!-- Your Profile Views Chart -->
+                <div class="col-lg-12 m-b30">
+                    <div class="widget-box">
+                        <div class="wc-title">
+                            <h4>Add listing</h4>
+                        </div>
+
+                        <div class="widget-inner">
+                            <form class="edit-profile m-b30" enctype="multipart/form-data" id="upload" >
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="ml-auto">
+                                            <h3>1. Basic info</h3>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label class="col-form-label">Name Course</label>
+                                        <div>
+                                            <input class="form-control" type="text" value="" id="namecourse">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label class="col-form-label">Category</label>
+                                        <div>
+                                            @Html.DropDownList("id_subcat", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="col-form-label">Price</label>
+                                        <div>
+                                            <input class="form-control" type="text" value="" id="price">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="col-form-label">Discount</label>
+                                        <div>
+                                            <input class="form-control" type="text" value="" placeholder="%" id="discount">
+                                        </div>
+                                    </div>
+
+                                    <div class="seperator"></div>
+
+                                    <div class="col-12 m-t20">
+                                        <div class="ml-auto m-b5">
+                                            <h3>2. Description</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group  col-6">
+                                        <label class="col-form-label">Thumbnail Description</label>
+                                        <div>
+
+                                            <input type="file" name="fileimg" id="fileimg" accept="image/*" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <div id="imgPreview" class="thumbnail" style="display:none">
+                                            <img class="img-responsive" id="targetImg" />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <label class="col-form-label">Preview</label>
+                                        <div>
+                                            <input type="file" name="preview" id="preview" accept="video/*" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <video width="300" height="300" controls id="videopreview" style="display:none">
+                                        </video>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label class="col-form-label">Course short description</label>
+                                        <div>
+                                            <textarea class="form-control" id="shortdes"> </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <label class="col-form-label">Course description</label>
+                                        <div>
+                                            <textarea class="form-control" id="description"> </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-t20">
+                                        <div class="ml-auto">
+                                            <h3 class="m-form__section">3. Add Item</h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <table id="item-add" style="width:100%;">
+                                            <tr class="list-item">
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="col-form-label">Chapter Name</label>
+                                                            <div>
+                                                                <input class="form-control chapter" type="text" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <label class="col-form-label">Add Video</label>
+                                                            <div class="form-group">
+                                                                <a class="btn-secondry addvideo" id="item,01" href="#"><i class="fa fa-plus-circle"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row listvideo" id="list01">
+                                                            <div class="row col-12 videoitem" >
+                                                                <div class="col-md-1">
+
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <label class="col-form-label"></label>
+                                                                    <div class="form-group">
+                                                                        <a class="delete delvideo" href="#"><i class="fa fa-close"></i></a>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <label class="col-form-label">Name Video</label>
+                                                                    <div>
+                                                                        <input class="form-control name" type="text" name="name" >
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label class="col-form-label">Video</label>
+                                                                    <div>
+                                                                        <input type="file" name="filevideo" class="filevideo" id="video1" accept="video/*" />
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-md-4" id="contain">
+
+                                                                    <video width="300" height="300" controls class="video" id="video1" style="display:none">
+                                                                    </video>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label">Close Chapter</label>
+                                                            <div class="form-group">
+                                                                <a class="delete delchapter" href="#"><i class="fa fa-close"></i></a>
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn-secondry add-item m-r5"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>
+                                        <button type="button" class="btn btn-savedraft" id="btn-draft">Save draft</button>
+                                        <button type="button" class="btn btn-post" id="btn-post">Post</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- Your Profile Views Chart END-->
+            </div>
+       
+    </div>
+</main>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

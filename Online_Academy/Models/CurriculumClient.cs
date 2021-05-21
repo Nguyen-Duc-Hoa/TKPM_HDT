@@ -27,6 +27,23 @@ namespace Online_Academy.Models
                 return null;
             }
         }
+        public List<Curriculum> GetCurriculumByCourse(int id)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("GetCurriculumCourse/"+id).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<List<Curriculum>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public Curriculum GetCurriculum(int id)
         {
             try
@@ -44,6 +61,7 @@ namespace Online_Academy.Models
                 return null;
             }
         }
+
         public bool UpdateCurriculum(Curriculum curr)
         {
             try

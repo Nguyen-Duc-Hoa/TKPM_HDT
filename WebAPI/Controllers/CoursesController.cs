@@ -22,6 +22,17 @@ namespace WebAPI.Controllers
             return db.view_allCourses;
         }
 
+        [Route("api/TeacherCourses/{id}")]
+        public IQueryable<sp_teacherCourses_Result> GetTeacherCourses(int id)
+        {
+            return db.sp_teacherCourses(id).AsQueryable();
+        }
+        [Route("api/CoursesByState/{state}")]
+        public IQueryable<getCourseByState_Result> GetCoursesByState(bool state)
+        {
+            List<getCourseByState_Result> course = db.getCourseByState(state).ToList();
+            return course.AsQueryable();
+        }
         // GET: api/Courses/5
         [ResponseType(typeof(view_allCourses))]
         public IHttpActionResult Getview_allCourses(int id)
@@ -37,7 +48,7 @@ namespace WebAPI.Controllers
 
         // PUT: api/Courses/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putview_allCourses(int id, view_allCourses view_allCourses)
+        public IHttpActionResult Putview_allCourses(int id, Course view_allCourses)
         {
             if (!ModelState.IsValid)
             {
@@ -86,16 +97,16 @@ namespace WebAPI.Controllers
         }
 
         // DELETE: api/Courses/5
-        [ResponseType(typeof(view_allCourses))]
+        [ResponseType(typeof(Course))]
         public IHttpActionResult Deleteview_allCourses(int id)
         {
-            view_allCourses view_allCourses = db.view_allCourses.Find(id);
+            Course view_allCourses = db.Courses.Find(id);
             if (view_allCourses == null)
             {
                 return NotFound();
             }
 
-            db.view_allCourses.Remove(view_allCourses);
+            db.Courses.Remove(view_allCourses);
             db.SaveChanges();
 
             return Ok(view_allCourses);
@@ -112,7 +123,7 @@ namespace WebAPI.Controllers
 
         private bool view_allCoursesExists(int id)
         {
-            return db.view_allCourses.Count(e => e.id == id) > 0;
+            return db.Courses.Count(e => e.id == id) > 0;
         }
     }
 }

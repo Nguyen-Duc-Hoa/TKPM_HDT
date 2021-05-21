@@ -167,3 +167,4 @@ D:\laptrinhweb\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csproj.CoreCompi
 D:\laptrinhweb\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
 D:\laptrinhweb\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.dll
 D:\laptrinhweb\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.pdb
+D:\laptrinhweb\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache

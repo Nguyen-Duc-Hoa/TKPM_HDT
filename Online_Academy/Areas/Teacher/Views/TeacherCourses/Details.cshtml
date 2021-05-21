@@ -1,0 +1,501 @@
+﻿@model Online_Academy.ViewModel.CourseViewModel
+
+@{
+    ViewBag.Title = "Details";
+
+}
+@{var price = Model.course.price - (Model.course.price * Model.course.discount) / 100; }
+<head>
+
+    <!-- META ============================================= -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+
+    <!-- DESCRIPTION -->
+    <meta name="description" content="EduChamp : Education HTML Template" />
+
+    <!-- OG -->
+    <meta property="og:title" content="EduChamp : Education HTML Template" />
+    <meta property="og:description" content="EduChamp : Education HTML Template" />
+    <meta property="og:image" content="" />
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href="~/Assets/Admin/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Assets/Admin/images/favicon.png" />
+
+    <!-- PAGE TITLE HERE ============================================= -->
+    <title>EduChamp : Education HTML Template </title>
+
+    <!-- MOBILE SPECIFIC ============================================= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- All PLUGINS CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/Assets/Admin/css/assets.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/Admin/vendors/calendar/fullcalendar.css">
+
+    <!-- TYPOGRAPHY ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/Assets/Admin/css/typography.css">
+
+    <!-- SHORTCODES ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/Assets/Admin/css/shortcodes/shortcodes.css">
+
+    <!-- STYLESHEETS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="~/Assets/Admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/Admin/css/dashboard.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="~/Assets/Admin/css/color/color-1.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/Teacher/css/discountLabel.css">
+    <link href="~/Assets/Teacher/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/Teacher/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/Teacher/css/PopupVideo.css">
+</head>
+<body class="ttr-opened-sidebar ttr-pinned-sidebar">
+    <header class="ttr-header">
+        <div class="ttr-header-wrapper">
+            <!--sidebar menu toggler start -->
+            <div class="ttr-toggle-sidebar ttr-material-button">
+                <i class="ti-close ttr-open-icon"></i>
+                <i class="ti-menu ttr-close-icon"></i>
+            </div>
+            <!--sidebar menu toggler end -->
+            <!--logo start -->
+            <div class="ttr-logo-box">
+                <div>
+                    <a href="index.html" class="ttr-logo">
+                        <img class="ttr-logo-mobile" alt="" src="~/Assets/Admin/images/logo-mobile.png" width="30" height="30">
+                        <img class="ttr-logo-desktop" alt="" src="~/Assets/Admin/images/logo-white.png" width="160" height="27">
+                    </a>
+                </div>
+            </div>
+            <!--logo end -->
+            <div class="ttr-header-menu">
+                <!-- header left menu start -->
+                <ul class="ttr-header-navigation">
+                    <li>
+                        <a href="#" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                    </li>
+
+                </ul>
+                <!-- header left menu end -->
+            </div>
+            <div class="ttr-header-right ttr-with-seperator">
+                <!-- header right menu start -->
+                <ul class="ttr-header-navigation">
+                    <li>
+                        <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><i class="fa fa-bell"></i></a>
+                        <div class="ttr-header-submenu noti-menu">
+                            <div class="ttr-notify-header">
+                                <span class="ttr-notify-text-top">9 New</span>
+                                <span class="ttr-notify-text">User Notifications</span>
+                            </div>
+                            <div class="noti-box-list">
+                                <ul>
+                                    <li>
+                                        <span class="notification-icon dashbg-gray">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                        <span class="notification-text">
+                                            <span>Sneha Jogi</span> sent you a message.
+                                        </span>
+                                        <span class="notification-time">
+                                            <a href="#" class="fa fa-close"></a>
+                                            <span> 02:14</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="notification-icon dashbg-yellow">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </span>
+                                        <span class="notification-text">
+                                            <a href="#">Your order is placed</a> sent you a message.
+                                        </span>
+                                        <span class="notification-time">
+                                            <a href="#" class="fa fa-close"></a>
+                                            <span> 7 Min</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="notification-icon dashbg-red">
+                                            <i class="fa fa-bullhorn"></i>
+                                        </span>
+                                        <span class="notification-text">
+                                            <span>Your item is shipped</span> sent you a message.
+                                        </span>
+                                        <span class="notification-time">
+                                            <a href="#" class="fa fa-close"></a>
+                                            <span> 2 May</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="notification-icon dashbg-green">
+                                            <i class="fa fa-comments-o"></i>
+                                        </span>
+                                        <span class="notification-text">
+                                            <a href="#">Sneha Jogi</a> sent you a message.
+                                        </span>
+                                        <span class="notification-time">
+                                            <a href="#" class="fa fa-close"></a>
+                                            <span> 14 July</span>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="notification-icon dashbg-primary">
+                                            <i class="fa fa-file-word-o"></i>
+                                        </span>
+                                        <span class="notification-text">
+                                            <span>Sneha Jogi</span> sent you a message.
+                                        </span>
+                                        <span class="notification-time">
+                                            <a href="#" class="fa fa-close"></a>
+                                            <span> 15 Min</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
+                        <div class="ttr-header-submenu">
+                            <ul>
+                                <li><a href="user-profile.html">My profile</a></li>
+                                <li><a href="list-view-calendar.html">Activity</a></li>
+                                <li><a href="mailbox.html">Messages</a></li>
+                                <li><a href="../login.html">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="ttr-hide-on-mobile">
+                        <a href="#" class="ttr-material-button"><i class="ti-layout-grid3-alt"></i></a>
+                        <div class="ttr-header-submenu ttr-extra-menu">
+                            <a href="#">
+                                <i class="fa fa-music"></i>
+                                <span>Musics</span>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-youtube-play"></i>
+                                <span>Videos</span>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-envelope"></i>
+                                <span>Emails</span>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-book"></i>
+                                <span>Reports</span>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-smile-o"></i>
+                                <span>Persons</span>
+                            </a>
+                            <a href="#">
+                                <i class="fa fa-picture-o"></i>
+                                <span>Pictures</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- header right menu end -->
+            </div>
+            <!--header search panel start -->
+            <div class="ttr-search-bar">
+                <form class="ttr-search-form">
+                    <div class="ttr-search-input-wrapper">
+                        <input type="text" name="qq" placeholder="search something..." class="ttr-search-input">
+                        <button type="submit" name="search" class="ttr-search-submit"><i class="ti-arrow-right"></i></button>
+                    </div>
+                    <span class="ttr-search-close ttr-search-toggle">
+                        <i class="ti-close"></i>
+                    </span>
+                </form>
+            </div>
+            <!--header search panel end -->
+        </div>
+    </header>
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="page-banner ovbl-dark" style="background-image:url(~/Assets/Pictures/ImagesCourse/@Model.course.thumbnail);">
+            <div class="container">
+                <div class="page-banner-entry">
+                    <h1 class="text-white">Courses Details</h1>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+            <div class="container">
+                <ul class="list-inline">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li>Courses Details</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Breadcrumb row END -->
+        <!-- inner page banner END -->
+        <div class="content-block">
+            <!-- About Us -->
+            <div class="section-area section-sp1">
+                <div class="container">
+                    <div class="row d-flex flex-row-reverse">
+                        <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                            <div class="course-detail-bx">
+                                <div class="course-price">
+                                    <del>$@Model.course.price</del>
+                                    <h4 class="price">$@price</h4>
+                                </div>
+
+                                <div class="teacher-bx">
+                                    <div class="teacher-info">
+                                        <div class="teacher-thumb">
+                                            <img src="~/Assets/Pictures/ImagesUser/@Model.teacher.avatar" alt="" />
+                                        </div>
+                                        <div class="teacher-name">
+                                            <h5>@Model.teacher.name</h5>
+                                            <span>@Model.teacher.major</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cours-more-info">
+                                    <div class="review">
+                                        <span>3 Review</span>
+                                        <ul class="cours-star">
+                                            <li class="active"><i class="fa fa-star"></i></li>
+                                            <li class="active"><i class="fa fa-star"></i></li>
+                                            <li class="active"><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price categories">
+                                        <span>Categories</span>
+                                        <h5 class="text-primary">@ViewBag.subcat</h5>
+                                    </div>
+                                </div>
+                                <div class="course-info-list scroll-page">
+                                    <ul class="navbar">
+                                        <li><a class="nav-link" href="#overview"><i class="ti-zip"></i>Overview</a></li>
+                                        <li><a class="nav-link" href="#curriculum"><i class="ti-bookmark-alt"></i>Curriculum</a></li>
+                                        <li><a class="nav-link" href="#instructor"><i class="ti-user"></i>Instructor</a></li>
+                                        <li><a class="nav-link" href="#reviews"><i class="ti-comments"></i>Reviews</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-8 col-sm-12">
+                            <div class="courses-post">
+                                <div class="ttr-post-media media-effect">
+                                    <video width="700" height="400" controls id="videopreview">
+                                        <source src="~/Assets/Videos/@Model.course.preview" />
+                                    </video>
+                                </div>
+                                <div class="ttr-post-info">
+                                    <div class="ttr-post-title ">
+                                        <h2 class="post-title">@Model.course.name</h2>
+                                    </div>
+                                    <div class="ttr-post-text">
+                                        <p>@Model.course.short_description</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="courese-overview" id="overview">
+                                <h4>Overview</h4>
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-4">
+                                        <ul class="course-features">
+                                            <li><i class="ti-book"></i> <span class="label">Lectures</span> <span class="value">@ViewBag.numberlectures</span></li>
+
+                                            <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value">English</span></li>
+                                            <li><i class="ti-user"></i> <span class="label">Students</span> <a href="@Url.Action("Students","TeacherCourses",new { id = Model.course.id })" class="value">@ViewBag.numberstudents</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-12 col-lg-8">
+                                        <h5 class="m-b5">Course Description</h5>
+                                        <p>@Model.course.description</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-b30" id="curriculum">
+                                <h4>Curriculum</h4>
+                                <ul class="curriculum-list">
+                                    @for (int i = 0; i < ViewBag.listcurri.Count; i++)
+                                    {
+                                        <li>
+
+                                            <h5>@ViewBag.listcurri[i].chap_name</h5>
+                                            <ul>
+                                                @for (int j = 0; j < ViewBag.listlectures[i].Count; j++)
+                                                {
+                                                    var d ="pop"+i+j;
+                                                    <li>
+                                                        <div class="curriculum-list-box">
+                                                            <a href="#@d" class="headerVideoLink">@ViewBag.listlectures[i][j].name</a>
+                                                            <div id="@d" class="mfp-hide embed-responsive embed-responsive-21by9">
+                                                                <iframe class="embed-responsive-item" width="854" height="480" src="~/Assets/VideosLecture/@ViewBag.listlectures[i][j].link" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                            <div class="" id="instructor">
+                                <h4>Instructor</h4>
+                                <div class="instructor-bx">
+                                    <div class="instructor-author">
+                                        <img src="~/Assets/Pictures/ImagesUser/@Model.teacher.avatar" alt="">
+                                    </div>
+                                    <div class="instructor-info">
+                                        <h6>@Model.teacher.name </h6>
+                                        <span>@Model.teacher.major</span>
+                                        <ul class="list-inline m-tb10">
+                                            <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                            <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
+                                        </ul>
+                                        <p class="m-b0">@Model.teacher.description</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="" id="reviews">
+                                <h4>Reviews</h4>
+
+                                <div class="review-bx">
+                                    <div class="all-review">
+                                        <h2 class="rating-type">3</h2>
+                                        <ul class="cours-star">
+                                            <li class="active"><i class="fa fa-star"></i></li>
+                                            <li class="active"><i class="fa fa-star"></i></li>
+                                            <li class="active"><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                        <span>3 Rating</span>
+                                    </div>
+                                    <div class="review-bar">
+                                        <div class="bar-bx">
+                                            <div class="side">
+                                                <div>5 star</div>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="bar-container">
+                                                    <div class="bar-5" style="width:90%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="side right">
+                                                <div>150</div>
+                                            </div>
+                                        </div>
+                                        <div class="bar-bx">
+                                            <div class="side">
+                                                <div>4 star</div>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="bar-container">
+                                                    <div class="bar-5" style="width:70%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="side right">
+                                                <div>140</div>
+                                            </div>
+                                        </div>
+                                        <div class="bar-bx">
+                                            <div class="side">
+                                                <div>3 star</div>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="bar-container">
+                                                    <div class="bar-5" style="width:50%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="side right">
+                                                <div>120</div>
+                                            </div>
+                                        </div>
+                                        <div class="bar-bx">
+                                            <div class="side">
+                                                <div>2 star</div>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="bar-container">
+                                                    <div class="bar-5" style="width:40%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="side right">
+                                                <div>110</div>
+                                            </div>
+                                        </div>
+                                        <div class="bar-bx">
+                                            <div class="side">
+                                                <div>1 star</div>
+                                            </div>
+                                            <div class="middle">
+                                                <div class="bar-container">
+                                                    <div class="bar-5" style="width:20%;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="side right">
+                                                <div>80</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact area END -->
+
+    </div>
+    <script src="~/Assets/Admin/js/jquery.min.js"></script>
+    <script src="~/Assets/Admin/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="~/Assets/Admin/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Assets/Admin/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="~/Assets/Admin/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="~/Assets/Admin/vendors/magnific-popup/magnific-popup.js"></script>
+    <script src="~/Assets/Admin/vendors/counter/waypoints-min.js"></script>
+    <script src="~/Assets/Admin/vendors/counter/counterup.min.js"></script>
+    <script src="~/Assets/Admin/vendors/imagesloaded/imagesloaded.js"></script>
+    <script src="~/Assets/Admin/vendors/masonry/masonry.js"></script>
+    <script src="~/Assets/Admin/vendors/masonry/filter.js"></script>
+    <script src="~/Assets/Admin/vendors/owl-carousel/owl.carousel.js"></script>
+    <script src='~/Assets/Admin/vendors/scroll/scrollbar.min.js'></script>
+    <script src="~/Assets/Admin/js/functions.js"></script>
+    <script src="~/Assets/Admin/vendors/chart/chart.min.js"></script>
+    <script src="~/Assets/Admin/js/admin.js"></script>
+    <script src='~/Assets/Admin/vendors/calendar/moment.min.js'></script>
+    <script src='~/Assets/Admin/vendors/calendar/fullcalendar.js'></script>
+    <script src='~/Assets/Admin/vendors/switcher/switcher.js'></script>
+    <script src="~/Assets/Teacher/js/DisplayVideo.js"></script>
+    <script src="~/Assets/Teacher/js/DisplayImg.js"></script>
+    <script src="~/Assets/Teacher/js/Additem.js"></script>
+    <script src="~/Assets/Teacher/js/GetCurriculumData.js"></script>
+    <script src="~/Assets/Teacher/js/EditCourse.js"></script>
+    <script src="~/Assets/Teacher/js/jquery.magnific-popup.min.js"></script>
+</body>
+

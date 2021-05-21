@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Areas/Teacher/Views/Shared/_Layout.cshtml";
+}
+
+<main class="ttr-wrapper">
+    <div class="container-fluid">
+        <div class="db-breadcrumb">
+            <h4 class="breadcrumb-title">Teacher Profile</h4>
+            <ul class="db-breadcrumb-list">
+                <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                <li>Teacher Profile</li>
+            </ul>
+        </div>
+        <div class="row">
+            <!-- Your Profile Views Chart -->
+            <div class="col-lg-12 m-b30">
+                <div class="widget-box">
+                    <div class="wc-title">
+                        <h4>Student Profile</h4>
+                    </div>
+                    <div class="widget-inner">
+                       
+                            <div class=" text-center">
+                                <div class="user-profile-thumb">
+
+                                    <img src="~/Assets/Pictures/ImagesUser/@ViewBag.user.avatar" alt="" class="img-responsive" id="targetImg" />
+
+
+                                </div>
+                                <div class="profile-info">
+
+                                   
+
+                                    <h4>@ViewBag.user.name</h4>
+                                    <div>@ViewBag.user.email</div>
+                                    <div><b>Major: </b> @ViewBag.user.major</div>
+                                    <div><b>Birthday: </b> @ViewBag.user.birthday.ToString("MM/dd/yyyy")</div>
+                                    <div><b>Gender: </b> @ViewBag.user.gender</div>
+                                    <div><b>Date join: </b> @ViewBag.user.date_join.ToString("MM/dd/yyyy")</div>
+                                </div>
+                                <div class="profile-social">
+                                    <ul class="list-inline m-a0">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                          
+                       
+
+                    </div>
+                </div>
+            </div>
+            <!-- Your Profile Views Chart END-->
+        </div>
+    </div>
+</main>
+
