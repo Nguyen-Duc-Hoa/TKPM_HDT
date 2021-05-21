@@ -77,16 +77,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Histories">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.History">
-        <MappingFragment StoreEntitySet="History">
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="id_course" ColumnName="id_course" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Lectures">
       <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Lecture">
         <MappingFragment StoreEntitySet="Lecture">
@@ -94,15 +84,6 @@
           <ScalarProperty Name="link" ColumnName="link" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Processes">
-      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Process">
-        <MappingFragment StoreEntitySet="Process">
-          <ScalarProperty Name="process1" ColumnName="process" />
-          <ScalarProperty Name="id_Course" ColumnName="id_Course" />
-          <ScalarProperty Name="id_student" ColumnName="id_student" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -402,5 +383,54 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="getBookdetail1" FunctionName="DB_A72902_TKPMModel.Store.getBookdetail" />
     <FunctionImportMapping FunctionImportName="getTeacherByName1" FunctionName="DB_A72902_TKPMModel.Store.getTeacherByName" />
+    <EntitySetMapping Name="view_History">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_History">
+        <MappingFragment StoreEntitySet="view_History">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Course_bought" FunctionName="DB_A72902_TKPMModel.Store.sp_Course_bought">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Course_bought_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Processes">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Process">
+        <MappingFragment StoreEntitySet="Process">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="process1" ColumnName="process" />
+          <ScalarProperty Name="id_Course" ColumnName="id_Course" />
+          <ScalarProperty Name="id_student" ColumnName="id_student" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Histories">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_course" ColumnName="id_course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

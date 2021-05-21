@@ -1,4 +1,4 @@
-﻿
+﻿@{ var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
 <div class="upCourse">
 
     <div class="row">
@@ -65,8 +65,8 @@
                         }
 
                         <div class="price">
-                            <del>$@course.price</del>
-                            <h5>$@course.discount</h5>
+                            <del>@String.Format(info, "{0:C0}", course.price)</del>
+                            <h5>@String.Format(info, "{0:C0}", course.discount)</h5>
                         </div>
                     </div>
                 </div>

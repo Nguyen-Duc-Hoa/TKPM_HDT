@@ -14,9 +14,34 @@ namespace Online_Academy.Areas.Student.Controllers
         {
             return View();
         }
-
+        public ActionResult Course()
+        {
+            try
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                //Kieem tra dang nhap
+                if(idUser != 0)
+                {
+                    HistoriesClient HC = new HistoriesClient();
+                    ViewBag.Course = HC.GetAllCourse(idUser);
+                    return View();
+                }
+                else
+                {
+                    //login
+                    return View("Login");
+                }
+                
+            }
+            catch
+            {
+                return View();
+            }
+            
+           
+        }
         public ActionResult FavoriteCourse()
-        {  
+        {
             return View();
         }
 
@@ -80,5 +105,7 @@ namespace Online_Academy.Areas.Student.Controllers
             ViewBag.joinDate = datejoin.ToString("dd/MM/yyyy");
             return View();
         }
+
+        
     }
 }

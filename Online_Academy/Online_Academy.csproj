@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -134,8 +137,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Student\Controllers\LectureController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
+    <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -143,6 +148,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Configuration.cs" />
+    <Compile Include="Helper\Logger.cs" />
     <Compile Include="Models\Bookdetail.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -174,6 +181,7 @@
     <Compile Include="Models\getTeacherByName_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HistoriesClient.cs" />
     <Compile Include="Models\History.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -570,6 +578,11 @@
     <Content Include="Areas\Student\Views\MyCourse\LeftList.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\Instructors.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\InstructorDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadCurriculum.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\LoadLecture.cshtml" />
+    <Content Include="Areas\Student\Views\Payment\FailureView.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\Course.cshtml" />
+    <Content Include="Areas\Student\Views\Courses\CourseDetail1.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -604,6 +617,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Student\Data\" />
+    <Folder Include="Areas\Student\Views\Lecture\" />
     <Folder Include="Areas\Teacher\Controllers\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />

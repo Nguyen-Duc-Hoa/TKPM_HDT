@@ -1,0 +1,17 @@
+﻿@{ var stt = 1;}
+
+<ul>
+    @foreach (var item in ViewBag.Lecture)
+    {
+        <li>
+            <div class="curriculum-list-box" >
+                <div class="lesson" data-id="@stt">
+                    <span>Lesson @stt.</span> @item.name
+                </div>
+                
+            </div>
+            <span>120 minutes</span>
+        </li>
+    }
+    @{ stt = stt + 1;}
+</ul>

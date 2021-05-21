@@ -41,6 +41,24 @@ namespace Online_Academy.Models
                 return null;
             }
         }
+
+        public List<Lecture> GetLecturesByChap(int idChapter)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("LecturesByChap/"+idChapter).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<List<Lecture>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public IEnumerable<view_allLectures> GetLecture(int id)
         {
             try

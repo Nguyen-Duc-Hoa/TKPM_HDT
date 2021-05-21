@@ -17,6 +17,7 @@ namespace Online_Academy.Models
         public int id_student { get; set; }
         public int id_Course { get; set; }
         public Nullable<int> process1 { get; set; }
+        public Nullable<int> total { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual User User { get; set; }

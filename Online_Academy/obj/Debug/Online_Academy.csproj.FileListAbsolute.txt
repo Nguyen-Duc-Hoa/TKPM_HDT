@@ -140,6 +140,7 @@ C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\EntityFramework.SqlSe
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Newtonsoft.Json.dll
+C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\PayPal.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Net.Http.Formatting.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.Helpers.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.Mvc.dll
@@ -151,6 +152,7 @@ C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.WebPages.R
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\WebGrease.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\EntityFramework.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\EntityFramework.SqlServer.xml
+C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\PayPal.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Net.Http.Formatting.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.Helpers.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.Mvc.xml
@@ -162,8 +164,8 @@ C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.WebPages.R
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Newtonsoft.Json.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Antlr3.Runtime.pdb
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csproj.CoreCompileInputs.cache
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.pdb
+C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache

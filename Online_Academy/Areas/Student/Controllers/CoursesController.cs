@@ -42,20 +42,85 @@ namespace Online_Academy.Areas.Student.Controllers
             return PartialView();
         }
 
+        
         public ActionResult CourseDetail(int id)
         {
             CourseClient CC = new CourseClient();
-            ViewBag.Course = CC.GetCourse(id);
+            ViewBag.Course = CC.GetCourseByUser(0).Where(x => x.id == id).FirstOrDefault();
+
+            //Tinh count
+            CurriculumClient CrC = new CurriculumClient();
+            ViewBag.Curriculum = CrC.GetCurriculumByCourse(id);
+
+
             int idTecher = Convert.ToInt32(CC.GetCourse(id).id_teacher);
+            if (Session["UserId"] != null)
+            {
+                try
+                {
+                    //kiem tra mon hoc co duoc like chua
+                    int idUser = Convert.ToInt32(Session["UserId"]);
+                    var course = CC.GetCourseByUser(idUser).Where(x => x.id == id).FirstOrDefault();
+                    if(course != null)
+                    {
+                        ViewBag.Course = course;
+                    }
+                    //Kiem tra 1- da mua
+                    ViewBag.test = db.Histories.Where(x => x.id_user == idUser && x.id_course == id).FirstOrDefault();
+                    //Neeu nhu da mua
+                    if( ViewBag.test != null)
+                    {
+                        GetTeacher(idTecher);
+
+                        //load process
+                        var process = db.Processes.Where(x => x.id_student == idUser && x.id_Course == id).FirstOrDefault();
+                        int total = Convert.ToInt32(db.sp_SumLesson(id).Select(x => x.Value).FirstOrDefault());
+                        //ViewBag.percent = 1 / total;
+                        int percent = 1 / 2 * 100;
+                        ViewBag.percent = percent;
+                        ViewBag.process = process;
+                        return View("CourseDetail1");
+                    }
+                }
+                catch {
+                    //Lay trong tin mon hoc
+                    var course = CC.GetCourseByUser(0).Where(x => x.id == id).FirstOrDefault();
+                    if (course != null)
+                    {
+                        ViewBag.Course = course;
+                    }
+                }
+
+            }
+
+            //Load thong tin teacher
             GetTeacher(idTecher);
             return View();
         }   
 
+        //Lay thong tin cua giao vien cho trang chi tiet Course
         public void GetTeacher(int id)
         {
             TeachersClient TC = new TeachersClient();
             ViewBag.Teacher = TC.find(id);
         }
+
+        //Load tat car cac chuong hoc khi vao chi tiet mon hoc
+        public ActionResult LoadCurriculum(int idCourse)
+        {
+            CurriculumClient CC = new CurriculumClient();
+            ViewBag.Curriculum = CC.GetCurriculumByCourse(idCourse);
+            return PartialView();
+        }
+
+        //Load Lecture cho tung Curriculum
+        public ActionResult LoadLecture(int idChapter)
+        {
+            LectureClient LC = new LectureClient();
+            ViewBag.Lecture = LC.GetLecturesByChap(idChapter);
+            return PartialView();
+        }
+
 
         public ActionResult CourseByType(int id)
         {
