@@ -9,6 +9,7 @@ namespace Online_Academy.Areas.Student.Controllers
 {
     public class MyCourseController : Controller
     {
+        DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         // GET: Student/MyCourse
         public ActionResult Index()
         {
@@ -22,23 +23,34 @@ namespace Online_Academy.Areas.Student.Controllers
                 //Kieem tra dang nhap
                 if(idUser != 0)
                 {
-                    HistoriesClient HC = new HistoriesClient();
-                    ViewBag.Course = HC.GetAllCourse(idUser);
+                    
                     return View();
                 }
                 else
                 {
                     //login
-                    return View("Login");
+                    //return Content("<script language='javascript' type='text/javascript'>alert('Login now!');</script>");
+                    Response.Write(@"<script language='javascript'>alert('Message: \n" + "Login now!" + " .');</script>");
+                    //return Redirect("/Account/Login");
                 }
                 
             }
             catch
             {
-                return View();
+                Response.Write(@"<script language='javascript'>alert('Message: \n" + "Login now!" + " .');</script>");
+                return Redirect("/Account/Login");
             }
-            
-           
+            return Redirect("/");
+        }
+
+        [HttpGet]
+        public ActionResult loadMyCourse(int idUser)
+        {
+            HistoriesClient HC = new HistoriesClient();
+            //ViewBag.Course = HC.GetAllCourse(idUser);
+
+            ViewBag.Course = db.sp_Course_bought(idUser);
+            return PartialView("loadFCourse");
         }
         public ActionResult FavoriteCourse()
         {

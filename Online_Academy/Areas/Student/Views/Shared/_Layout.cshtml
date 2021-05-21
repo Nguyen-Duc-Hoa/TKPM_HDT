@@ -86,7 +86,7 @@
 
                                     <div class="dropdown">
                                         <span class="dropdown-custom">
-                                            <img src="~@Session["avatar"].ToString()" style="border-radius: 50%; width:25px; height:25px" alt="ava" />
+                                            <img src="@Session["avatar"].ToString()" style="border-radius: 50%; width:25px; height:25px" alt="ava" />
                                             <a href="#">@Session["username"]</a>
                                         </span>
                                         <div class="dropdown-custom-content">
@@ -157,7 +157,7 @@
                                         <li class="add-menu-left">
                                             <h5 class="menu-adv-title">My Courses</h5>
                                             <ul>
-                                                <li><a href="courses.html">Courses </a></li>
+                                                <li><a href="/Student/MyCourse/Course">Courses </a></li>
                                                 <li><a href="/Student/MyCourse/FavoriteCourse">Favorite Courses</a></li>
                                                 <li><a href="profile.html">Completed Courses</a></li>
                                                 <li><a href="/Student/MyCourse/Instructors">Instructor Profile</a></li>

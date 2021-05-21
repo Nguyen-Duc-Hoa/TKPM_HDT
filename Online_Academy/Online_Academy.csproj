@@ -146,6 +146,7 @@
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
     <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
     <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Student\Controllers\YourCousrseController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\Controllers\TeacherCoursesController.cs" />
     <Compile Include="Areas\Teacher\Controllers\TeachersController.cs" />
@@ -711,6 +712,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Lecture\" />
+    <Folder Include="Areas\Student\Views\YourCousrse\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Assets\Admin\assets\images\" />
     <Folder Include="Assets\Admin\images\flag\" />
