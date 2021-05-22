@@ -11,16 +11,16 @@ namespace Online_Academy.Models
     {
 
         private string Base_URL = "https://localhost:44329/api/";
-        public List<sp_Couse_User_Result> GetAllCourse(int idUser)
+        public List<sp_Course_bought_Result> GetAllCourse(int idUser)
         {
             try
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(Base_URL);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage respone = client.GetAsync("Histories"+ idUser).Result;
+                HttpResponseMessage respone = client.GetAsync("Histories" + idUser).Result;
                 if (respone.IsSuccessStatusCode)
-                    return respone.Content.ReadAsAsync<List<sp_Couse_User_Result>>().Result;
+                    return respone.Content.ReadAsAsync<List<sp_Course_bought_Result>>().Result;
                 return null;
             }
             catch

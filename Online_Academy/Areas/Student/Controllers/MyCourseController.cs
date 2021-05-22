@@ -9,7 +9,24 @@ namespace Online_Academy.Areas.Student.Controllers
 {
     public class MyCourseController : Controller
     {
+        DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         // GET: Student/MyCourse
+
+        public bool AuthorizeUser()
+        {
+            try
+            {
+                if(Convert.ToInt32(Session["UserId"]) == 0)
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
         public ActionResult Index()
         {
             return View();
@@ -20,30 +37,46 @@ namespace Online_Academy.Areas.Student.Controllers
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
                 //Kieem tra dang nhap
-                if(idUser != 0)
+                if(AuthorizeUser())
                 {
-                    HistoriesClient HC = new HistoriesClient();
-                    ViewBag.Course = HC.GetAllCourse(idUser);
+                    
                     return View();
                 }
                 else
                 {
                     //login
-                    return View("Login");
+                    //return Content("<script language='javascript' type='text/javascript'>alert('Login now!');</script>");
+                    Response.Write(@"<script language='javascript'>alert('Message: \n" + "Login now!" + " .');</script>");
+                    //return Redirect("/Account/Login");
                 }
                 
             }
             catch
             {
-                return View();
+                Response.Write(@"<script language='javascript'>alert('Message: \n" + "Login now!" + " .');</script>");
+                return Redirect("/Account/Login");
             }
-            
-           
+            return Redirect("/Account/Login");
+        }
+
+        [HttpGet]
+        public ActionResult loadMyCourse(int idUser)
+        {
+            HistoriesClient HC = new HistoriesClient();
+            //ViewBag.Course = HC.GetAllCourse(idUser);
+
+            ViewBag.Course = db.sp_Course_bought(idUser).Where(x => x.state == true);
+            return PartialView("loadFCourse");
         }
         public ActionResult FavoriteCourse()
         {
-            return View();
+            if(AuthorizeUser())
+            {
+                return View();
+            }
+            return Redirect("/Accont/Login");
         }
+            
 
         public ActionResult loadFCourse()
         {
@@ -53,7 +86,7 @@ namespace Online_Academy.Areas.Student.Controllers
                 if (idUser != 0)
                 {
                     CourseClient CC = new CourseClient();
-                    var allCourse = CC.GetCourseByUser(idUser);
+                    var allCourse = CC.GetCourseByUser(idUser).Where(x => x.state == true);
                     ViewBag.Course = allCourse.Where(x => x.id_student == idUser);
                     return View();
                 }
@@ -74,17 +107,10 @@ namespace Online_Academy.Areas.Student.Controllers
         //complete course
         public ActionResult CompletedCourse()
         {
-            try
+            
+            if(AuthorizeUser())
             {
-                int iduser = Convert.ToInt32(Session["UserId"]);
-                if(iduser != 0)
-                {
-
-                }
-            }
-            catch
-            {
-
+                return View();
             }
             return View();
         }

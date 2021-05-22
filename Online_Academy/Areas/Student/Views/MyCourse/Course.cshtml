@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Course";
     Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+
+    var idUser = Convert.ToInt32(Session["UserId"]);
 }
 
 <div class="page-content bg-white">
@@ -9,7 +11,7 @@
     <div class="page-banner ovbl-dark" style="background-image:url(../../../Assets/Users/images/banner/banner3.jpg);">
         <div class="container">
             <div class="page-banner-entry">
-                <h1 class="text-white">Favorite Courses</h1>
+                <h1 class="text-white">My Courses</h1>
             </div>
         </div>
     </div>
@@ -115,9 +117,26 @@
 
     <!-- contact area END -->
 </div>
-
+@section load{
 <script>
-    $(document).ready(function () {
-        //add favorite course
-    })
+    debugger;
+    $.ajax({
+        url: "/Student/MyCourse/LeftList",
+        success: function (result) {
+            debugger;
+            $(".loadCate").html(result);
+        }
+    });
+
+    $.ajax({
+        
+        url: "/Student/MyCourse/loadMyCourse",
+        data: { idUser: @idUser },
+        success: function (result) {
+            debugger;
+            $(".loadCourse").html(result);
+        }
+
+    });
 </script>
+}

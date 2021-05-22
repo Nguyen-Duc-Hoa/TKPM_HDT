@@ -24,7 +24,7 @@ namespace Online_Academy.Areas.Student.Controllers
             if (Session["UserId"] != null)
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
-                ViewBag.Course = CC.GetCourseByUser(idUser);
+                ViewBag.Course = CC.GetCourseByUser(idUser).Where(x => x.state == true);
             }
             return PartialView();
         }
@@ -126,7 +126,7 @@ namespace Online_Academy.Areas.Student.Controllers
         public ActionResult CourseByType(int id)
         {
             CourseClient CC = new CourseClient();
-            ViewBag.Course = db.Courses.Where(x => x.id_subcat == id);
+            ViewBag.Course = db.Courses.Where(x => x.id_subcat == id );
 
             if (Session["UserId"] != null)
             {
@@ -139,7 +139,7 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult CourseByTeacher(int idTeacher)
         {
-            ViewBag.TCourse = db.sp_teacherCourses(idTeacher);
+            ViewBag.TCourse = db.sp_teacherCourses(idTeacher).Where(x => x.state == true);
             if(ViewBag.TCourse != null)
             {
                 return PartialView();
@@ -154,7 +154,7 @@ namespace Online_Academy.Areas.Student.Controllers
             if (Session["UserId"] != null)
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
-                ViewBag.Course = CC.GetCourseByUser(idUser);
+                ViewBag.Course = CC.GetCourseByUser(idUser).Where(x => x.state == true);
             }
             
             return PartialView("CourseByType");
@@ -179,19 +179,29 @@ namespace Online_Academy.Areas.Student.Controllers
         public bool Like(int idCourse)
         {
             DateTime date = DateTime.Now;
-            if (Session["UserId"] != null)
+            try
             {
-                int idStudent = Convert.ToInt32(Session["UserId"]);
-                try
+                if (Convert.ToInt32(Session["UserId"]) != 0)
                 {
-                    db.sp_add_favorite(idStudent, idCourse, date);
-                }
-                catch
-                {
-                    return false;
+                    int idStudent = Convert.ToInt32(Session["UserId"]);
+                    try
+                    {
+                        db.sp_add_favorite(idStudent, idCourse, date);
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
-            return true;
+            catch
+            {
+                
+            }
+            return false;
+
+
         }
 
         public bool RemoveLike (int idCourse)
@@ -205,13 +215,14 @@ namespace Online_Academy.Areas.Student.Controllers
                     //CC.RemoveLike(idUser, idCourse);
 
                     db.sp_remove_favorite(idUser, idCourse);
+                    return true;
                 }
             }
             catch
             {
                 return false;   
             }
-            return true;
+            return false;
         }
 
         //click stype of course in nabar
@@ -221,7 +232,7 @@ namespace Online_Academy.Areas.Student.Controllers
             try
             {
                 int iduser = Convert.ToInt32(Session["UserId"]);
-                if (iduser != 0)
+
                 {
                     CourseClient CC = new CourseClient();
                     var allCourse = CC.GetCourseByUser(iduser);
