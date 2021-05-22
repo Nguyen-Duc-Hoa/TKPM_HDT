@@ -37,6 +37,7 @@ namespace Online_Academy.Models
         public Nullable<bool> state { get; set; }
         public Nullable<int> price { get; set; }
         public Nullable<int> discount { get; set; }
+        public Nullable<bool> statesave { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bookdetail> Bookdetails { get; set; }

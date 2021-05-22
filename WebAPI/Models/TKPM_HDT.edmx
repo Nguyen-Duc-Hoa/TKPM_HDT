@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_A72902_TKPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_A72902_TKPMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bookdetail">
           <Key>
             <PropertyRef Name="id_student" />
@@ -45,6 +45,7 @@
           <Property Name="state" Type="bit" />
           <Property Name="price" Type="int" />
           <Property Name="discount" Type="int" />
+          <Property Name="statesave" Type="bit" />
         </EntityType>
         <EntityType Name="Curriculum">
           <Key>
@@ -629,6 +630,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Purchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_remove_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idStudent" Type="int" Mode="In" />
           <Parameter Name="idCourse" Type="int" Mode="In" />
@@ -856,8 +858,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_A72902_TKPMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -931,6 +932,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <NavigationProperty Name="Processes" Relationship="Self.FK__Process__id_Cour__4BAC3F29" FromRole="Course" ToRole="Process" />
           <NavigationProperty Name="Rates" Relationship="Self.FK__Rate__id_course__4D94879B" FromRole="Course" ToRole="Rate" />
           <NavigationProperty Name="Replies" Relationship="Self.FK__Reply__id_course__07C12930" FromRole="Course" ToRole="Reply" />
+          <Property Name="statesave" Type="Boolean" />
         </EntityType>
         <EntityType Name="Curriculum">
           <Key>
@@ -1533,35 +1535,35 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
           <FunctionImport Name="func_Course" IsComposable="true" ReturnType="Collection(DB_A72902_TKPMModel.func_Course_Result)">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getBookdetail" ReturnType="Collection(DB_A72902_TKPMModel.getBookdetail_Result)">
             <Parameter Name="id_student" Mode="In" Type="Int32" />
             <Parameter Name="id_course" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getCourseByState" ReturnType="Collection(DB_A72902_TKPMModel.getCourseByState_Result)">
-            <Parameter Name="state" Mode="In" Type="Boolean" />
+          <Parameter Name="state" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="getCurriculumByCourse" ReturnType="Collection(DB_A72902_TKPMModel.getCurriculumByCourse_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getLectureByCurriculum" ReturnType="Collection(DB_A72902_TKPMModel.getLectureByCurriculum_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getNumberofLectures" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getNumberofStudents" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getStudentByCourse" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getTeacherById" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getTeacherByName" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherByName_Result)">
-            <Parameter Name="name" Mode="In" Type="String" />
+          <Parameter Name="name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_add_favorite">
             <Parameter Name="idStudent" Mode="In" Type="Int32" />
@@ -1575,10 +1577,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="sp_Course_bought" ReturnType="Collection(DB_A72902_TKPMModel.sp_Course_bought_Result)">
-            <Parameter Name="idUser" Mode="In" Type="Int32" />
+          <Parameter Name="idUser" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Couse_User" ReturnType="Collection(DB_A72902_TKPMModel.sp_Couse_User_Result)">
-            <Parameter Name="idStudent" Mode="In" Type="Int32" />
+          <Parameter Name="idStudent" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_creatediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1609,16 +1611,17 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_SumLesson" ReturnType="Collection(Int32)">
-            <Parameter Name="idCourse" Mode="In" Type="Int32" />
+          <Parameter Name="idCourse" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_teacherCourses" ReturnType="Collection(DB_A72902_TKPMModel.sp_teacherCourses_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_testBought" ReturnType="Collection(Int32)">
             <Parameter Name="idUser" Mode="In" Type="Int32" />
             <Parameter Name="idCourse" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_Purchase" ReturnType="Collection(DB_A72902_TKPMModel.sp_Purchase_Result)" />
         </EntityContainer>
         <ComplexType Name="getBookdetail_Result">
           <Property Type="Int32" Name="id_student" Nullable="false" />
@@ -1740,6 +1743,15 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Type="Int32" Name="price" Nullable="true" />
           <Property Type="Int32" Name="discount" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_Purchase_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="id_user" Nullable="false" />
+          <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="price" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1776,6 +1788,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="DB_A72902_TKPMModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="statesave" ColumnName="statesave" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -2234,6 +2247,19 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_testBought" FunctionName="DB_A72902_TKPMModel.Store.sp_testBought" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_Purchase" FunctionName="DB_A72902_TKPMModel.Store.sp_Purchase">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Purchase_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
