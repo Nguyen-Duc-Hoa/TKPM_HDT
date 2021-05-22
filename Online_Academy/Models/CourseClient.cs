@@ -62,7 +62,23 @@ namespace Online_Academy.Models
                 return null;
             }
         }
-
+        public IEnumerable<Course> GetCoursesByStateSave(int id,bool statesave)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("CoursesByStateSave?id=" + id+"&statesave="+statesave).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<IEnumerable<Course>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
         public List<sp_Couse_User_Result> GetCourseByUser(int idUser)
         {
             try

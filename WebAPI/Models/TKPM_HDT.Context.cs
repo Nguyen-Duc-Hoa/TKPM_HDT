@@ -334,5 +334,18 @@ namespace WebAPI.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<getCourseByStateSave_Result> getCourseByStateSave(Nullable<int> id, Nullable<bool> statesave)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var statesaveParameter = statesave.HasValue ?
+                new ObjectParameter("statesave", statesave) :
+                new ObjectParameter("statesave", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByStateSave_Result>("getCourseByStateSave", idParameter, statesaveParameter);
+        }
     }
 }

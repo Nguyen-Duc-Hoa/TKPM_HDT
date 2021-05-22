@@ -57,7 +57,7 @@ $(function () {
         formdata.append("chaptername", chaptername);
         formdata.append("idcurri", idcurri);
         formdata.append("idcourse", id);
-        formdata.append("state", 0);
+        formdata.append("statesave", 0);
       
         for (var p of formdata) {
             console.log(p);
@@ -131,7 +131,7 @@ $(function () {
         formdata.append("chaptername", chaptername);
         formdata.append("idcurri", idcurri);
         formdata.append("idcourse", id);
-        formdata.append("state", 1);
+        formdata.append("statesave", 1);
        
 
         for (var p of formdata) {

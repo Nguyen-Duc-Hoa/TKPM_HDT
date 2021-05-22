@@ -21,7 +21,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
         {
             TeachersClient tc = new TeachersClient();
             view_Teachers teacher = new view_Teachers();
-            teacher = tc.findview_teacher(2);
+            teacher = tc.find(2);
             return View(teacher);
         }
 
@@ -31,18 +31,19 @@ namespace Online_Academy.Areas.Teacher.Controllers
         public ActionResult Edit( view_Teachers view_Teachers,HttpPostedFileBase file)
         {
             TeacherViewModel tv = new TeacherViewModel();
+            UserViewModel uv = new UserViewModel();
             view_Teachers viewteacher = new view_Teachers();
            
             TeachersClient tc = new TeachersClient();
             //viewteacher = tc.findview_teacher(2);
           //  tv.teacher = tc.find(2);
             UsersClient uc = new UsersClient();
-
+           
          
-            tv.teacher.description = view_Teachers.description;
+            //tv.teacher.description = view_Teachers.description;
             
-            tc.Edit(tv.teacher);
-            tv.user = uc.find(2);
+           // tc.Edit(tv.teacher);
+            uv.user = uc.find(2);
            
             if (file != null)
             {
@@ -51,16 +52,16 @@ namespace Online_Academy.Areas.Teacher.Controllers
 
                 // save image in folder
                 file.SaveAs(physicalPath);
-                tv.user.avatar = ImageName;
+                uv.user.avatar = ImageName;
             }
            
             
-            tv.user.name = view_Teachers.name;
-            tv.user.email = view_Teachers.email;
-            tv.user.major = view_Teachers.major;
-            tv.user.birthday = view_Teachers.birthday;
-            tv.user.gender = view_Teachers.gender;
-            uc.Edit(tv.user);
+            uv.user.name = view_Teachers.name;
+            uv.user.email = view_Teachers.email;
+            uv.user.major = view_Teachers.major;
+            uv.user.birthday = view_Teachers.birthday;
+            uv.user.gender = view_Teachers.gender;
+            uc.Edit(uv.user);
               return RedirectToAction("Index");
             
             

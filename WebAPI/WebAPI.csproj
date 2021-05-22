@@ -198,6 +198,9 @@
     <Compile Include="Models\getBookdetail_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getCourseByStateSave_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getCourseByState_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>

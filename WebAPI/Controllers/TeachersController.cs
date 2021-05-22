@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
             return teacher.AsQueryable();
         }
         // GET: api/Teachers/5
-        [Route("api/view_Teachers/{id}")]
+      
         [ResponseType(typeof(view_Teachers))]
         public IHttpActionResult Getview_Teacher(int id)
         {
@@ -40,18 +40,7 @@ namespace WebAPI.Controllers
 
             return Ok(teacher);
         }
-        [Route("api/Teachers/{id}")]
-        [ResponseType(typeof(Teacher))]
-        public IHttpActionResult GetTeacher(int id)
-        {
-            Teacher teacher = db.Teachers.Find(id);
-            if (teacher == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(teacher);
-        }
+        
         // PUT: api/Teachers/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTeacher(int id, Teacher teacher)
