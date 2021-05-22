@@ -16,7 +16,15 @@
                 {
                     <div class="card-courses-list admin-courses">
                         <div class="card-courses-media">
-                            <img src="~/Assets/Admin/images/courses/pic1.jpg" alt="" />
+                            @if (item.avatar == null)
+                            {
+                                <img src="~/Assets/Admin/images/courses/pic1.jpg" alt="" />
+                            }
+                            else
+                            {
+                                <img src="@item.avatar" style="height: 215px" alt="" />
+                            }
+
                         </div>
                         <div class="card-courses-full-dec">
                             @if (item.state == true)
