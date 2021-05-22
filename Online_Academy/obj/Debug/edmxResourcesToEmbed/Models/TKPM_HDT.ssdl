@@ -40,6 +40,7 @@
     <Property Name="state" Type="bit" />
     <Property Name="price" Type="int" />
     <Property Name="discount" Type="int" />
+    <Property Name="statesave" Type="bit" />
   </EntityType>
   <EntityType Name="Curriculum">
     <Key>
@@ -624,6 +625,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_Purchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_remove_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idStudent" Type="int" Mode="In" />
     <Parameter Name="idCourse" Type="int" Mode="In" />

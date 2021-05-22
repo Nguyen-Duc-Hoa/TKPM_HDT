@@ -144,6 +144,7 @@
     <Compile Include="Areas\Student\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Student\Controllers\LectureController.cs" />
     <Compile Include="Areas\Student\Controllers\MainPageController.cs" />
+    <Compile Include="Areas\Student\Controllers\ManageController.cs" />
     <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
     <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Student\Controllers\YourCousrseController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Models\Process.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PurchaseClient.cs" />
     <Compile Include="Models\Rate.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -231,6 +233,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Purchase_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_teacherCourses_Result.cs">
@@ -667,6 +672,7 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Student\Views\Manage\Purchase.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

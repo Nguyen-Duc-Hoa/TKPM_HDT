@@ -334,5 +334,10 @@ namespace Online_Academy.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<sp_Purchase_Result> sp_Purchase()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Purchase_Result>("sp_Purchase");
+        }
     }
 }

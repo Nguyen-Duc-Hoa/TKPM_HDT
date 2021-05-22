@@ -70,6 +70,7 @@
     <NavigationProperty Name="Processes" Relationship="Self.FK__Process__id_Cour__4BAC3F29" FromRole="Course" ToRole="Process" />
     <NavigationProperty Name="Rates" Relationship="Self.FK__Rate__id_course__4D94879B" FromRole="Course" ToRole="Rate" />
     <NavigationProperty Name="Replies" Relationship="Self.FK__Reply__id_course__07C12930" FromRole="Course" ToRole="Reply" />
+    <Property Name="statesave" Type="Boolean" />
   </EntityType>
   <EntityType Name="Curriculum">
     <Key>
@@ -758,6 +759,7 @@
       <Parameter Name="idCourse" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_Purchase" ReturnType="Collection(DB_A72902_TKPMModel.sp_Purchase_Result)" />
   </EntityContainer>
   <ComplexType Name="getBookdetail_Result">
     <Property Type="Int32" Name="id_student" Nullable="false" />
@@ -878,5 +880,14 @@
     <Property Type="Boolean" Name="state" Nullable="true" />
     <Property Type="Int32" Name="price" Nullable="true" />
     <Property Type="Int32" Name="discount" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Purchase_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_user" Nullable="false" />
+    <Property Type="DateTime" Name="date" Nullable="true" Precision="23" />
+    <Property Type="Double" Name="price" Nullable="true" />
   </ComplexType>
 </Schema>

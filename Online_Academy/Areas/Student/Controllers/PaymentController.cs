@@ -22,9 +22,10 @@ namespace Online_Academy.Areas.Student.Controllers
             return View();
         }
 
-        [HttpPost]
+
         public ActionResult AddHistory()
         {
+            int idCourse;
             try
             {
                 HistoriesClient HC = new HistoriesClient();
@@ -33,24 +34,26 @@ namespace Online_Academy.Areas.Student.Controllers
                 history.id_user = Convert.ToInt32(Session["UserId"].ToString());
                 history.price = Convert.ToDouble(Session["price"].ToString());
                 history.date = DateTime.Now;
+                idCourse = Convert.ToInt32(Session["idCourse"]);
 
-                if(history.id_course != 0)
+                if (history.id_course != 0)
                 {
                     db.Histories.Add(history);
                     db.SaveChanges();
+                    return Redirect("/Student/Courses/CourseDetail/" + idCourse);
                 }
                 else
                 {
-                    return Content("Account/Login");
+                    return Redirect("/Account/Login");
                 }
                 
                 
             }
             catch
             {
-                return View();
+                return Redirect("/Account/Login");
             }
-            return RedirectToAction("Student/Courses/CourseDetail/");
+
         }
 
         public ActionResult PaymentWithPaypal()
