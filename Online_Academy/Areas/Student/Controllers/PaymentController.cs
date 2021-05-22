@@ -123,6 +123,9 @@ namespace Online_Academy.Areas.Student.Controllers
 
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
+
+            double price = Convert.ToDouble(Session["price"]);
+            string name = Session["course"].ToString();
             var itemList = new ItemList() { items = new List<Item>() };
             //Các giá trị bao gồm danh sách sản phẩm, thông tin đơn hàng
             //Sẽ được thay đổi bằng hành vi thao tác mua hàng trên website
@@ -130,9 +133,9 @@ namespace Online_Academy.Areas.Student.Controllers
             itemList.items.Add(new Item()
             {
                 //Thông tin đơn hàng
-                name = Session["course"].ToString(),
+                name = name,
                 currency = "USD",
-                price = Math.Round(Convert.ToDouble(Session["price"])/tyGiaUSD, 2).ToString(),
+                price = price.ToString(),
                 quantity = "1",
                 sku = "sku"
             });
@@ -149,23 +152,23 @@ namespace Online_Academy.Areas.Student.Controllers
             {
                 tax = "0",
                 shipping = "0",
-                subtotal = "0"
+                subtotal = price.ToString()
             };
             //Đơn vị tiền tệ và tổng đơn hàng cần thanh toán
-            var t = Math.Round(Convert.ToDouble(Session["price"]) / tyGiaUSD, 2).ToString(); // Total must be equal to sum of shipping, tax and subtotal.
+            // Total must be equal to sum of shipping, tax and subtotal.
             var amount = new Amount()
             {
                 currency = "USD",
                 
-                total = Math.Round(Convert.ToDouble(Session["price"]) / tyGiaUSD, 2).ToString(), // Total must be equal to sum of shipping, tax and subtotal.
+                total = price.ToString(), // Total must be equal to sum of shipping, tax and subtotal.
                 details = details
             };
             var transactionList = new List<Transaction>();
             //Tất cả thông tin thanh toán cần đưa vào transaction
             transactionList.Add(new Transaction()
             {
-                description = "Transaction description.",
-                invoice_number = "your invoice number",
+                description = "Thanh toan Paypal",
+                invoice_number = "#a5D30xCdv6",
                 amount = amount,
                 item_list = itemList
             });
