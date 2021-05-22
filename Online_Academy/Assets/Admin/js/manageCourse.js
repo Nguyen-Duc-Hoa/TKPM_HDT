@@ -22,9 +22,9 @@
         var courseCard = getParent(this)
 
         $.ajax({
-            url: "/Admin/Teacher/Cancel",
+            url: "/Admin/Course/Cancel",
             type: "POST",
-            data: { idTeacher: idTeacher },
+            data: { idCourse: idCourse },
             success: function (response) {
                 console.log(response)
                 // delete teacher card
