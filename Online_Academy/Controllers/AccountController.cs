@@ -39,8 +39,8 @@ namespace Online_Academy.Controllers
                 }
                 else
                 {
-                    Response.Cookies["userName"].Value = "";
-                    Response.Cookies["pass"].Value = "";
+                    Response.Cookies["userName"].Value = null;
+                    Response.Cookies["pass"].Value = null;
                 }
 
                 Session["userID"] = dbUser.id.ToString().Trim();
