@@ -169,6 +169,8 @@ D:\laptrinhweb\TKPM_HDT\Online_Academy\bin\Newtonsoft.Json.xml
 D:\laptrinhweb\TKPM_HDT\Online_Academy\bin\Antlr3.Runtime.pdb
 D:\laptrinhweb\TKPM_HDT\Online_Academy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\laptrinhweb\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
+D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\bin\PayPal.dll
+D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\bin\PayPal.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Online_Academy.dll.config
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Online_Academy.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Online_Academy.pdb
@@ -251,9 +253,8 @@ C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\System.Web.WebPages.R
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Newtonsoft.Json.xml
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Antlr3.Runtime.pdb
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csproj.CoreCompileInputs.cache
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.pdb
-D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\bin\PayPal.dll
-D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\bin\PayPal.xml

@@ -167,9 +167,15 @@
                     <div class="col-lg-9 col-md-8 col-sm-12">
                         <div class="courses-post">
                             <div class="ttr-post-media media-effect">
-                                <a href="#">
-                                    <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt=".avatar" />
-                                </a>
+                                @*<a href="#">
+            <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt=".avatar" />
+        </a>*@
+                                <video width="800" controls>
+
+                                    <source src="~/assets/Videos/@course.preview" type="video/mp4" />
+
+                                    Your browser does not support HTML video.
+                                </video>
                             </div>
                             <div class="ttr-post-info">
                                 <div class="ttr-post-title ">

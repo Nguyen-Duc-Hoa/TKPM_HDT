@@ -17,7 +17,7 @@ namespace Online_Academy.Models
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(Base_URL);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage respone = client.GetAsync("Purchase" + idUser).Result;
+                HttpResponseMessage respone = client.GetAsync("Purchase/" + idUser).Result;
                 if (respone.IsSuccessStatusCode)
                     return respone.Content.ReadAsAsync<List<sp_Purchase_Result>>().Result;
                 return null;

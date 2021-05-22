@@ -154,7 +154,7 @@ namespace Online_Academy.Areas.Student.Controllers
             if (Session["UserId"] != null)
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
-                ViewBag.Course = CC.GetCourseByUser(idUser).Where(x => x.state == true);
+                ViewBag.Course = CC.GetCourseByUser(idUser);
             }
             
             return PartialView("CourseByType");

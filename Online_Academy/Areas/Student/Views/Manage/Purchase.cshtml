@@ -1,33 +1,44 @@
 ﻿
 @{
     ViewBag.Title = "Purchase";
-    Layout = "~/Areas/Teacher/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
     var purchase = ViewBag.purchase;
+
 }
 
-
-@foreach (var item in purchase)
-{
+<div class="container">
+    @foreach (var item in purchase)
+    {
     <div class="instructor-bx">
-        <div class="instructor-author">
-            <a href="/Student/Course/CourseDetail/@item.id">
-                <img src="@item.thumbnail.Trim()" alt="images.jpg" />
+        <div class="image" style="width:150px; height:120px;">
+            <a href="/Student/Courses/CourseDetail/@item.id">
+                <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail.Trim()" alt="images.jpg" />
             </a>
-        </div>
-        <div class="instructor-info">
-            <div class="detail">
-                <h6>@item.name </h6>
-            </div>
 
-            <span>Professor</span>
-            <ul class="list-inline m-tb10">
-                <li><a href="#" class="btn sharp-sm facebook"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#" class="btn sharp-sm twitter"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-            <p class="m-b0">@item.date</p>
         </div>
+
+        <div class="bar-bx">
+            <div class="side">
+                <div>      </div>
+            </div>
+            <div class="middle">
+                <div class="instructor-info">
+                    <div class="detail">
+                        <h6>@item.name </h6>
+                    </div>
+
+                    <span>@item.short_description</span>
+                   
+                    <p class="m-b0">@Convert.ToDateTime(item.date).ToString("dd/MM/yyyy")</p>
+                </div>
+            </div>
+            <div class="side right">
+                <div>@Convert.ToDateTime(item.date).ToString("hh:mm tt")</div>
+            </div>
+        </div>
+        
     </div>
-}
+    }
+</div>
+
 
