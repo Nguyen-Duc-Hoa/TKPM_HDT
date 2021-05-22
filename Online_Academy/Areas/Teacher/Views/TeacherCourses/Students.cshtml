@@ -19,7 +19,7 @@
                             {
                             <li>
                                 <span class="new-users-pic">
-                                    <img src="~/Assets/Pictures/ImagesUser/@item.user.avatar" alt="" />
+                                    <img src="@item.user.avatar.Trim()" alt="" />
                                 </span>
                                 <span class="new-users-text">
                                     <a href="@Url.Action("ProfileUser","TeacherCourses",new { id = item.user.id })" class="new-users-name">@item.user.name </a>

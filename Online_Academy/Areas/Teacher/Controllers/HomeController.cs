@@ -12,7 +12,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
         public ActionResult Index()
         {
             int a = Convert.ToInt32(Session["userID"]);
-            if (Session["role"].ToString() !="Teacher" || a==0|| Session["userID"]==null)
+            if ( a==0|| Session["userID"]==null|| Session["role"].ToString() != "Teacher")
             {
                 return View("../Account/Login");
                

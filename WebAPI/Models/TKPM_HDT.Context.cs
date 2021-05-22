@@ -85,6 +85,19 @@ namespace WebAPI.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByState_Result>("getCourseByState", stateParameter);
         }
     
+        public virtual ObjectResult<getCourseByStateSave_Result> getCourseByStateSave(Nullable<int> id, Nullable<bool> statesave)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var statesaveParameter = statesave.HasValue ?
+                new ObjectParameter("statesave", statesave) :
+                new ObjectParameter("statesave", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByStateSave_Result>("getCourseByStateSave", idParameter, statesaveParameter);
+        }
+    
         public virtual ObjectResult<getCurriculumByCourse_Result> getCurriculumByCourse(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -269,6 +282,11 @@ namespace WebAPI.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
+        public virtual ObjectResult<sp_Purchase_Result> sp_Purchase()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Purchase_Result>("sp_Purchase");
+        }
+    
         public virtual int sp_remove_favorite(Nullable<int> idStudent, Nullable<int> idCourse)
         {
             var idStudentParameter = idStudent.HasValue ?
@@ -333,19 +351,6 @@ namespace WebAPI.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<getCourseByStateSave_Result> getCourseByStateSave(Nullable<int> id, Nullable<bool> statesave)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            var statesaveParameter = statesave.HasValue ?
-                new ObjectParameter("statesave", statesave) :
-                new ObjectParameter("statesave", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByStateSave_Result>("getCourseByStateSave", idParameter, statesaveParameter);
         }
     }
 }

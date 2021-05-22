@@ -10,6 +10,7 @@
     newElem.find('input.filevideo').removeAttr('id').attr('id', 'video' + a);
     newElem.find('source').remove();
     newElem.find('.idcurri').remove();
+    newElem.find('.idlec').remove();
     newElem.find('.delchap').remove();
     newElem.find('.closechap').show();
     newElem.find('video').hide();

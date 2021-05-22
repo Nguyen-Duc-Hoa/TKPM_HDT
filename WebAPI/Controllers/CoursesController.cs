@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         //    return course.AsQueryable();
         //}
         // GET: api/Courses/5
-        [ResponseType(typeof(view_allCourses))]
+        [ResponseType(typeof(Course))]
         public IHttpActionResult Getview_allCourses(int id)
         {
             view_allCourses view_allCourses = db.view_allCourses.Find(id);

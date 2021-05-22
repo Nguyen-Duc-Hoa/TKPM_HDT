@@ -7,25 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Online_Academy.Models
+namespace WebAPI.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class view_allCourses
+    public partial class sp_Purchase_Result
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string description { get; set; }
         public string short_description { get; set; }
         public string thumbnail { get; set; }
-        public string preview { get; set; }
-        public Nullable<int> id_teacher { get; set; }
-        public Nullable<int> id_subcat { get; set; }
-        public Nullable<bool> state { get; set; }
-        
-        public Nullable<int> price { get; set; }
-        public Nullable<int> discount { get; set; }
-       
+        public int id_user { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
+        public Nullable<double> price { get; set; }
     }
 }

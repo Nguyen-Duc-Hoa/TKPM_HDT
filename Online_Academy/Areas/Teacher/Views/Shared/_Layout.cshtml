@@ -78,7 +78,7 @@
                 <!-- header left menu start -->
                 <ul class="ttr-header-navigation">
                     <li>
-                        <a href="#" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                        <a href="/Student/MainPage" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                     </li>
 
                 </ul>
@@ -164,13 +164,13 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="~/Assets/Pictures/ImagesUser/@Session["avatar"]" width="32" height="32"></span></a>
+                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="@Session["avatar"]" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
                             <ul>
                                 <li><a href="/Teacher/Teachers/Index">My profile</a></li>
                                 
                                
-                                <li><a href="#">Logout</a></li>
+                                <li><a href="/Account/Logout">Logout</a></li>
                             </ul>
                         </div>
                     </li>
