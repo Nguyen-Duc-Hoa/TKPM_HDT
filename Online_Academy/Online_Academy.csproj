@@ -518,6 +518,7 @@
     <Content Include="Assets\Users\js\jquery.min.js" />
     <Content Include="Assets\Users\js\jquery.scroller.js" />
     <Content Include="Assets\Users\js\loadCourseByType.js" />
+    <Content Include="Assets\Users\js\process.js" />
     <Content Include="Assets\Users\js\Teachers.js" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.css" />
     <Content Include="Assets\Users\vendors\bootstrap-select\bootstrap-select.min.js" />

@@ -132,6 +132,22 @@ namespace Online_Academy.Areas.Student.Controllers
             return View();
         }
 
+        public ActionResult Process(int process)
+        {
+            if(AuthorizeUser())
+            {
+                try
+                {
+                    
+                }
+                catch
+                {
+
+                }
+            }
+            return View();
+        }
+
         
     }
 }

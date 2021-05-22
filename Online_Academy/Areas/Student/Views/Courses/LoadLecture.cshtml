@@ -1,28 +1,44 @@
-﻿@{ var stt = 1;}
+﻿@{ var stt = 1;
+    int test = Convert.ToInt32(Session["end"]);
+}
 
 <ul>
     @foreach (var item in ViewBag.Lecture)
     {
-    <li>
-        <div class="curriculum-list-box">
-            <div class="buycourse">
-                <div class="lesson" id="@item.id, @item.id" data-id="@stt">
-                    <span>Lesson @stt.</span> @item.name
+        { var a = Convert.ToInt32(Session["stt"]); }
+        <li>
+            <div class="curriculum-list-box">
+                <div class="buycourse">
+                    <div class="lesson123" data-id="@Session["stt"]">
+                        <span>Lesson @stt.</span> @item.name
+                    </div>
                 </div>
+
             </div>
 
-        </div>
-        <div id ="@item.id">
-            <video width="400" controls>
+            <div class="videos123" style="display:none">
+                <video width="400" controls>
 
-                <source src="~/assets/Videos/@item.link" type="video/mp4" />
+                    <source src="~/assets/Videos/@item.link" type="video/mp4" />
 
-                Your browser does not support HTML video.
-            </video>
-        </div>        
+                    Your browser does not support HTML video.
+                </video>
+            </div>
 
-    </li>
+        </li>
+        {
+            stt = stt + 1;
+            Session["stt"] = Convert.ToInt32(Session["stt"]) + 1;
+        }
+        { if (Convert.ToInt32(Session["stt"]) == test)
+            {
+                <div>
+                    <script src="~/assets/Users/js/process.js"></script>
+                </div>
+                
+            }
+        }
     }
-    @{ stt = stt + 1;}
+
 </ul>
 

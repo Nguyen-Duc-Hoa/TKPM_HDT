@@ -352,5 +352,22 @@ namespace Online_Academy.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int sp_UpdateProcess(Nullable<int> idUser, Nullable<int> idCourse, Nullable<int> process)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            var idCourseParameter = idCourse.HasValue ?
+                new ObjectParameter("idCourse", idCourse) :
+                new ObjectParameter("idCourse", typeof(int));
+    
+            var processParameter = process.HasValue ?
+                new ObjectParameter("process", process) :
+                new ObjectParameter("process", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateProcess", idUserParameter, idCourseParameter, processParameter);
+        }
     }
 }

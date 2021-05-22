@@ -8,8 +8,12 @@
     var percent = ViewBag.percent;
     var count = ViewBag.Curriculum.Count;
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    Session["stt"] = 0;
+    Session["end"] = ViewBag.total;
+    Session["idcourse"] = ViewBag.Course.id;
 
 }
+
 <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
@@ -29,7 +33,12 @@
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
+     .lesson123{
 
+     }
+     .videos123{
+         display:none;
+     }
     /* Modal Content */
     .modal-content {
         background-color: #fefefe;
@@ -55,6 +64,7 @@
             text-decoration: none;
             cursor: pointer;
         }
+
 </style>
 <!-- Content -->
 
@@ -184,10 +194,10 @@
                                     <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt=".avatar" />
                                     @*<video width="800" controls>
 
-                                        <source src="~/assets/Videos/@course.preview" type="video/mp4" />
+                                            <source src="~/assets/Videos/@course.preview" type="video/mp4" />
 
-                                        Your browser does not support HTML video.
-                                    </video>*@
+                                            Your browser does not support HTML video.
+                                        </video>*@
                                 </a>
                             </div>
                             <div class="ttr-post-info">
@@ -219,16 +229,16 @@
                                     <h5 class="m-b5">Course Description</h5>
                                     <p>@course.description</p>
                                     @*<h5 class="m-b5">Learning Outcomes</h5>
-                                    <ul class="list-checked primary">
-                                        <li>Over 37 lectures and 55.5 hours of content!</li>
-                                        <li>LIVE PROJECT End to End Software Testing Training Included.</li>
-                                        <li>Learn Software Testing and Automation basics from a professional trainer from your own desk.</li>
-                                        <li>Information packed practical training starting from basics to advanced testing techniques.</li>
-                                        <li>Best suitable for beginners to advanced level users and who learn faster when demonstrated.</li>
-                                        <li>Course content designed by considering current software testing technology and the job market.</li>
-                                        <li>Practical assignments at the end of every session.</li>
-                                        <li>Practical learning experience with live project work and examples.cv</li>
-                                    </ul>*@
+                                        <ul class="list-checked primary">
+                                            <li>Over 37 lectures and 55.5 hours of content!</li>
+                                            <li>LIVE PROJECT End to End Software Testing Training Included.</li>
+                                            <li>Learn Software Testing and Automation basics from a professional trainer from your own desk.</li>
+                                            <li>Information packed practical training starting from basics to advanced testing techniques.</li>
+                                            <li>Best suitable for beginners to advanced level users and who learn faster when demonstrated.</li>
+                                            <li>Course content designed by considering current software testing technology and the job market.</li>
+                                            <li>Practical assignments at the end of every session.</li>
+                                            <li>Practical learning experience with live project work and examples.cv</li>
+                                        </ul>*@
                                 </div>
                             </div>
                         </div>
@@ -353,7 +363,6 @@
         </div>
     </div>
     <!-- contact area END -->
-
 </div>
 
 <div id="myModal" class="modal">
@@ -405,7 +414,7 @@
 
 
 </div>
-<script src="~/assets/Users/js/loadCourseByType.js"></script>
+<script src="~/assets/Users/js/process.js"></script>
 @section load{
     <script>
 
@@ -444,9 +453,78 @@
                 modal.style.display = "none";
             }
         }
+        //$(".heart").click(function () {
+        //    console.log("Click");
+        //    debugger;
+        //    var stt = parseInt($(this).data("stt"));
+        //    var id = $(this).data("id");
+
+        //});
+
+        $(document).on('click', 'path', function () {
+            console.log("click tim");
+            debugger;
+            var id = $(this).data("id");
+            var currentColor = document.getElementsByTagName("path")[0].getAttribute("fill");
+
+            if (currentColor == "#AAB8C2") {
+                ;
+                document.getElementsByTagName("path")[0].setAttribute("fill", "#FF0000");
+                $.ajax({
+                    url: "/Student/Courses/Like",
+                    data: { idCourse: id },
+                    success: function (result) {
+                        //if (result == true) {
+                        //document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
+                        alert('Like');
+                        //}
+
+                    }
+                });
+
+
+            }
+            // remove like the course
+            else if (currentColor == "#FF0000") {
+                //document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+                $.ajax({
+                    url: "/Student/Courses/RemoveLike",
+                    data: { idCourse: id },
+                    success: function (result) {
+                        //if (result == true) {
+                        document.getElementsByTagName("path")[0].setAttribute("fill", "#AAB8C2");
+                        alert('RemoveLike');
+                        //}
+
+                    }
+                });
+            }
+
+
+        });
 
 
 
     </script>
+    <script>
+        $(document).ready(function () {
+            console.log("document loaded");
+            $(".lesson").click(function () {
+                debugger;
+                var stt = $(this).data("id");
+
+                var them = document.getElementById(stt);
+                if (them.style.display === "none") {
+                    them.style.display = "block";
+                }
+                else {
+                    them.style.display = "none";
+                }
+            });
+        });
+    </script>
+    <script src="~/assets/Users/js/process.js"></script>
 }
+
+
 

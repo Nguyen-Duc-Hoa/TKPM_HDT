@@ -1,7 +1,5 @@
 
 
-$(document).ready(function () {
-
     //script click type => load view
     $(".btn-info-icon").click(function () {
 
@@ -56,25 +54,22 @@ $(document).ready(function () {
 
     //add favorite course
     $(".heart").click(function () {
-        debugger;
-        
+        console.log("Click");
         var stt = parseInt($(this).data("stt"));
         var id = $(this).data("id");
         var currentColor = document.getElementsByTagName("path")[stt].getAttribute("fill");
 
         // click like the course
-        if (currentColor == "#AAB8C2") {
-            debugger;
+        if (currentColor == "#AAB8C2") {;
             document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
             $.ajax({
                 url: "/Student/Courses/Like",
                 data: { idCourse: id },
                 success: function (result) {
-                    if (result == true) {
-                        debugger;
+                    //if (result == true) {
                         //document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
                         alert('Like');
-                    }
+                    //}
                     
                 }
             });
@@ -88,10 +83,10 @@ $(document).ready(function () {
                 url: "/Student/Courses/RemoveLike",
                 data: { idCourse: id },
                 success: function (result) {
-                    if (result == true) {
+                    //if (result == true) {
                         //document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
                         alert('RemoveLike');
-                    }
+                    //}
                     
                 }
             });
@@ -102,5 +97,5 @@ $(document).ready(function () {
         console.log("click tim");
     });
 
-});
+
 

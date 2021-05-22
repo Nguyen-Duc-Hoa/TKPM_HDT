@@ -97,10 +97,10 @@
                 data: { idCourse: id },
                 success: function (result) {
                     debugger;
-                    if (result == true) {
+                    //if (result == true) {
                         //document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
                         alert('Like');
-                    }
+                    //}
                    
                 }
             });
@@ -109,15 +109,15 @@
         }
         // remove like the course
         else if (currentColor == "#FF0000") {
-            
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
             $.ajax({
                 url: "/Student/Courses/RemoveLike",
                 data: { idCourse: id },
                 success: function (result) {
-                    if (result == true) {
-                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+                    //if (result == true) {
+                        //document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
                         alert('RemoveLike');
-                    }
+                    //}
                     
                 }
             });
