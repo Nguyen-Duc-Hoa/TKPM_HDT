@@ -20,14 +20,15 @@ namespace Online_Academy.Areas.Teacher.Controllers
 
         public ActionResult Index()
         {
-           List< CourseViewModel> cvm = new List<CourseViewModel>();
+           List< CourseTeacherViewModel> cvm = new List<CourseTeacherViewModel>();
             CourseClient cc = new CourseClient();
             TeachersClient tc = new TeachersClient();
-            foreach (var course in cc.GetCoursesByState(true))
+            int id = Convert.ToInt32(Session["userID"]);
+            foreach (var course in db.getCourseByStateSave(id,true))
             {
-                CourseViewModel c = new CourseViewModel();
+                CourseTeacherViewModel c = new CourseTeacherViewModel();
                 c.course = course;
-                c.teacher = tc.findview_teacher(course.id_teacher);
+                c.teacher = tc.find(course.id_teacher);
                 cvm.Add(c);
             }
             ViewBag.listCourses = cvm;
@@ -35,14 +36,15 @@ namespace Online_Academy.Areas.Teacher.Controllers
         }
         public ActionResult Draft()
         {
-            List<CourseViewModel> cvm = new List<CourseViewModel>();
+            List<CourseTeacherViewModel> cvm = new List<CourseTeacherViewModel>();
             CourseClient cc = new CourseClient();
             TeachersClient tc = new TeachersClient();
-            foreach (var course in cc.GetCoursesByState(false))
+            int id = Convert.ToInt32(Session["userID"]);
+            foreach (var course in db.getCourseByStateSave(id, false))
             {
-                CourseViewModel c = new CourseViewModel();
+                CourseTeacherViewModel c = new CourseTeacherViewModel();
                 c.course = course;
-                c.teacher = tc.findview_teacher(course.id_teacher);
+                c.teacher = tc.find(course.id_teacher);
                 cvm.Add(c);
             }
             ViewBag.listCourses = cvm;
@@ -99,7 +101,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
 
             numberstudents = db.getNumberofStudents(id).FirstOrDefault();
                 cvm.course = course;
-                cvm.teacher = tc.findview_teacher(course.id_teacher);
+                cvm.teacher = tc.find(course.id_teacher);
                 
             
             ViewBag.numberlectures = count;
@@ -127,7 +129,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
         public void Create(FormCollection formdata)
         {
             Course course = new Course();
-       
+            int id = Convert.ToInt32(Session["userID"]);
             // lecture.chapname = ;
             List<string> s = Request.Form["chaptername"].Split(',').ToList();
 
@@ -158,11 +160,12 @@ namespace Online_Academy.Areas.Teacher.Controllers
             course.id_subcat=Convert.ToInt32(formdata["sub"]);
             course.price=Convert.ToInt32( formdata["price"]);
             course.discount = Convert.ToInt32(formdata["discount"]);
-            course.id_teacher = 2;
-            if(Convert.ToInt32(formdata["state"])==0)
-                course.state = false;
+            course.id_teacher = id;
+            course.state = false;
+            if(Convert.ToInt32(formdata["statesave"])==0)
+                course.statesave = false;
             else
-                course.state = true;
+                course.statesave = true;
             db.Courses.Add(course);
             db.SaveChanges();
             int id_course = course.id;
@@ -185,7 +188,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
                     if (video != null)
                     {
                         string VideoName = Path.GetFileName(video.FileName);
-                        string physicalPath = Server.MapPath("~/Assets/VideosLecture/" + VideoName);
+                        string physicalPath = Server.MapPath("~/Assets/Videos/" + VideoName);
 
                         // save image in folder
                         video.SaveAs(physicalPath);
@@ -243,18 +246,19 @@ namespace Online_Academy.Areas.Teacher.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
    
-        public ActionResult Edit(FormCollection formdata)
+        public void Edit(FormCollection formdata)
         {
-
-            Course course = new Course();
-           
+            int id = Convert.ToInt32(Session["userID"]);
             CourseClient cc = new CourseClient();
+            Course course = db.Courses.Find(Convert.ToInt32(formdata["idcourse"]));
+           
+            
             CurriculumClient curriclient = new CurriculumClient();
             LectureClient lc = new LectureClient();
             // lecture.chapname = ;
             List<string> s = Request.Form["chaptername"].Split(',').ToList();
             List<string> idcurri =Request.Form["idcurri"].Split(',').ToList();
-            course.id = Convert.ToInt32(formdata["idcourse"]);
+          
             //lecture.chapname = s;
             HttpPostedFileBase img = Request.Files["fileimg"];
             HttpPostedFileBase preview = Request.Files["preview"];
@@ -295,49 +299,41 @@ namespace Online_Academy.Areas.Teacher.Controllers
             course.id_subcat = Convert.ToInt32(formdata["sub"]);
             course.price = Convert.ToInt32(formdata["price"]);
             course.discount = Convert.ToInt32(formdata["discount"]);
-            course.id_teacher = 2;
-            if (Convert.ToInt32(formdata["state"]) == 0)
-                course.state = false;
-            else
-                course.state = true;
+            
+          
+         
             cc.UpdateCourse(course);
             int id_course = course.id;
 
             List<Curriculum> curriculums = new List<Curriculum>();
             for (int i = 0; i < s.Count; i++)
             {
-                Curriculum curri = new Curriculum();
-                curri.chap_name = s[i];
-                curri.id_course = id_course;
+                
                 if (idcurri[i]!="")
                 {
+                    Curriculum curri = db.Curricula.Find(Convert.ToInt32(idcurri[i]));
+                    curri.chap_name = s[i];
+                    curri.id_course = id_course;
                     
-                    curri.id = Convert.ToInt32(idcurri[i]);
                     curriclient.UpdateCurriculum(curri);
-                }
-                else
-                {
-                    
-                    db.Curricula.Add(curri);
-                    db.SaveChanges();
-                }
-                int id_curri = curri.id;
-                int videocount = Convert.ToInt32(Request.Form["lengthvideo[" + i + "]"]);
+                    int id_curri = curri.id;
+                     int videocount = Convert.ToInt32(Request.Form["lengthvideo[" + i + "]"]);
                 for (int j = 0; j < videocount; j++)
                 {
 
-                    Lecture lec = new Lecture();
-                    lec.name = Request.Form["videoname[" + i + "]" + "[" + j + "]"];
-                    lec.id_chapter = id_curri;
+                   
+                   
                     HttpPostedFileBase video = Request.Files["linkvideo[" + i + "]" + "[" + j + "]"];
                     if (Request.Form["idlec[" + i + "]" + "[" + j + "]"] != "")
                     {
-                        lec.id = Convert.ToInt32(Request.Form["idlec[" + i + "]" + "[" + j + "]"]);
 
-                        if (video != null)
+                            Lecture lec = db.Lectures.Find(Convert.ToInt32(Request.Form["idlec[" + i + "]" + "[" + j + "]"]));
+                            lec.name = Request.Form["videoname[" + i + "]" + "[" + j + "]"];
+                            lec.id_chapter = id_curri;
+                            if (video != null)
                         {
                             string VideoName = Path.GetFileName(video.FileName);
-                            string physicalPath = Server.MapPath("~/Assets/VideosLecture/" + VideoName);
+                            string physicalPath = Server.MapPath("~/Assets/Videos/" + VideoName);
 
                             // save image in folder
                             video.SaveAs(physicalPath);
@@ -353,10 +349,14 @@ namespace Online_Academy.Areas.Teacher.Controllers
             
                     else
                     {
-                        if (video != null)
+                            Lecture lec = new Lecture();
+                          
+                            lec.name = Request.Form["videoname[" + i + "]" + "[" + j + "]"];
+                            lec.id_chapter = id_curri;
+                            if (video != null)
                         {
                             string VideoName = Path.GetFileName(video.FileName);
-                            string physicalPath = Server.MapPath("~/Assets/VideosLecture/" + VideoName);
+                            string physicalPath = Server.MapPath("~/Assets/Videos/" + VideoName);
 
                             // save image in folder
                             video.SaveAs(physicalPath);
@@ -369,9 +369,73 @@ namespace Online_Academy.Areas.Teacher.Controllers
                     
                    
                 }
+                }
+                else
+                {
+                    Curriculum curri = new Curriculum();
+                   
+                    curri.chap_name = s[i];
+                    curri.id_course = id_course;
+                    db.Curricula.Add(curri);
+                    db.SaveChanges();
+                    int id_curri = curri.id;
+                    int videocount = Convert.ToInt32(Request.Form["lengthvideo[" + i + "]"]);
+                    for (int j = 0; j < videocount; j++)
+                    {
+
+
+
+                        HttpPostedFileBase video = Request.Files["linkvideo[" + i + "]" + "[" + j + "]"];
+                        if (Request.Form["idlec[" + i + "]" + "[" + j + "]"] != "")
+                        {
+
+                            Lecture lec = db.Lectures.Find(Convert.ToInt32(Request.Form["idlec[" + i + "]" + "[" + j + "]"]));
+                            lec.name = Request.Form["videoname[" + i + "]" + "[" + j + "]"];
+                            lec.id_chapter = id_curri;
+                            if (video != null)
+                            {
+                                string VideoName = Path.GetFileName(video.FileName);
+                                string physicalPath = Server.MapPath("~/Assets/Videos/" + VideoName);
+
+                                // save image in folder
+                                video.SaveAs(physicalPath);
+                                lec.link = VideoName;
+                            }
+                            else
+                            {
+                                lec.link = lc.GetLecture(lec.id).link;
+                            }
+                            lc.UpdateLecture(lec);
+                        }
+
+
+                        else
+                        {
+                            Lecture lec = new Lecture();
+                          
+                            lec.name = Request.Form["videoname[" + i + "]" + "[" + j + "]"];
+                            lec.id_chapter = id_curri;
+                            if (video != null)
+                            {
+                                string VideoName = Path.GetFileName(video.FileName);
+                                string physicalPath = Server.MapPath("~/Assets/Videos/" + VideoName);
+
+                                // save image in folder
+                                video.SaveAs(physicalPath);
+                                lec.link = VideoName;
+                            }
+                            db.Lectures.Add(lec);
+                            db.SaveChanges();
+                        }
+
+
+
+                    }
+                }
+                
+               
             }
-            
-            return RedirectToAction("Index");
+           
             
            
         }
@@ -404,14 +468,15 @@ namespace Online_Academy.Areas.Teacher.Controllers
                 curriclient.DeleteCurriculum(curri[m].id);
             }
             cc.DeleteCourse(id);
-            List<CourseViewModel> cvm = new List<CourseViewModel>();
+            List<CourseTeacherViewModel> cvm = new List<CourseTeacherViewModel>();
             CourseClient course = new CourseClient();
             TeachersClient tc = new TeachersClient();
-            foreach (var item in course.GetCoursesByState(true))
+            int idteacher = Convert.ToInt32(Session["userID"]);
+            foreach (var item in db.getCourseByStateSave(idteacher,true))
             {
-                CourseViewModel c = new CourseViewModel();
+                CourseTeacherViewModel c = new CourseTeacherViewModel();
                 c.course = item;
-                c.teacher = tc.findview_teacher(item.id_teacher);
+                c.teacher = tc.find(item.id_teacher);
                 cvm.Add(c);
             }
             ViewBag.listCourses = cvm;
@@ -447,11 +512,12 @@ namespace Online_Academy.Areas.Teacher.Controllers
             List<CourseViewModel> cvm = new List<CourseViewModel>();
             CourseClient course = new CourseClient();
             TeachersClient tc = new TeachersClient();
-            foreach (var item in course.GetCoursesByState(false))
+            int idteacher = Convert.ToInt32(Session["userID"]);
+            foreach (var item in course.GetCoursesByStateSave(idteacher,false))
             {
                 CourseViewModel c = new CourseViewModel();
                 c.course = item;
-                c.teacher = tc.findview_teacher(item.id_teacher);
+                c.teacher = tc.find(item.id_teacher);
                 cvm.Add(c);
             }
             ViewBag.listCourses = cvm;

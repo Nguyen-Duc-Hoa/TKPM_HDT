@@ -67,7 +67,7 @@ $(function () {
         formdata.append("shortdes", shortdes);
       
         formdata.append("chaptername", chaptername);
-        formdata.append("state", 0);
+        formdata.append("statesave", 0);
        // formdata.append("videoname", videoname);
       //  formdata.append("linkvideo", linkvideo);
         
@@ -178,7 +178,7 @@ $(function () {
         formdata.append("shortdes", shortdes);
 
         formdata.append("chaptername", chaptername);
-        formdata.append("state", 1);
+        formdata.append("statesave", 1);
         // formdata.append("videoname", videoname);
         //  formdata.append("linkvideo", linkvideo);
 

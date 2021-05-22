@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="18325ffbf11b4deb8ee36bb4ca21367b" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Bookdetail" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Category" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Comment" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+      <Diagram DiagramId="b487d7b85b8549b797a52b2010c5bbe8" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Bookdetail" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Category" Width="1.5" PointX="3" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Comment" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Course" Width="1.5" PointX="7.5" PointY="23.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Curriculum" Width="1.5" PointX="9.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Curriculum" Width="1.5" PointX="9.75" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.History" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Lecture" Width="1.5" PointX="12" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Lecture" Width="1.5" PointX="12" PointY="25.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Process" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Rate" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Reply" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Role" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Subcategory" Width="1.5" PointX="5.25" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Reply" Width="1.5" PointX="9.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Role" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.Subcategory" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.Teacher" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A72902_TKPMModel.User" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.User" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allCourses" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allCurriculum" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allLectures" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />

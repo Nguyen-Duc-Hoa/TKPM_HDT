@@ -74,7 +74,7 @@
                                             <div class="col-md-4" id="contain">
 
                                                 <video width="300" height="300" controls class="video" id="@d">
-                                                    <source src="~/Assets/VideosLecture/@ViewBag.lectures[i][k].link" />
+                                                    <source src="~/Assets/Videos/@ViewBag.lectures[i][k].link" />
                                                 </video>
 
                                             </div>
@@ -165,10 +165,12 @@
     }
     else
     {
+
         <table id="item-add" style="width:100%;">
             <tr class="list-item">
                 <td>
                     <div class="row">
+                        <div class="idlec" style="display:none"></div>
                         <div class="col-md-12">
                             <label class="col-form-label">Chapter Name</label>
                             <div>

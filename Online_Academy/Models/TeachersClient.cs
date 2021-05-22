@@ -51,7 +51,7 @@ namespace Online_Academy.Models
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(Base_URL);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = client.GetAsync("view_Teachers/" + id).Result;
+                HttpResponseMessage response = client.GetAsync("Teachers/" + id).Result;
 
                 if (response.IsSuccessStatusCode)
                     return response.Content.ReadAsAsync<view_Teachers>().Result;
@@ -62,24 +62,7 @@ namespace Online_Academy.Models
                 return null;
             }
         }
-        public view_Teachers findview_teacher(int? id)
-        {
-            try
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(Base_URL);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = client.GetAsync("view_Teachers/" + id).Result;
-
-                if (response.IsSuccessStatusCode)
-                    return response.Content.ReadAsAsync<view_Teachers>().Result;
-                return null;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+       
 
         public bool Create(view_Teachers teacher)
         {

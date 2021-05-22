@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Online_Academy.ViewModel
 {
-    public class TeacherViewModel
+    public class CourseTeacherViewModel
     {
-        public Teacher teacher { get; set; }
-        
+        public getCourseByStateSave_Result  course { get; set; }
+        public view_Teachers teacher { get; set; }
     }
 }

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAPI.Models
+namespace Online_Academy.Models
 {
     using System;
     
-    public partial class sp_teacherCourses_Result
+    public partial class getCourseByStateSave_Result
     {
         public int id { get; set; }
         public string name { get; set; }

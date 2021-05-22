@@ -149,6 +149,7 @@
     <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Student\Controllers\YourCousrseController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
     <Compile Include="Areas\Teacher\Controllers\TeacherCoursesController.cs" />
     <Compile Include="Areas\Teacher\Controllers\TeachersController.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
@@ -182,6 +183,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getBookdetail_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCourseByStateSave_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getCourseByState_Result.cs">
@@ -304,6 +308,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Encrypt.cs" />
     <Compile Include="Service\SendMail.cs" />
+    <Compile Include="ViewModel\CourseTeacherViewModel.cs" />
     <Compile Include="ViewModel\CourseViewModel.cs" />
     <Compile Include="ViewModel\TeacherViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -665,6 +670,8 @@
     <Content Include="Areas\Teacher\Views\Teachers\Index.cshtml" />
     <Content Include="Areas\Teacher\Views\TeacherCourses\Students.cshtml" />
     <Content Include="Areas\Teacher\Views\TeacherCourses\Profile.cshtml" />
+    <Content Include="Areas\Teacher\Views\Home\Dashboard.cshtml" />
+    <Content Include="Areas\Student\Views\Manage\Purchase.cshtml" />
     <EntityDeploy Include="Models\TKPM_HDT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
@@ -672,7 +679,6 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Student\Views\Manage\Purchase.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -70,7 +70,7 @@ namespace Online_Academy.Controllers
                 }
                 else
                 {
-                    return Content("/");
+                    return Content("/Teacher/Home");
                 }
             }
             return Content("Fail");

@@ -568,6 +568,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
   <Function Name="getCourseByState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="state" Type="bit" Mode="In" />
   </Function>
+  <Function Name="getCourseByStateSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="statesave" Type="bit" Mode="In" />
+  </Function>
   <Function Name="getCurriculumByCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>

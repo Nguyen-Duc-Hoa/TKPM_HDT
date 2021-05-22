@@ -33,8 +33,14 @@ namespace WebAPI.Controllers
             List<getCourseByState_Result> course = db.getCourseByState(state).ToList();
             return course.AsQueryable();
         }
+        //[Route("api/CoursesByStateSave/{id}/{statesave}")]
+        //public IQueryable<getCourseByStateSave_Result> CoursesByStateSave(int id, bool statesave)
+        //{
+        //    List<getCourseByStateSave_Result> course = db.getCourseByStateSave(id,statesave).ToList();
+        //    return course.AsQueryable();
+        //}
         // GET: api/Courses/5
-        [ResponseType(typeof(view_allCourses))]
+        [ResponseType(typeof(Course))]
         public IHttpActionResult Getview_allCourses(int id)
         {
             view_allCourses view_allCourses = db.view_allCourses.Find(id);

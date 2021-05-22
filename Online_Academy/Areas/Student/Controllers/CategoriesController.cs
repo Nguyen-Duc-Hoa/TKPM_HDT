@@ -15,6 +15,7 @@ namespace Online_Academy.Areas.Student.Controllers
         // GET: Student/Categories
         public ActionResult Index()
         {
+          
             ViewBag.cate = CC.findAll();
             LoadSubcate();
 

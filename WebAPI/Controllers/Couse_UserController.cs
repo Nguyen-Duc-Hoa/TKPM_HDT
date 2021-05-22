@@ -16,6 +16,7 @@ namespace WebAPI.Controllers
         {
             return db.sp_Couse_User(id).Where(x => x.state == true).AsQueryable();
         }
-      
+       
+
     }
 }
