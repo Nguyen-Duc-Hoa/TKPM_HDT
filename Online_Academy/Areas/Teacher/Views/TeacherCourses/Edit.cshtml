@@ -6,6 +6,13 @@
 }
 
 <main class="ttr-wrapper">
+    <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px;
+    top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;
+    opacity: .8; filter: alpha(opacity=70);display:none">
+        <p style="position: absolute; top: 30%; left: 45%; color: White;">
+            <img src="~/Assets/Users/images/loading.gif">
+        </p>
+    </div>
     <div class="container-fluid">
         <div class="db-breadcrumb">
             <h4 class="breadcrumb-title">Add listing</h4>
@@ -47,7 +54,7 @@
                                 <div class="form-group col-6">
                                     <label class="col-form-label">Price</label>
                                     <div>
-                                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" ,@id="price" } })
+                                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @id = "price" } })
                                     </div>
                                 </div>
                                 <div class="form-group col-6">
@@ -74,9 +81,9 @@
                                 </div>
                                 @if (Model.thumbnail == null)
                                 {
-                                    <div class="form-group col-6" >
+                                    <div class="form-group col-6">
                                         <div id="imgPreview" class="thumbnail" style="display:none">
-                                            <img  class="img-responsive" id="targetImg" />
+                                            <img class="img-responsive" id="targetImg" />
 
                                         </div>
                                     </div>
@@ -130,13 +137,13 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    @Html.Partial("~/Areas/Teacher/Views/TeacherCourses/Chapter.cshtml");
+                                    @Html.Partial("~/Areas/Teacher/Views/TeacherCourses/Chapter.cshtml")
 
                                 </div>
                                 <div class="col-12">
                                     <button type="button" class="btn-secondry add-item m-r5"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>
                                     <button type="button" class="btn btn-save" id="btn-draft">Save</button>
-                                    
+
                                 </div>
                             </div>
                         </form>

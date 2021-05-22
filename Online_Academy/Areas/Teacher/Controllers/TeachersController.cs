@@ -19,9 +19,10 @@ namespace Online_Academy.Areas.Teacher.Controllers
         // GET: Teacher/Teachers
         public ActionResult Index()
         {
+            int id = Convert.ToInt32(Session["userID"]);
             TeachersClient tc = new TeachersClient();
             view_Teachers teacher = new view_Teachers();
-            teacher = tc.find(2);
+            teacher = tc.find(id);
             return View(teacher);
         }
 
@@ -30,20 +31,22 @@ namespace Online_Academy.Areas.Teacher.Controllers
         
         public ActionResult Edit( view_Teachers view_Teachers,HttpPostedFileBase file)
         {
+            int id = Convert.ToInt32(Session["userID"]);
             TeacherViewModel tv = new TeacherViewModel();
             UserViewModel uv = new UserViewModel();
+           
             view_Teachers viewteacher = new view_Teachers();
            
             TeachersClient tc = new TeachersClient();
             //viewteacher = tc.findview_teacher(2);
           //  tv.teacher = tc.find(2);
             UsersClient uc = new UsersClient();
-           
-         
+
+
             //tv.teacher.description = view_Teachers.description;
-            
-           // tc.Edit(tv.teacher);
-            uv.user = uc.find(2);
+
+            // tc.Edit(tv.teacher);
+            uv.user = db.Users.Find(id);
            
             if (file != null)
             {
@@ -56,13 +59,21 @@ namespace Online_Academy.Areas.Teacher.Controllers
             }
            
             
-            uv.user.name = view_Teachers.name;
-            uv.user.email = view_Teachers.email;
-            uv.user.major = view_Teachers.major;
+            uv.user.name = view_Teachers.name.Trim();
+            uv.user.email = view_Teachers.email.Trim();
+            uv.user.major = view_Teachers.major.Trim();
             uv.user.birthday = view_Teachers.birthday;
-            uv.user.gender = view_Teachers.gender;
-            uc.Edit(uv.user);
-              return RedirectToAction("Index");
+            uv.user.gender = view_Teachers.gender.Trim();
+            db.Entry(uv.user).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+               
+            }
+            return Redirect(Request.UrlReferrer.ToString());
             
             
         }

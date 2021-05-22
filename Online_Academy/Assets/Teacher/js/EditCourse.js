@@ -2,12 +2,22 @@
 
 $(function () {
     $(".btn-save").click(function () {
-
+        debugger
+        $("#divLoading").show();
         var namecourse = $.trim($("#namecourse").val());
         var sub = parseInt($("#id_subcat").val())
         var price = $("#price").val();
         var discount = $("#discount").val();
-
+        if (parseInt(price) < 0) {
+            $("#divLoading").hide();
+            alert("Please enter price bigger 0");
+            return;
+        }
+        if (parseInt(discount) < 0 || parseInt(discount) > 100) {
+            $("#divLoading").hide();
+            alert("Please enter discount less 100 and bigger 0");
+            return;
+        }
         // var fileimg = $("#fileimg").prop("files")[0];
         var fileimg = $("#fileimg")[0].files[0];
 
@@ -59,15 +69,13 @@ $(function () {
         formdata.append("idcourse", id);
        // formdata.append("statesave", 0);
       
-        for (var p of formdata) {
-            console.log(p);
-        }
-
+        
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/TeacherCourses/Edit');
         xhr.onreadystatechange = function () { // listen for state changes
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // when completed we can move away
+                $("#divLoading").hide();
                 alert("Success")
                
             }

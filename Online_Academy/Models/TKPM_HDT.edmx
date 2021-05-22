@@ -598,6 +598,21 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
         <Function Name="getTeacherByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="getTotalCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTotalReveneuAllCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTotalReveneuCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTotalStudentAllCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTotalStudentCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_add_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idStudent" Type="int" Mode="In" />
           <Parameter Name="idCourse" Type="int" Mode="In" />
@@ -1635,6 +1650,21 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <Parameter Name="idCourse" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="getTotalCourse" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTotalReveneuAllCourses" ReturnType="Collection(Double)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTotalReveneuCourse" ReturnType="Collection(Double)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTotalStudentAllCourse" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTotalStudentCourse" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_UpdateProcess">
             <Parameter Name="idUser" Mode="In" Type="Int32" />
             <Parameter Name="idCourse" Mode="In" Type="Int32" />
@@ -2314,6 +2344,11 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_testBought" FunctionName="DB_A72902_TKPMModel.Store.sp_testBought" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="getTotalCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalCourse" />
+          <FunctionImportMapping FunctionImportName="getTotalReveneuAllCourses" FunctionName="DB_A72902_TKPMModel.Store.getTotalReveneuAllCourses" />
+          <FunctionImportMapping FunctionImportName="getTotalReveneuCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalReveneuCourse" />
+          <FunctionImportMapping FunctionImportName="getTotalStudentAllCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalStudentAllCourse" />
+          <FunctionImportMapping FunctionImportName="getTotalStudentCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalStudentCourse" />
           <FunctionImportMapping FunctionImportName="sp_UpdateProcess" FunctionName="DB_A72902_TKPMModel.Store.sp_UpdateProcess" />
         </EntityContainerMapping>
       </Mapping>
