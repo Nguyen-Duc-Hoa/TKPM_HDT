@@ -70,9 +70,12 @@ $(document).ready(function () {
                 url: "/Student/Courses/Like",
                 data: { idCourse: id },
                 success: function (result) {
-                    debugger;
-                    document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
-                    alert('Like');
+                    if (result == true) {
+                        debugger;
+                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
+                        alert('Like');
+                    }
+                    
                 }
             });
             
@@ -85,8 +88,11 @@ $(document).ready(function () {
                 url: "/Student/Courses/RemoveLike",
                 data: { idCourse: id },
                 success: function (result) {
-                    document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
-                    alert('RemoveLike');
+                    if (result == true) {
+                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+                        alert('RemoveLike');
+                    }
+                    
                 }
             });
         }

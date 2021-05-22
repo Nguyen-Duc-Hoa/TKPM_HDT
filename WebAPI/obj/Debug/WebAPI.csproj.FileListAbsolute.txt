@@ -170,6 +170,7 @@ C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\System.Web.WebPages.Deploymen
 C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\System.Web.WebPages.Razor.xml
 C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\Antlr3.Runtime.pdb
 C:\Users\PC\source\repos\Online_Academy\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csprojAssemblyReference.cache
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csproj.CoreCompileInputs.cache
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.dll
