@@ -649,6 +649,11 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="idUser" Type="int" Mode="In" />
     <Parameter Name="idCourse" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_UpdateProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+    <Parameter Name="idCourse" Type="int" Mode="In" />
+    <Parameter Name="process" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DB_A72902_TKPMModelStoreContainer">
     <EntitySet Name="Bookdetail" EntityType="Self.Bookdetail" Schema="dbo" store:Type="Tables" />

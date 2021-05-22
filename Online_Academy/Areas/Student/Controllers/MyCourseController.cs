@@ -138,6 +138,15 @@ namespace Online_Academy.Areas.Student.Controllers
             {
                 try
                 {
+                    //Kieem tra process 
+                    int newProcess = process;
+                    int oldProcess = Convert.ToInt32(Session["oldProcess"]);
+                    int idUser = Convert.ToInt32(Session["UserId"]);
+                    int idCousrse = Convert.ToInt32(Session["idcourse"]);
+                    if(newProcess == oldProcess)
+                    {
+                        db.sp_UpdateProcess(idUser, idCousrse, process + 1);
+                    }
                     
                 }
                 catch
