@@ -147,6 +147,7 @@
     <Compile Include="Areas\Student\Controllers\ManageController.cs" />
     <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
     <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Student\Controllers\PaypalController.cs" />
     <Compile Include="Areas\Student\Controllers\YourCousrseController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
@@ -642,7 +643,7 @@
     <Content Include="Areas\Student\Views\MyCourse\InstructorDetail.cshtml" />
     <Content Include="Areas\Student\Views\Courses\LoadCurriculum.cshtml" />
     <Content Include="Areas\Student\Views\Courses\LoadLecture.cshtml" />
-    <Content Include="Areas\Student\Views\Payment\FailureView.cshtml" />
+    <Content Include="Areas\Student\Views\Paypal\FailureView.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\Course.cshtml" />
     <Content Include="Areas\Student\Views\Courses\CourseDetail1.cshtml" />
     <Content Include="Areas\Admin\Views\Category\AddCategory.cshtml" />
@@ -679,6 +680,7 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Student\Views\Paypal\SuccessView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -724,6 +726,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Lecture\" />
+    <Folder Include="Areas\Student\Views\Payment\" />
     <Folder Include="Areas\Student\Views\YourCousrse\" />
     <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Assets\Admin\assets\images\" />

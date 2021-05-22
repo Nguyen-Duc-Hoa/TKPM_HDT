@@ -65,14 +65,14 @@ $(document).ready(function () {
         // click like the course
         if (currentColor == "#AAB8C2") {
             debugger;
-            //document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
             $.ajax({
                 url: "/Student/Courses/Like",
                 data: { idCourse: id },
                 success: function (result) {
                     if (result == true) {
                         debugger;
-                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
+                        //document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
                         alert('Like');
                     }
                     
@@ -83,13 +83,13 @@ $(document).ready(function () {
         }
         // remove like the course
         else if (currentColor == "#FF0000") {
-            //document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
             $.ajax({
                 url: "/Student/Courses/RemoveLike",
                 data: { idCourse: id },
                 success: function (result) {
                     if (result == true) {
-                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+                        //document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
                         alert('RemoveLike');
                     }
                     
