@@ -145,6 +145,7 @@ namespace Online_Academy.Controllers
                 username = username,
                 password = password,
                 avatar = "/UploadFiles/avatar-default.jpg",
+                state = true,
                 role = 3
             };
 
