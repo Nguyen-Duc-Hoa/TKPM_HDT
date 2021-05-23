@@ -8,6 +8,10 @@
             $(".validation-message").text("Vui lòng nhập đầy đủ thông tin")
             return false
         }
+        else if (/\d/.test(name)) {
+            $(".validation-message").text("Vui lòng nhập thông tin hợp lệ")
+            return false
+        }
         return true
     }
 
