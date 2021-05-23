@@ -3,39 +3,39 @@
 
     @if (ViewBag.curricula.Count > 0)
     {
-        <table id="item-add" style="width:100%;">
-            @for (int i = 0; i < (ViewBag.curricula).Count; i++)
-            {
-                var a = "item," + i + "1";
+    <table id="item-add" style="width:100%;">
+        @for (int i = 0; i < (ViewBag.curricula).Count; i++)
+        {
+            var a = "item," + i + "1";
+            var c = "list" + i + "1";
+            <tr class="list-item">
+                <td>
 
-                <tr class="list-item">
-                    <td>
-
-                        <div class="row">
-                            <div class="idcurri" style="display:none">@ViewBag.curricula[i].id</div>
-                            <div class="col-md-12">
-                                <label class="col-form-label">Chapter Name</label>
-                                <div>
-                                    <input class="form-control chapter" type="text" value="@ViewBag.curricula[i].chap_name">
-                                </div>
+                    <div class="row">
+                        <div class="idcurri" style="display:none">@ViewBag.curricula[i].id</div>
+                        <div class="col-md-12">
+                            <label class="col-form-label">Chapter Name</label>
+                            <div>
+                                <input class="form-control chapter" type="text" value="@ViewBag.curricula[i].chap_name">
                             </div>
-                            <div class="col-md-12">
-                                <label class="col-form-label">Add Video</label>
-                                <div class="form-group">
-                                    <a class="btn-secondry addvideo" id="@a" href="#"><i class="fa fa-plus-circle"></i></a>
-                                </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-form-label">Add Video</label>
+                            <div class="form-group">
+                                <a class="btn-secondry addvideo" id="@a" href="#"><i class="fa fa-plus-circle"></i></a>
                             </div>
+                        </div>
 
 
-
+                        <div class="row listvideo" id="@c">
                             @if (ViewBag.lectures[i].Count > 0)
                             {
-                                var c = "list" + i + "1";
-                                <div class="row listvideo" id="@c">
-                                    @for (int k = 0; k < ViewBag.lectures[i].Count; k++)
-                                    {
-                                        var x = k + 1;
-                                        var d = "video" + i + x;
+
+
+                                for (int k = 0; k < ViewBag.lectures[i].Count; k++)
+                                {
+                                    var x = k + 1;
+                                    var d = "video" + i + x;
 
                                     <div class="row col-12 videoitem">
                                         <div class="idlec" style="display:none">@ViewBag.lectures[i][k].id</div>
@@ -91,10 +91,10 @@
 
                                     </div>
 
-                                    }
-                                </div>
+                                }
+
                             }
-                         
+                        </div>
 
 
 
@@ -125,7 +125,7 @@
                 </tr>
 
             }
-        </table>
+    </table>
     }
   
 
