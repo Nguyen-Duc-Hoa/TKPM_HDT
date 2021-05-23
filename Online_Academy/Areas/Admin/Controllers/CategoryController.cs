@@ -57,7 +57,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbSub = db.Subcategories.Where(s => s.id == sub.id).FirstOrDefault();
-                dbSub.subname = sub.subname;
+                dbSub.subname = sub.subname.Trim();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
