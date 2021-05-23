@@ -9,10 +9,8 @@ using System.Web.Mvc;
 
 namespace Online_Academy.Areas.Student.Controllers
 {
-    public class PaymentController : Controller
+    public class PaypalController : Controller
     {
-        // GET: Student/Payment
-
         DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         private PayPal.Api.Payment payment;
         private float tyGiaUSD = 22000;
@@ -22,9 +20,26 @@ namespace Online_Academy.Areas.Student.Controllers
             return View();
         }
 
+        public bool AuthorizeUser()
+        {
+            try
+            {
+                if (Convert.ToInt32(Session["UserId"]) == 0)
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public ActionResult AddHistory()
         {
+
             int idCourse;
             try
             {
@@ -46,8 +61,8 @@ namespace Online_Academy.Areas.Student.Controllers
                 {
                     return Redirect("/Account/Login");
                 }
-                
-                
+
+
             }
             catch
             {
@@ -63,8 +78,12 @@ namespace Online_Academy.Areas.Student.Controllers
             APIContext apiContext = Configuration.GetAPIContext();
             try
             {
+                if (AuthorizeUser())
+                {
 
-                AddHistory();
+
+                    int idCourse = Convert.ToInt32(Session["idCourse"].ToString());
+                    AddHistory();
 
                     string payerId = Request.Params["PayerID"];
                     if (string.IsNullOrEmpty(payerId))
@@ -109,6 +128,11 @@ namespace Online_Academy.Areas.Student.Controllers
                             return View("SuccessView");
                         }
                     }
+                }
+                else
+                {
+                    return Redirect("/Account/Login");
+                }
 
 
             }
@@ -159,7 +183,7 @@ namespace Online_Academy.Areas.Student.Controllers
             var amount = new Amount()
             {
                 currency = "USD",
-                
+
                 total = price.ToString(), // Total must be equal to sum of shipping, tax and subtotal.
                 details = details
             };
@@ -191,5 +215,4 @@ namespace Online_Academy.Areas.Student.Controllers
             return this.payment.Execute(apiContext, paymentExecution);
         }
     }
-
 }

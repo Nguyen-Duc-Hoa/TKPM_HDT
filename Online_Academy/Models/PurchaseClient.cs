@@ -22,7 +22,7 @@ namespace Online_Academy.Models
                     return respone.Content.ReadAsAsync<List<sp_Purchase_Result>>().Result;
                 return null;
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }

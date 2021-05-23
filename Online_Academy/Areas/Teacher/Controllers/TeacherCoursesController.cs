@@ -154,12 +154,19 @@ namespace Online_Academy.Areas.Teacher.Controllers
                 preview.SaveAs(physicalPath);
                 course.preview = VideoName;
             }
-            course.name = formdata["namecourse"];
-            course.description = formdata["description"];
-            course.short_description = formdata["shortdes"];
-            course.id_subcat=Convert.ToInt32(formdata["sub"]);
-            course.price=Convert.ToInt32( formdata["price"]);
-            course.discount = Convert.ToInt32(formdata["discount"]);
+            course.name = formdata["namecourse"].Trim();
+            course.description = formdata["description"].Trim();
+            course.short_description = formdata["shortdes"].Trim();
+          
+            if(formdata["price"]!=null)
+            {
+                course.price = Convert.ToInt32(formdata["price"]);
+            }
+            if(formdata["discount"]!=null)
+            {
+                course.discount = Convert.ToInt32(formdata["discount"] != null);
+            }
+           
             course.id_teacher = id;
             course.state = false;
             if(Convert.ToInt32(formdata["statesave"])==0)
@@ -293,16 +300,24 @@ namespace Online_Academy.Areas.Teacher.Controllers
 
             }
 
-            course.name = formdata["namecourse"];
-            course.description = formdata["description"];
-            course.short_description = formdata["shortdes"];
+            course.name = formdata["namecourse"].Trim();
+            course.description = formdata["description"].Trim();
+            course.short_description = formdata["shortdes"].Trim();
             course.id_subcat = Convert.ToInt32(formdata["sub"]);
-            course.price = Convert.ToInt32(formdata["price"]);
-            course.discount = Convert.ToInt32(formdata["discount"]);
-            
-          
-         
-            cc.UpdateCourse(course);
+            if (formdata["price"] != null)
+            {
+                course.price = Convert.ToInt32(formdata["price"]);
+            }
+            var a = formdata["discount"];
+            if (formdata["discount"] != null)
+            {
+                course.discount = Convert.ToInt32(formdata["discount"]);
+            }
+
+
+
+            db.Entry(course).State = EntityState.Modified;
+            db.SaveChanges();
             int id_course = course.id;
 
             List<Curriculum> curriculums = new List<Curriculum>();
@@ -314,8 +329,9 @@ namespace Online_Academy.Areas.Teacher.Controllers
                     Curriculum curri = db.Curricula.Find(Convert.ToInt32(idcurri[i]));
                     curri.chap_name = s[i];
                     curri.id_course = id_course;
-                    
-                    curriclient.UpdateCurriculum(curri);
+
+                    db.Entry(curri).State = EntityState.Modified;
+                    db.SaveChanges();
                     int id_curri = curri.id;
                      int videocount = Convert.ToInt32(Request.Form["lengthvideo[" + i + "]"]);
                 for (int j = 0; j < videocount; j++)
@@ -343,8 +359,9 @@ namespace Online_Academy.Areas.Teacher.Controllers
                         {
                             lec.link = lc.GetLecture(lec.id).link;
                         }
-                        lc.UpdateLecture(lec);
-                    }
+                            db.Entry(lec).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
                     
             
                     else

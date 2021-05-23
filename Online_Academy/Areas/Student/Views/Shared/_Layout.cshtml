@@ -78,7 +78,7 @@
                                 @if (Convert.ToInt32(Session["UserId"]) == 0)
                                 {
                                     <li><a href="/Account/Login">Login</a></li>
-                                    <li><a href="/Account/Register">Register</a></li>
+                                    <li><a href="/Account/RegisterStudent">Register</a></li>
 
                                 }
                                 else if (Convert.ToInt32(Session["UserId"]) != 0)
@@ -90,7 +90,7 @@
                                             <a href="#">@Session["username"]</a>
                                         </span>
                                         <div class="dropdown-custom-content">
-                                            <a href="/User/UserProfile">Profile</a>
+                                            <a href="/Account/ChangeProfile">Profile</a>
                                             <a href="/Student/Manage/Purchase">Purchase</a>
                                             <a href="/Account/Logout">Logout</a>
                                         </div>
@@ -347,6 +347,7 @@
     <script src="~/Assets/Users/js/functions.js"></script>
     <script src="~/Assets/Users/js/contact.js"></script>
     <script src='~/Assets/Users/vendors/switcher/switcher.js'></script>
+
     @RenderSection("load", required: false)
     @RenderSection("loadFavorite", required: false)
     @RenderSection("loadByType", required: false)

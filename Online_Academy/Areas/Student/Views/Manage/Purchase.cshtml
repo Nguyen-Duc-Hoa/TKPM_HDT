@@ -3,42 +3,60 @@
     ViewBag.Title = "Purchase";
     Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
     var purchase = ViewBag.purchase;
+    var count = purchase.Count;
 
 }
-
-<div class="container">
-    @foreach (var item in purchase)
-    {
-    <div class="instructor-bx">
-        <div class="image" style="width:150px; height:120px;">
-            <a href="/Student/Courses/CourseDetail/@item.id">
-                <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail.Trim()" alt="images.jpg" />
-            </a>
-
+<!-- inner page banner -->
+<div class="page-banner ovbl-dark" style="background-image: url(../../../Assets/Users/images/banner/banner2.jpg);">
+    <div class="container">
+        <div class="page-banner-entry">
+            <h1 class="text-white">Purchare</h1>
+            <h1 class="text-green">Total: @count</h1>
         </div>
-
-        <div class="bar-bx">
-            <div class="side">
-                <div>      </div>
-            </div>
-            <div class="middle">
-                <div class="instructor-info">
-                    <div class="detail">
-                        <h6>@item.name </h6>
-                    </div>
-
-                    <span>@item.short_description</span>
-                   
-                    <p class="m-b0">@Convert.ToDateTime(item.date).ToString("dd/MM/yyyy")</p>
-                </div>
-            </div>
-            <div class="side right">
-                <div>@Convert.ToDateTime(item.date).ToString("hh:mm tt")</div>
-            </div>
-        </div>
-        
     </div>
-    }
 </div>
 
+<!-- inner page banner END -->
+<div class="content-block">
+    <!-- About Us -->
+    <div class="section-area section-sp1">
+        <div class="container">
+            @foreach (var item in purchase)
+            {
+                <div class="instructor-bx">
+                    <div class="image" style="width:150px; height:70px;">
+                        <a href="/Student/Courses/CourseDetail/@item.id">
+                            <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail.Trim()" alt="images.jpg" />
+                        </a>
+
+                    </div>
+
+                    <div class="bar-bx">
+                        <div class="side">
+                            <div>      </div>
+                        </div>
+                        <div class="middle">
+                            <div class="instructor-info">
+                                <div class="detail">
+                                    <h6>@item.name </h6>
+                                </div>
+
+                                <span>@item.short_description</span>
+
+                                <p class="m-b0">@Convert.ToDateTime(item.date).ToString("dd/MM/yyyy")</p>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div>@Convert.ToDateTime(item.date).ToString("hh:mm tt")</div>
+                            <br />
+                            <div>Price: @item.price$</div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
 

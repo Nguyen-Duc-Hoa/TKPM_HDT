@@ -168,7 +168,8 @@ namespace Online_Academy.Controllers
             }
             catch
             {
-                return Content("Fail");
+                Response.Write(@"<script language='javascript'>alert('Message: \n" + "Username is already!" + " .');</script>");
+                return Content("fail");
             }
         }
         public ActionResult RegisterTeacher()
@@ -224,13 +225,14 @@ namespace Online_Academy.Controllers
             // Use API instead
 
             //Test without login
-            int id = 2;
+            //int id = 2;
 
-            //if(Session["userID"] == null)
-            //{
-            //    return RedirectToAction("Login");
-            //}
-            //int id = Convert.ToInt32(Session["userID"].ToString());
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login");
+            }
+            int id = Convert.ToInt32(Session["userID"].ToString());
+
             var dbuser = db.Users.Where(u => u.id == id).FirstOrDefault();
 
             // Show view base on role

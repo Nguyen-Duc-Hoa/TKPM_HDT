@@ -1,5 +1,6 @@
 ﻿@{ Layout = null;
-    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN"); }
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    var price = 0;}
 
 
 
@@ -8,6 +9,7 @@
     @{ int stt = 0;}
     @foreach (var course in ViewBag.Course)
     {
+        { price = course.price - (course.price * course.discount) / 100; }
         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
             <div class="cours-bx">
                 <div class="action-box">
@@ -36,7 +38,7 @@
                                 <svg class="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
                                     <g class="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
                                         <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
-                                              class="heart" fill="#AAB8C2" data-id="@course.id" data-stt="@stt" />
+                                              class="hearts" fill="#AAB8C2" data-id="@course.id" data-stt="@stt" />
                                     </g>
                                 </svg>
                             </label>
@@ -66,10 +68,21 @@
                         </div>
                     }
 
-                    <div class="price">
-                        <del>@String.Format(info, "{0:C0}", course.price)</del>
-                        <h5>@String.Format(info, "{0:C0}", course.discount)</h5>
-                    </div>
+                    @{if (Convert.ToInt32(course.discount) == 0)
+                        {
+                            <div class="price">
+                                @*<del>@String.Format(info, "{0:C0}", course.price)</del>*@
+                                <h5> $@course.price</h5>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="price">
+                                <del>$@course.price</del>
+                                <h5> $@price</h5>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -91,16 +104,16 @@
         // click like the course
         if (currentColor == "#AAB8C2") {
             debugger;
-            
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
             $.ajax({
                 url: "/Student/Courses/Like",
                 data: { idCourse: id },
                 success: function (result) {
                     debugger;
-                    if (result == true) {
-                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
+                    //if (result == true) {
+                        //document.getElementsByTagName("path")[stt].setAttribute("fill", "#FF0000");
                         alert('Like');
-                    }
+                    //}
                    
                 }
             });
@@ -109,15 +122,15 @@
         }
         // remove like the course
         else if (currentColor == "#FF0000") {
-            
+            document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
             $.ajax({
                 url: "/Student/Courses/RemoveLike",
                 data: { idCourse: id },
                 success: function (result) {
-                    if (result == true) {
-                        document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
+                    //if (result == true) {
+                        //document.getElementsByTagName("path")[stt].setAttribute("fill", "#AAB8C2");
                         alert('RemoveLike');
-                    }
+                    //}
                     
                 }
             });

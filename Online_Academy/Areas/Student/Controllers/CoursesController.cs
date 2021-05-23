@@ -244,9 +244,6 @@ namespace Online_Academy.Areas.Student.Controllers
             catch {
                 return View();
             }
-
-            return View();
-
         }
     }
 }

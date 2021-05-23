@@ -45,7 +45,10 @@
                                 </ul>
                             </li>
                             <li class="card-courses-stats">
-                                <a href="#" class="btn button-sm green radius-xl">Pending</a>
+                                @if (item.course.state == false)
+                                {
+                                    <a href="#" class="btn button-sm green radius-xl">Pending</a>
+                                }
                             </li>
                             <li class="card-courses-price">
                                 <del>@item.course.price$</del>

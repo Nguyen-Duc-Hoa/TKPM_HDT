@@ -2,16 +2,26 @@
 
 $(function () {
     $(".btn-savedraft").click(function () {
-
+        $("#divLoading").show();
         var namecourse = $("#namecourse").val();
         var sub = parseInt($("#id_subcat").val())
         var price = $("#price").val();
         var discount = $("#discount").val();
-
+        if (parseInt(price) < 0 ) {
+            $("#divLoading").hide();
+            alert("Please enter price bigger 0");
+            return;
+        }
+        if (parseInt(discount) < 0 || parseInt(discount)>100) {
+            $("#divLoading").hide();
+            alert("Please enter discount less 100 and bigger 0");
+            return;
+        }
         // var fileimg = $("#fileimg").prop("files")[0];
         var fileimg = $("#fileimg")[0].files[0];
         
         var preview = $("#preview")[0].files[0];
+        
        //var preview= multer({ storage: storage }).single('preview');
         var shortdes = $("#shortdes").val();
         var description = $("#description").val();
@@ -43,19 +53,7 @@ $(function () {
            
         }
         debugger
-        var lecture = {};
-        
-        lecture.chapname = chaptername;
-        lecture.link = linkvideo;
-        lecture.videoname = videoname;
-       // lecture.fileimg = fileInput.files[0];
-        //lecture.append("file", fileimg);
-        //for (var p of lecture) {
-        //    console.log(p);
-        //}
-
-        //var lectures = JSON.stringify(lecture);
-        //var courses = JSON.stringify(course);
+      
       
         formdata.append("fileimg", fileimg);
         formdata.append("preview", preview);
@@ -68,52 +66,27 @@ $(function () {
       
         formdata.append("chaptername", chaptername);
         formdata.append("statesave", 0);
-       // formdata.append("videoname", videoname);
-      //  formdata.append("linkvideo", linkvideo);
-        
+     
        for (var p of formdata) {
             console.log(p);
         }
-
+        
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/TeacherCourses/Create');
         xhr.onreadystatechange = function () { // listen for state changes
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // when completed we can move away
+                $("#divLoading").hide();
                 alert("Success")
                
             }
         }
-        //xhr.setRequestHeader('Content-type', 'multipart/form-data');
-        //Appending file information in Http headers
-        //xhr.setRequestHeader('X-File-Name', fileInput.files[0].name);
       
-        //Sending file in XMLHttpRequest
         xhr.send(formdata);
-       // var request = new XMLHttpRequest();
-       // request.setRequestHeader('X-File-Name', fileImg[0].name);
-       // request.open("POST", "/Teacher/TeacherCourses/Create");
-       // request.send(lecture);
-        //$.ajax({
-        //    type: "POST",
-        //    url: "/TeacherCourses/Upload",
-        //    // data: '{course: ' + JSON.stringify(course) + ','+'lecture: ' + JSON.stringify(lecture) +'}',
-        //    //dataType: "JSON",
-        //    data: { lecture },
-        //    //contentType: "application/json; charset=utf-8",
-        //    cache: false,
-        //    processData: false,
-        //    contentType: false,
-        //    success: function (data) {
-        //        alert("Success");
-        //    },
-        //    error: function () {
-        //        alert("Error");
-        //    }
-        //}); 
+     
     })
     $(".btn-post").click(function () {
-
+          $("#divLoading").show();
         var namecourse = $("#namecourse").val();
         var sub = parseInt($("#id_subcat").val())
         var price = $("#price").val();
@@ -154,19 +127,7 @@ $(function () {
 
         }
         debugger
-        var lecture = {};
-
-        lecture.chapname = chaptername;
-        lecture.link = linkvideo;
-        lecture.videoname = videoname;
-        // lecture.fileimg = fileInput.files[0];
-        //lecture.append("file", fileimg);
-        //for (var p of lecture) {
-        //    console.log(p);
-        //}
-
-        //var lectures = JSON.stringify(lecture);
-        //var courses = JSON.stringify(course);
+       
 
         formdata.append("fileimg", fileimg);
         formdata.append("preview", preview);
@@ -185,14 +146,16 @@ $(function () {
         for (var p of formdata) {
             console.log(p);
         }
-       
+      
         var xhr = new XMLHttpRequest();
         
         xhr.open('POST', '/TeacherCourses/Create');
         xhr.onreadystatechange = function () { // listen for state changes
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // when completed we can move away
+                $("#divLoading").hide();
                 alert("Success")
+               
                 
             }
         }
