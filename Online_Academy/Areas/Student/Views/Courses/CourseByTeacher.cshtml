@@ -1,4 +1,5 @@
-﻿@{ var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+﻿@{ var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    var price = 0}
 <div class="upCourse">
 
     <div class="row">
@@ -6,6 +7,7 @@
         @{ int stt = 0;}
         @foreach (var course in ViewBag.TCourse)
         {
+            { price = course.price - (course.price * course.discount) / 100; }
             <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                 <div class="cours-bx">
                     <div class="action-box">
@@ -29,10 +31,21 @@
                         </div>
 
 
-                        <div class="price">
-                            <del>@String.Format(info, "{0:C0}", course.price)</del>
-                            <h5>@String.Format(info, "{0:C0}", course.discount)</h5>
-                        </div>
+                        @{if (Convert.ToInt32(course.discount) == 0)
+                            {
+                                <div class="price">
+                                    @*<del>@String.Format(info, "{0:C0}", course.price)</del>*@
+                                    <h5> $@course.price</h5>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="price">
+                                    <del>$@course.price</del>
+                                    <h5> $@price</h5>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>
