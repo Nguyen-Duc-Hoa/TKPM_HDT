@@ -187,7 +187,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbCate = db.Categories.Where(c => c.id == cate.id).FirstOrDefault();
-                dbCate.name = cate.name;
+                dbCate.name = cate.name.Trim();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
