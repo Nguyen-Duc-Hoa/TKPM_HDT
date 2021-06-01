@@ -43,7 +43,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             foreach(var course in courses)
             {
                 DataRow dr = dt.NewRow();
-                dr["Courses"] = course.name;
+                dr["Courses"] = course.name.Trim();
                 int totalStudent = 0;
                 for(int i = 0; i < histories.Count; i++)
                 {
@@ -64,7 +64,6 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             //Source data returned as JSON  
             return Json(iData, JsonRequestBehavior.AllowGet);
-
         }
     }
 }

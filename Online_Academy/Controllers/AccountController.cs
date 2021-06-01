@@ -3,6 +3,8 @@ using Online_Academy.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -148,7 +150,7 @@ namespace Online_Academy.Controllers
                 state = true,
                 role = 3
             };
-
+            
             //Use API
             //UsersClient usersClient = new UsersClient();
             //if (usersClient.Create(user))
@@ -162,13 +164,21 @@ namespace Online_Academy.Controllers
 
             try
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return Content("true");
+                var dbUser = db.Users.Where(u => (u.email.Trim() == user.email) || (u.username.Trim() == user.username)).ToList();
+                if (dbUser.Count != 0)
+                {
+                    return Content("NotValid");
+                }
+                else
+                {
+                    TempData["user"] = user;
+                    SendMailToVerify(user);
+                    return Content("Valid");
+                }
             }
             catch
             {
-                return Content("fail");
+                return Content("Fail");
             }
         }
         public ActionResult RegisterTeacher()
@@ -185,11 +195,10 @@ namespace Online_Academy.Controllers
                 username = username,
                 password = password,
                 role = 2,
-                state = false,
+                state = true,
                 avatar = "/UploadFiles/avatar-default.jpg",
                 major = major
             };
-
             // Use API
             //UsersClient usersClient = new UsersClient();
             //if (usersClient.Create(user))
@@ -203,9 +212,17 @@ namespace Online_Academy.Controllers
 
             try
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Login");
+                var dbUser = db.Users.Where(u => (u.email.Trim() == user.email) || (u.username.Trim() == user.username)).ToList();
+                if(dbUser.Count !=0 )
+                {
+                    return Content("NotValid");
+                }
+                else
+                {
+                    TempData["user"] = user;
+                    SendMailToVerify(user);
+                    return Content("Valid");
+                }
             }
             catch
             {
@@ -314,6 +331,67 @@ namespace Online_Academy.Controllers
             file.SaveAs(Server.MapPath("~/UploadFiles/" + file.FileName));
             TempData["avatar"] = "/UploadFiles/" + file.FileName;
             return "/UploadFiles/" + file.FileName;
+        }
+        public void SendMailToVerify(User user)
+        {
+            //email của dự án
+            string email = "nhomltweb@gmail.com";
+            string password = "123456789a@";
+
+            var loginInfo = new NetworkCredential(email, password);
+            var msg = new MailMessage();
+            var smtpClient = new SmtpClient("smtp.gmail.com", 25);
+
+            var baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Account/ConfirmEmail?Email=" + user.email;
+
+            msg.From = new MailAddress(email);
+            msg.To.Add(user.email);
+            msg.Subject = "Email confirmation";
+            msg.Body = String.Format("Dear {0} <br/>Thank you for your registration, " +
+                "please on the below link to complete your registration: " +
+                "<a href=\"{1}\" title=\"User email confirm\">{1}</a>", 
+                user.username, baseUrl);
+            msg.IsBodyHtml = true;
+
+            smtpClient.EnableSsl = true;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(msg);
+        }
+        public ActionResult ConfirmEmail(string Email)
+        {
+            User user = TempData["user"] as User;
+            if(user.email == Email)
+            {
+                try
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+
+                    var dbUser = db.Users.Where(u => u.email.Trim() == Email).FirstOrDefault();
+
+                    Session["userID"] = dbUser.id.ToString().Trim();
+                    Session["UserId"] = dbUser.id.ToString().Trim();
+                    Session["userName"] = dbUser.username.ToString().Trim();
+                    Session["username"] = dbUser.username.ToString().Trim();
+                    Session["role"] = dbUser.Role1.role1.ToString().Trim();
+                    Session["avatar"] = dbUser.avatar.ToString().Trim();
+
+                    if (dbUser.Role1.role1.Trim() == "Student")
+                    {
+                        return Redirect("/Student/MainPage");
+                    }
+                    else //Teacher
+                    {
+                        return Redirect("/Teacher/Home");
+                    }
+                }
+                catch
+                {
+                    return View("Error");
+                }
+            }
+            return View("Error");
         }
     }
 }
