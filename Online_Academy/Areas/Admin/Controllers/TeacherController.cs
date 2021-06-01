@@ -10,6 +10,7 @@ namespace Online_Academy.Areas.Admin.Controllers
     public class TeacherController : Controller
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
+        public int pageSize = 1;
         public bool AuthorizeAdmin()
         {
             if (Session["role"].ToString() == "Admin")
@@ -19,7 +20,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             return false;
         }
         // GET: Admin/Teacher
-        public ActionResult Index()
+        public ActionResult Index(string txtSearch, int? page)
         {
             if (!AuthorizeAdmin())
             {
@@ -28,7 +29,30 @@ namespace Online_Academy.Areas.Admin.Controllers
             // get teachers, whose state is false (NOT USE API)
             List<User> listTeacher = db.Users.Where(t => t.Role1.role1 == "Teacher").ToList();
 
-            ViewBag.lstTeacher = listTeacher;
+            if (!String.IsNullOrEmpty(txtSearch))
+            {
+                ViewBag.txtSearch = txtSearch;
+                listTeacher = listTeacher.Where(c => c.name.Contains(txtSearch)).ToList();
+            }
+
+            if (page > 0)
+            {
+                page = page;
+            }
+            else
+            {
+                page = 1;
+            }
+
+            int start = (int)(page - 1) * pageSize;
+
+            ViewBag.pageCurrent = page;
+            int totalPage = listTeacher.Count();
+            // tổng số trang cần hiển thị
+            float totalNumsize = (totalPage / (float)pageSize);
+            int numSize = (int)Math.Ceiling(totalNumsize);
+            ViewBag.numSize = numSize;
+            ViewBag.lstTeacher = listTeacher.OrderByDescending(x => x.id).Skip(start).Take(pageSize);
 
             return View();
         }
