@@ -449,12 +449,35 @@ namespace Online_Academy.Controllers
 
                         User dbUser = assignSessionUser(user.email);
 
-                        return Redirect("/Student/MainPage");
+                        if(dbUser.Role1.role1 == "Student")
+                        {
+                            return Redirect("/Student/MainPage");
+                        }
+                        else
+                        {
+                            ViewBag.message = "Lỗi server";
+                            return View("Error");
+                        }
                     }
                     catch
                     {
                         ViewBag.message = "Lỗi server";
                         return View("Error");
+                    }
+                }
+                else if (lstUser.Count == 1)
+                {
+                    User dbUser = db.Users.Where(u => u.email.Trim() == email && u.password == null).FirstOrDefault();
+                    if(dbUser != null)
+                    {
+                        Session["userID"] = dbUser.id.ToString().Trim();
+                        Session["UserId"] = dbUser.id.ToString().Trim();
+                        Session["userName"] = dbUser.username.ToString().Trim();
+                        Session["username"] = dbUser.username.ToString().Trim();
+                        Session["role"] = dbUser.Role1.role1.ToString().Trim();
+                        Session["avatar"] = dbUser.avatar.ToString().Trim();
+
+                        return Redirect("/Student/MainPage");
                     }
                 }
 
