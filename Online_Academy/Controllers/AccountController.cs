@@ -164,11 +164,10 @@ namespace Online_Academy.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Login");
+                return Content("true");
             }
             catch
             {
-                Response.Write(@"<script language='javascript'>alert('Message: \n" + "Username is already!" + " .');</script>");
                 return Content("fail");
             }
         }

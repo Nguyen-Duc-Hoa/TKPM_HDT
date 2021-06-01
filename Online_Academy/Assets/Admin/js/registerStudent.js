@@ -43,7 +43,7 @@
             type: "POST",
             data: { name: name, email: email, username: username, password: password },
             success: function (response) {
-                if (response == "Fail") {
+                if (response == "true") {
                     $(".modal-body").html('<p>Đăng ký thành công</p>')
                     $("#exampleModal").modal('show')
                 }
