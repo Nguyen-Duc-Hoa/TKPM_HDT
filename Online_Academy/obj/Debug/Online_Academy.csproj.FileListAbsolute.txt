@@ -345,3 +345,5 @@ C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.dll
 C:\Users\PC\source\repos\Online_Academy\Online_Academy\obj\Debug\Online_Academy.pdb
+D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\bin\Facebook.dll
+D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\bin\Facebook.xml
