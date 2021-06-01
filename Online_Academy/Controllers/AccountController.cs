@@ -368,11 +368,20 @@ namespace Online_Academy.Controllers
                     db.Users.Add(user);
                     db.SaveChanges();
 
-                    if(user.role == 3) //Student
+                    var dbUser = db.Users.Where(u => u.email.Trim() == Email).FirstOrDefault();
+
+                    Session["userID"] = dbUser.id.ToString().Trim();
+                    Session["UserId"] = dbUser.id.ToString().Trim();
+                    Session["userName"] = dbUser.username.ToString().Trim();
+                    Session["username"] = dbUser.username.ToString().Trim();
+                    Session["role"] = dbUser.Role1.role1.ToString().Trim();
+                    Session["avatar"] = dbUser.avatar.ToString().Trim();
+
+                    if (dbUser.Role1.role1.Trim() == "Student")
                     {
                         return Redirect("/Student/MainPage");
                     }
-                    else
+                    else //Teacher
                     {
                         return Redirect("/Teacher/Home");
                     }
