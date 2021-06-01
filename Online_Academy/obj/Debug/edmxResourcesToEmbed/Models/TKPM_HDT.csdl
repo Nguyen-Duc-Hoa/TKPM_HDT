@@ -707,6 +707,21 @@
     <FunctionImport Name="getTeacherByName" ReturnType="Collection(DB_A72902_TKPMModel.getTeacherByName_Result)">
       <Parameter Name="name" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="getTotalCourse" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getTotalReveneuAllCourses" ReturnType="Collection(Double)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getTotalReveneuCourse" ReturnType="Collection(Double)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getTotalStudentAllCourse" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getTotalStudentCourse" ReturnType="Collection(Int32)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_add_favorite">
       <Parameter Name="idStudent" Mode="In" Type="Int32" />
       <Parameter Name="idCourse" Mode="In" Type="Int32" />
@@ -763,27 +778,12 @@
       <Parameter Name="idUser" Mode="In" Type="Int32" />
       <Parameter Name="idCourse" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="getTotalCourse" ReturnType="Collection(Int32)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="getTotalReveneuAllCourses" ReturnType="Collection(Double)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="getTotalReveneuCourse" ReturnType="Collection(Double)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="getTotalStudentAllCourse" ReturnType="Collection(Int32)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="getTotalStudentCourse" ReturnType="Collection(Int32)">
-      <Parameter Name="id" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="sp_UpdateProcess">
       <Parameter Name="idUser" Mode="In" Type="Int32" />
       <Parameter Name="idCourse" Mode="In" Type="Int32" />
       <Parameter Name="process" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <ComplexType Name="getBookdetail_Result">
     <Property Type="Int32" Name="id_student" Nullable="false" />
