@@ -455,13 +455,11 @@ namespace Online_Academy.Controllers
                         }
                         else
                         {
-                            ViewBag.message = "Lỗi server";
                             return View("Error");
                         }
                     }
                     catch
                     {
-                        ViewBag.message = "Lỗi server";
                         return View("Error");
                     }
                 }
