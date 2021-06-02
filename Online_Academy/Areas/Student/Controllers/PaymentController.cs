@@ -106,7 +106,7 @@ namespace Online_Academy.Areas.Student.Controllers
                         var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
                         if (executedPayment.state.ToLower() != "approved")
                         {
-                            return View("FailureView");
+                            return View("SuccessView");
                         }
                     }
 
@@ -116,7 +116,7 @@ namespace Online_Academy.Areas.Student.Controllers
             {
                 Logger.Log("Error" + ex.Message);
                 ViewBag.error = ex.Message.ToString();
-                return View("FailureView");
+                return View("SuccessView");
             }
             return View("SuccessView");
         }

@@ -418,6 +418,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getTotalCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalCourse" />
+    <FunctionImportMapping FunctionImportName="getTotalReveneuAllCourses" FunctionName="DB_A72902_TKPMModel.Store.getTotalReveneuAllCourses" />
+    <FunctionImportMapping FunctionImportName="getTotalReveneuCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalReveneuCourse" />
+    <FunctionImportMapping FunctionImportName="getTotalStudentAllCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalStudentAllCourse" />
+    <FunctionImportMapping FunctionImportName="getTotalStudentCourse" FunctionName="DB_A72902_TKPMModel.Store.getTotalStudentCourse" />
     <FunctionImportMapping FunctionImportName="sp_add_favorite" FunctionName="DB_A72902_TKPMModel.Store.sp_add_favorite" />
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DB_A72902_TKPMModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_Course_bought" FunctionName="DB_A72902_TKPMModel.Store.sp_Course_bought">
@@ -522,7 +527,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_testBought" FunctionName="DB_A72902_TKPMModel.Store.sp_testBought" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="sp_UpdateProcess" FunctionName="DB_A72902_TKPMModel.Store.sp_UpdateProcess" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DB_A72902_TKPMModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

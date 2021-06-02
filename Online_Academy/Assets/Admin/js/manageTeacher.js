@@ -10,6 +10,9 @@
                 if (response == "Fail") {
                     // Do something
                 }
+                else {
+                    window.location.href = "https://localhost:44311/Admin/Teacher/Index";
+                }
             }
         })
     })
@@ -28,6 +31,9 @@
                 teacherCard.remove()
                 if (response == "Fail") {
                     // Do something
+                }
+                else {
+                    window.location.href = "https://localhost:44311/Admin/Teacher/Index";
                 }
             }
         })

@@ -390,14 +390,14 @@
                     @{ if (course.discount != null)
                         {
                             <div class="side" style="width:1000px">
-                                <div> <p style="font-size: 20px;">Price: @String.Format(info, "{0:C0}", course.discount)</p> </div>
+                                <div> @*<p style="font-size: 20px;">Price: @String.Format(info, "{0:C0}", course.discount)</p>*@ </div>
                             </div>
                             { Session["price"] = course.discount; }
                         }
                         else
                         {
                             <div class="side" style="width:1000px">
-                                <div> <p style="font-size: 20px;">Price: @String.Format(info, "{0:C0}", course.price)</p> </div>
+                                <div> @*<p style="font-size: 20px;">Price: @String.Format(info, "{0:C0}", course.price)</p>*@ </div>
                             </div>
                             { Session["price"] = course.price; }
                         }

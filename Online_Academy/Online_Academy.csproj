@@ -675,6 +675,7 @@
     <Content Include="Areas\Teacher\Views\TeacherCourses\Profile.cshtml" />
     <Content Include="Areas\Teacher\Views\Home\Dashboard.cshtml" />
     <Content Include="Areas\Student\Views\Manage\Purchase.cshtml" />
+    <Content Include="Areas\Student\Views\Paypal\SuccessView.cshtml" />
     <EntityDeploy Include="Models\TKPM_HDT.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
@@ -682,7 +683,6 @@
     <Content Include="Models\TKPM_HDT.edmx.diagram">
       <DependentUpon>TKPM_HDT.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Student\Views\Paypal\SuccessView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

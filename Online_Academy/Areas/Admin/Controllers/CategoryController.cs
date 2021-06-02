@@ -57,7 +57,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbSub = db.Subcategories.Where(s => s.id == sub.id).FirstOrDefault();
-                dbSub.subname = sub.subname;
+                dbSub.subname = sub.subname.Trim();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -187,7 +187,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             try
             {
                 var dbCate = db.Categories.Where(c => c.id == cate.id).FirstOrDefault();
-                dbCate.name = cate.name;
+                dbCate.name = cate.name.Trim();
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

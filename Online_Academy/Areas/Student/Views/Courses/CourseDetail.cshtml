@@ -6,7 +6,8 @@
     var teacher = ViewBag.Teacher;
     var curriculum = ViewBag.Curriculum;
     var count = ViewBag.Curriculum.Count;
-    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN"); 
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    var price = course.price - (course.price * course.discount) / 100;
 
 }
 
@@ -86,8 +87,21 @@
                     <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                         <div class="course-detail-bx">
                             <div class="course-price">
-                                <del>@String.Format(info, "{0:C0}", course.price)</del>
-                                <h4 class="price">@String.Format(info, "{0:C0}", course.discount)</h4>
+                                @{if (Convert.ToInt32(course.discount) == 0)
+                                    {
+                                        <div class="price">
+                                            @*<del>@String.Format(info, "{0:C0}", course.price)</del>*@
+                                            <h5> $@course.price</h5>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="price">
+                                            <del>$@course.price</del>
+                                            <h5> $@price</h5>
+                                        </div>
+                                    }
+                                }
                             </div>
                             <div class="course-buy-now text-center">
                                 <a href="#" class="btn radius-xl text-uppercase" id="buycourse">Buy Now This Courses</a>
@@ -365,21 +379,10 @@
                     </div>
                 </div>
                 <div class="bar-bx">
-                    @{ if (course.discount != null)
-                        {
-                            <div class="side" style="width:1000px">
-                                <div> <p style="font-size: 20px;">Price: @String.Format(info, "{0:C0}", course.discount)</p> </div>
-                            </div>
-                            { Session["price"] = course.discount; }
-                        }
-                        else
-                        {
-                            <div class="side" style="width:1000px">
-                                <div> <p style="font-size: 20px;">Price: @String.Format(info, "{0:C0}", course.price)</p> </div>
-                            </div>
-                            { Session["price"] = course.price; }
-                        }
-                    }
+                    <div class="side" style="width:1000px">
+                        <div> <p style="font-size: 20px;">Price: $@price</p> </div>
+                    </div>
+                    @{ Session["price"] = price; }
 
 
                 </div>

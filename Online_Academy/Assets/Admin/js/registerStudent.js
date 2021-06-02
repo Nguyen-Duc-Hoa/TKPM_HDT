@@ -8,6 +8,10 @@
             $(".validation-message").text("Vui lòng nhập đầy đủ thông tin")
             return false
         }
+        else if (/\d/.test(name)) {
+            $(".validation-message").text("Vui lòng nhập thông tin hợp lệ")
+            return false
+        }
         return true
     }
 
@@ -40,11 +44,15 @@
             data: { name: name, email: email, username: username, password: password },
             success: function (response) {
                 if (response == "Fail") {
-                    $(".modal-body").html('<p>Đăng ký thành công</p>')
+                    $(".modal-body").html('<p>Lỗi server</p>')
+                    $("#exampleModal").modal('show')
+                }
+                else if (response == "Valid") {
+                    $(".modal-body").html('<p>Hãy đăng nhập email để hoàn thành đăng ký</p>')
                     $("#exampleModal").modal('show')
                 }
                 else {
-                    $(".modal-body").html('<p>Đăng ký không thành công</p>' + '<p>Tài khoản hoặc email đã tồn tại</p>')
+                    $(".modal-body").html('<p>Tài khoản hoặc email này đã tồn tại</p>')
                     $("#exampleModal").modal('show')
                 }
             }
