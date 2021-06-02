@@ -157,6 +157,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
             course.name = formdata["namecourse"].Trim();
             course.description = formdata["description"].Trim();
             course.short_description = formdata["shortdes"].Trim();
+            course.id_subcat = Convert.ToInt32(formdata["sub"]);
             var a = formdata["price"];
             if (formdata["price"]!="")
             {
@@ -164,7 +165,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
             }
             if(formdata["discount"]!="")
             {
-                course.discount = Convert.ToInt32(formdata["discount"] != null);
+                course.discount = Convert.ToInt32(formdata["discount"]);
             }
            
             course.id_teacher = id;
