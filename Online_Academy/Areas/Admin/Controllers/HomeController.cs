@@ -13,6 +13,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         public bool AuthorizeAdmin()
         {
+            if (Session["role"] == null)
+            {
+                return false;
+            }
             if (Session["role"].ToString() == "Admin")
             {
                 return true;

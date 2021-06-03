@@ -11,10 +11,14 @@ namespace Online_Academy.Areas.Admin.Controllers
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
         // GET: Admin/Course
-        public int pageSize = 1;
+        public int pageSize = 3;
 
         public bool AuthorizeAdmin()
         {
+            if(Session["role"] == null)
+            {
+                return false;
+            }
             if(Session["role"].ToString() == "Admin")
             {
                 return true;
@@ -23,9 +27,9 @@ namespace Online_Academy.Areas.Admin.Controllers
         }
         public ActionResult Index(string txtSearch, int? page)
         {
-            if(!AuthorizeAdmin())
+            if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login"); 
+                return Redirect("Account/Login");
             }
             CourseClient client = new CourseClient();
             // Modify API to get course available

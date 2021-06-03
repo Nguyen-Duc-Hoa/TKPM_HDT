@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_adminLayoutPage.cshtml";
+    var finalPrice = 0;
 }
 
 <div class="card-header">
@@ -13,113 +14,115 @@
     }
 </div>
 
-    <!-- Page Content Box ==== -->
-    <div class="content-block">
-        <!-- Blog Grid ==== -->
-        <div class="section-area section-sp1">
-            <div class="container">
-                <div class="ttr-blog-grid-3 row" id="masonry">
-                    @foreach (var course in ViewBag.courses)
-                    {
-                        <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
-                            <div class="recent-news">
-                                <div class="action-box">
-                                    @if (course.thumbnail == null)
-                                    {
-                                        <img src="https://www.wellandgood.com/wp-content/uploads/2020/02/GettyImages-1073797276.jpg" alt="">
-                                    }
-                                    else
-                                    {
-                                        <img src="/Assets/Pictures/ImagesCourse/@course.thumbnail" style="height: 215px" alt="">
-                                    }
-
+<div class="widget-box">
+    <div class="widget-inner">
+        @foreach (var course in ViewBag.courses)
+        {
+            { finalPrice = course.price * (100 - course.discount) / 100; }
+            <div class="card-courses-list admin-courses">
+                <div class="card-courses-media">
+                    <img src="/Assets/Pictures/ImagesCourse/@course.thumbnail" alt="">
+                </div>
+                <div class="card-courses-full-dec">
+                    <div class="card-courses-title">
+                        <h4>@course.name</h4>
+                    </div>
+                    <div class="card-courses-list-bx">
+                        <ul class="card-courses-view">
+                            <li class="card-courses-user">
+                                <div class="card-courses-user-pic">
+                                    <img src="@course.Teacher.User.avatar" alt="">
                                 </div>
-                                <div class="info-bx">
-                                    <ul class="media-post">
-                                        <li>Id: @course.id</li>
-                                        <li><i class="fa fa-user"></i>@course.Teacher.User.name</li>
-                                    </ul>
-                                    @if (course.state == true)
-                                    {
-                                        <h5 class="post-title">@course.name</h5>
-                                    }
-                                    else
-                                    {
-                                        <h5 class="post-title" style="color:red">@course.name</h5>
-                                    }
-
-                                    <p>@course.short_description</p>
-                                    <div class="post-extra">
-                                        <button type="button" class="btn btn-adn approveBtn" data-id="@course.id">Approve</button>
-                                        <button type="button" class="btn outline radius-md cancelBtn" data-id="@course.id">Cancel</button>
-                                    </div>
+                                <div class="card-courses-user-info">
+                                    <h5>Teacher</h5>
+                                    <h4>@course.Teacher.User.name</h4>
                                 </div>
-                            </div>
+                            </li>
+                            <li class="card-courses-categories">
+                                <h5>Categories</h5>
+                                <h4>@course.Teacher.User.major</h4>
+                            </li>
+                            @if (course.state == false)
+                            {
+                                <li class="card-courses-stats">
+                                    <a href="#" class="btn button-sm green radius-xl">Pending</a>
+                                </li>
+                            }
+                            @if (course.discount == 0)
+                            {
+                                <li class="card-courses-price">
+                                    <h5 class="text-primary">$@course.price</h5>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="card-courses-price">
+                                    <del>$@course.price</del>
+                                    <h5 class="text-primary">$@finalPrice</h5>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="row card-courses-dec">
+                        <div class="col-md-12">
+                            <h6 class="m-b10">Course Description</h6>
+                            <p>@course.description</p>
                         </div>
-                    }
-
+                        <div class="col-md-12">
+                            <a href="#" class="btn green radius-xl outline approveBtn" data-id="@course.id">Approve</a>
+                            <a href="#" class="btn red outline radius-xl cancelBtn" data-id="@course.id">Cancel</a>
+                        </div>
+                    </div>
 
                 </div>
-                <!-- Pagination ==== -->
-                @*<div class="pagination-bx rounded-sm gray clearfix">
-                    <ul class="pagination">
-                        <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
-                    </ul>
-                </div>*@
+            </div>
+        }
 
-                <div class="card-footer">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
+        <div class="card-footer">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
 
-                            @{
-                                int position;
-                                int pageCurrent = ViewBag.pageCurrent;
-                                string txtSearch = ViewBag.txtSearch;
-                                float numSize = ViewBag.numSize;
-                                if (pageCurrent > 1)
-                                {
-                                    <li class="page-item">
-                                        <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
-                                    </li>
-                                }
+                    @{
+                        int position;
+                        int pageCurrent = ViewBag.pageCurrent;
+                        string txtSearch = ViewBag.txtSearch;
+                        float numSize = ViewBag.numSize;
+                        if (pageCurrent > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
+                            </li>
+                        }
 
-                                for (position = 1; position <= numSize; position++)
-                                {
+                        for (position = 1; position <= numSize; position++)
+                        {
 
-                                    if (position == pageCurrent)
-                                    {
-                                        <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
-                                    }
-
-                                    else
-                                    {
-                                        <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
-                                    }
-
-                                }
-                                if (pageCurrent > 0 && pageCurrent < numSize)
-                                {
-                                    <li class="page-item">
-                                        <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
-                                    </li>
-                                }
-
+                            if (position == pageCurrent)
+                            {
+                                <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
                             }
 
-                        </ul>
-                    </nav>
-                </div>
+                            else
+                            {
+                                <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = position })">@position</a></li>
+                            }
 
-                <!-- Pagination END ==== -->
-            </div>
+                        }
+                        if (pageCurrent > 0 && pageCurrent < numSize)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", "Course", new { txtSearch = (txtSearch != "" ? txtSearch : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
+                            </li>
+                        }
+
+                    }
+
+                </ul>
+            </nav>
         </div>
-        <!-- Blog Grid END ==== -->
     </div>
-    <!-- Page Content Box END ==== -->
+</div>
+
 
 @section script {
     <script src="~/Assets/Admin/js/manageCourse.js"></script>
