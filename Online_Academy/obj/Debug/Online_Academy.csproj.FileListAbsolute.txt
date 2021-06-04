@@ -346,3 +346,4 @@ D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_
 D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csproj.CopyComplete
 D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.dll
 D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.pdb
+D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache
