@@ -24,7 +24,7 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult LoadSubcate()
         {
-            ViewBag.Subcate = db.Subcategories;
+            ViewBag.Subcate = CC.getAllSubcate();
             return PartialView();
         }
     }

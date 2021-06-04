@@ -10,6 +10,27 @@ namespace Online_Academy.Models
     public class BookdetailClient
     {
         private string Base_URL = "https://localhost:44329/api/";
+
+        //get Cart by User
+        public List<Cart> getCartbyUser(int idUser)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("Bookdetails/Cart/" + idUser).Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<List<Cart>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public IEnumerable<Bookdetail> findAll()
         {
             try

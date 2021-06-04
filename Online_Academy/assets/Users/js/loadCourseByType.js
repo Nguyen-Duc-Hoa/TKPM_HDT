@@ -17,7 +17,6 @@
             data: { id: idcate },
             success: function (result) {
                 $(".upCourse").html(result);
-                document.getElementById("title").innerHTML = var2;
             }
         });
 

@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BookdetailsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\Couse_UserController.cs" />
@@ -235,6 +236,9 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_Cart_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_Course_bought_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -248,6 +252,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_notBought_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_Purchase_Result.cs">
@@ -283,6 +290,9 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\view_allCart.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\view_allCourses.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -290,6 +300,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_allLectures.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\view_allSubcate.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\view_allUsers.cs">

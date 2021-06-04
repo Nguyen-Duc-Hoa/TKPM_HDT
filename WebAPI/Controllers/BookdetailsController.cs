@@ -16,7 +16,17 @@ namespace WebAPI.Controllers
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
 
-        // GET: api/Bookdetails
+
+        //Get Cart by User
+        [HttpGet]
+        [Route("api/Bookdetails/Cart/{idUser}")]
+        public IQueryable<view_allCart> GetCart(int idUser)
+        {
+            return db.view_allCart.Where(x => x.id_user == idUser).AsQueryable();
+        }
+
+
+        // GET: api/Bookdetails ==== favorite course
         public IQueryable<view_Bookdetail> GetBookdetails()
         {
             return db.view_Bookdetail;

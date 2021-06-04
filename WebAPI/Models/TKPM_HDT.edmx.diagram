@@ -50,6 +50,8 @@
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Reply__id_user__06CD04F7" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK__Users__role__4C364F0E" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A72902_TKPMModel.FK_idTeacher" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allSubcate" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_A72902_TKPMModel.view_allCart" Width="1.5" PointX="13.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -37,6 +37,55 @@ namespace Online_Academy.Areas.Student.Controllers
             return true;
         }
 
+        public void DeleteCart(int idUser, int idCourse)
+        {
+            Cart cart = db.Carts.Where(x => x.id_user == idUser && x.id_course == idCourse).FirstOrDefault();
+            if(cart != null)
+            {
+                db.Carts.Remove(cart);
+                db.SaveChanges();
+            }
+        }
+
+
+        public bool AddListHistory()
+        {
+            if(AuthorizeUser())
+            {
+                try
+                {
+                    int idUser = Convert.ToInt32(Session["UserId"]);
+                    CartClient CC = new CartClient();
+                    var list = CC.getCartbyUser(idUser);
+                    foreach (var item in list)
+                    {
+                        try
+                        {
+                            Cart cart = new Cart();
+                            cart.id_course = item.id_course;
+                            cart.id_user = item.id_user;
+
+                            db.Carts.Add(cart);
+                            db.SaveChanges();
+
+                            DeleteCart(cart.id_user, cart.id_course);
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                        
+                    }
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+                
+            }
+            return false;
+        }
         public ActionResult AddHistory()
         {
 
@@ -81,9 +130,16 @@ namespace Online_Academy.Areas.Student.Controllers
                 if (AuthorizeUser())
                 {
 
-
-                    int idCourse = Convert.ToInt32(Session["idCourse"].ToString());
-                    AddHistory();
+                    try
+                    {
+                        int idCourse = Convert.ToInt32(Session["idCourse"].ToString());
+                        AddHistory();
+                    }
+                    catch
+                    {
+                        AddListHistory();
+                    }
+                    
 
                     string payerId = Request.Params["PayerID"];
                     if (string.IsNullOrEmpty(payerId))

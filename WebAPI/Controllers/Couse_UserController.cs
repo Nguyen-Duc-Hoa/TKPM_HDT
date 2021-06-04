@@ -17,6 +17,13 @@ namespace WebAPI.Controllers
             return db.sp_Couse_User(id).Where(x => x.state == true).AsQueryable();
         }
        
+        [HttpGet]
+        [Route("api/Course_User/notBought/{idUser}")]
+
+        public IQueryable<sp_notBought_Result> getCourse_notBought(int idUser)
+        {
+            return db.sp_notBought(idUser).AsQueryable();
+        }
 
     }
 }

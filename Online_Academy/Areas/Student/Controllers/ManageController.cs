@@ -9,6 +9,9 @@ namespace Online_Academy.Areas.Student.Controllers
 {
     public class ManageController : Controller
     {
+
+        DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
+
         // GET: Student/Manage
         public ActionResult Index()
         {
@@ -42,6 +45,100 @@ namespace Online_Academy.Areas.Student.Controllers
                 return View();
             }
             return Redirect("/Account/Login");
+        }
+
+
+        public ActionResult Profile()
+        {
+            if(AuthorizeUser())
+            {
+                int idStu = Convert.ToInt32(Session["UserId"]);
+                UsersClient UC = new UsersClient();
+                ViewBag.student = UC.find(idStu);
+                return View();
+            }
+            return Redirect("/Account/Login");
+        }
+
+
+        //show danh sach cac mon hoc chua mua
+        public ActionResult NotBought()
+        {
+            if(AuthorizeUser())
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                CourseClient CC = new CourseClient();
+                ViewBag.notBought = CC.GetCourse_notBought(idUser);
+                return View();
+            }
+
+            return Redirect("/Account/Login");
+
+        }
+
+
+        //Lay danh sach mon hoc da luu trong cart
+        public ActionResult Cart()
+        {
+            if(AuthorizeUser())
+            {
+                int idUser = Convert.ToInt32(Session["UserId"]);
+                CartClient CC = new CartClient();
+                ViewBag.cart = CC.getCartbyUser(idUser);
+                return View();
+            }
+            return Redirect("/Account/Login");
+            
+        }
+
+        //Them khoa hoc vao cart
+        public bool InsertCart(int idCourse)
+        {
+            if(AuthorizeUser())
+            {
+                try
+                {
+                    int idUser = Convert.ToInt32(Session["UserId"]);
+                    Cart cart = new Cart();
+                    cart.id_user = idUser;
+                    cart.id_course = idCourse;
+                    db.Carts.Add(cart);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    Response.Write(@"<script language='javascript'>alert('Message: \n" + "Something was wrong!" + " .');</script>");
+                }
+            }
+            Redirect("/Account/Login");
+            return false;
+        }
+
+
+        //Xoa khoa hoc khoi Cart
+        public ActionResult RemoveCart(int id)
+        {
+            if(AuthorizeUser())
+            {
+                try
+                {
+                    int idUser = Convert.ToInt32(Session["UserId"]);
+                    var CartItem = db.Carts.Where(x => x.id_course == id && x.id_user == idUser).FirstOrDefault();
+                    if(CartItem != null)
+                    {
+                        db.Carts.Remove(CartItem);
+                        db.SaveChanges();
+                        return RedirectToAction("Cart");
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            Response.Write(@"<script language='javascript'>alert('Message: \n" + "Something was wrong!" + " .');</script>");
+            return RedirectToAction("Cart");        
         }
     }
 }

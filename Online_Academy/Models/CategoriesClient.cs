@@ -30,6 +30,25 @@ namespace Online_Academy.Models
             }
         }
 
+        public IEnumerable<Subcategory> getAllSubcate()
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(Base_URL);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage respone = client.GetAsync("Categories/SubCategories").Result;
+                if (respone.IsSuccessStatusCode)
+                    return respone.Content.ReadAsAsync<IEnumerable<Subcategory>>().Result;
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public Category find(int id)
         {
             try

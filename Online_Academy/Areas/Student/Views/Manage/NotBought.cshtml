@@ -1,0 +1,45 @@
+﻿@{if (ViewBag.notBought != null)
+    {
+        <div class="container">
+            @foreach (var item in ViewBag.notBought)
+            {
+                <div class="instructor-bx">
+                    <div class="image" style="width:150px; height:70px;">
+
+                        <a href="/Student/Courses/CourseDetail/@item.id">
+                            <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail" alt="images.jpg" />
+                        </a>
+
+                    </div>
+
+                    <div class="bar-bx">
+                        <div class="side">
+                            <div>      </div>
+                        </div>
+                        <div class="middle">
+                            <div class="instructor-info">
+                                <div class="detail">
+                                    <h6>@item.name </h6>
+                                </div>
+
+                                <span>@item.short_description</span>
+                                <br />
+                                <div>Price: @item.price$</div>
+                                <p class="m-b0"></p>
+                            </div>
+                        </div>
+                        <div class="side right">
+                            <div></div>
+
+                            <a href="#" class="btn " data-id="@item.id">Add to Cart</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            }
+        </div>
+    }
+}
+

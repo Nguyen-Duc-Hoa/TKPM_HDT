@@ -50,12 +50,12 @@
         margin-left: auto;
     }
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>
 <!-- Content -->
 
@@ -109,7 +109,7 @@
                             <div class="teacher-bx">
                                 <div class="teacher-info">
                                     <div class="teacher-thumb">
-                                        <img src="assets/images/testimonials/pic1.jpg" alt="" />
+                                        <img src="@teacher.avatar" alt="" />
                                     </div>
                                     <div class="teacher-name">
                                         <h5>@teacher.name</h5>
@@ -206,7 +206,9 @@
                             <h4>Overview</h4>
                             <div class="row">
                                 <div class="col-md-12 col-lg-4">
+                                    <a id="addCart" class="btn " data-idcourse="@course.id" style="margin:auto">Add to Cart</a>
                                     <ul class="course-features">
+
                                         <li><i class="ti-book"></i> <span class="label">Chapter</span> <span class="value">@count</span></li>
                                         @*<li><i class="ti-help-alt"></i> <span class="label">Quizzes</span> <span class="value">1</span></li>*@
                                         <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value">60 hours</span></li>
@@ -246,7 +248,7 @@
                             <div class="instructor-bx">
                                 <div class="instructor-author">
                                     <a href="/Student/MyCourse/InstructorDetail/@teacher.id">
-                                        <img src="@teacher.avatar.Trim()" alt="avatar.jpg" />
+                                        <img src="@teacher.avatar" alt="avatar.jpg" />
                                     </a>
                                 </div>
                                 <div class="instructor-info">
@@ -451,6 +453,31 @@
             window.location.href = "/Student/Paypal/PaymentWithPaypal";
             
         }
+
+
+        $("#addCart").click(function () {
+            console.log("click");
+            var idCourse = $(this).data("idcourse");
+            debugger;
+            $.ajax({
+                url: "/Student/Manage/InsertCart",
+                data: { idCourse: idCourse },
+                success: function (result) {
+                    console.log(result);
+                    if (result == "True") {
+
+                        alert("Inserted this course into Your Cart");
+                    }
+                    else {
+                        var r = confirm("Do you already have an account?\nDo you want to login now?");
+                        if (r == true) {
+                            location.href="/Account/Login";
+                        }
+                    }
+                    
+                }
+            });
+        });
 
     </script>
 }

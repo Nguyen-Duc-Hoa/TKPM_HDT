@@ -24,6 +24,7 @@ namespace Online_Academy.Models
             this.Processes = new HashSet<Process>();
             this.Rates = new HashSet<Rate>();
             this.Replies = new HashSet<Reply>();
+            this.Carts = new HashSet<Cart>();
         }
     
         public int id { get; set; }
@@ -55,5 +56,7 @@ namespace Online_Academy.Models
         public virtual ICollection<Rate> Rates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Replies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

@@ -16,6 +16,14 @@ namespace WebAPI.Controllers
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
 
+        [HttpGet]
+        [Route("api/Categories/SubCategories")]
+        public IQueryable<view_Subcategories> Get_viewSubcate()
+        {
+            return db.view_Subcategories;
+        }
+
+
         // GET: api/Categories
         public IQueryable<view_categories> Getview_categories()
         {

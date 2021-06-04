@@ -1,0 +1,303 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    var price = 0;
+    var totalCost = 0;
+    var totalCoure = ViewBag.cart.Count;
+}
+
+
+<style>
+    .totalss {
+        width: 100%;
+        height: 200px;
+    }
+
+        .totalss .totalss-item {
+            float: right;
+            clear: both;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+            .totalss .totalss-item label {
+                float: left;
+                clear: both;
+                width: 79%;
+                text-align: right;
+            }
+
+            .totalss .totalss-item .totalss-value {
+                float: right;
+                width: 21%;
+                text-align: right;
+            }
+
+        .totalss .totalss-item-total {
+            font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+        }
+
+    .checkout {
+        float: right;
+        border: 0;
+        margin-top: 20px;
+        padding: 6px 25px;
+        background-color: #5cb85c;
+        color: #fff;
+        font-size: 25px;
+        border-radius: 3px;
+    }
+
+        .checkout:hover {
+            background-color: #019701;
+        }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 200px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        height: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-left: auto;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="page-banner ovbl-dark" style="background-image: url(../../../../assets/Users/images/banner/banner1.jpg);">
+        <div class="container">
+            <div class="page-banner-entry">
+                <h1 class="text-white">Cart</h1>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="/">Home</a></li>
+                <li>Cart</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="content-block">
+        <!-- About Us -->
+        <div class="section-area section-sp1">
+            <div class="container">
+                @{if (ViewBag.cart != null)
+                    {
+                        <div class="container">
+                            @foreach (var item in ViewBag.cart)
+                            {
+                                {
+                                    price = item.price - (item.price * item.discount) / 100;
+                                    totalCost = totalCost + price;
+                                    Session["course"] += item.name + " ";
+                                }
+                                <div class="instructor-bx">
+                                    <div class="image" style="width:150px; height:70px;">
+
+                                        <a href="/Student/Courses/CourseDetail/@item.id_course">
+                                            <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail" alt="images.jpg" />
+                                        </a>
+
+                                    </div>
+
+                                    <div class="bar-bx">
+                                        <div class="side">
+                                            <div>      </div>
+                                        </div>
+                                        <div class="middle">
+                                            <div class="instructor-info">
+                                                <div class="detail">
+                                                    <h6>@item.name </h6>
+                                                </div>
+
+                                                <span>@item.short_description</span>
+                                                <br />
+                                                <div>Price: @price$</div>
+                                                <p class="m-b0"></p>
+                                            </div>
+                                        </div>
+                                        <div class="side right">
+                                            <div class="clickRemove" data-id="@item.id_course">
+                                                <a href="" class="btn" data-id="@item.id_course">X</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+
+
+                <div class="totalss">
+                    <div class="totalss-item">
+                        <label>Total course</label>
+                        <div class="totalss-value" id="cart-subtotal">@totalCoure courses</div>
+                    </div>
+                    <div class="totalss-item">
+                        <label>Total cost</label>
+                        <div class="totalss-value" id="cart-tax">$@totalCost</div>
+                    </div>
+                    <button class="checkout">Checkout >></button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="review-bx">
+            
+            <div class="review-bar">
+                <div class="bar-bx">
+                    <div class="side" style="width:1000px">
+                        <div><p style="font-size: 50px; ">Total courses: @totalCoure</p> </div>
+                    </div>
+                </div>
+                <div class="bar-bx">
+                    <div class="side" style="width:1000px">
+                        <div><p style="font-size: 20px;">Total cost: $@totalCost</p> </div>
+                    </div>
+                </div>
+                <div class="bar-bx">
+                    
+                    @{ Session["price"] = totalCost; }
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <a class="btn radius-xl text-uppercase" id="checkout1" style="width: 240px; margin-left: auto; margin-right:auto">Paypal Checkout >></a>
+
+    </div>
+
+
+</div>
+@section load{
+    <script>
+        $(".clickRemove").click(function () {
+            debugger;
+            var idcoure = $(this).data("id");
+            var r = confirm("Are you sure you want to remove this course from your cart?");
+            if (r == true) {
+                $.ajax({
+                    url: "/Student/Manage/RemoveCart",
+                    data: { id: idcoure },
+                    success: function (result) {
+                        alert("Remove successfully")
+                    }
+                })
+            }
+
+        });
+
+
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("checkout");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        $(".checkout").click(function () {
+            console.log("click");
+            modal.style.display = "block";
+        });
+
+
+
+        // When the user clicks on <span> (x), close the modal
+        $(".close").click(function () {
+            console.log("click");
+            modal.style.display = "none";
+        });
+
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        var checkout = document.getElementById("checkout1");
+        checkout.onclick = function () {
+            //debugger;
+            //window.location.href = "/Studennt/Payment/AddHistory";
+            //$.ajax({ 
+            //    url: "/Studennt/Payment/AddHistory",
+            //    success: function (htlm) {
+            //        debugger;
+            //        window.location.href = "/Student/Payment/PaymentWithPaypal";
+            //    }
+
+            //});
+
+            window.location.href = "/Student/Paypal/PaymentWithPaypal";
+
+        }
+    </script>
+}
+
+

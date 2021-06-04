@@ -9,6 +9,15 @@
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="date" Type="datetime" />
   </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="id" />
@@ -148,6 +157,17 @@
     <Property Name="birthday" Type="datetime" />
     <Property Name="gender" Type="varchar" MaxLength="10" />
     <Property Name="role" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allCart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_allCart">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="name" Type="char" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allCourses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -312,6 +332,30 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Principal>
       <Dependent Role="Bookdetail">
         <PropertyRef Name="id_student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cart__id_course__05F8DC4F">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="id_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cart__id_user__06ED0088">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="id_user" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -619,6 +663,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="version" Type="int" Mode="In" />
     <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
   </Function>
+  <Function Name="sp_Cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_Course_bought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUser" Type="int" Mode="In" />
   </Function>
@@ -643,6 +690,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
   <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_notBought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_Purchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_remove_favorite" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -672,6 +722,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DB_A72902_TKPMModelStoreContainer">
     <EntitySet Name="Bookdetail" EntityType="Self.Bookdetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
@@ -686,6 +737,13 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="view_allCart" EntityType="Self.view_allCart" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_allCart].[id_course] AS [id_course], 
+    [view_allCart].[id_user] AS [id_user], 
+    [view_allCart].[name] AS [name]
+    FROM [dbo].[view_allCart] AS [view_allCart]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="view_allCourses" EntityType="Self.view_allCourses" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [view_allCourses].[id] AS [id], 
@@ -803,6 +861,14 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <AssociationSet Name="FK__Bookdetai__id_st__46E78A0C" Association="Self.FK__Bookdetai__id_st__46E78A0C">
       <End Role="Users" EntitySet="Users" />
       <End Role="Bookdetail" EntitySet="Bookdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cart__id_course__05F8DC4F" Association="Self.FK__Cart__id_course__05F8DC4F">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cart__id_user__06ED0088" Association="Self.FK__Cart__id_user__06ED0088">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
     <AssociationSet Name="FK__Comment__id_cour__03F0984C" Association="Self.FK__Comment__id_cour__03F0984C">
       <End Role="Course" EntitySet="Course" />
