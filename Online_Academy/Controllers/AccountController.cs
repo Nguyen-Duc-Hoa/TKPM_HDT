@@ -131,18 +131,23 @@ namespace Online_Academy.Controllers
                     obj.password = confirmPass;
                     UsersClient usersClient = new UsersClient();
                     usersClient.Edit(obj);
+
+                    // Move to home page
+                    if (obj.Role1.role1.Trim() == "Student")
+                    {
+                        return Content("/Student/MainPage");
+                    }
+                    else
+                    {
+                        return Content("/Teacher/Home");
+                    }
                 }
                 catch
                 {
-                    Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                    return View("ChangePassword");
+                    return View("Error");
                 }
-
-                // Move to mainpage base on role
-                return Content("mainpage");
             }
-            Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-            return View("ChangePassword");
+            return View("Error");
         }
         public ActionResult RegisterStudent()
         {
@@ -449,7 +454,7 @@ namespace Online_Academy.Controllers
 
                         User dbUser = assignSessionUser(user.email);
 
-                        if(dbUser.Role1.role1 == "Student")
+                        if(dbUser.Role1.role1.Trim() == "Student")
                         {
                             return Redirect("/Student/MainPage");
                         }

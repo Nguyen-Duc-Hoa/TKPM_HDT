@@ -45,7 +45,7 @@
                             @if (course.state == false)
                             {
                                 <li class="card-courses-stats">
-                                    <a href="#" class="btn button-sm green radius-xl">Pending</a>
+                                    <div class="btn button-sm green radius-xl">Pending</div>
                                 </li>
                             }
                             @if (course.discount == 0)
@@ -69,8 +69,8 @@
                             <p>@course.description</p>
                         </div>
                         <div class="col-md-12">
-                            <a href="#" class="btn green radius-xl outline approveBtn" data-id="@course.id">Approve</a>
-                            <a href="#" class="btn red outline radius-xl cancelBtn" data-id="@course.id">Cancel</a>
+                            <button class="btn green radius-xl outline approveBtn" data-id="@course.id">Approve</button>
+                            <button class="btn red outline radius-xl cancelBtn" data-id="@course.id">Cancel</button>
                         </div>
                     </div>
 

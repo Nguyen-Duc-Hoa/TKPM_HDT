@@ -95,14 +95,14 @@
                                 </ul>
                                 @if (user.state == true)
                                 {
-                                    <h5 class="post-title">@user.username</h5>
+                                    <h5 class="post-title">@user.name</h5>
                                 }
                                 else
                                 {
-                                    <h5 class="post-title" style="color:red">@user.username</h5>
+                                    <h5 class="post-title" style="color:red">@user.name</h5>
                                 }
                                 <p>Major: @user.major</p>
-                                <p>Contact: @user.name</p>
+                                <p>Account name: @user.username</p>
                                 <p>Contact: @user.email</p>
                                 <div class="post-extra">
                                     <button type="button" class="btn btn-adn approveBtn" data-id="@user.id">Approve</button>
