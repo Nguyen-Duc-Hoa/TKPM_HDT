@@ -1,13 +1,13 @@
 ﻿<div class="col-12 " id="curriculum">
 
+    <table id="item-add" style="width:100%;">
+        @if (ViewBag.curricula.Count > 0)
+        {
 
-    @if (ViewBag.curricula.Count > 0)
-    {
-        <table id="item-add" style="width:100%;">
-            @for (int i = 0; i < (ViewBag.curricula).Count; i++)
+            for (int i = 0; i < (ViewBag.curricula).Count; i++)
             {
                 var a = "item," + i + "1";
-
+                var c = "list" + i + "1";
                 <tr class="list-item">
                     <td>
 
@@ -27,74 +27,74 @@
                             </div>
 
 
+                            <div class="row listvideo" id="@c">
+                                @if (ViewBag.lectures[i].Count > 0)
+                                {
 
-                            @if (ViewBag.lectures[i].Count > 0)
-                            {
-                                var c = "list" + i + "1";
-                                <div class="row listvideo" id="@c">
-                                    @for (int k = 0; k < ViewBag.lectures[i].Count; k++)
+
+                                    for (int k = 0; k < ViewBag.lectures[i].Count; k++)
                                     {
                                         var x = k + 1;
                                         var d = "video" + i + x;
 
-                                    <div class="row col-12 videoitem">
-                                        <div class="idlec" style="display:none">@ViewBag.lectures[i][k].id</div>
-                                        <div class="col-md-1">
+                                        <div class="row col-12 videoitem">
+                                            <div class="idlec" style="display:none">@ViewBag.lectures[i][k].id</div>
+                                            <div class="col-md-1">
+                                            </div>
+                                            <div class="col-md-1 dellec">
+                                                <label class="col-form-label">Delete</label>
+                                                <div class="form-group">
+                                                    <a class="delete btn-dellec" data-idlec="@ViewBag.lectures[i][k].id" data-idcourse="@ViewBag.curricula[i].id_course"><i class="fa fa-close"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 closelec" style="display:none">
+                                                <label class="col-form-label"></label>
+                                                <div class="form-group">
+                                                    <a class="delete delvideo" href="#"><i class="fa fa-close"></i></a>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-4">
+                                                <label class="col-form-label">Name Video</label>
+                                                <div>
+                                                    <input class="form-control name" type="text" name="name" value="@ViewBag.lectures[i][k].name">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="col-form-label">Video</label>
+                                                <div>
+                                                    <input type="file" name="filevideo" class="filevideo" id="@d" accept="video/*" />
+                                                </div>
+
+                                            </div>
+                                            @if (@ViewBag.lectures[i][k].link != null)
+                                            {
+                                                <div class="col-md-4" id="contain">
+
+                                                    <video width="300" height="300" controls class="video" id="@d">
+                                                        <source src="~/Assets/Videos/@ViewBag.lectures[i][k].link" />
+                                                    </video>
+
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-md-4" id="contain">
+
+                                                    <video width="300" height="300" controls class="video" id="@d" style="display:none">
+                                                    </video>
+
+                                                </div>
+                                            }
+
                                         </div>
-                                        <div class="col-md-1 dellec">
-                                            <label class="col-form-label">Delete</label>
-                                            <div class="form-group">
-                                                <a class="delete btn-dellec" data-idlec="@ViewBag.lectures[i][k].id" data-idcourse="@ViewBag.curricula[i].id_course"><i class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1 closelec" style="display:none">
-                                            <label class="col-form-label"></label>
-                                            <div class="form-group">
-                                                <a class="delete delvideo" href="#"><i class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-4">
-                                            <label class="col-form-label">Name Video</label>
-                                            <div>
-                                                <input class="form-control name" type="text" name="name" value="@ViewBag.lectures[i][k].name">
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="col-form-label">Video</label>
-                                            <div>
-                                                <input type="file" name="filevideo" class="filevideo" id="@d" accept="video/*" />
-                                            </div>
-
-                                        </div>
-                                        @if (@ViewBag.lectures[i][k].link != null)
-                                        {
-                                            <div class="col-md-4" id="contain">
-
-                                                <video width="300" height="300" controls class="video" id="@d">
-                                                    <source src="~/Assets/Videos/@ViewBag.lectures[i][k].link" />
-                                                </video>
-
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="col-md-4" id="contain">
-
-                                                <video width="300" height="300" controls class="video" id="@d" style="display:none">
-                                                </video>
-
-                                            </div>
-                                        }
-
-                                    </div>
 
                                     }
-                                </div>
-                            }
-                         
+
+                                }
+                            </div>
 
 
 
@@ -125,8 +125,8 @@
                 </tr>
 
             }
-        </table>
-    }
-  
 
-</div>
+        }
+    </table>
+
+    </div>

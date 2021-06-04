@@ -157,14 +157,15 @@ namespace Online_Academy.Areas.Teacher.Controllers
             course.name = formdata["namecourse"].Trim();
             course.description = formdata["description"].Trim();
             course.short_description = formdata["shortdes"].Trim();
-          
-            if(formdata["price"]!=null)
+            course.id_subcat = Convert.ToInt32(formdata["sub"]);
+            var a = formdata["price"];
+            if (formdata["price"]!="")
             {
                 course.price = Convert.ToInt32(formdata["price"]);
             }
-            if(formdata["discount"]!=null)
+            if(formdata["discount"]!="")
             {
-                course.discount = Convert.ToInt32(formdata["discount"] != null);
+                course.discount = Convert.ToInt32(formdata["discount"]);
             }
            
             course.id_teacher = id;
@@ -304,12 +305,12 @@ namespace Online_Academy.Areas.Teacher.Controllers
             course.description = formdata["description"].Trim();
             course.short_description = formdata["shortdes"].Trim();
             course.id_subcat = Convert.ToInt32(formdata["sub"]);
-            if (formdata["price"] != null)
+            if (formdata["price"] != "")
             {
                 course.price = Convert.ToInt32(formdata["price"]);
             }
             var a = formdata["discount"];
-            if (formdata["discount"] != null)
+            if (formdata["discount"] != "")
             {
                 course.discount = Convert.ToInt32(formdata["discount"]);
             }

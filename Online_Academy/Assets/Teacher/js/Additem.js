@@ -27,6 +27,7 @@
         // newElem.find('.videoitem').removeAttr('id').attr('id', 'videoitem' + a);
         newElem.find('video').removeAttr('id').attr('id', 'video' + a);
         newElem.find('.addvideo').removeAttr('id').attr('id', 'item,' + count + a);
+       newElem.find('.videoitem').remove();
         newElem.find('.listvideo').removeAttr('id').attr('id', 'list' + count + a);
         newElem.appendTo('table#item-add');
     }
