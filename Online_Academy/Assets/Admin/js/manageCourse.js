@@ -40,7 +40,7 @@
     })
     function getParent(element) {
         while (true) {
-            if (element.parentElement.className.indexOf("post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40") !== -1) {
+            if (element.parentElement.className.indexOf("card-courses-list admin-courses") !== -1) {
                 return element.parentElement;
             }
             else {

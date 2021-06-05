@@ -1,7 +1,9 @@
-﻿using Online_Academy.Models;
+﻿using Facebook;
+using Online_Academy.Models;
 using Online_Academy.Service;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -13,9 +15,25 @@ namespace Online_Academy.Controllers
     public class AccountController : Controller
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
+
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                //uriBuilder.Path = "/Account/FacebookCallback";
+                uriBuilder.Path = "/Account/FacebookCallback";
+                return uriBuilder.Uri;
+            }
+        }
         // Login view
         public ActionResult Login()
         {
+            var ua = db.Users.Where(u => u.id == 49).FirstOrDefault();
+
+
             if (Request.Cookies["userName"] != null && Request.Cookies["pass"] != null)
             {
                 ViewBag.userName = Request.Cookies["userName"].Value;
@@ -52,14 +70,7 @@ namespace Online_Academy.Controllers
                 Session["role"] = dbUser.Role1.role1.ToString().Trim();
                 Session["avatar"] = dbUser.avatar.ToString().Trim();
 
-                if (dbUser.avatar != null)
-                {
-                    Session["avatar"] = dbUser.avatar.ToString().Trim();
-                }
-                else
-                {
-                    // default avatar
-                }
+                
 
                 // Move to main page base on Role
                 if (dbUser.Role1.role1.Trim() == "Admin")
@@ -120,18 +131,23 @@ namespace Online_Academy.Controllers
                     obj.password = confirmPass;
                     UsersClient usersClient = new UsersClient();
                     usersClient.Edit(obj);
+
+                    // Move to home page
+                    if (obj.Role1.role1.Trim() == "Student")
+                    {
+                        return Content("/Student/MainPage");
+                    }
+                    else
+                    {
+                        return Content("/Teacher/Home");
+                    }
                 }
                 catch
                 {
-                    Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                    return View("ChangePassword");
+                    return View("Error");
                 }
-
-                // Move to mainpage base on role
-                return Content("mainpage");
             }
-            Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-            return View("ChangePassword");
+            return View("Error");
         }
         public ActionResult RegisterStudent()
         {
@@ -348,7 +364,7 @@ namespace Online_Academy.Controllers
             msg.To.Add(user.email);
             msg.Subject = "Email confirmation";
             msg.Body = String.Format("Dear {0} <br/>Thank you for your registration, " +
-                "please on the below link to complete your registration: " +
+                "please on the below link to complete your registration:<br/> " +
                 "<a href=\"{1}\" title=\"User email confirm\">{1}</a>", 
                 user.username, baseUrl);
             msg.IsBodyHtml = true;
@@ -368,14 +384,7 @@ namespace Online_Academy.Controllers
                     db.Users.Add(user);
                     db.SaveChanges();
 
-                    var dbUser = db.Users.Where(u => u.email.Trim() == Email).FirstOrDefault();
-
-                    Session["userID"] = dbUser.id.ToString().Trim();
-                    Session["UserId"] = dbUser.id.ToString().Trim();
-                    Session["userName"] = dbUser.username.ToString().Trim();
-                    Session["username"] = dbUser.username.ToString().Trim();
-                    Session["role"] = dbUser.Role1.role1.ToString().Trim();
-                    Session["avatar"] = dbUser.avatar.ToString().Trim();
+                    User dbUser = assignSessionUser(Email);
 
                     if (dbUser.Role1.role1.Trim() == "Student")
                     {
@@ -393,5 +402,110 @@ namespace Online_Academy.Controllers
             }
             return View("Error");
         }
+        public ActionResult LoginFacebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppID"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email"
+            });
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppID"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
+
+            var accessToken = result.access_token;
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                fb.AccessToken = accessToken;
+                dynamic me = fb.Get("me?fields=first_name, middle_name, last_name, id, email");
+                string email = me.email;
+                string name = me.first_name + me.middle_name + me.last_name;
+
+                var lstUser = db.Users.Where(u => u.email.Trim() == email).ToList();
+                if (lstUser.Count == 0)
+                {
+                    User user = new User()
+                    {
+                        name = name,
+                        email = email,
+                        username = name,
+                        avatar = "/UploadFiles/avatar-default.jpg",
+                        state = true,
+                        role = 3
+                    };
+                    
+                    try
+                    {
+                        db.Users.Add(user);
+                        db.SaveChanges();
+
+                        User dbUser = assignSessionUser(user.email);
+
+                        if(dbUser.Role1.role1.Trim() == "Student")
+                        {
+                            return Redirect("/Student/MainPage");
+                        }
+                        else
+                        {
+                            return View("Error");
+                        }
+                    }
+                    catch
+                    {
+                        return View("Error");
+                    }
+                }
+                else if (lstUser.Count == 1)
+                {
+                    User dbUser = db.Users.Where(u => u.email.Trim() == email && u.password == null).FirstOrDefault();
+                    if(dbUser != null)
+                    {
+                        Session["userID"] = dbUser.id.ToString().Trim();
+                        Session["UserId"] = dbUser.id.ToString().Trim();
+                        Session["userName"] = dbUser.username.ToString().Trim();
+                        Session["username"] = dbUser.username.ToString().Trim();
+                        Session["role"] = dbUser.Role1.role1.ToString().Trim();
+                        Session["avatar"] = dbUser.avatar.ToString().Trim();
+
+                        return Redirect("/Student/MainPage");
+                    }
+                }
+
+            }
+            else
+            {
+                ViewBag.message = "Email của facebook đã được sử dụng";
+                return View("Error");
+            }
+
+            ViewBag.message = "Email của facebook đã được sử dụng";
+            return View("Error");
+        }
+        public User assignSessionUser(string email)
+        {
+            User dbUser = db.Users.Include("Role1").Where(u => u.email.Trim() == email).FirstOrDefault();
+            Session["userID"] = dbUser.id.ToString().Trim();
+            Session["UserId"] = dbUser.id.ToString().Trim();
+            Session["userName"] = dbUser.username.ToString().Trim();
+            Session["username"] = dbUser.username.ToString().Trim();
+            Session["role"] = dbUser.Role1.role1.ToString().Trim();
+            Session["avatar"] = dbUser.avatar.ToString().Trim();
+
+            return dbUser;
+        }
     }
+    
 }

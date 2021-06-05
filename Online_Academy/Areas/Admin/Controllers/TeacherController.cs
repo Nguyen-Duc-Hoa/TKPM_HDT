@@ -13,6 +13,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         public int pageSize = 1;
         public bool AuthorizeAdmin()
         {
+            if (Session["role"] == null)
+            {
+                return false;
+            }
             if (Session["role"].ToString() == "Admin")
             {
                 return true;
