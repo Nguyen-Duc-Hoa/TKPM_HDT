@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -199,6 +201,55 @@ namespace Online_Academy.Areas.Student.Controllers
             Session["newavatar"] = "/UploadFiles/"+file.FileName;
             return "/UploadFiles/" + file.FileName;
         }
+        [HttpPost]
+        public ActionResult ChangePassword(string newPassword, string currentPassword)
+        {
+            if (AuthorizeUser())
+            {
+                int id = Convert.ToInt32(Session["UserId"]);
+                try
+                {
+                    var dbUser = db.Users.Where(u => u.id == id).FirstOrDefault();
+                    if (dbUser.password.Trim() != currentPassword)
+                    {
+                        return Content("NotValid");
+                    }
+                    dbUser.password = newPassword;
+                    db.SaveChanges();
 
+                    string subject = "Change Password";
+                    string body = "Your account: " + dbUser.username + "has new password: " + newPassword;
+                    sendMail(dbUser.email, subject, body);
+                }
+                catch
+                {
+                    return Content("Fail");
+                }
+            }
+            return Content("Fail");
+        }
+        public void sendMail(string mail, string subject, string body)
+        {
+            //email của dự án
+            string email = "nhomltweb@gmail.com";
+            string password = "123456789a@";
+
+            var loginInfo = new NetworkCredential(email, password);
+            var msg = new MailMessage();
+            var smtpClient = new SmtpClient("smtp.gmail.com", 25);
+
+
+            msg.From = new MailAddress(email);
+            msg.To.Add(mail);
+            msg.Subject = subject;
+            msg.Body = body;
+            msg.IsBodyHtml = true;
+
+
+            smtpClient.EnableSsl = true;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = loginInfo;
+            smtpClient.Send(msg);
+        }
     }
 }

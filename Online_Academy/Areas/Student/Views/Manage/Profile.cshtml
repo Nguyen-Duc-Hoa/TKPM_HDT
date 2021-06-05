@@ -440,27 +440,30 @@
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                 <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                    <input class="form-control" type="password" value="">
+                                                    <input class="form-control" type="password" value="" id="currentPassword">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                    <input class="form-control" type="password" value="">
+                                                    <input class="form-control" type="password" value="" id="newPassword">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Re Type New Password</label>
                                                 <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                    <input class="form-control" type="password" value="">
+                                                    <input class="form-control" type="password" value="" id="confirmPassword">
                                                 </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div id="message" style="color:red"></div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                                             </div>
                                             <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                <button type="submit" class="btn">Save changes</button>
+                                                <button type="button" class="btn" id="btnChangePassword">Save changes</button>
                                                 <button type="reset" class="btn-secondry">Cancel</button>
                                             </div>
                                         </div>
@@ -528,6 +531,44 @@
                 });
             });
 
+            $("#currentPassword").click(function () {
+                $("#message").text("");
+            })
+            $("#newPassword").click(function () {
+                $("#message").text("");
+            })
+            $("#confirmPassword").click(function () {
+                $("#message").text("");
+            })
+
+            $("#btnChangePassword").click(function () {
+                var currentPassword = $("#currentPassword").val();
+                var newPassword = $("#newPassword").val();
+                var confirmPassword = $("#confirmPassword").val();
+                if (newPassword !== confirmPassword) {
+                    $("#message").text("Mật khẩu không trùng khớp");
+                }
+                else {
+                    $.ajax({
+                        url: "/Student/Manage/ChangePassword",
+                        type: "post",
+                        data: { newPassword: newPassword, currentPassword: currentPassword },
+                        success: function (result) {
+                            if (result == "Success") {
+                                alert("Thay đổi mật khẩu thành công");
+                            }
+                            else if (result == "NotValid") {
+                                alert("Mật khẩu hiện tại không chính xác");
+                            }
+                            else {
+                                alert("Thay đổi mật khẩu không thành công");
+                            }
+                        }
+                    })
+                }
+                
+            })
+
             //$("#savechange").click(function () {
             //    $.ajax({
             //        method: 'post',
@@ -537,6 +578,8 @@
             //        },
             //    });
             //})
+
+
         });
     </script>
 }
