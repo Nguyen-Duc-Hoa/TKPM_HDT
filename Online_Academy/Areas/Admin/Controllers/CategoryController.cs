@@ -13,6 +13,10 @@ namespace Online_Academy.Areas.Admin.Controllers
         // GET: Admin/Category
         public bool AuthorizeAdmin()
         {
+            if (Session["role"] == null)
+            {
+                return false;
+            }
             if (Session["role"].ToString() == "Admin")
             {
                 return true;

@@ -5,8 +5,50 @@
 }
 
 <h1>Welcome to admin home !</h1>
-<div class="container">
-    <canvas id="myChart"></canvas>
+<div class="widget-box">
+    <div class="widget-inner">
+        <div class="row">
+            <div class="col-12">
+                <table id="myTable" class="display table">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Teacher</th>
+                            <th>Total Student</th>
+                            <th>Price (Dollar)</th>
+                            <th>Discount (%)</th>
+                            <th>Turn Over</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Course</th>
+                            <th>Teacher</th>
+                            <th>Total Student</th>
+                            <th>Price (Dollar)</th>
+                            <th>Discount (%)</th>
+                            <th>Turn Over</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <canvas id="secondChart">
+                </canvas>
+            </div>
+        </div>
+        
+    </div>
 </div>
 
 @section script {
@@ -37,7 +79,7 @@
                     data: dataT,
                     options: {
                         responsive: true,
-                        title: { display: true, text: 'TURNOVER OF COURSES' },
+                        title: { display: true, text: 'NUMBER OF STUDENT PER COURSE' },
                         legend: { position: 'bottom' },
                         scales: {
                             xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
@@ -47,5 +89,59 @@
                 });
             }
         });
+
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Home/SecondChart",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (chData) {
+                var aData = chData;
+                var aLabels = aData[0];
+                var aDatasets1 = aData[1];
+                var dataT = {
+                    labels: aLabels,
+                    datasets: [{
+                        label: "Course",
+                        data: aDatasets1,
+                        fill: false,
+                        backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                        borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        borderWidth: 1
+                    }]
+                };
+                var ctx = $("#secondChart").get(0).getContext("2d");
+                var myNewChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: dataT,
+                    options: {
+                        responsive: true,
+                        title: { display: true, text: 'TURN OVER PER COURSE' },
+                        legend: { position: 'bottom' },
+                        scales: {
+                            xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
+                            yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
+                        },
+                    }
+                });
+            }
+        });
+
+        var myTable = $("#myTable").DataTable({
+            "ajax": {
+                "url": "/Admin/Home/LoadTable",
+                "type": "post",
+                "dataType": "json",
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "courseName" },
+                { "data": "teacherName" },
+                { "data": "numStudent" },
+                { "data": "price" }, 
+                { "data": "discount"},
+                { "data": "turnOver"}
+            ]
+        })
     </script>
 }

@@ -8,6 +8,10 @@
             $(".validation-message").text("Vui lòng nhập đầy đủ thông tin")
             return false
         }
+        else if (/\d/.test(name)) {
+            $(".validation-message").text("Vui lòng nhập tên hợp lệ")
+            return false
+        }
         return true
     }
 
@@ -41,7 +45,7 @@
             data: { name: name, email: email, username: username, password: password, major: major },
             success: function (response) {
                 if (response == "Fail") {
-                    $(".modal-body").html('<p>Lỗi server</p>')
+                    $(".modal-body").html('<p>Lỗi thực thi request</p>')
                     $("#exampleModal").modal('show')
                 }
                 else if (response == "Valid") {
