@@ -28,15 +28,14 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
-            UsersClient client = new UsersClient();
-            var data = client.findAll();
+            List<User> data = db.Users.Where(u => u.Role1.role1.Trim() == "Student").ToList();
 
             if (!String.IsNullOrEmpty(txtSearch))
             {
                 ViewBag.txtSearch = txtSearch;
-                data = data.Where(x => x.name.Contains(txtSearch));
+                data = data.Where(x => x.name.Contains(txtSearch)).ToList();
             }
 
             if (page > 0)
@@ -63,7 +62,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -82,7 +81,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {

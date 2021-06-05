@@ -21,12 +21,24 @@ namespace Online_Academy.Areas.Teacher.Controllers
             }
             else
             {
+
+                List<getCourseByTeacher_Result> listcourse = db.getCourseByTeacher(a).ToList();
+                List<int> numberstudent = new List<int>();
+                List<int> reveneutotal = new List<int>();
+                for (int i=0;i<listcourse.Count;i++)
+                {
+                    numberstudent.Add(Convert.ToInt32(db.getTotalStudentCourse(listcourse[i].id).FirstOrDefault()));
+                    reveneutotal.Add(Convert.ToInt32(db.getTotalReveneuCourse(listcourse[i].id).FirstOrDefault()));
+                }
                 int? numcourse = db.getTotalCourse(a).FirstOrDefault();
                 double? totalreveneu = db.getTotalReveneuAllCourses(a).FirstOrDefault();
                 int? totalstudent= db.getTotalStudentAllCourse(a).FirstOrDefault();
                 ViewBag.numcourse = numcourse;
                 ViewBag.totalreveneu = Convert.ToInt32(totalreveneu);
                 ViewBag.totalstudent = totalstudent;
+                ViewBag.listcourse = listcourse;
+                ViewBag.numberstudent = numberstudent;
+                ViewBag.reveneutotal = reveneutotal;
                 return View("Dashboard");
             }
             

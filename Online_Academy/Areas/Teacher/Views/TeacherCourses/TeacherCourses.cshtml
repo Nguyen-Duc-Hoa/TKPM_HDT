@@ -23,7 +23,7 @@
                         <ul class="card-courses-view">
                             <li class="card-courses-user">
                                 <div class="card-courses-user-pic">
-                                    <img src="~/Assets/Pictures/ImagesUser/@item.teacher.avatar" alt="" />
+                                    <img src="@item.teacher.avatar" alt="" />
                                 </div>
                                 <div class="card-courses-user-info">
                                     <h5>Teacher</h5>
@@ -51,7 +51,11 @@
                                 }
                             </li>
                             <li class="card-courses-price">
-                                <del>@item.course.price$</del>
+                                @if (item.course.discount != 0)
+                                {
+                                    <del>@item.course.price$</del>
+                                }
+
                                 <h4 class="text-primary">@price$</h4>
 
                             </li>

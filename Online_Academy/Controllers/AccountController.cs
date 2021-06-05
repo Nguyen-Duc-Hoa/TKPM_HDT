@@ -126,18 +126,8 @@ namespace Online_Academy.Controllers
                 try
                 {
                     obj.password = confirmPass;
-                    UsersClient usersClient = new UsersClient();
-                    usersClient.Edit(obj);
-
-                    // Move to home page
-                    if (obj.Role1.role1.Trim() == "Student")
-                    {
-                        return Content("/Student/MainPage");
-                    }
-                    else
-                    {
-                        return Content("/Teacher/Home");
-                    }
+                    db.SaveChanges();
+                    return Redirect("/Account/Login");
                 }
                 catch
                 {

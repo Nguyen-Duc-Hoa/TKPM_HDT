@@ -29,11 +29,11 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             CourseClient client = new CourseClient();
             // Modify API to get course available
-            List<Course> lstCourses = db.Courses.ToList();
+            List<Course> lstCourses = db.Courses.Where(c => c.statesave == true).ToList();
 
             if (!String.IsNullOrEmpty(txtSearch))
             {
@@ -67,7 +67,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -86,7 +86,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
