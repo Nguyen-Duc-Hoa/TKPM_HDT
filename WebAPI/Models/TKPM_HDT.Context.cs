@@ -54,6 +54,7 @@ namespace WebAPI.Models
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
         public virtual DbSet<view_allSubcate> view_allSubcate { get; set; }
         public virtual DbSet<view_allCart> view_allCart { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
     
         [DbFunction("DB_A72902_TKPMEntities", "func_Course")]
         public virtual IQueryable<func_Course_Result> func_Course(Nullable<int> idStudent)
@@ -371,6 +372,15 @@ namespace WebAPI.Models
                 new ObjectParameter("idUser", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Cart_Result>("sp_Cart", idUserParameter);
+        }
+    
+        public virtual ObjectResult<sp_searchName_Result> sp_searchName(string text)
+        {
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_searchName_Result>("sp_searchName", textParameter);
         }
     }
 }

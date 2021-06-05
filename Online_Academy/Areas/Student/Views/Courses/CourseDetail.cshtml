@@ -456,9 +456,7 @@
 
 
         $("#addCart").click(function () {
-            console.log("click");
             var idCourse = $(this).data("idcourse");
-            debugger;
             $.ajax({
                 url: "/Student/Manage/InsertCart",
                 data: { idCourse: idCourse },
@@ -468,13 +466,16 @@
 
                         alert("Inserted this course into Your Cart");
                     }
-                    else {
+                    else if (result == "false") {
                         var r = confirm("Do you already have an account?\nDo you want to login now?");
                         if (r == true) {
-                            location.href="/Account/Login";
+                            location.href = "/Account/Login";
                         }
                     }
-                    
+                    else {
+                        alert(result);
+                    }
+
                 }
             });
         });

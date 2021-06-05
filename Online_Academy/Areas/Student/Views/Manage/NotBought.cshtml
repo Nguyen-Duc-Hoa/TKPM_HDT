@@ -1,13 +1,16 @@
-﻿@{if (ViewBag.notBought != null)
+﻿@{var price = 0;}
+
+@{if (ViewBag.notBought != null)
     {
         <div class="container">
             @foreach (var item in ViewBag.notBought)
             {
+                { price = item.price - (item.price * item.discount) / 100; }
                 <div class="instructor-bx">
                     <div class="image" style="width:150px; height:70px;">
 
                         <a href="/Student/Courses/CourseDetail/@item.id">
-                            <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail" alt="images.jpg" />
+                            <img src="~/assets/Pictures/ImagesCourse/@item.thumbnail" alt="images.jpg" style="width: 123px; height: 70px;"/>
                         </a>
 
                     </div>
@@ -24,22 +27,49 @@
 
                                 <span>@item.short_description</span>
                                 <br />
-                                <div>Price: @item.price$</div>
+                                <div>Price: $@price</div>
                                 <p class="m-b0"></p>
                             </div>
                         </div>
                         <div class="side right">
                             <div></div>
-
-                            <a href="#" class="btn " data-id="@item.id">Add to Cart</a>
+                            <div class="addToCart" data-id="@item.id">
+                                <a class="btn " >Add to Cart</a>
+                            </div>
+                            
                         </div>
                     </div>
-
-
-
                 </div>
             }
         </div>
     }
 }
+
+<script>
+    $(".addToCart").click(function () {
+        var idcourse = $(this).data("id");
+
+        $.ajax({
+            url: "/Student/Manage/InsertCart",
+            data: { idCourse: idcourse },
+            success: function (result) {
+                console.log(result);
+                if (result == "True") {
+
+                    alert("Inserted this course into Your Cart");
+                }
+                else if (result == "false") {
+                    var r = confirm("Do you already have an account?\nDo you want to login now?");
+                    if (r == true) {
+                        location.href = "/Account/Login";
+                    }
+                }
+                else {
+                    alert(result);
+                }
+
+            }
+        });
+    });
+</script>
 

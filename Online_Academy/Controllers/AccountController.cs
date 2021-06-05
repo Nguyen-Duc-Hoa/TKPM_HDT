@@ -189,7 +189,7 @@ namespace Online_Academy.Controllers
                     return Content("Valid");
                 }
             }
-            catch
+            catch (Exception e)
             {
                 return Content("Fail");
             }
@@ -237,7 +237,7 @@ namespace Online_Academy.Controllers
                     return Content("Valid");
                 }
             }
-            catch
+            catch 
             {
                 return Content("Fail");
             }
@@ -438,6 +438,7 @@ namespace Online_Academy.Controllers
                     {
                         name = name,
                         email = email,
+                        password="facebook",
                         username = name,
                         avatar = "/UploadFiles/avatar-default.jpg",
                         state = true,

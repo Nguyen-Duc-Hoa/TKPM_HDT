@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml";
+    var price = 0;
+    var total = 0;
+    if (ViewBag.course != null)
+    {
+        total = ViewBag.Course.Count;
+    }
+}
+
+
+
+<body id="bg">
+    <!-- Content -->
+    <div class="page-content bg-white">
+        <!-- Main Slider -->
+        <div class="section-area section-sp1 ovpr-dark bg-fix online-cours" style="background-image: url(../../../../Assets/Users/images/background/bg1.jpg);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center text-white">
+                        <h2>Online Courses To Learn</h2>
+                        <h5>Own Your Feature Learning New Skills Online</h5>
+                        <form class="cours-search" action="/Search" method="get">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="Text" placeholder="What do you want to learn today? " value="@ViewBag.text">
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Slider -->
+        <!-- Breadcrumb row -->
+        <div class="breadcrumb-row">
+            <div class="container">
+                <ul class="list-inline">
+                    <li><a href="/">Home</a></li>
+                    <li>Search results for "@ViewBag.text"</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content-block">
+            <!-- Popular Courses -->
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 heading-bx left">
+                            <h2 class="title-head">Total: @total <span>Courses</span></h2>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+                        </div>
+                    </div>
+   
+            </div>
+
+
+
+
+            <!-- Testimonials -->
+            <!-- Testimonials END -->
+            <!-- Testimonials ==== -->
+
+            <!-- Testimonials END ==== -->
+        </div>
+
+        <div class="content-block">
+            <!-- About Us -->
+            <div class="section-area section-sp1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                            @*<div class="widget courses-search-bx placeani">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label>Search Courses</label>
+                                        <input name="dzName" type="text" required class="form-control">
+                                    </div>
+                                </div>
+                            </div>*@
+
+                            <div class="widget widget_archive">
+                                <div class="loadTitle">
+                                    <h5 class="widget-title style-1">Our Courses</h5>
+                                </div>
+
+
+                                <div class="loadCate">
+                                    <!--======== Load Cateogries =======-->
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <a href="#"><img src="~/Assets/Users/images/adv/adv.jpg" alt="" /></a>
+                            </div>
+                            <div class="widget recent-posts-entry widget-courses">
+                                <h5 class="widget-title style-1">Recent Courses</h5>
+                                <div class="widget-post-bx">
+                                    <div class="widget-post clearfix">
+                                        <div class="ttr-post-media"> <img src="~/Assets/Users/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
+                                        <div class="ttr-post-info">
+                                            <div class="ttr-post-header">
+                                                <h6 class="post-title"><a href="#">Introduction EduChamp</a></h6>
+                                            </div>
+                                            <div class="ttr-post-meta">
+                                                <ul>
+                                                    <li class="price">
+                                                        <del>$190</del>
+                                                        <h5>$120</h5>
+                                                    </li>
+                                                    <li class="review">03 Review</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-post clearfix">
+                                        <div class="ttr-post-media"> <img src="~/Assets/Users/images/blog/recent-blog/pic3.jpg" width="200" height="160" alt=""> </div>
+                                        <div class="ttr-post-info">
+                                            <div class="ttr-post-header">
+                                                <h6 class="post-title"><a href="#">English For Tommorow</a></h6>
+                                            </div>
+                                            <div class="ttr-post-meta">
+                                                <ul>
+                                                    <li class="price">
+                                                        <h5 class="free">Free</h5>
+                                                    </li>
+                                                    <li class="review">07 Review</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-12">
+                            <!--=======Load course ========-->
+                            <div class="row">
+
+                                @{ int stt = 0;}
+                                @foreach (var course in ViewBag.course)
+                                {
+                                    { price = course.price - (course.price * course.discount) / 100; }
+                                    <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                        <div class="cours-bx">
+                                            <div class="action-box">
+                                                <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt="imageCourse" style="width: 263px; height: 147px;">
+                                                <a href="/Student/Courses/CourseDetail/@course.id" class="btn">Read More</a>
+                                            </div>
+                                            <div class="info-bx text-center">
+                                                <h5><a href="#">@course.name</a></h5>
+                                                <span>@course.short_description</span>
+                                            </div>
+                                            <div class="cours-more-info">
+                                                <div class="review" style="padding-left: 10px; width: 160px;">
+                                                    <span>3 Review</span>
+                                                    <ul class="cours-star">
+                                                        <li class="active"><i class="fa fa-star"></i></li>
+                                                        <li class="active"><i class="fa fa-star"></i></li>
+                                                        <li class="active"><i class="fa fa-star"></i></li>
+                                                        <li><i class="fa fa-star"></i></li>
+                                                        <li><i class="fa fa-star"></i></li>
+                                                    </ul>
+                                                </div>
+                                                
+                                                @{if (Convert.ToInt32(course.discount) == 0)
+                                                    {
+                                                        <div class="price">
+                                                            @*<del>@String.Format(info, "{0:C0}", course.price)</del>*@
+                                                            <h5> $@course.price</h5>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="price">
+                                                            <del>$@course.price</del>
+                                                            <h5> $@price</h5>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    stt = stt + 1;
+                                }
+
+
+                                @*<div class="col-lg-12 m-b20">
+                                    <div class="pagination-bx rounded-sm gray clearfix">
+                                        <ul class="pagination">
+                                            <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>*@
+                            </div>
+                            <!--====== End load Couse========-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- contact area END -->
+    </div>
+    <!-- Content END-->
+</body>
+
+

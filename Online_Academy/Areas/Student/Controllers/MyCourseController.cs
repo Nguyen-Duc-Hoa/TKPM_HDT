@@ -66,7 +66,7 @@ namespace Online_Academy.Areas.Student.Controllers
             //ViewBag.Course = HC.GetAllCourse(idUser);
 
             ViewBag.Course = db.sp_Course_bought(idUser);
-            return PartialView("loadFCourse");
+            return PartialView();
         }
         public ActionResult FavoriteCourse()
         {
@@ -74,7 +74,7 @@ namespace Online_Academy.Areas.Student.Controllers
             {
                 return View();
             }
-            return Redirect("/Accont/Login");
+            return Redirect("/Account/Login");
         }
             
 

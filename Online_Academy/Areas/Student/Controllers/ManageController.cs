@@ -64,6 +64,29 @@ namespace Online_Academy.Areas.Student.Controllers
         }
 
 
+        //Load my course
+        public ActionResult LoadMyCourse()
+        {
+            if(AuthorizeUser())
+            {
+                try
+                {
+                    int idUser = Convert.ToInt32(Session["UserId"]);
+                    HistoriesClient HC = new HistoriesClient();
+                    //ViewBag.Course = HC.GetAllCourse(idUser);
+
+                    ViewBag.Course = db.sp_Course_bought(idUser);
+                    return View();
+                }
+                catch
+                {
+
+                }
+               
+            }
+            return Redirect("/Account/Login");
+        }
+
         //show danh sach cac mon hoc chua mua
         public ActionResult NotBought()
         {
@@ -95,7 +118,7 @@ namespace Online_Academy.Areas.Student.Controllers
         }
 
         //Them khoa hoc vao cart
-        public bool InsertCart(int idCourse)
+        public ActionResult InsertCart(int idCourse)
         {
             if(AuthorizeUser())
             {
@@ -107,15 +130,14 @@ namespace Online_Academy.Areas.Student.Controllers
                     cart.id_course = idCourse;
                     db.Carts.Add(cart);
                     db.SaveChanges();
-                    return true;
+                    return Content("True");
                 }
                 catch
                 {
-                    Response.Write(@"<script language='javascript'>alert('Message: \n" + "Something was wrong!" + " .');</script>");
+                    return Content("Somthing was wrong!");
                 }
             }
-            Redirect("/Account/Login");
-            return false;
+            return Content("false");
         }
 
 
@@ -227,7 +249,7 @@ namespace Online_Academy.Areas.Student.Controllers
                     return Content("Fail");
                 }
             }
-            return Content("Fail");
+            return Content("Success");
         }
         
         public void sendMail(string mail, string subject, string body)

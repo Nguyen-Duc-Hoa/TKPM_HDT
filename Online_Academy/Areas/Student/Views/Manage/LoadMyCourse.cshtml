@@ -1,0 +1,54 @@
+﻿@{ var price = 0;}
+
+<div class="courses-filter">
+    <div class="clearfix">
+        <ul id="masonry" class="ttr-gallery-listing magnific-image row">
+            @foreach (var course in ViewBag.course)
+            {
+                { price = course.price - (course.price * course.discount) / 100; }
+
+                <li class="action-card col-xl-4 col-lg-6 col-md-12 col-sm-6 publish">
+                    <div class="cours-bx">
+                        <div class="action-box">
+                            <img src="~/assets/Pictures/ImagesCourse/@course.thumbnail" alt="imageCourse"  style="width: 263px; height: 147px">
+                            <a href="/Student/Courses/CourseDetail/@course.id" class="btn">Learn Now</a>
+                        </div>
+                        <div class="info-bx text-center">
+                            <h5><a href="#">@course.name</a></h5>
+                            <span>@course.short_description</span>
+                        </div>
+                        <div class="cours-more-info">
+                            <div class="review">
+                                <span>3 Review</span>
+                                <ul class="cours-star">
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li class="active"><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                            </div>
+                            @{if (Convert.ToInt32(course.discount) == 0)
+                                {
+                                    <div class="price">
+                                        @*<del>@String.Format(info, "{0:C0}", course.price)</del>*@
+                                        <h5> $@course.price</h5>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="price">
+                                        <del>$@course.price</del>
+                                        <h5> $@price</h5>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+           
+
+        </ul>
+    </div>
+</div>

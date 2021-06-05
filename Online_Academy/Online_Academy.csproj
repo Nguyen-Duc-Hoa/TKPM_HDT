@@ -151,6 +151,7 @@
     <Compile Include="Areas\Student\Controllers\MyCourseController.cs" />
     <Compile Include="Areas\Student\Controllers\PaymentController.cs" />
     <Compile Include="Areas\Student\Controllers\PaypalController.cs" />
+    <Compile Include="Areas\Student\Controllers\SearchController.cs" />
     <Compile Include="Areas\Student\Controllers\YourCousrseController.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\Controllers\HomeController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchClient.cs" />
     <Compile Include="Models\sp_Cart_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -703,6 +705,9 @@
     <Content Include="Areas\Student\Views\Manage\NotBought.cshtml" />
     <Content Include="Areas\Student\Views\Manage\Cart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Student\Views\Manage\LoadMyCourse.cshtml" />
+    <Content Include="Areas\Student\Views\MyCourse\loadMyCourse.cshtml" />
+    <Content Include="Areas\Student\Views\Search\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

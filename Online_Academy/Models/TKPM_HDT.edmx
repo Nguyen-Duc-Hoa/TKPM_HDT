@@ -709,6 +709,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        
         <Function Name="sp_SumLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCourse" Type="int" Mode="In" />
         </Function>
@@ -1749,10 +1750,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           </AssociationSet>
           <EntitySet Name="view_allCart" EntityType="DB_A72902_TKPMModel.view_allCart" />
           <FunctionImport Name="sp_Cart" ReturnType="Collection(DB_A72902_TKPMModel.sp_Cart_Result)">
-            <Parameter Name="idUser" Mode="In" Type="Int32" />
+          <Parameter Name="idUser" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_notBought" ReturnType="Collection(DB_A72902_TKPMModel.sp_notBought_Result)">
-            <Parameter Name="idUser" Mode="In" Type="Int32" />
+          <Parameter Name="idUser" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getBookdetail_Result">

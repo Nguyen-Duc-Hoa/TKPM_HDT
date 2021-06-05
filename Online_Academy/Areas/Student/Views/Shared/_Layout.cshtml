@@ -365,7 +365,10 @@
         $(".ti-search").click(function () {
             console.log("ti-search");
             var text = $('[name=search]').val();
-            alert(text);
+            debugger;
+
+            window.location.href = '/Search?text=' + text;
+
         });
     </script>
 </body>
