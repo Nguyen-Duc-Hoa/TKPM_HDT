@@ -57,18 +57,21 @@ namespace Online_Academy.Areas.Student.Controllers
                     int idUser = Convert.ToInt32(Session["UserId"]);
                     CartClient CC = new CartClient();
                     var list = CC.getCartbyUser(idUser);
+                    DateTime time = DateTime.Now;
                     foreach (var item in list)
                     {
                         try
                         {
-                            Cart cart = new Cart();
-                            cart.id_course = item.id_course;
-                            cart.id_user = item.id_user;
-
-                            db.Carts.Add(cart);
+                            int price = Convert.ToInt32(item.price - (item.price * item.discount / 100));
+                            History history = new History();
+                            history.id_course = item.id_course;
+                            history.id_user = item.id_user;
+                            history.price = price;
+                            history.date = time;
+                            db.Histories.Add(history);
+                         
+                            DeleteCart(history.id_user, history.id_course);
                             db.SaveChanges();
-
-                            DeleteCart(cart.id_user, cart.id_course);
                         }
                         catch
                         {
@@ -130,15 +133,29 @@ namespace Online_Academy.Areas.Student.Controllers
                 if (AuthorizeUser())
                 {
 
-                    try
-                    {
-                        int idCourse = Convert.ToInt32(Session["idCourse"].ToString());
-                        AddHistory();
-                    }
-                    catch
-                    {
-                        AddListHistory();
-                    }
+                    //try
+                    //{
+                    //    int idCourse = Convert.ToInt32(Session["idCourse"].ToString());
+
+                    //    if (idCourse != 0)
+                    //    {
+                    //        AddHistory();
+                    //    } 
+                    //    else
+                    //    {
+                    //        if (AddListHistory())
+                    //        {
+
+                    //        }
+                    //        else
+                    //        {
+                    //            return View("Error");
+                    //        }
+                    //    }
+                    //}
+                    //catch { }
+                       
+
                     
 
                     string payerId = Request.Params["PayerID"];

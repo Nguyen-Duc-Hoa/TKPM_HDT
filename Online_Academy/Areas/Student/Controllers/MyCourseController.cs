@@ -65,7 +65,7 @@ namespace Online_Academy.Areas.Student.Controllers
             HistoriesClient HC = new HistoriesClient();
             //ViewBag.Course = HC.GetAllCourse(idUser);
 
-            ViewBag.Course = db.sp_Course_bought(idUser).Where(x => x.state == true);
+            ViewBag.Course = db.sp_Course_bought(idUser);
             return PartialView("loadFCourse");
         }
         public ActionResult FavoriteCourse()
@@ -86,8 +86,8 @@ namespace Online_Academy.Areas.Student.Controllers
                 if (idUser != 0)
                 {
                     CourseClient CC = new CourseClient();
-                    var allCourse = CC.GetCourseByUser(idUser).Where(x => x.state == true);
-                    ViewBag.Course = allCourse.Where(x => x.id_student == idUser);
+                    ViewBag.Course = CC.GetCourseByUser(idUser).Where(x=>x.id_student == idUser);
+                    
                     return View();
                 }
             }

@@ -196,42 +196,46 @@
 
 </div>
 
+@{ if (Convert.ToInt32(totalCost) != 0)
+    {
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="review-bx">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <div class="review-bx">
-            
-            <div class="review-bar">
-                <div class="bar-bx">
-                    <div class="side" style="width:1000px">
-                        <div><p style="font-size: 50px; ">Total courses: @totalCoure</p> </div>
+                    <div class="review-bar">
+                        <div class="bar-bx">
+                            <div class="side" style="width:1000px">
+                                <div><p style="font-size: 50px; ">Total courses: @totalCoure</p> </div>
+                            </div>
+                        </div>
+                        <div class="bar-bx">
+                            <div class="side" style="width:1000px">
+                                <div><p style="font-size: 20px;">Total cost: $@totalCost</p> </div>
+                            </div>
+                        </div>
+                        <div class="bar-bx">
+
+                            @{ Session["price"] = totalCost; }
+
+
+                        </div>
+
                     </div>
                 </div>
-                <div class="bar-bx">
-                    <div class="side" style="width:1000px">
-                        <div><p style="font-size: 20px;">Total cost: $@totalCost</p> </div>
-                    </div>
-                </div>
-                <div class="bar-bx">
-                    
-                    @{ Session["price"] = totalCost; }
 
-
-                </div>
+                <a class="btn radius-xl text-uppercase" id="checkout1" style="width: 240px; margin-left: auto; margin-right:auto">Paypal Checkout >></a>
 
             </div>
+
+
         </div>
+    }
+}
 
-        <a class="btn radius-xl text-uppercase" id="checkout1" style="width: 240px; margin-left: auto; margin-right:auto">Paypal Checkout >></a>
-
-    </div>
-
-
-</div>
 @section load{
     <script>
         $(".clickRemove").click(function () {
@@ -244,9 +248,9 @@
                     data: { id: idcoure },
                     success: function (result) {
                         alert("Remove successfully")
-                    }
-                })
-            }
+                    },
+                });
+            };
 
         });
 
@@ -282,20 +286,20 @@
         }
 
         var checkout = document.getElementById("checkout1");
+
         checkout.onclick = function () {
-            //debugger;
-            //window.location.href = "/Studennt/Payment/AddHistory";
-            //$.ajax({ 
-            //    url: "/Studennt/Payment/AddHistory",
-            //    success: function (htlm) {
-            //        debugger;
-            //        window.location.href = "/Student/Payment/PaymentWithPaypal";
-            //    }
+            debugger;
+            $.ajax({
+                url: "/Student/Paypal/AddListHistory",
+                success: function (result) {
+                    debugger;
+                    if (result == "True") {
+                        window.location.href = "/Student/Paypal/PaymentWithPaypal";
+                    };
+                   
+                },
 
-            //});
-
-            window.location.href = "/Student/Paypal/PaymentWithPaypal";
-
+            });
         }
     </script>
 }

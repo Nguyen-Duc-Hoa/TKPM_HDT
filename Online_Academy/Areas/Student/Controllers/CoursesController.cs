@@ -20,11 +20,16 @@ namespace Online_Academy.Areas.Student.Controllers
         {
 
             CourseClient CC = new CourseClient();
-            ViewBag.Course = CC.GetAllCourses();
+            //ViewBag.Course = CC.GetAllCourses();
+            if (Session["UserId"] == null)
+            {
+                Session["UserId"] = 0;
+            }
+
             if (Session["UserId"] != null)
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
-                ViewBag.Course = CC.GetCourseByUser(idUser).Where(x => x.state == true);
+                ViewBag.Course = CC.GetCourseByUser(idUser);
             }
             return PartialView();
         }
@@ -37,7 +42,7 @@ namespace Online_Academy.Areas.Student.Controllers
             UpdateList_inline("All course", null);
 
             
-            ViewBag.SubCate = db.Subcategories;
+            ViewBag.SubCate = CC.getAllSubcate();
 
             return PartialView();
         }
@@ -46,7 +51,7 @@ namespace Online_Academy.Areas.Student.Controllers
         public ActionResult CourseDetail(int id)
         {
             CourseClient CC = new CourseClient();
-            ViewBag.Course = CC.GetCourseByUser(0).Where(x => x.id == id).FirstOrDefault();
+            //ViewBag.Course = CC.GetCourseByUser(0);
 
             //Tinh count
             CurriculumClient CrC = new CurriculumClient();
@@ -54,6 +59,8 @@ namespace Online_Academy.Areas.Student.Controllers
 
 
             int idTecher = Convert.ToInt32(CC.GetCourse(id).id_teacher);
+            GetTeacher(idTecher);
+
             if (Session["UserId"] != null)
             {
                 try
@@ -70,7 +77,7 @@ namespace Online_Academy.Areas.Student.Controllers
                     //Neeu nhu da mua
                     if( ViewBag.test != null)
                     {
-                        GetTeacher(idTecher);
+                        //GetTeacher(idTecher);
 
                         //load process
                         var process = db.Processes.Where(x => x.id_student == idUser && x.id_Course == id).FirstOrDefault();
@@ -95,7 +102,7 @@ namespace Online_Academy.Areas.Student.Controllers
             }
 
             //Load thong tin teacher
-            GetTeacher(idTecher);
+            //GetTeacher(idTecher);
             return View();
         }   
 
@@ -126,7 +133,7 @@ namespace Online_Academy.Areas.Student.Controllers
         public ActionResult CourseByType(int id)
         {
             CourseClient CC = new CourseClient();
-            ViewBag.Course = db.Courses.Where(x => x.id_subcat == id );
+            //ViewBag.Course = db.Courses.Where(x => x.id_subcat == id );
 
             if (Session["UserId"] != null)
             {
@@ -139,18 +146,19 @@ namespace Online_Academy.Areas.Student.Controllers
 
         public ActionResult CourseByTeacher(int idTeacher)
         {
-            ViewBag.TCourse = db.sp_teacherCourses(idTeacher).Where(x => x.state == true);
+            CourseClient CC = new CourseClient();
+            ViewBag.TCourse = CC.GetTeacherCourses(idTeacher).Where(x => x.state == true);
             if(ViewBag.TCourse != null)
             {
                 return PartialView();
             }
-            return Content("");
+            return View();
         }
 
         public ActionResult General()
         {
             CourseClient CC = new CourseClient();
-            ViewBag.Course = db.Courses;
+            //ViewBag.Course = db.Courses;
             if (Session["UserId"] != null)
             {
                 int idUser = Convert.ToInt32(Session["UserId"]);
