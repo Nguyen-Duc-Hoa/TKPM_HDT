@@ -214,6 +214,16 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allLectures' does not have
           <Property Name="id_chapter" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allSubcate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_allSubcate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subname" Type="char" MaxLength="100" />
+          <Property Name="id_cat" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="view_allUsers">
           <Key>
@@ -580,6 +590,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="checkNameCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="func_Course" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idStudent" Type="int" Mode="In" />
@@ -620,6 +634,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
         <Function Name="getCourseByStateSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="statesave" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="getCourseByTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="getCurriculumByCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -719,6 +736,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Parameter Name="idUser" Type="int" Mode="In" />
           <Parameter Name="idCourse" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_totalCost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUser" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_UpdateProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUser" Type="int" Mode="In" />
           <Parameter Name="idCourse" Type="int" Mode="In" />
@@ -778,6 +798,13 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_allLectures].[link] AS [link], 
     [view_allLectures].[id_chapter] AS [id_chapter]
     FROM [dbo].[view_allLectures] AS [view_allLectures]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_allSubcate" EntityType="Self.view_allSubcate" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_allSubcate].[id] AS [id], 
+    [view_allSubcate].[subname] AS [subname], 
+    [view_allSubcate].[id_cat] AS [id_cat]
+    FROM [dbo].[view_allSubcate] AS [view_allSubcate]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_allUsers" EntityType="Self.view_allUsers" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1739,6 +1766,8 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="Carts" EntityType="DB_A72902_TKPMModel.Cart" />
+          <EntitySet Name="view_allCart" EntityType="DB_A72902_TKPMModel.view_allCart" />
+          <EntitySet Name="view_allSubcate" EntityType="DB_A72902_TKPMModel.view_allSubcate" />
           <AssociationSet Name="FK__Cart__id_course__05F8DC4F" Association="DB_A72902_TKPMModel.FK__Cart__id_course__05F8DC4F">
             <End Role="Course" EntitySet="Courses" />
             <End Role="Cart" EntitySet="Carts" />
@@ -1747,12 +1776,21 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             <End Role="User" EntitySet="Users" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
-          <EntitySet Name="view_allCart" EntityType="DB_A72902_TKPMModel.view_allCart" />
+          <FunctionImport Name="checkNameCourse" ReturnType="Collection(DB_A72902_TKPMModel.checkNameCourse_Result)">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_Cart" ReturnType="Collection(DB_A72902_TKPMModel.sp_Cart_Result)">
-            <Parameter Name="idUser" Mode="In" Type="Int32" />
+          <Parameter Name="idUser" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_notBought" ReturnType="Collection(DB_A72902_TKPMModel.sp_notBought_Result)">
-            <Parameter Name="idUser" Mode="In" Type="Int32" />
+          <Parameter Name="idUser" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_totalCost" ReturnType="Collection(Int32)">
+          <Parameter Name="idUser" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getCourseByTeacher" ReturnType="Collection(DB_A72902_TKPMModel.getCourseByTeacher_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getBookdetail_Result">
@@ -1911,6 +1949,23 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__Cart__id_course__05F8DC4F" FromRole="Cart" ToRole="Course" />
           <NavigationProperty Name="User" Relationship="DB_A72902_TKPMModel.FK__Cart__id_user__06ED0088" FromRole="Cart" ToRole="User" />
         </EntityType>
+        <EntityType Name="view_allCart">
+          <Key>
+            <PropertyRef Name="id_course" />
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_course" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="view_allSubcate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subname" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="id_cat" Type="Int32" />
+        </EntityType>
         <Association Name="FK__Cart__id_course__05F8DC4F">
           <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
           <End Type="DB_A72902_TKPMModel.Cart" Role="Cart" Multiplicity="*" />
@@ -1935,15 +1990,20 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="view_allCart">
-          <Key>
-            <PropertyRef Name="id_course" />
-            <PropertyRef Name="id_user" />
-          </Key>
-          <Property Name="id_course" Type="Int32" Nullable="false" />
-          <Property Name="id_user" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-        </EntityType>
+        <ComplexType Name="checkNameCourse_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+          <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="id_teacher" Nullable="true" />
+          <Property Type="Int32" Name="id_subcat" Nullable="true" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="Int32" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="discount" Nullable="true" />
+          <Property Type="Boolean" Name="statesave" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="sp_Cart_Result">
           <Property Type="Int32" Name="id_course" Nullable="false" />
           <Property Type="Int32" Name="id_user" Nullable="false" />
@@ -1954,6 +2014,20 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Type="Int32" Name="discount" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_notBought_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+          <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="id_teacher" Nullable="true" />
+          <Property Type="Int32" Name="id_subcat" Nullable="true" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="Int32" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="discount" Nullable="true" />
+          <Property Type="Boolean" Name="statesave" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getCourseByTeacher_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
@@ -2519,6 +2593,33 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="view_allSubcate">
+            <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allSubcate">
+              <MappingFragment StoreEntitySet="view_allSubcate">
+                <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+                <ScalarProperty Name="subname" ColumnName="subname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="checkNameCourse" FunctionName="DB_A72902_TKPMModel.Store.checkNameCourse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.checkNameCourse_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="preview" ColumnName="preview" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="statesave" ColumnName="statesave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Cart" FunctionName="DB_A72902_TKPMModel.Store.sp_Cart">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Cart_Result">
@@ -2535,6 +2636,25 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <FunctionImportMapping FunctionImportName="sp_notBought" FunctionName="DB_A72902_TKPMModel.Store.sp_notBought">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_notBought_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="preview" ColumnName="preview" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="statesave" ColumnName="statesave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_totalCost" FunctionName="DB_A72902_TKPMModel.Store.sp_totalCost" />
+          <FunctionImportMapping FunctionImportName="getCourseByTeacher" FunctionName="DB_A72902_TKPMModel.Store.getCourseByTeacher">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCourseByTeacher_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />

@@ -50,6 +50,40 @@ namespace Online_Academy.Areas.Teacher.Controllers
             ViewBag.listCourses = cvm;
             return View();
         }
+        [HttpPost]
+        public ActionResult CheckNameCourse(string name)
+        {
+            string namecourse = name.Trim();
+            int id = Convert.ToInt32(Session["userID"]);
+            int count = db.checkNameCourse(namecourse, id).Count();
+            if (count == 0)
+                return Json(true);
+            return Json(false);
+        }
+        [HttpPost]
+        public ActionResult CheckNameCourseEdit(string name,int idcourse)
+        {
+           
+            string namecourse = name.Trim();
+            int id = Convert.ToInt32(Session["userID"]);
+            Course course = db.Courses.Find(idcourse);
+            if (course.name.Trim() == namecourse)
+            {
+                return Json(true);
+            }
+            int count = db.checkNameCourse(namecourse, id).Count();
+            if (count == 0)
+                return Json(true);
+            return Json(false);
+        }
+        [HttpPost]
+        public void UploadCourse(int id)
+        {
+            Course course = db.Courses.Find(id);
+            course.statesave = true;
+            db.Entry(course).State = EntityState.Modified;
+            db.SaveChanges();
+        }
         public ActionResult Students(int id)
         {
             UsersClient uc = new UsersClient();
@@ -128,6 +162,7 @@ namespace Online_Academy.Areas.Teacher.Controllers
         
         public void Create(FormCollection formdata)
         {
+           
             Course course = new Course();
             int id = Convert.ToInt32(Session["userID"]);
             // lecture.chapname = ;
@@ -527,13 +562,13 @@ namespace Online_Academy.Areas.Teacher.Controllers
                 curriclient.DeleteCurriculum(curri[m].id);
             }
             cc.DeleteCourse(id);
-            List<CourseViewModel> cvm = new List<CourseViewModel>();
+            List<CourseTeacherViewModel> cvm = new List<CourseTeacherViewModel>();
             CourseClient course = new CourseClient();
             TeachersClient tc = new TeachersClient();
             int idteacher = Convert.ToInt32(Session["userID"]);
-            foreach (var item in course.GetCoursesByStateSave(idteacher,false))
+            foreach (var item in db.getCourseByStateSave(idteacher,false))
             {
-                CourseViewModel c = new CourseViewModel();
+                CourseTeacherViewModel c = new CourseTeacherViewModel();
                 c.course = item;
                 c.teacher = tc.find(item.id_teacher);
                 cvm.Add(c);

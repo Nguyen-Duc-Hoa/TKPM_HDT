@@ -54,6 +54,7 @@ namespace Online_Academy.Models
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<view_allCart> view_allCart { get; set; }
+        public virtual DbSet<view_allSubcate> view_allSubcate { get; set; }
     
         [DbFunction("DB_A72902_TKPMEntities", "func_Course")]
         public virtual IQueryable<func_Course_Result> func_Course(Nullable<int> idStudent)
@@ -417,6 +418,19 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
+        public virtual ObjectResult<checkNameCourse_Result> checkNameCourse(string name, Nullable<int> id)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<checkNameCourse_Result>("checkNameCourse", nameParameter, idParameter);
+        }
+    
         public virtual ObjectResult<sp_Cart_Result> sp_Cart(Nullable<int> idUser)
         {
             var idUserParameter = idUser.HasValue ?
@@ -433,6 +447,24 @@ namespace Online_Academy.Models
                 new ObjectParameter("idUser", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_notBought_Result>("sp_notBought", idUserParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_totalCost(Nullable<int> idUser)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_totalCost", idUserParameter);
+        }
+    
+        public virtual ObjectResult<getCourseByTeacher_Result> getCourseByTeacher(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByTeacher_Result>("getCourseByTeacher", idParameter);
         }
     }
 }
