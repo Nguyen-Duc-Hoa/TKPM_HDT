@@ -2,21 +2,28 @@
 
 $(function () {
     $(".btn-savedraft").click(function () {
+        debugger
+        
+        if ($("#upload").valid() == false) {
+            alert("One or more fields are incorrect");
+            return;
+        }
+           
         $("#divLoading").show();
         var namecourse = $("#namecourse").val();
         var sub = parseInt($("#id_subcat").val())
         var price = $("#price").val();
         var discount = $("#discount").val();
-        if (parseInt(price) < 0 ) {
-            $("#divLoading").hide();
-            alert("Please enter price bigger 0");
-            return;
-        }
-        if (parseInt(discount) < 0 || parseInt(discount)>100) {
-            $("#divLoading").hide();
-            alert("Please enter discount less 100 and bigger 0");
-            return;
-        }
+        //if (parseInt(price) < 0 ) {
+        //    $("#divLoading").hide();
+        //    alert("Please enter price bigger 0");
+        //    return;
+        //}
+        //if (parseInt(discount) < 0 || parseInt(discount)>100) {
+        //    $("#divLoading").hide();
+        //    alert("Please enter discount less 100 and bigger 0");
+        //    return;
+        //}
         // var fileimg = $("#fileimg").prop("files")[0];
         var fileimg = $("#fileimg")[0].files[0];
         
@@ -86,6 +93,11 @@ $(function () {
      
     })
     $(".btn-post").click(function () {
+        if ($("#upload").valid() == false) {
+            alert("One or more fields are incorrect");
+            return;
+        }
+           
           $("#divLoading").show();
         var namecourse = $("#namecourse").val();
         var sub = parseInt($("#id_subcat").val())
@@ -163,5 +175,21 @@ $(function () {
         xhr.send(formdata);
         
 
+    })
+    $(".btn-upload").click(function () {
+        var idcourse = $(this).data('idcourse');
+        $.ajax({
+            type: "POST",
+            url: "/TeacherCourses/UploadCourse",
+            data: { id: idcourse },
+            success: function (response) {
+                alert("Upload success");
+               
+
+            },
+            error: function () {
+                alert("Error");
+            }
+        });
     })
 });
