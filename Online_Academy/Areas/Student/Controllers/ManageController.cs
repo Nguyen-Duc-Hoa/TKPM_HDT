@@ -200,5 +200,7 @@ namespace Online_Academy.Areas.Student.Controllers
             return "/UploadFiles/" + file.FileName;
         }
 
+
+        
     }
 }

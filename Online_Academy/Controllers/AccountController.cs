@@ -31,7 +31,7 @@ namespace Online_Academy.Controllers
         // Login view
         public ActionResult Login()
         {
-            var ua = db.Users.Where(u => u.id == 49).FirstOrDefault();
+            //var ua = db.Users.Where(u => u.id == 49).FirstOrDefault();
 
 
             if (Request.Cookies["userName"] != null && Request.Cookies["pass"] != null)
