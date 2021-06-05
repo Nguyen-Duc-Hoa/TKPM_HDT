@@ -10,7 +10,7 @@ namespace Online_Academy.Areas.Admin.Controllers
     public class TeacherController : Controller
     {
         private DB_A72902_TKPMEntities db = new DB_A72902_TKPMEntities();
-        public int pageSize = 1;
+        public int pageSize = 3;
         public bool AuthorizeAdmin()
         {
             if (Session["role"] == null)

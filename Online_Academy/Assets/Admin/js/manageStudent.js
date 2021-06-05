@@ -31,6 +31,7 @@
                 studentCard.remove()
                 if (response == "Fail") {
                     // Do something
+                    alert("An error occurred while processing your request.");
                 }
                 else {
                     window.location.href = "https://localhost:44311/Admin/Student/Index";

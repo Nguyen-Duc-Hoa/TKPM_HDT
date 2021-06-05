@@ -347,3 +347,5 @@ D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_
 D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.dll
 D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.pdb
 D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\Online_Academy\obj\Debug\Online_Academy.csprojAssemblyReference.cache
+D:\Documents\Thiết kế phần mềm hướng đối tượng\Project\TKPM_HDT\Online_Academy\bin\Facebook.dll
+D:\Documents\Thiết kế phần mềm hướng đối tượng\Project\TKPM_HDT\Online_Academy\bin\Facebook.xml
