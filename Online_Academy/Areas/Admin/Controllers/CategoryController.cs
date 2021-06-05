@@ -60,6 +60,13 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             try
             {
+                var dbSubcate = db.Subcategories.Where(s => s.subname.Trim() == sub.subname.Trim()).FirstOrDefault();
+                var dbCate = db.Categories.Where(s => s.name.Trim() == sub.subname.Trim()).FirstOrDefault();
+                if(dbSubcate != null || dbCate != null)
+                {
+                    ViewBag.message = "Tên này đã được sử dụng";
+                    return View("Error");
+                }
                 var dbSub = db.Subcategories.Where(s => s.id == sub.id).FirstOrDefault();
                 dbSub.subname = sub.subname.Trim();
                 db.SaveChanges();
@@ -67,8 +74,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
         public ActionResult AddSubcategory(int idCate)
@@ -89,14 +95,20 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             try
             {
+                var dbSubcate = db.Subcategories.Where(s => s.subname.Trim() == sub.subname.Trim()).FirstOrDefault();
+                var dbCate = db.Categories.Where(s => s.name.Trim() == sub.subname.Trim()).FirstOrDefault();
+                if (dbSubcate != null || dbCate != null)
+                {
+                    ViewBag.message = "Tên này đã được sử dụng";
+                    return View("Error");
+                }
                 db.Subcategories.Add(sub);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
         public ActionResult DeleteSubcategory(int idSubcate)
@@ -135,14 +147,21 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             try
             {
+                var dbSubcate = db.Subcategories.Where(s => s.subname.Trim() == cate.name.Trim()).FirstOrDefault();
+                var dbCategory = db.Categories.Where(c => c.name.Trim() == cate.name.Trim()).FirstOrDefault();
+                if (dbSubcate != null || dbCategory != null)
+                {
+                    ViewBag.message = "Tên này đã được sử dụng";
+                    return View("Error");
+                }
+
                 db.Categories.Add(cate);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
         public ActionResult DeleteCategory(int idCate)
@@ -160,8 +179,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
         public ActionResult EditCategory(int idCate)
@@ -177,8 +195,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
         [HttpPost]
@@ -190,6 +207,14 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             try
             {
+                var dbSubcate = db.Subcategories.Where(s => s.subname.Trim() == cate.name.Trim()).FirstOrDefault();
+                var dbCategory = db.Categories.Where(c => c.name.Trim() == cate.name.Trim()).FirstOrDefault();
+                if(dbSubcate != null || dbCategory != null)
+                {
+                    ViewBag.message = "Tên này đã được sử dụng";
+                    return View("Error");
+                }
+
                 var dbCate = db.Categories.Where(c => c.id == cate.id).FirstOrDefault();
                 dbCate.name = cate.name.Trim();
                 db.SaveChanges();
@@ -197,8 +222,7 @@ namespace Online_Academy.Areas.Admin.Controllers
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
     }
