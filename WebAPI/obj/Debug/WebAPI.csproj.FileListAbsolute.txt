@@ -353,3 +353,4 @@ C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csproj.CoreCompi
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.csproj.CopyComplete
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.dll
 C:\Users\PC\source\repos\Online_Academy\WebAPI\obj\Debug\WebAPI.pdb
+D:\Documents\Thiết kế phần mềm hướng đối tượng\TKPM_HDT\WebAPI\obj\Debug\WebAPI.csprojAssemblyReference.cache
