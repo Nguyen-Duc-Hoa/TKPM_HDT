@@ -192,7 +192,7 @@
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">New Password</label>
                                                 <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                    <input class="form-control" type="password" value="" id="newPassword">
+                                                    <input class="form-control" type="password" id="newPassword" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number." required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
