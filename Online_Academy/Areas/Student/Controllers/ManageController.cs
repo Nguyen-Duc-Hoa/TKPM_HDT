@@ -1,6 +1,7 @@
 ﻿using Online_Academy.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -140,5 +141,64 @@ namespace Online_Academy.Areas.Student.Controllers
             Response.Write(@"<script language='javascript'>alert('Message: \n" + "Something was wrong!" + " .');</script>");
             return RedirectToAction("Cart");        
         }
+
+ 
+        [HttpPost]
+        public ActionResult EditProfile()
+        {
+            if(AuthorizeUser())
+            {
+                try
+                {
+                    int id = Convert.ToInt32(Session["UserId"]);
+                    string name = Request["Name"];
+                    string gender = Request["Gender"];
+                    DateTime date = Convert.ToDateTime(Request["Birthdate"]);
+
+                    User user = db.Users.Where(x => x.id == id).FirstOrDefault();
+                    if(user != null)
+                    {
+                        user.name = name.Trim();
+                        user.birthday = date;
+                        
+                        if(gender != null)
+                        {
+                            user.gender = gender.Trim();
+                        }
+                        if(Session["newavatar"] != null)
+                        {
+                            user.avatar = Session["newavatar"].ToString().Trim();
+                            Session["avatar"] = Session["newavatar"].ToString().Trim();
+                        }
+
+                        db.Entry(user).State = EntityState.Modified;
+
+                        try
+                        {
+                            db.SaveChanges();
+                            
+                        }
+                        catch (Exception e)
+                        {
+                            Response.Write(@"<script language='javascript'>alert('Message: \n" + "Something was wrong!" + " .');</script>");
+                        }
+
+                    }
+                }
+                catch { }
+            }
+
+            Response.Write(@"<script language='javascript'>alert('Message: \n" + "Successfully" + " .');</script>");
+            return RedirectToAction("Profile");
+        }
+
+
+        public string Upload(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/UploadFiles/" + file.FileName));
+            Session["newavatar"] = "/UploadFiles/"+file.FileName;
+            return "/UploadFiles/" + file.FileName;
+        }
+
     }
 }

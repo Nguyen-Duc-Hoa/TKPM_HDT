@@ -356,18 +356,28 @@
                                     </div>
                                     <div class="courses-filter">
                                         @*<div class="row">*@
-                                            <div class="loadCkechout">
-                                                <!--=================-->
+                                        <div class="loadCkechout">
+                                            <!--=================-->
 
-                                            </div>
+                                        </div>
                                         @*</div>*@
                                     </div>
                                 </div>
+
                                 <div class="tab-pane" id="edit-profile">
                                     <div class="profile-head">
                                         <h3>Edit Profile</h3>
                                     </div>
-                                    <form class="edit-profile">
+                                    <div class="user-profile-thumb">
+                                        <input type="file" id="fileUpload" accept="image/*" name="fileUpload" style="display:none" />
+                                        <img id="picUpload" name="picUpload" src="@student.avatar" alt="">
+
+                                    </div>
+                                    <input type="button" id="btnUpload" value="Choose image" style="margin-left:60px;" />
+
+
+
+                                    <form class="edit-profile" action="/Student/Manage/EditProfile" method="post">
                                         <div class="">
                                             <div class="form-group row">
                                                 <div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
@@ -377,93 +387,29 @@
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Full Name</label>
                                                 <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="Mark Andre">
+                                                    <input class="form-control" type="text" id="Name" name="Name" value="@student.name" required >
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Occupation</label>
+                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Birthdate</label>
                                                 <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="CTO">
+                                                    <input class="form-control" type="date" id="Birthdate" name="Birthdate"  value="@Convert.ToDateTime(student.birthday).ToString("yyyy/MM/dd")" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Company Name</label>
+                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Gender</label>
                                                 <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="EduChamp">
-                                                    <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Phone No.</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="+120 012345 6789">
+                                                    <select name="Gender" id="Gender">
+                                                        <option value="@student.gender" selected style="display:none">@student.gender</option>
+                                                        <option id="Male" value="Male">Male</option>
+                                                        <option id="Female" value="Female">Female</option>
+
+                                                    </select>
+                                                    @*<input class="form-control" type="text" value="EduChamp">
+                                                        <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>*@
                                                 </div>
                                             </div>
 
-                                            <div class="seperator"></div>
-
-                                            <div class="form-group row">
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
-                                                    <h3>2. Address</h3>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Address</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="5-S2-20 Dummy City, UK">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">City</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="US">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">State</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="California">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Postcode</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="000702">
-                                                </div>
-                                            </div>
-
-                                            <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-                                            <div class="form-group row">
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
-                                                    <h3 class="m-form__section">3. Social Links</h3>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Linkedin</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="www.linkedin.com">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Facebook</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="www.facebook.com">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Twitter</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="www.twitter.com">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Instagram</label>
-                                                <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                    <input class="form-control" type="text" value="www.instagram.com">
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="">
                                             <div class="">
@@ -471,7 +417,8 @@
                                                     <div class="col-12 col-sm-3 col-md-3 col-lg-2">
                                                     </div>
                                                     <div class="col-12 col-sm-9 col-md-9 col-lg-7">
-                                                        <button type="reset" class="btn">Save changes</button>
+
+                                                        <button type="submit" class="btn" id="savechange">Save changes</button>
                                                         <button type="reset" class="btn-secondry">Cancel</button>
                                                     </div>
                                                 </div>
@@ -513,7 +460,7 @@
                                             <div class="col-12 col-sm-4 col-md-4 col-lg-3">
                                             </div>
                                             <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                <button type="reset" class="btn">Save changes</button>
+                                                <button type="submit" class="btn">Save changes</button>
                                                 <button type="reset" class="btn-secondry">Cancel</button>
                                             </div>
                                         </div>
@@ -535,7 +482,7 @@
 @section load{
     <script>
         $(document).ready(function () {
-            debugger;
+           
             console.log("hoa");
             $.ajax({
                 url: "/Student/Manage/NotBought",
@@ -545,7 +492,51 @@
                     document.getElementById("title").innerHTML = var2;
                 }
             });
+
+            $(function () {
+                // event click button change
+                $('#btnUpload').click(function () {
+                    $('#fileUpload').trigger('click')
+                });
+                //change data fileUpload
+                $('#fileUpload').change(function () {
+              
+                    //kiem tra  trinh duyet co ho tro Formdata
+                    if (window.FormData !== undefined) {
+                        //Lay du lieu tren fileUpload
+                        var fileUpload = $('#fileUpload').get(0);
+                        var files = fileUpload.files;
+                        //tao doi tuong formdata
+                        var formData = new FormData();
+                        //dua du lieu vao form
+                        formData.append('file', files[0]);
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Student/Manage/Upload',
+                            contentType: false, //khong co header
+                            processData: false,// khong xu li du lieu
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#picUpload').attr('src', urlImage);
+
+                            },
+                            error: function (err) {
+                                alert('Error ' + err.statusText);
+                            }
+                        });
+                    }
+                });
+            });
+
+            //$("#savechange").click(function () {
+            //    $.ajax({
+            //        method: 'post',
+            //        url: "/Student/Manage/EditProfile",
+            //        success: function (result) {
+
+            //        },
+            //    });
+            //})
         });
     </script>
-    }
-
+}
