@@ -28,7 +28,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             
             return View();
@@ -37,7 +37,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         public JsonResult NewChart()
         {
             List<object> iData = new List<object>();
-            var courses = db.Courses.ToList();
+            var courses = db.Courses.Where(c => c.statesave == true).ToList();
             var histories = db.Histories.ToList();
 
             DataTable dt = new DataTable();
@@ -73,7 +73,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         public JsonResult SecondChart()
         {
             List<object> iData = new List<object>();
-            var courses = db.Courses.ToList();
+            var courses = db.Courses.Where(c => c.statesave == true).ToList();
             var histories = db.Histories.ToList();
 
             DataTable dt = new DataTable();
@@ -118,7 +118,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         public ActionResult LoadTable()
         {
             List<object> tableData = new List<object>();
-            var courses = db.Courses.ToList();
+            var courses = db.Courses.Where(c => c.statesave == true).ToList();
             var histories = db.Histories.ToList();
             foreach (var course in courses)
             {

@@ -27,7 +27,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             // API chưa lấy subcategory khi lấy category
             List<Category> lstCategories = db.Categories.ToList();
@@ -39,7 +39,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -56,7 +56,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -81,7 +81,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             Subcategory sub = new Subcategory() { id_cat = idCate };
             return View(sub);
@@ -91,7 +91,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -115,26 +115,30 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
                 var dbSub = db.Subcategories.Where(s => s.id == idSubcate).FirstOrDefault();
+                if(dbSub.Courses.Count != 0)
+                {
+                    ViewBag.message = "Có khóa học tham chiếu đến subcategory";
+                    return View("Error");
+                }
                 db.Subcategories.Remove(dbSub);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                Response.Write("<script>alert('Đã có lỗi xảy ra')</script>");
-                return RedirectToAction("Index");
+                return View("Error");
             }
         }
         public ActionResult AddCategory()
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             return View();
         }
@@ -143,7 +147,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -168,11 +172,16 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
                 var dbCate = db.Categories.Where(c => c.id == idCate).FirstOrDefault();
+                if(dbCate.Subcategories.Count != 0)
+                {
+                    ViewBag.message = "Category vẫn còn subcategory";
+                    return View("Error");
+                }
                 db.Categories.Remove(dbCate);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -186,7 +195,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
@@ -203,7 +212,7 @@ namespace Online_Academy.Areas.Admin.Controllers
         {
             if (!AuthorizeAdmin())
             {
-                return Redirect("Account/Login");
+                return Redirect("/Account/Login");
             }
             try
             {
