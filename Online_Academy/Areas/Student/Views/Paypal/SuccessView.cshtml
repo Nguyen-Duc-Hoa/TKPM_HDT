@@ -1,9 +1,48 @@
 ﻿
-<a>Bạn đã mua khóa học...</a>
-<button onclick="myFunction()">OK</button>
-<script>
-    function myFunction() {
-        window.location.href = "/Student/Manage/Purchase";
+@{ ViewBag.Title = "SuccessView";
+    Layout = "~/Areas/Student/Views/Shared/_Layout.cshtml"; }
+
+<h2>Thanh toán Paypal thành công</h2>
+
+
+
+@{if (Convert.ToInt32(Session["flag"]) == 1) //thanh toan tu cart
+    {
+        <script type="text/javascript">
+            function redirect() {
+
+                $.ajax({
+                    url: "/Student/Paypal/AddListHistory",
+                    success: function (result) {
+                        debugger;
+
+                        alert("Checkout sucessfully");
+                        window.location.href = "/Student/Manage/Purchase";
+                    }
+                });
+            }
+            window.onload = redirect;
+        </script>
     }
 
-</script>
+    else if (Convert.ToInt32(Session["flag"]) == 0)
+    {
+        <script type="text/javascript">
+            function redirect() {
+
+                $.ajax({
+                    url: "/Student/Paypal/AddHistory",
+                    success: function (result) {
+                        debugger;
+
+                        alert("Checkout sucessfully");
+                        window.location.href = "/Student/Manage/Purchase";
+                    }
+                });
+            }
+            window.onload = redirect;
+        </script>
+
+    }
+}
+

@@ -217,6 +217,7 @@ namespace Online_Academy.Areas.Student.Controllers
                     dbUser.password = newPassword;
                     db.SaveChanges();
 
+
                     string subject = "Change Password";
                     string body = "Your account: " + dbUser.username + "has new password: " + newPassword;
                     sendMail(dbUser.email, subject, body);
@@ -228,6 +229,7 @@ namespace Online_Academy.Areas.Student.Controllers
             }
             return Content("Fail");
         }
+        
         public void sendMail(string mail, string subject, string body)
         {
             //email của dự án
@@ -251,5 +253,6 @@ namespace Online_Academy.Areas.Student.Controllers
             smtpClient.Credentials = loginInfo;
             smtpClient.Send(msg);
         }
+
     }
 }

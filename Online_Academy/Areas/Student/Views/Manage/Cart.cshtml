@@ -200,7 +200,7 @@
     {
         <!-- The Modal -->
         <div id="myModal" class="modal">
-
+            @{ Session["flag"] = 1;}
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -288,18 +288,8 @@
         var checkout = document.getElementById("checkout1");
 
         checkout.onclick = function () {
-            debugger;
-            $.ajax({
-                url: "/Student/Paypal/AddListHistory",
-                success: function (result) {
-                    debugger;
-                    if (result == "True") {
-                        window.location.href = "/Student/Paypal/PaymentWithPaypal";
-                    };
-                   
-                },
-
-            });
+           
+            window.location.href = "/Student/Paypal/PaymentWithPaypal";
         }
     </script>
 }

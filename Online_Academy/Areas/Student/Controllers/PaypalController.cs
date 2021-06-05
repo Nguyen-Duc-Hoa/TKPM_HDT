@@ -47,7 +47,7 @@ namespace Online_Academy.Areas.Student.Controllers
             }
         }
 
-
+        //Buy from cart
         public bool AddListHistory()
         {
             if(AuthorizeUser())
@@ -89,74 +89,62 @@ namespace Online_Academy.Areas.Student.Controllers
             }
             return false;
         }
+
+        //Buy now course
         public ActionResult AddHistory()
         {
-
-            int idCourse;
-            try
+            if(AuthorizeUser())
             {
-                HistoriesClient HC = new HistoriesClient();
-                var history = new History();
-                history.id_course = Convert.ToInt32(Session["idCourse"].ToString());
-                history.id_user = Convert.ToInt32(Session["UserId"].ToString());
-                history.price = Convert.ToDouble(Session["price"].ToString());
-                history.date = DateTime.Now;
-                idCourse = Convert.ToInt32(Session["idCourse"]);
-
-                if (history.id_course != 0)
+                int idCourse;
+                try
                 {
-                    db.Histories.Add(history);
-                    db.SaveChanges();
-                    return Redirect("/Student/Courses/CourseDetail/" + idCourse);
+                    HistoriesClient HC = new HistoriesClient();
+                    var history = new History();
+                    history.id_course = Convert.ToInt32(Session["idCourse"].ToString());
+                    history.id_user = Convert.ToInt32(Session["UserId"].ToString());
+                    history.price = Convert.ToDouble(Session["price"].ToString());
+                    history.date = DateTime.Now;
+                    idCourse = Convert.ToInt32(Session["idCourse"]);
+
+                    if (history.id_course != 0)
+                    {
+                        db.Histories.Add(history);
+                        db.SaveChanges();
+
+                        Cart cart = db.Carts.Where(x => x.id_course == history.id_course && x.id_user == history.id_user).FirstOrDefault();
+                        if(cart != null)
+                        {
+                            db.Carts.Remove(cart);
+                            db.SaveChanges();
+                        }
+                        return Redirect("/Student/Courses/CourseDetail/" + idCourse);
+
+                    }
+                    else
+                    {
+                        Response.Write(@"<script language='javascript'>alert('Message: \n" + "Error dont have Course" + " .');</script>");
+                    }
+
+
                 }
-                else
+                catch
                 {
-                    return Redirect("/Account/Login");
+                    Response.Write(@"<script language='javascript'>alert('Message: \n" + "Error dont have Course" + " .');</script>");
+
                 }
-
-
             }
-            catch
-            {
-                return Redirect("/Account/Login");
-            }
+            return Redirect("/Account/Login");
 
         }
 
         public ActionResult PaymentWithPaypal()
         {
-
-            //getting the apiContext as earlier
-            APIContext apiContext = Configuration.GetAPIContext();
-            try
+            if(AuthorizeUser())
             {
-                if (AuthorizeUser())
+                //getting the apiContext as earlier
+                APIContext apiContext = Configuration.GetAPIContext();
+                try
                 {
-
-                    //try
-                    //{
-                    //    int idCourse = Convert.ToInt32(Session["idCourse"].ToString());
-
-                    //    if (idCourse != 0)
-                    //    {
-                    //        AddHistory();
-                    //    } 
-                    //    else
-                    //    {
-                    //        if (AddListHistory())
-                    //        {
-
-                    //        }
-                    //        else
-                    //        {
-                    //            return View("Error");
-                    //        }
-                    //    }
-                    //}
-                    //catch { }
-                       
-
-                    
 
                     string payerId = Request.Params["PayerID"];
                     if (string.IsNullOrEmpty(payerId))
@@ -201,21 +189,19 @@ namespace Online_Academy.Areas.Student.Controllers
                             return View("SuccessView");
                         }
                     }
+
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    return Redirect("/Account/Login");
+                    Logger.Log("Error" + ex.Message);
+                    ViewBag.error = ex.Message.ToString();
+                    return View("SuccessView");
                 }
-
-
-            }
-            catch (Exception ex)
-            {
-                Logger.Log("Error" + ex.Message);
-                ViewBag.error = ex.Message.ToString();
                 return View("SuccessView");
             }
-            return View("SuccessView");
+            return Redirect("/Account/Login");
+
         }
 
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
