@@ -466,5 +466,14 @@ namespace Online_Academy.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByTeacher_Result>("getCourseByTeacher", idParameter);
         }
+    
+        public virtual ObjectResult<sp_searchName_Result> sp_searchName(string text)
+        {
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_searchName_Result>("sp_searchName", textParameter);
+        }
     }
 }

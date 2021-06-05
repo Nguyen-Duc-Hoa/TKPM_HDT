@@ -209,6 +209,16 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allLectures' does not have
     <Property Name="id_chapter" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allSubcate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_allSubcate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subname" Type="char" MaxLength="100" />
+    <Property Name="id_cat" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="view_allUsers">
     <Key>
@@ -575,6 +585,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="checkNameCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="func_Course" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idStudent" Type="int" Mode="In" />
@@ -615,6 +629,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
   <Function Name="getCourseByStateSave" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
     <Parameter Name="statesave" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="getCourseByTeacher" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="getCurriculumByCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
@@ -704,6 +721,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Parameter Name="owner_id" Type="int" Mode="In" />
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="sp_searchName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="text" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_SumLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idCourse" Type="int" Mode="In" />
   </Function>
@@ -713,6 +733,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
   <Function Name="sp_testBought" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUser" Type="int" Mode="In" />
     <Parameter Name="idCourse" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_totalCost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUser" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_UpdateProcess" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUser" Type="int" Mode="In" />
@@ -773,6 +796,13 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_allLectures].[link] AS [link], 
     [view_allLectures].[id_chapter] AS [id_chapter]
     FROM [dbo].[view_allLectures] AS [view_allLectures]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_allSubcate" EntityType="Self.view_allSubcate" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_allSubcate].[id] AS [id], 
+    [view_allSubcate].[subname] AS [subname], 
+    [view_allSubcate].[id_cat] AS [id_cat]
+    FROM [dbo].[view_allSubcate] AS [view_allSubcate]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_allUsers" EntityType="Self.view_allUsers" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

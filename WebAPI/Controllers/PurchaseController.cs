@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
 
         public IQueryable<sp_Purchase_Result> GetPurchaseUser(int idUser)
         {
-            return db.sp_Purchase().Where(x => x.id_user == idUser).AsQueryable();
+            return db.sp_Purchase().Where(x => x.id_user == idUser).OrderBy(x=>x.date).AsQueryable();
         }
 
     }

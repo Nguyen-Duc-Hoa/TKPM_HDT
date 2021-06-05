@@ -547,6 +547,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="view_allSubcate">
+      <EntityTypeMapping TypeName="DB_A72902_TKPMModel.view_allSubcate">
+        <MappingFragment StoreEntitySet="view_allSubcate">
+          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+          <ScalarProperty Name="subname" ColumnName="subname" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="checkNameCourse" FunctionName="DB_A72902_TKPMModel.Store.checkNameCourse">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.checkNameCourse_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="statesave" ColumnName="statesave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_Cart" FunctionName="DB_A72902_TKPMModel.Store.sp_Cart">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_Cart_Result">
@@ -563,6 +590,43 @@
     <FunctionImportMapping FunctionImportName="sp_notBought" FunctionName="DB_A72902_TKPMModel.Store.sp_notBought">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_notBought_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="statesave" ColumnName="statesave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_totalCost" FunctionName="DB_A72902_TKPMModel.Store.sp_totalCost" />
+    <FunctionImportMapping FunctionImportName="getCourseByTeacher" FunctionName="DB_A72902_TKPMModel.Store.getCourseByTeacher">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCourseByTeacher_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+          <ScalarProperty Name="preview" ColumnName="preview" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="statesave" ColumnName="statesave" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_searchName" FunctionName="DB_A72902_TKPMModel.Store.sp_searchName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_searchName_Result">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />

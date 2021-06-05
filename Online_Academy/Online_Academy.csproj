@@ -264,6 +264,9 @@
     <Compile Include="Models\sp_Purchase_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_searchName_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_teacherCourses_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>

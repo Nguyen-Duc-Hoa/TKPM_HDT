@@ -726,6 +726,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_searchName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="text" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_SumLesson" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCourse" Type="int" Mode="In" />
         </Function>
@@ -1790,7 +1793,10 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Parameter Name="idUser" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getCourseByTeacher" ReturnType="Collection(DB_A72902_TKPMModel.getCourseByTeacher_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_searchName" ReturnType="Collection(DB_A72902_TKPMModel.sp_searchName_Result)">
+            <Parameter Name="text" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getBookdetail_Result">
@@ -2028,6 +2034,20 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <Property Type="Boolean" Name="statesave" Nullable="true" />
         </ComplexType>
         <ComplexType Name="getCourseByTeacher_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+          <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="id_teacher" Nullable="true" />
+          <Property Type="Int32" Name="id_subcat" Nullable="true" />
+          <Property Type="Boolean" Name="state" Nullable="true" />
+          <Property Type="Int32" Name="price" Nullable="true" />
+          <Property Type="Int32" Name="discount" Nullable="true" />
+          <Property Type="Boolean" Name="statesave" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_searchName_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
@@ -2655,6 +2675,24 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
           <FunctionImportMapping FunctionImportName="getCourseByTeacher" FunctionName="DB_A72902_TKPMModel.Store.getCourseByTeacher">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.getCourseByTeacher_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="preview" ColumnName="preview" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="id_subcat" ColumnName="id_subcat" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="statesave" ColumnName="statesave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_searchName" FunctionName="DB_A72902_TKPMModel.Store.sp_searchName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_A72902_TKPMModel.sp_searchName_Result">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="description" ColumnName="description" />

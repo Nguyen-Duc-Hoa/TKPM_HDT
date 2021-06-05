@@ -787,6 +787,8 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
     <EntitySet Name="Carts" EntityType="DB_A72902_TKPMModel.Cart" />
+    <EntitySet Name="view_allCart" EntityType="DB_A72902_TKPMModel.view_allCart" />
+    <EntitySet Name="view_allSubcate" EntityType="DB_A72902_TKPMModel.view_allSubcate" />
     <AssociationSet Name="FK__Cart__id_course__05F8DC4F" Association="DB_A72902_TKPMModel.FK__Cart__id_course__05F8DC4F">
       <End Role="Course" EntitySet="Courses" />
       <End Role="Cart" EntitySet="Carts" />
@@ -795,12 +797,24 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Cart" EntitySet="Carts" />
     </AssociationSet>
-    <EntitySet Name="view_allCart" EntityType="DB_A72902_TKPMModel.view_allCart" />
+    <FunctionImport Name="checkNameCourse" ReturnType="Collection(DB_A72902_TKPMModel.checkNameCourse_Result)">
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_Cart" ReturnType="Collection(DB_A72902_TKPMModel.sp_Cart_Result)">
       <Parameter Name="idUser" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_notBought" ReturnType="Collection(DB_A72902_TKPMModel.sp_notBought_Result)">
       <Parameter Name="idUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_totalCost" ReturnType="Collection(Int32)">
+      <Parameter Name="idUser" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getCourseByTeacher" ReturnType="Collection(DB_A72902_TKPMModel.getCourseByTeacher_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_searchName" ReturnType="Collection(DB_A72902_TKPMModel.sp_searchName_Result)">
+      <Parameter Name="text" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="getBookdetail_Result">
@@ -959,6 +973,23 @@
     <NavigationProperty Name="Course" Relationship="DB_A72902_TKPMModel.FK__Cart__id_course__05F8DC4F" FromRole="Cart" ToRole="Course" />
     <NavigationProperty Name="User" Relationship="DB_A72902_TKPMModel.FK__Cart__id_user__06ED0088" FromRole="Cart" ToRole="User" />
   </EntityType>
+  <EntityType Name="view_allCart">
+    <Key>
+      <PropertyRef Name="id_course" />
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_course" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_allSubcate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subname" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="id_cat" Type="Int32" />
+  </EntityType>
   <Association Name="FK__Cart__id_course__05F8DC4F">
     <End Type="DB_A72902_TKPMModel.Course" Role="Course" Multiplicity="1" />
     <End Type="DB_A72902_TKPMModel.Cart" Role="Cart" Multiplicity="*" />
@@ -983,15 +1014,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="view_allCart">
-    <Key>
-      <PropertyRef Name="id_course" />
-      <PropertyRef Name="id_user" />
-    </Key>
-    <Property Name="id_course" Type="Int32" Nullable="false" />
-    <Property Name="id_user" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-  </EntityType>
+  <ComplexType Name="checkNameCourse_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Boolean" Name="statesave" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="sp_Cart_Result">
     <Property Type="Int32" Name="id_course" Nullable="false" />
     <Property Type="Int32" Name="id_user" Nullable="false" />
@@ -1002,6 +1038,34 @@
     <Property Type="Int32" Name="discount" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_notBought_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Boolean" Name="statesave" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getCourseByTeacher_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
+    <Property Type="String" Name="short_description" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="thumbnail" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="preview" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id_teacher" Nullable="true" />
+    <Property Type="Int32" Name="id_subcat" Nullable="true" />
+    <Property Type="Boolean" Name="state" Nullable="true" />
+    <Property Type="Int32" Name="price" Nullable="true" />
+    <Property Type="Int32" Name="discount" Nullable="true" />
+    <Property Type="Boolean" Name="statesave" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_searchName_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
     <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="description" Nullable="true" MaxLength="5000" />
