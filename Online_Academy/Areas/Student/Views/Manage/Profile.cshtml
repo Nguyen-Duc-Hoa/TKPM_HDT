@@ -186,7 +186,7 @@
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Current Password</label>
                                                 <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                    <input class="form-control" type="password" value="" id="currentPassword">
+                                                    <input class="form-control" type="password" value="" id="currentPassword" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -198,7 +198,7 @@
                                             <div class="form-group row">
                                                 <label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Re Type New Password</label>
                                                 <div class="col-12 col-sm-8 col-md-8 col-lg-7">
-                                                    <input class="form-control" type="password" value="" id="confirmPassword">
+                                                    <input class="form-control" type="password" value="" id="confirmPassword" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -298,10 +298,18 @@
             })
 
             $("#btnChangePassword").click(function () {
+                debugger;
                 var currentPassword = $("#currentPassword").val();
                 var newPassword = $("#newPassword").val();
                 var confirmPassword = $("#confirmPassword").val();
-                if (newPassword !== confirmPassword) {
+                if (newPassword === "" || confirmPassword ==="") {
+                    $("#message").text("Nhập đầy đủ thông tin");
+                }
+                //else if ("^ (?=.*\d)(?=.* [a - z])(?=.* [A - Z])(?!.*\s).* $".test(newPassword))
+                //{
+                //    $("#message").text("Please include at least 1 uppercase character, 1 lowercase character, and 1 number.");
+                //}
+                else if (newPassword !== confirmPassword) {
                     $("#message").text("Mật khẩu không trùng khớp");
                 }
                 else {

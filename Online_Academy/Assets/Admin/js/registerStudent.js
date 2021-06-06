@@ -4,7 +4,7 @@
             $(".validation-message").text("Vui lòng nhập email hợp lệ")
             return false
         }
-        else if (name == undefined || username == undefined || password == undefined) {
+        else if (name == "" || username == "" || password == "") {
             $(".validation-message").text("Vui lòng nhập đầy đủ thông tin")
             return false
         }
