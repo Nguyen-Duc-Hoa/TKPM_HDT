@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
 
         public IQueryable<sp_notBought_Result> getCourse_notBought(int idUser)
         {
-            return db.sp_notBought(idUser).AsQueryable();
+            return db.sp_notBought(idUser).Where(x => x.state == true).AsQueryable();
         }
 
     }
