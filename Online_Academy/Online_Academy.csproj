@@ -177,6 +177,9 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\checkCodeCourse_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\checkNameCourse_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -710,13 +713,6 @@
     <Content Include="Areas\Teacher\Views\Home\Dashboard.cshtml" />
     <Content Include="Areas\Student\Views\Manage\Purchase.cshtml" />
     <Content Include="Areas\Student\Views\Paypal\SuccessView.cshtml" />
-    <EntityDeploy Include="Models\TKPM_HDT.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TKPM_HDT.edmx.diagram">
-      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Student\Views\Manage\Profile.cshtml" />
     <Content Include="Areas\Student\Views\Manage\NotBought.cshtml" />
     <Content Include="Areas\Student\Views\Manage\Cart.cshtml" />
@@ -724,6 +720,13 @@
     <Content Include="Areas\Student\Views\Manage\LoadMyCourse.cshtml" />
     <Content Include="Areas\Student\Views\MyCourse\loadMyCourse.cshtml" />
     <Content Include="Areas\Student\Views\Search\Index.cshtml" />
+    <EntityDeploy Include="Models\TKPM_HDT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TKPM_HDT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TKPM_HDT.edmx.diagram">
+      <DependentUpon>TKPM_HDT.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

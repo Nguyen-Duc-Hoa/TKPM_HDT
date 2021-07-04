@@ -11,7 +11,7 @@ namespace WebAPI.Models
 {
     using System;
     
-    public partial class sp_teacherCourses_Result
+    public partial class checkCodeCourse_Result
     {
         public int id { get; set; }
         public string name { get; set; }

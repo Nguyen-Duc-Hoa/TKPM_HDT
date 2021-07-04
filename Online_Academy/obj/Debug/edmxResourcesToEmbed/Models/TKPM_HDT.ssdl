@@ -50,6 +50,7 @@
     <Property Name="price" Type="int" />
     <Property Name="discount" Type="int" />
     <Property Name="statesave" Type="bit" />
+    <Property Name="code" Type="varchar" MaxLength="6" />
   </EntityType>
   <EntityType Name="Curriculum">
     <Key>
@@ -186,6 +187,8 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allCourses' does not have 
     <Property Name="state" Type="bit" />
     <Property Name="price" Type="int" />
     <Property Name="discount" Type="int" />
+    <Property Name="statesave" Type="bit" />
+    <Property Name="code" Type="varchar" MaxLength="6" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_allCurriculum' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -287,7 +290,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_History' does not have a p
     <Property Name="id_course" Type="int" Nullable="false" />
     <Property Name="id_user" Type="int" Nullable="false" />
     <Property Name="date" Type="datetime" />
-    <Property Name="price" Type="int" />
+    <Property Name="price" Type="float" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Subcategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -321,7 +324,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     <Property Name="num_students" Type="int" />
     <Property Name="num_cources" Type="int" />
   </EntityType>
-  <Association Name="FK__Bookdetai__id_co__47DBAE45">
+  <Association Name="FK__Bookdetai__id_co__628FA481">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="Bookdetail" Type="Self.Bookdetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -345,7 +348,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Cart__id_course__05F8DC4F">
+  <Association Name="FK__Cart__id_course__6477ECF3">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
@@ -357,7 +360,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Cart__id_user__06ED0088">
+  <Association Name="FK__Cart__id_user__656C112C">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
@@ -369,7 +372,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Comment__id_cour__03F0984C">
+  <Association Name="FK__Comment__id_cour__66603565">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
@@ -417,7 +420,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Curriculu__id_co__5165187F">
+  <Association Name="FK__Curriculu__id_co__6A30C649">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="*" />
     <ReferentialConstraint>
@@ -453,7 +456,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Lecture__id_chap__0B91BA14">
+  <Association Name="FK__Lecture__id_chap__6D0D32F4">
     <End Role="Curriculum" Type="Self.Curriculum" Multiplicity="0..1" />
     <End Role="Lecture" Type="Self.Lecture" Multiplicity="*" />
     <ReferentialConstraint>
@@ -465,7 +468,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Process__id_Cour__4BAC3F29">
+  <Association Name="FK__Process__id_Cour__6E01572D">
     <End Role="Course" Type="Self.Course" Multiplicity="1" />
     <End Role="Process" Type="Self.Process" Multiplicity="*" />
     <ReferentialConstraint>
@@ -513,7 +516,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Reply__id_commen__08B54D69">
+  <Association Name="FK__Reply__id_commen__71D1E811">
     <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
     <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
     <ReferentialConstraint>
@@ -525,7 +528,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Reply__id_course__07C12930">
+  <Association Name="FK__Reply__id_course__72C60C4A">
     <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
     <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
     <ReferentialConstraint>
@@ -561,7 +564,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Users__role__4C364F0E">
+  <Association Name="FK__Users__role__76969D2E">
     <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
@@ -585,6 +588,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="checkCodeCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="code" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="checkNameCourse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="name" Type="varchar" Mode="In" />
     <Parameter Name="id" Type="int" Mode="In" />
@@ -779,7 +785,9 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_allCourses].[id_subcat] AS [id_subcat], 
     [view_allCourses].[state] AS [state], 
     [view_allCourses].[price] AS [price], 
-    [view_allCourses].[discount] AS [discount]
+    [view_allCourses].[discount] AS [discount], 
+    [view_allCourses].[statesave] AS [statesave], 
+    [view_allCourses].[code] AS [code]
     FROM [dbo].[view_allCourses] AS [view_allCourses]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_allCurriculum" EntityType="Self.view_allCurriculum" store:Type="Views" store:Schema="dbo">
@@ -884,7 +892,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
     [view_Teachers].[num_cources] AS [num_cources]
     FROM [dbo].[view_Teachers] AS [view_Teachers]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK__Bookdetai__id_co__47DBAE45" Association="Self.FK__Bookdetai__id_co__47DBAE45">
+    <AssociationSet Name="FK__Bookdetai__id_co__628FA481" Association="Self.FK__Bookdetai__id_co__628FA481">
       <End Role="Course" EntitySet="Course" />
       <End Role="Bookdetail" EntitySet="Bookdetail" />
     </AssociationSet>
@@ -892,15 +900,15 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       <End Role="Users" EntitySet="Users" />
       <End Role="Bookdetail" EntitySet="Bookdetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__Cart__id_course__05F8DC4F" Association="Self.FK__Cart__id_course__05F8DC4F">
+    <AssociationSet Name="FK__Cart__id_course__6477ECF3" Association="Self.FK__Cart__id_course__6477ECF3">
       <End Role="Course" EntitySet="Course" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK__Cart__id_user__06ED0088" Association="Self.FK__Cart__id_user__06ED0088">
+    <AssociationSet Name="FK__Cart__id_user__656C112C" Association="Self.FK__Cart__id_user__656C112C">
       <End Role="Users" EntitySet="Users" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK__Comment__id_cour__03F0984C" Association="Self.FK__Comment__id_cour__03F0984C">
+    <AssociationSet Name="FK__Comment__id_cour__66603565" Association="Self.FK__Comment__id_cour__66603565">
       <End Role="Course" EntitySet="Course" />
       <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
@@ -916,7 +924,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Course" EntitySet="Course" />
     </AssociationSet>
-    <AssociationSet Name="FK__Curriculu__id_co__5165187F" Association="Self.FK__Curriculu__id_co__5165187F">
+    <AssociationSet Name="FK__Curriculu__id_co__6A30C649" Association="Self.FK__Curriculu__id_co__6A30C649">
       <End Role="Course" EntitySet="Course" />
       <End Role="Curriculum" EntitySet="Curriculum" />
     </AssociationSet>
@@ -928,11 +936,11 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       <End Role="Users" EntitySet="Users" />
       <End Role="History" EntitySet="History" />
     </AssociationSet>
-    <AssociationSet Name="FK__Lecture__id_chap__0B91BA14" Association="Self.FK__Lecture__id_chap__0B91BA14">
+    <AssociationSet Name="FK__Lecture__id_chap__6D0D32F4" Association="Self.FK__Lecture__id_chap__6D0D32F4">
       <End Role="Curriculum" EntitySet="Curriculum" />
       <End Role="Lecture" EntitySet="Lecture" />
     </AssociationSet>
-    <AssociationSet Name="FK__Process__id_Cour__4BAC3F29" Association="Self.FK__Process__id_Cour__4BAC3F29">
+    <AssociationSet Name="FK__Process__id_Cour__6E01572D" Association="Self.FK__Process__id_Cour__6E01572D">
       <End Role="Course" EntitySet="Course" />
       <End Role="Process" EntitySet="Process" />
     </AssociationSet>
@@ -948,11 +956,11 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       <End Role="Users" EntitySet="Users" />
       <End Role="Rate" EntitySet="Rate" />
     </AssociationSet>
-    <AssociationSet Name="FK__Reply__id_commen__08B54D69" Association="Self.FK__Reply__id_commen__08B54D69">
+    <AssociationSet Name="FK__Reply__id_commen__71D1E811" Association="Self.FK__Reply__id_commen__71D1E811">
       <End Role="Comment" EntitySet="Comment" />
       <End Role="Reply" EntitySet="Reply" />
     </AssociationSet>
-    <AssociationSet Name="FK__Reply__id_course__07C12930" Association="Self.FK__Reply__id_course__07C12930">
+    <AssociationSet Name="FK__Reply__id_course__72C60C4A" Association="Self.FK__Reply__id_course__72C60C4A">
       <End Role="Course" EntitySet="Course" />
       <End Role="Reply" EntitySet="Reply" />
     </AssociationSet>
@@ -964,7 +972,7 @@ warning 6002: The table/view 'DB_A72902_TKPM.dbo.view_Teachers' does not have a 
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Subcategories" EntitySet="Subcategories" />
     </AssociationSet>
-    <AssociationSet Name="FK__Users__role__4C364F0E" Association="Self.FK__Users__role__4C364F0E">
+    <AssociationSet Name="FK__Users__role__76969D2E" Association="Self.FK__Users__role__76969D2E">
       <End Role="Role" EntitySet="Role" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>

@@ -18,12 +18,12 @@ namespace Online_Academy.Models
         public User()
         {
             this.Bookdetails = new HashSet<Bookdetail>();
+            this.Carts = new HashSet<Cart>();
             this.Comments = new HashSet<Comment>();
             this.Histories = new HashSet<History>();
             this.Processes = new HashSet<Process>();
             this.Rates = new HashSet<Rate>();
             this.Replies = new HashSet<Reply>();
-            this.Carts = new HashSet<Cart>();
         }
     
         public int id { get; set; }
@@ -42,6 +42,8 @@ namespace Online_Academy.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bookdetail> Bookdetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History> Histories { get; set; }
@@ -53,7 +55,5 @@ namespace Online_Academy.Models
         public virtual ICollection<Reply> Replies { get; set; }
         public virtual Role Role1 { get; set; }
         public virtual Teacher Teacher { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

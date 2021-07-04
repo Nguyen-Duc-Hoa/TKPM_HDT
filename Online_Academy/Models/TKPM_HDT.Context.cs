@@ -28,6 +28,7 @@ namespace Online_Academy.Models
         }
     
         public virtual DbSet<Bookdetail> Bookdetails { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
@@ -42,9 +43,11 @@ namespace Online_Academy.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<view_allCart> view_allCart { get; set; }
         public virtual DbSet<view_allCourses> view_allCourses { get; set; }
         public virtual DbSet<view_allCurriculum> view_allCurriculum { get; set; }
         public virtual DbSet<view_allLectures> view_allLectures { get; set; }
+        public virtual DbSet<view_allSubcate> view_allSubcate { get; set; }
         public virtual DbSet<view_allUsers> view_allUsers { get; set; }
         public virtual DbSet<view_Bookdetail> view_Bookdetail { get; set; }
         public virtual DbSet<view_categories> view_categories { get; set; }
@@ -52,9 +55,6 @@ namespace Online_Academy.Models
         public virtual DbSet<view_History> view_History { get; set; }
         public virtual DbSet<view_Subcategories> view_Subcategories { get; set; }
         public virtual DbSet<view_Teachers> view_Teachers { get; set; }
-        public virtual DbSet<Cart> Carts { get; set; }
-        public virtual DbSet<view_allCart> view_allCart { get; set; }
-        public virtual DbSet<view_allSubcate> view_allSubcate { get; set; }
     
         [DbFunction("DB_A72902_TKPMEntities", "func_Course")]
         public virtual IQueryable<func_Course_Result> func_Course(Nullable<int> idStudent)
@@ -64,6 +64,28 @@ namespace Online_Academy.Models
                 new ObjectParameter("idStudent", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<func_Course_Result>("[DB_A72902_TKPMEntities].[func_Course](@idStudent)", idStudentParameter);
+        }
+    
+        public virtual ObjectResult<checkCodeCourse_Result> checkCodeCourse(string code)
+        {
+            var codeParameter = code != null ?
+                new ObjectParameter("code", code) :
+                new ObjectParameter("code", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<checkCodeCourse_Result>("checkCodeCourse", codeParameter);
+        }
+    
+        public virtual ObjectResult<checkNameCourse_Result> checkNameCourse(string name, Nullable<int> id)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<checkNameCourse_Result>("checkNameCourse", nameParameter, idParameter);
         }
     
         public virtual ObjectResult<getBookdetail_Result> getBookdetail(Nullable<int> id_student, Nullable<int> id_course)
@@ -99,6 +121,15 @@ namespace Online_Academy.Models
                 new ObjectParameter("statesave", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByStateSave_Result>("getCourseByStateSave", idParameter, statesaveParameter);
+        }
+    
+        public virtual ObjectResult<getCourseByTeacher_Result> getCourseByTeacher(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByTeacher_Result>("getCourseByTeacher", idParameter);
         }
     
         public virtual ObjectResult<getCurriculumByCourse_Result> getCurriculumByCourse(Nullable<int> id)
@@ -247,6 +278,15 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
+        public virtual ObjectResult<sp_Cart_Result> sp_Cart(Nullable<int> idUser)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Cart_Result>("sp_Cart", idUserParameter);
+        }
+    
         public virtual ObjectResult<sp_Course_bought_Result> sp_Course_bought(Nullable<int> idUser)
         {
             var idUserParameter = idUser.HasValue ?
@@ -330,6 +370,15 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
+        public virtual ObjectResult<sp_notBought_Result> sp_notBought(Nullable<int> idUser)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_notBought_Result>("sp_notBought", idUserParameter);
+        }
+    
         public virtual ObjectResult<sp_Purchase_Result> sp_Purchase()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Purchase_Result>("sp_Purchase");
@@ -365,6 +414,15 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
         }
     
+        public virtual ObjectResult<sp_searchName_Result> sp_searchName(string text)
+        {
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_searchName_Result>("sp_searchName", textParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> sp_SumLesson(Nullable<int> idCourse)
         {
             var idCourseParameter = idCourse.HasValue ?
@@ -396,6 +454,15 @@ namespace Online_Academy.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_testBought", idUserParameter, idCourseParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> sp_totalCost(Nullable<int> idUser)
+        {
+            var idUserParameter = idUser.HasValue ?
+                new ObjectParameter("idUser", idUser) :
+                new ObjectParameter("idUser", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_totalCost", idUserParameter);
+        }
+    
         public virtual int sp_UpdateProcess(Nullable<int> idUser, Nullable<int> idCourse, Nullable<int> process)
         {
             var idUserParameter = idUser.HasValue ?
@@ -416,64 +483,6 @@ namespace Online_Academy.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<checkNameCourse_Result> checkNameCourse(string name, Nullable<int> id)
-        {
-            var nameParameter = name != null ?
-                new ObjectParameter("name", name) :
-                new ObjectParameter("name", typeof(string));
-    
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<checkNameCourse_Result>("checkNameCourse", nameParameter, idParameter);
-        }
-    
-        public virtual ObjectResult<sp_Cart_Result> sp_Cart(Nullable<int> idUser)
-        {
-            var idUserParameter = idUser.HasValue ?
-                new ObjectParameter("idUser", idUser) :
-                new ObjectParameter("idUser", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Cart_Result>("sp_Cart", idUserParameter);
-        }
-    
-        public virtual ObjectResult<sp_notBought_Result> sp_notBought(Nullable<int> idUser)
-        {
-            var idUserParameter = idUser.HasValue ?
-                new ObjectParameter("idUser", idUser) :
-                new ObjectParameter("idUser", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_notBought_Result>("sp_notBought", idUserParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_totalCost(Nullable<int> idUser)
-        {
-            var idUserParameter = idUser.HasValue ?
-                new ObjectParameter("idUser", idUser) :
-                new ObjectParameter("idUser", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_totalCost", idUserParameter);
-        }
-    
-        public virtual ObjectResult<getCourseByTeacher_Result> getCourseByTeacher(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCourseByTeacher_Result>("getCourseByTeacher", idParameter);
-        }
-    
-        public virtual ObjectResult<sp_searchName_Result> sp_searchName(string text)
-        {
-            var textParameter = text != null ?
-                new ObjectParameter("text", text) :
-                new ObjectParameter("text", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_searchName_Result>("sp_searchName", textParameter);
         }
     }
 }

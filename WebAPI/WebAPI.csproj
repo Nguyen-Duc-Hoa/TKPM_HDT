@@ -189,6 +189,12 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\checkCodeCourse_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\checkNameCourse_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Comment.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
@@ -208,6 +214,9 @@
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getCourseByState_Result.cs">
+      <DependentUpon>TKPM_HDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCourseByTeacher_Result.cs">
       <DependentUpon>TKPM_HDT.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\getCurriculumByCourse_Result.cs">

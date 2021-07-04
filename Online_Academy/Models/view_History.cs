@@ -17,6 +17,6 @@ namespace Online_Academy.Models
         public int id_course { get; set; }
         public int id_user { get; set; }
         public Nullable<System.DateTime> date { get; set; }
-        public Nullable<int> price { get; set; }
+        public Nullable<double> price { get; set; }
     }
 }

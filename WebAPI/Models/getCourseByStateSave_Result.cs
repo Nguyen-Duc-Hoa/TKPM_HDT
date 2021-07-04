@@ -25,5 +25,6 @@ namespace WebAPI.Models
         public Nullable<int> price { get; set; }
         public Nullable<int> discount { get; set; }
         public Nullable<bool> statesave { get; set; }
+        public string code { get; set; }
     }
 }
